@@ -1,4 +1,4 @@
-package com.evenclose.versalistpro.ui.theme
+package com.evenclose.versalistpro.presentation.ui.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle
