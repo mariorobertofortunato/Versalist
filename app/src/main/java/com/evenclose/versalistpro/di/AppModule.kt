@@ -6,8 +6,10 @@ import com.evenclose.versalistpro.data.database.ListDao
 import com.evenclose.versalistpro.data.database.ListDatabase
 import com.evenclose.versalistpro.data.repository.ListRepository
 import com.evenclose.versalistpro.domain.use_case.UseCase
-import com.evenclose.versalistpro.domain.use_case.list.AddNewList
+import com.evenclose.versalistpro.domain.use_case.list.AddNewInnerListItemUseCase
+import com.evenclose.versalistpro.domain.use_case.list.AddNewListUseCase
 import com.evenclose.versalistpro.domain.use_case.list.FetchAllListsUseCase
+import com.evenclose.versalistpro.domain.use_case.list.GetCurrentInnerListUseCase
 import com.evenclose.versalistpro.domain.use_case.list.GetListDataUseCase
 import dagger.Module
 import dagger.Provides
@@ -46,6 +48,8 @@ object AppModule {
     ): UseCase = UseCase(
         FetchAllListsUseCase(listRepository),
         GetListDataUseCase(listRepository),
-        AddNewList(listRepository)
+        AddNewListUseCase(listRepository),
+        AddNewInnerListItemUseCase(listRepository),
+        GetCurrentInnerListUseCase(listRepository)
     )
 }

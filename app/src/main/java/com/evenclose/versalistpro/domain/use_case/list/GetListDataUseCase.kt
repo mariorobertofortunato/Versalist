@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class GetListDataUseCase @Inject constructor(private val listRepository: ListRepository) {
 
-    suspend operator fun invoke(name: String) = listRepository.getListData(name)
+    suspend operator fun invoke(id: Int) = listRepository.getListData(id)
 
 }

@@ -3,6 +3,7 @@ package com.evenclose.versalistpro.presentation.viewmodel
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
 import com.evenclose.versalistpro.domain.use_case.UseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -13,7 +14,8 @@ import javax.inject.Inject
 class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel(){
 
     val mainList = MutableLiveData<List<MainListItem>>(emptyList())
-    val currentList = MutableLiveData<MainListItem>(null)
+    val currentListData = MutableLiveData<MainListItem>(null)
+    val currentInnerList = MutableLiveData<List<InnerListItem>>(emptyList())
 
     fun fetchAllLists() {
         viewModelScope.launch {
@@ -23,17 +25,32 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
         }
     }
 
-    fun getListData(name: String) {
+    fun getListData(id: Int) {
         viewModelScope.launch {
-            useCase.GetListDataUseCase(name).collect {
-                //currentList.postValue(it)
+            useCase.GetListDataUseCase(id).collect {
+                //currentListData.postValue(it)
+                currentListData.value = it
+            }
+        }
+    }
+
+    fun getCurrentInnerList(id: Int) {
+        viewModelScope.launch {
+            useCase.GetCurrentInnerListUseCase(id).collect {
+                currentInnerList.postValue(it)
             }
         }
     }
 
     fun addNewList(name: String) {
         viewModelScope.launch {
-            useCase.AddNewList(name)
+            useCase.AddNewListUseCase(name)
+        }
+    }
+
+    fun addNewInnerListItem(value: String, mainListId: Int) {
+        viewModelScope.launch {
+            useCase.AddNewInnerListItemUseCase(value, mainListId)
         }
     }
 

@@ -36,6 +36,7 @@ import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 @Composable
 fun NewItemDialog(
     type: String,
+    mainListId: Int?,
     listViewModel: ListViewModel = hiltViewModel(),
     onDismissRequest: () -> Unit
 ) {
@@ -98,7 +99,13 @@ fun NewItemDialog(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     onClick = {
                         // TODO Check su string vuota
-                        listViewModel.addNewList(value)
+                        if (type == "MainListItem") {
+                            listViewModel.addNewList(value)
+                        } else {
+                            if (mainListId != null) {
+                                listViewModel.addNewInnerListItem(value = value, mainListId = mainListId)
+                            }
+                        }
                         onDismissRequest()
                     },
                     shape = RectangleShape,
@@ -122,6 +129,5 @@ fun NewItemDialog(
 @Preview
 @Composable
 fun DialogPreview() {
-    NewItemDialog(type = "MainListItem") {
-    }
+
 }

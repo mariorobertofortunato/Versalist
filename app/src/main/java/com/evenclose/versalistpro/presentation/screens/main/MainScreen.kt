@@ -13,7 +13,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Add
 import androidx.compose.material3.Divider
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
@@ -56,23 +55,9 @@ fun MainScreen(
     if (showDialog) {
         NewItemDialog(
             type = "MainListItem",
+            mainListId = null,
             onDismissRequest = { showDialog = false })
     }
-
-
-    /*    LaunchedEffect(key1 = Unit) {
-            userViewModel.getUserData()
-        }
-        LaunchedEffect(key1 = userData) {
-            requestsViewModel.getUserRequestDocument()
-        }
-        LaunchedEffect(key1 = pendingRequests) {
-            messagesViewModel.getActiveRooms()
-        }
-        LaunchedEffect(key1 = rooms) {
-            messagesViewModel.fetchAllUserMessages()
-        }*/
-
 
     Scaffold(
         topBar = {
@@ -126,14 +111,11 @@ fun MainScreen(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             verticalAlignment = Alignment.CenterVertically,
                             modifier = Modifier
-                                .padding(
-                                    horizontal = 12.dp,
-                                    vertical = 6.dp
-                                )
                                 .fillMaxWidth()
                         ) {
                             MainListItem(
-                                list = mainList.value!![it],
+                                mainListItem = mainList.value!![it],
+                                navController = navController
                             )
                         }
                     }

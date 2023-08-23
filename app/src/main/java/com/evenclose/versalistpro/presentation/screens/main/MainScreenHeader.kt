@@ -13,7 +13,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.presentation.navigation.Screens
 import com.evenclose.versalistpro.presentation.ui.theme.white
@@ -28,18 +30,20 @@ fun MainScreenHeader(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                horizontal = 12.dp
+                horizontal = 12.dp,
+                vertical = 8.dp
             )
     ) {
         Text(
             text = "Versalist Pro",
-            //style = Typography.headlineMedium,
+            fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             color = white,
         )
         IconButton(
             onClick = {
                 //navController.navigate(Screens.UserSettingsScreen.route)
+                // TODO navigate to settings (sempre che ce ne siano)
             }
         ) {
             Icon(

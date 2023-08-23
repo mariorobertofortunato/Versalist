@@ -8,7 +8,9 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 @Entity(tableName = "inner_list")
 data class InnerListItem(
-    @PrimaryKey(autoGenerate = false)
+    @PrimaryKey(autoGenerate = true)
+    var id: Int? = null,
     val name: String = "",
-    val isChecked: Boolean,
+    var isChecked: Boolean,
+    val mainListId: Int
 ) : Parcelable

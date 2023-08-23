@@ -16,8 +16,14 @@ fun NavGraph(navController: NavHostController) {
         composable(route = Screens.MainScreen.route) {
             MainScreen(navController)
         }
-        composable(route = Screens.ListScreen.route) {
-            //ListScreen(navController)
+        composable(
+            route = "${Screens.ListScreen.route}/{listId}",
+        ) {navBackstackEntry ->
+            val listId = navBackstackEntry.arguments?.getString("listId")
+            if (listId != null) {
+                val id = listId.toInt()
+                ListScreen(navController, id)
+            }
         }
     }
 }
