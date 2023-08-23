@@ -14,8 +14,8 @@ class ListRepository @Inject constructor(
 
     suspend fun fetchAllLists() = flow {
         try {
-            //allLists = dao.fetchAllLists()
-            emit(dao.fetchAllLists())
+            allLists = dao.fetchAllLists()
+            emit(allLists)
         } catch (e: Exception) {
             Log.e("TAG Error Fetch All Lists", "$e")
         }
@@ -26,7 +26,15 @@ class ListRepository @Inject constructor(
             //allLists = dao.fetchAllLists()
             emit(dao.getListData(name))
         } catch (e: Exception) {
-            Log.e("TAG Error Fetch All Lists", "$e")
+            Log.e("TAG Error Fetch List data", "$e")
+        }
+    }
+
+    suspend fun addNewList(name: String) {
+        try {
+            dao.addNewList(MainListItem(name = name))
+        } catch (e: Exception) {
+            Log.e("TAG Error Add New List", "$e")
         }
     }
 

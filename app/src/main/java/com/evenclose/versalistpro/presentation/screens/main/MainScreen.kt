@@ -19,7 +19,11 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -27,23 +31,32 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.presentation.composables.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.composables.MainListItem
+import com.evenclose.versalistpro.presentation.composables.NewItemDialog
 import com.evenclose.versalistpro.presentation.ui.theme.inversePrimary
 import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.ui.theme.white
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun MainScreen(
     navController: NavController,
     listViewModel: ListViewModel = hiltViewModel(),
 ) {
     /** All lists */
-    val allLists = listViewModel.allLists.observeAsState(emptyList())
+    val mainList = listViewModel.mainList.observeAsState(emptyList())
 
-    LaunchedEffect(key1 = Unit) {
+    var showDialog by remember { mutableStateOf(false) }
+
+    // We fetch the main list at the start of the app and when the dialog is closed
+    LaunchedEffect(key1 = Unit, key2 = showDialog) {
         listViewModel.fetchAllLists()
+    }
+
+    if (showDialog) {
+        NewItemDialog(
+            type = "MainListItem",
+            onDismissRequest = { showDialog = false })
     }
 
 
@@ -89,8 +102,7 @@ fun MainScreen(
                 contentColor = white,
                 shape = RoundedCornerShape(50),
                 onClick = {
-                    //navController.navigate(Screens.SearchScreen.route)
-                    // TODO open dialog for new list
+                    showDialog = showDialog.not()
                 }
             ) {
                 Icon(
@@ -107,8 +119,8 @@ fun MainScreen(
                 .padding(it)
         ) {
 
-            if (allLists.value?.isNotEmpty() == true) {
-                items(allLists.value!!.size) {
+            if (mainList.value?.isNotEmpty() == true) {
+                items(mainList.value!!.size) {
                     Column() {
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
@@ -121,7 +133,7 @@ fun MainScreen(
                                 .fillMaxWidth()
                         ) {
                             MainListItem(
-                                list = allLists.value!![it],
+                                list = mainList.value!![it],
                             )
                         }
                     }

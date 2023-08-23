@@ -12,5 +12,4 @@ data class MainListItem(
     @PrimaryKey(autoGenerate = true)
     var id: Int? = null,
     val name: String,
-    //val items: @RawValue List<ListItem> = emptyList(),
     ) : Parcelable
