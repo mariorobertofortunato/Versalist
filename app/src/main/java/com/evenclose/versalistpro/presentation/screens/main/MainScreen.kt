@@ -99,7 +99,7 @@ fun MainScreen(
                 Row(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(8.dp)
+                    modifier = Modifier.padding(12.dp)
                 ) {
                     Text(
                         text = "Add new list",
