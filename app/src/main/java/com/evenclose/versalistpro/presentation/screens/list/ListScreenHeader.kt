@@ -1,6 +1,7 @@
 package com.evenclose.versalistpro.presentation.screens.list
 
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -14,6 +15,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -30,13 +33,13 @@ fun ListScreenHeader(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                horizontal = 12.dp,
+                //horizontal = 12.dp,
                 vertical = 8.dp
             )
     ) {
         IconButton(
             onClick = {
-                // TODO navigate back
+                navController.navigateUp()
             }
         ) {
             Icon(
@@ -45,12 +48,20 @@ fun ListScreenHeader(
                 tint = white
             )
         }
-        Text(
-            text = listName,
-            fontSize = 32.sp,
-            fontWeight = FontWeight.Bold,
-            color = white,
-        )
+        BoxWithConstraints(
+            modifier = Modifier
+                .fillMaxWidth()
+                .weight(5f)
+        ) {
+            Text(
+                text = listName,
+                fontSize =  32.sp,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                color = white,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
         IconButton(
             onClick = {
                 //navController.navigate(Screens.UserSettingsScreen.route)
@@ -64,4 +75,10 @@ fun ListScreenHeader(
             )
         }
     }
+}
+
+@Preview
+@Composable
+fun ListScreenHeaderPreview(){
+    //ListScreenHeader(listName = "Lista con un nome molto molto lungo")
 }

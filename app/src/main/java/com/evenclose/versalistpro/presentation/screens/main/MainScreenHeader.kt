@@ -30,7 +30,7 @@ fun MainScreenHeader(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                horizontal = 12.dp,
+                //horizontal = 12.dp,
                 vertical = 8.dp
             )
     ) {
@@ -39,6 +39,7 @@ fun MainScreenHeader(
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             color = white,
+            modifier = Modifier.padding(start = 12.dp)
         )
         IconButton(
             onClick = {
