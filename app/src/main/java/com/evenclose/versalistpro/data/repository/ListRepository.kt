@@ -6,6 +6,7 @@ import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
+import kotlin.properties.Delegates
 
 class ListRepository @Inject constructor(
     private val dao: ListDao,
@@ -43,6 +44,14 @@ class ListRepository @Inject constructor(
         }
     }
 
+    suspend fun deleteMainListItem(id: Int) {
+        try {
+            dao.deleteMainListItem(id)
+        } catch (e: Exception) {
+            Log.e("TAG Error Delete main List item", "$e")
+        }
+    }
+
 
     /** INNER LIST */
     suspend fun addNewInnerListItem(value: String, mainListId: Int) {
@@ -58,6 +67,14 @@ class ListRepository @Inject constructor(
             dao.updateItemCheckStatus(id, newCheckStatus)
         } catch (e: Exception) {
             Log.e("TAG Error Update Item Check Status", "$e")
+        }
+    }
+
+    suspend fun deleteInnerListItem(id: Int) {
+        try {
+            dao.deleteInnerListItem(id)
+        } catch (e: Exception) {
+            Log.e("TAG Error Delete main List item", "$e")
         }
     }
 

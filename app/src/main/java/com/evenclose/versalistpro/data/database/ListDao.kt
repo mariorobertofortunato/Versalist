@@ -20,12 +20,18 @@ interface ListDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addNewList(newList: MainListItem)
 
+    @Query("DELETE FROM main_list WHERE id = :id")
+    suspend fun deleteMainListItem(id: Int)
+
     /** INNER LIST */
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun addNewInnerListItem(newItem: InnerListItem)
 
     @Query("SELECT * FROM inner_list WHERE mainListId = :id")
     suspend fun fetchCurrentInnerList(id: Int): List<InnerListItem>
+
+    @Query("DELETE FROM inner_list WHERE id = :id")
+    suspend fun deleteInnerListItem(id: Int)
 
     @Query("UPDATE inner_list SET isChecked=:newCheckStatus WHERE id = :id")
     suspend fun updateItemCheckStatus(id: Int, newCheckStatus: Boolean)

@@ -8,6 +8,8 @@ import com.evenclose.versalistpro.data.repository.ListRepository
 import com.evenclose.versalistpro.domain.use_case.UseCase
 import com.evenclose.versalistpro.domain.use_case.list.AddNewInnerListItemUseCase
 import com.evenclose.versalistpro.domain.use_case.list.AddNewListUseCase
+import com.evenclose.versalistpro.domain.use_case.list.DeleteInnerListItemUseCase
+import com.evenclose.versalistpro.domain.use_case.list.DeleteMainListItemUseCase
 import com.evenclose.versalistpro.domain.use_case.list.FetchAllListsUseCase
 import com.evenclose.versalistpro.domain.use_case.list.GetCurrentInnerListUseCase
 import com.evenclose.versalistpro.domain.use_case.list.GetListDataUseCase
@@ -52,6 +54,8 @@ object AppModule {
         AddNewListUseCase(listRepository),
         AddNewInnerListItemUseCase(listRepository),
         GetCurrentInnerListUseCase(listRepository),
-        UpdateItemCheckStatusUseCase(listRepository)
+        UpdateItemCheckStatusUseCase(listRepository),
+        DeleteMainListItemUseCase(listRepository),
+        DeleteInnerListItemUseCase(listRepository)
     )
 }

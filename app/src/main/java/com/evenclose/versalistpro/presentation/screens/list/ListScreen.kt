@@ -112,10 +112,6 @@ fun ListScreen (
                         fontWeight = FontWeight.Bold,
                         color = white,
                     )
-                    /*                    Icon(
-                                            imageVector = Icons.Outlined.Add,
-                                            contentDescription = "Add new list Icon",
-                                        )*/
                 }
 
             }

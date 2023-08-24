@@ -47,13 +47,13 @@ fun MainScreen(
     navController: NavController,
     listViewModel: ListViewModel = hiltViewModel(),
 ) {
-    /** All lists */
+
     val mainList = listViewModel.mainList.observeAsState(emptyList())
 
     var showDialog by remember { mutableStateOf(false) }
 
-    // We fetch the main list at the start of the app and when the dialog is closed
-    LaunchedEffect(key1 = Unit, key2 = showDialog) {
+    // We fetch the main list at the start of the app, when the add-new-list-dialog and when a list is deleted is closed
+    LaunchedEffect(key1 = Unit, key2 = !showDialog) {
         listViewModel.fetchAllLists()
     }
 

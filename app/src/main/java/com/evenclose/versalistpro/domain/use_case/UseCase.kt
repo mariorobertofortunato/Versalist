@@ -2,6 +2,8 @@ package com.evenclose.versalistpro.domain.use_case
 
 import com.evenclose.versalistpro.domain.use_case.list.AddNewInnerListItemUseCase
 import com.evenclose.versalistpro.domain.use_case.list.AddNewListUseCase
+import com.evenclose.versalistpro.domain.use_case.list.DeleteInnerListItemUseCase
+import com.evenclose.versalistpro.domain.use_case.list.DeleteMainListItemUseCase
 import com.evenclose.versalistpro.domain.use_case.list.FetchAllListsUseCase
 import com.evenclose.versalistpro.domain.use_case.list.GetCurrentInnerListUseCase
 import com.evenclose.versalistpro.domain.use_case.list.GetListDataUseCase
@@ -13,5 +15,7 @@ class UseCase (
     var AddNewListUseCase: AddNewListUseCase,
     var AddNewInnerListItemUseCase: AddNewInnerListItemUseCase,
     var GetCurrentInnerListUseCase: GetCurrentInnerListUseCase,
-    var UpdateItemCheckStatusUseCase: UpdateItemCheckStatusUseCase
+    var UpdateItemCheckStatusUseCase: UpdateItemCheckStatusUseCase,
+    var DeleteMainListItemUseCase: DeleteMainListItemUseCase,
+    var DeleteInnerListItemUseCase: DeleteInnerListItemUseCase
         )

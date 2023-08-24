@@ -1,6 +1,5 @@
 package com.evenclose.versalistpro.presentation.viewmodel
 
-
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -21,7 +20,7 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
     fun fetchAllLists() {
         viewModelScope.launch {
             useCase.FetchAllListsUseCase().collect {
-                mainList.postValue(it)
+                mainList.value = it
             }
         }
     }
@@ -29,6 +28,13 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
     fun addNewList(name: String) {
         viewModelScope.launch {
             useCase.AddNewListUseCase(name)
+        }
+    }
+
+    fun deleteMainListItem(id: Int) {
+        viewModelScope.launch {
+            useCase.DeleteMainListItemUseCase(id)
+            fetchAllLists()
         }
     }
 
@@ -43,12 +49,10 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
     fun getCurrentInnerList(id: Int) {
         viewModelScope.launch {
             useCase.GetCurrentInnerListUseCase(id).collect {
-                currentInnerList.postValue(it)
+                currentInnerList.value = it
             }
         }
     }
-
-
 
     fun addNewInnerListItem(value: String, mainListId: Int) {
         viewModelScope.launch {
@@ -56,9 +60,17 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
         }
     }
 
-    fun updateItemCheckStatus(innerListItemId: Int, newCheckStatus: Boolean) {
+    fun deleteInnerListItem(id: Int, mainListId: Int) {
+        viewModelScope.launch {
+            useCase.DeleteInnerListItemUseCase(id)
+            getCurrentInnerList(mainListId)
+        }
+    }
+
+    fun updateItemCheckStatus(innerListItemId: Int, newCheckStatus: Boolean, mainListId: Int) {
         viewModelScope.launch {
             useCase.UpdateItemCheckStatusUseCase(innerListItemId, newCheckStatus)
+            getCurrentInnerList(mainListId)
         }
     }
 

@@ -1,6 +1,8 @@
 package com.evenclose.versalistpro.presentation.composables
 
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
@@ -10,6 +12,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.RadioButtonUnchecked
 import androidx.compose.material.icons.outlined.Settings
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -31,12 +35,14 @@ import com.evenclose.versalistpro.presentation.navigation.Screens
 import com.evenclose.versalistpro.presentation.ui.theme.white
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun InnerListItem(
     innerListItem: InnerListItem,
     listViewModel: ListViewModel = hiltViewModel(),
 ) {
 
+    var expanded by remember { mutableStateOf(false) }
     var checkStatus by remember { mutableStateOf(innerListItem.isChecked) }
 
     Row(
@@ -44,14 +50,17 @@ fun InnerListItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
-            .clickable(
+            .combinedClickable(
                 // Disable ripple effect because it sucks
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() },
                 onClick = {
                     checkStatus = !checkStatus
-                    listViewModel.updateItemCheckStatus(innerListItem.id!!, checkStatus)
-                    listViewModel.getCurrentInnerList(innerListItem.mainListId)
+                    listViewModel.updateItemCheckStatus(innerListItem.id!!, checkStatus, innerListItem.mainListId)
+                    //listViewModel.getCurrentInnerList(innerListItem.mainListId)
+                },
+                onLongClick = {
+                    expanded = true
                 }
             )
     ) {
@@ -72,6 +81,18 @@ fun InnerListItem(
             color = white,
             modifier = Modifier.padding(start = 8.dp)
         )
+        DropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { expanded = false }
+        ) {
+            DropdownMenuItem(
+                text = { Text(text = "Delete item", fontSize = 16.sp) },
+                onClick = {
+                    expanded = false
+                    listViewModel.deleteInnerListItem(innerListItem.id!!, innerListItem.mainListId)
+                }
+            )
+        }
 
     }
 }
