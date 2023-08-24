@@ -5,6 +5,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Settings
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -33,6 +34,17 @@ fun ListScreenHeader(
                 vertical = 8.dp
             )
     ) {
+        IconButton(
+            onClick = {
+                // TODO navigate back
+            }
+        ) {
+            Icon(
+                imageVector = Icons.Outlined.ArrowBack,
+                contentDescription = "Arrow Back Icon",
+                tint = white
+            )
+        }
         Text(
             text = listName,
             fontSize = 32.sp,

@@ -121,7 +121,6 @@ fun ListScreen (
                         ) {
                             InnerListItem(
                                 innerListItem = currentInnerList.value!![it],
-                                navController = navController
                             )
                         }
                     }

@@ -15,6 +15,8 @@ class ListRepository @Inject constructor(
     private lateinit var currentInnerList: List<InnerListItem>
     private lateinit var currentListData: MainListItem
 
+
+    /** MAIN LIST */
     suspend fun fetchAllLists() = flow {
         try {
             allLists = dao.fetchAllLists()
@@ -41,11 +43,21 @@ class ListRepository @Inject constructor(
         }
     }
 
+
+    /** INNER LIST */
     suspend fun addNewInnerListItem(value: String, mainListId: Int) {
         try {
             dao.addNewInnerListItem(InnerListItem(name = value, isChecked = false, mainListId = mainListId))
         } catch (e: Exception) {
             Log.e("TAG Error Add New Inner List Item", "$e")
+        }
+    }
+
+    suspend fun updateItemCheckStatus(id: Int, newCheckStatus: Boolean) {
+        try {
+            dao.updateItemCheckStatus(id, newCheckStatus)
+        } catch (e: Exception) {
+            Log.e("TAG Error Update Item Check Status", "$e")
         }
     }
 

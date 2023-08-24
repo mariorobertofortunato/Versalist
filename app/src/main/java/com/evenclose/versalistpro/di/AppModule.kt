@@ -11,6 +11,7 @@ import com.evenclose.versalistpro.domain.use_case.list.AddNewListUseCase
 import com.evenclose.versalistpro.domain.use_case.list.FetchAllListsUseCase
 import com.evenclose.versalistpro.domain.use_case.list.GetCurrentInnerListUseCase
 import com.evenclose.versalistpro.domain.use_case.list.GetListDataUseCase
+import com.evenclose.versalistpro.domain.use_case.list.UpdateItemCheckStatusUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,6 +51,7 @@ object AppModule {
         GetListDataUseCase(listRepository),
         AddNewListUseCase(listRepository),
         AddNewInnerListItemUseCase(listRepository),
-        GetCurrentInnerListUseCase(listRepository)
+        GetCurrentInnerListUseCase(listRepository),
+        UpdateItemCheckStatusUseCase(listRepository)
     )
 }

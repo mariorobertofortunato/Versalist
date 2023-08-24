@@ -1,5 +1,6 @@
 package com.evenclose.versalistpro.presentation.viewmodel
 
+
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -25,10 +26,15 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
         }
     }
 
+    fun addNewList(name: String) {
+        viewModelScope.launch {
+            useCase.AddNewListUseCase(name)
+        }
+    }
+
     fun getListData(id: Int) {
         viewModelScope.launch {
             useCase.GetListDataUseCase(id).collect {
-                //currentListData.postValue(it)
                 currentListData.value = it
             }
         }
@@ -42,15 +48,17 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
         }
     }
 
-    fun addNewList(name: String) {
-        viewModelScope.launch {
-            useCase.AddNewListUseCase(name)
-        }
-    }
+
 
     fun addNewInnerListItem(value: String, mainListId: Int) {
         viewModelScope.launch {
             useCase.AddNewInnerListItemUseCase(value, mainListId)
+        }
+    }
+
+    fun updateItemCheckStatus(innerListItemId: Int, newCheckStatus: Boolean) {
+        viewModelScope.launch {
+            useCase.UpdateItemCheckStatusUseCase(innerListItemId, newCheckStatus)
         }
     }
 

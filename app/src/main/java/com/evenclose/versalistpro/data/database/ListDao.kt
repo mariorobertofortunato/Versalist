@@ -27,4 +27,7 @@ interface ListDao {
     @Query("SELECT * FROM inner_list WHERE mainListId = :id")
     suspend fun fetchCurrentInnerList(id: Int): List<InnerListItem>
 
+    @Query("UPDATE inner_list SET isChecked=:newCheckStatus WHERE id = :id")
+    suspend fun updateItemCheckStatus(id: Int, newCheckStatus: Boolean)
+
 }

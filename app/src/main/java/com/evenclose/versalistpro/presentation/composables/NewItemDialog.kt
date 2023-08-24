@@ -84,7 +84,7 @@ fun NewItemDialog(
                     TextField(
                         value = value,
                         onValueChange = { value = it },
-                        maxLines = 1,
+                        singleLine = true,
                         shape = RectangleShape,
                         placeholder = { Text(text = placeholder, color = primary) },
                         colors = TextFieldDefaults.colors(
