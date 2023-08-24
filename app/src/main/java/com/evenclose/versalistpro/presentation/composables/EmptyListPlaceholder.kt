@@ -18,8 +18,6 @@ import com.evenclose.versalistpro.presentation.ui.theme.white
 
 @Composable
 fun EmptyListPlaceholder(type: String) {
-
-    // TODO action e magari una illustazione
     // TODO sistemare hardcoded strings
 
     val text = when (type) {

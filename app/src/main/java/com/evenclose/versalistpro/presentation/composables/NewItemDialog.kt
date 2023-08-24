@@ -8,7 +8,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
-import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -32,7 +31,6 @@ import com.evenclose.versalistpro.presentation.ui.theme.primaryContainer
 import com.evenclose.versalistpro.presentation.ui.theme.white
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
-@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun NewItemDialog(
     type: String,

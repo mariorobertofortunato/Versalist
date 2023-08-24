@@ -6,7 +6,6 @@ import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
-import kotlin.properties.Delegates
 
 class ListRepository @Inject constructor(
     private val dao: ListDao,

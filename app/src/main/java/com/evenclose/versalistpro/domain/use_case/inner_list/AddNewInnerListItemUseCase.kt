@@ -1,4 +1,4 @@
-package com.evenclose.versalistpro.domain.use_case.list
+package com.evenclose.versalistpro.domain.use_case.inner_list
 
 import com.evenclose.versalistpro.data.repository.ListRepository
 import javax.inject.Inject

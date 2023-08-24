@@ -1,13 +1,13 @@
 package com.evenclose.versalistpro.domain.use_case
 
-import com.evenclose.versalistpro.domain.use_case.list.AddNewInnerListItemUseCase
-import com.evenclose.versalistpro.domain.use_case.list.AddNewListUseCase
-import com.evenclose.versalistpro.domain.use_case.list.DeleteInnerListItemUseCase
-import com.evenclose.versalistpro.domain.use_case.list.DeleteMainListItemUseCase
-import com.evenclose.versalistpro.domain.use_case.list.FetchAllListsUseCase
-import com.evenclose.versalistpro.domain.use_case.list.GetCurrentInnerListUseCase
-import com.evenclose.versalistpro.domain.use_case.list.GetListDataUseCase
-import com.evenclose.versalistpro.domain.use_case.list.UpdateItemCheckStatusUseCase
+import com.evenclose.versalistpro.domain.use_case.inner_list.AddNewInnerListItemUseCase
+import com.evenclose.versalistpro.domain.use_case.main_list.AddNewListUseCase
+import com.evenclose.versalistpro.domain.use_case.inner_list.DeleteInnerListItemUseCase
+import com.evenclose.versalistpro.domain.use_case.main_list.DeleteMainListItemUseCase
+import com.evenclose.versalistpro.domain.use_case.main_list.FetchAllListsUseCase
+import com.evenclose.versalistpro.domain.use_case.inner_list.GetCurrentInnerListUseCase
+import com.evenclose.versalistpro.domain.use_case.main_list.GetListDataUseCase
+import com.evenclose.versalistpro.domain.use_case.inner_list.UpdateItemCheckStatusUseCase
 
 class UseCase (
     var FetchAllListsUseCase: FetchAllListsUseCase,
