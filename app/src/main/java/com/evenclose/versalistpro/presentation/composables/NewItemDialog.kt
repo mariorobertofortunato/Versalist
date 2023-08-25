@@ -13,6 +13,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -20,6 +21,8 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -30,6 +33,8 @@ import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.primaryContainer
 import com.evenclose.versalistpro.presentation.ui.theme.white
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
+import kotlinx.coroutines.delay
+
 
 @Composable
 fun NewItemDialog(
@@ -39,6 +44,12 @@ fun NewItemDialog(
     onDismissRequest: () -> Unit
 ) {
     var value by remember { mutableStateOf("") }
+    val focusRequester = FocusRequester()
+
+    LaunchedEffect(Unit) {
+        delay(150)
+        focusRequester.requestFocus()
+    }
 
     Dialog(onDismissRequest = onDismissRequest) {
         Box(
@@ -90,21 +101,25 @@ fun NewItemDialog(
                             unfocusedContainerColor = white,
                             disabledContainerColor = white,
                             focusedTextColor = primary
-                        )
+                        ),
+                        modifier = Modifier.focusRequester(focusRequester)
                     )
                 }
                 Surface(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     onClick = {
-                        // TODO Check su string vuota
-                        if (type == "MainListItem") {
-                            listViewModel.addNewList(value)
-                        } else {
-                            if (mainListId != null) {
-                                listViewModel.addNewInnerListItem(value = value, mainListId = mainListId)
+                        if (value != "") {
+                            if (type == "MainListItem") {
+                                listViewModel.addNewList(value)
+                            } else {
+                                if (mainListId != null) {
+                                    listViewModel.addNewInnerListItem(value = value, mainListId = mainListId)
+                                }
                             }
+                            onDismissRequest()
+                        } else {
+                            // TODO show some kinda error
                         }
-                        onDismissRequest()
                     },
                     shape = RectangleShape,
                     color = primary,
