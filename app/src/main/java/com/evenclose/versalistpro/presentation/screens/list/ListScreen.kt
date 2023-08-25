@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.FabPosition
@@ -39,7 +40,7 @@ import com.evenclose.versalistpro.presentation.ui.theme.white
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
 @Composable
-fun ListScreen (
+fun ListScreen(
     navController: NavController,
     listId: Int,
     listViewModel: ListViewModel = hiltViewModel(),
@@ -51,7 +52,7 @@ fun ListScreen (
 
     var showDialog by remember { mutableStateOf(false) }
 
-    LaunchedEffect(key1 = Unit, key2= showDialog) {
+    LaunchedEffect(key1 = Unit, key2 = showDialog) {
         listViewModel.getListData(listId)
         listViewModel.getCurrentInnerList(listId)
     }
@@ -112,7 +113,7 @@ fun ListScreen (
 
             }
         }
-    ) { it ->
+    ) {
         LazyColumn(
             modifier = Modifier
                 .fillMaxWidth()
@@ -120,18 +121,20 @@ fun ListScreen (
         ) {
 
             if (currentInnerList.value?.isNotEmpty() == true) {
-                items(currentInnerList.value!!.size) {
-                    Column() {
-                        Row(
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            InnerListItem(
-                                innerListItem = currentInnerList.value!![it],
-                            )
-                        }
+                items(
+                    items = currentInnerList.value!!,
+                    /** For reasons beyond our understanding, this is the only way to make the key parameter work */
+                    key = { item -> item }
+                ) { item ->
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        InnerListItem(
+                            innerListItem = item,
+                        )
                     }
                     Divider(
                         color = white,

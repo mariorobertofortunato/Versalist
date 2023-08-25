@@ -93,5 +93,5 @@ fun InnerListItem(
 @Composable
 fun InnerListItemPreview(
 ) {
-    InnerListItem(innerListItem = InnerListItem(1, "item prova", false, 1))
+   // InnerListItem(innerListItem = InnerListItem(1, "item prova", false, 1))
 }
