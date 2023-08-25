@@ -1,5 +1,9 @@
 package com.evenclose.versalistpro.presentation.composables
 
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -31,6 +35,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.primaryContainer
+import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.ui.theme.white
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
@@ -44,6 +49,7 @@ fun NewItemDialog(
     onDismissRequest: () -> Unit
 ) {
     var value by remember { mutableStateOf("") }
+    var errorTextVisibility by remember { mutableStateOf(false) }
     val focusRequester = FocusRequester()
 
     LaunchedEffect(Unit) {
@@ -59,7 +65,7 @@ fun NewItemDialog(
                 .background(primaryContainer)
         ) {
             Column {
-                /** Dialog Title*/
+                /** Title*/
                 Row(
                     Modifier
                         .fillMaxWidth()
@@ -73,12 +79,12 @@ fun NewItemDialog(
                         "Add new item"
                     }
                     Text(
-                        text,
+                        text = text,
                         color = white,
                     )
                 }
 
-                /** Dialog Body*/
+                /** TextField Body */
                 Row(
                     modifier = Modifier
                         .padding(16.dp),
@@ -92,7 +98,10 @@ fun NewItemDialog(
                     }
                     TextField(
                         value = value,
-                        onValueChange = { value = it },
+                        onValueChange = {
+                            value = it
+                            errorTextVisibility = false
+                        },
                         singleLine = true,
                         shape = RectangleShape,
                         placeholder = { Text(text = placeholder, color = primary) },
@@ -105,6 +114,31 @@ fun NewItemDialog(
                         modifier = Modifier.focusRequester(focusRequester)
                     )
                 }
+
+                /** Error Text */
+                AnimatedVisibility(
+                    visible = errorTextVisibility,
+                    enter = fadeIn(
+                        initialAlpha = 0f
+                    ),
+                    exit = fadeOut(
+                        animationSpec = tween(durationMillis = 250)
+                    )
+                ) {
+                    Row(
+                        modifier = Modifier
+                            .padding(horizontal = 16.dp),
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.Center
+                    ) {
+                        Text(
+                            text = "Please enter a value",
+                            color = secondary,
+                        )
+                    }
+                }
+
+                /** Ok Button */
                 Surface(
                     modifier = Modifier.align(Alignment.CenterHorizontally),
                     onClick = {
@@ -113,12 +147,15 @@ fun NewItemDialog(
                                 listViewModel.addNewList(value)
                             } else {
                                 if (mainListId != null) {
-                                    listViewModel.addNewInnerListItem(value = value, mainListId = mainListId)
+                                    listViewModel.addNewInnerListItem(
+                                        value = value,
+                                        mainListId = mainListId
+                                    )
                                 }
                             }
                             onDismissRequest()
                         } else {
-                            // TODO show some kinda error
+                            errorTextVisibility = true
                         }
                     },
                     shape = RectangleShape,
