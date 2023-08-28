@@ -46,6 +46,13 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
         }
     }
 
+    fun updateMainListFavouriteStatus(mainListItemId: Int, newFavouriteStatus: Boolean) {
+        viewModelScope.launch {
+            useCase.UpdateMainListFavouriteStatusUseCase(mainListItemId, newFavouriteStatus)
+            fetchAllLists()
+        }
+    }
+
     fun getCurrentInnerList(id: Int) {
         viewModelScope.launch {
             useCase.GetCurrentInnerListUseCase(id).collect {

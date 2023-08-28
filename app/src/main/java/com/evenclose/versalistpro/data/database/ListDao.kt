@@ -11,7 +11,7 @@ import com.evenclose.versalistpro.data.model.MainListItem
 interface ListDao {
 
     /** MAIN LIST */
-    @Query("SELECT * FROM main_list")
+    @Query("SELECT * FROM main_list ORDER BY isFav DESC")
     suspend fun fetchAllLists(): List<MainListItem>
 
     @Query("SELECT * FROM main_list WHERE id = :id")
@@ -22,6 +22,9 @@ interface ListDao {
 
     @Query("DELETE FROM main_list WHERE id = :id")
     suspend fun deleteMainListItem(id: Int)
+
+    @Query("UPDATE main_list SET isFav=:newFavouriteStatus WHERE id = :id")
+    suspend fun updateMainListFavouriteStatus(id: Int, newFavouriteStatus: Boolean)
 
     /** INNER LIST */
     @Insert(onConflict = OnConflictStrategy.REPLACE)

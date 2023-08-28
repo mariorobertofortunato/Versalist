@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
 import androidx.compose.material3.FabPosition
@@ -103,10 +104,6 @@ fun MainScreen(
                         fontWeight = FontWeight.Bold,
                         color = white,
                     )
-/*                    Icon(
-                        imageVector = Icons.Outlined.Add,
-                        contentDescription = "Add new list Icon",
-                    )*/
                 }
 
             }
@@ -119,19 +116,20 @@ fun MainScreen(
         ) {
 
             if (mainList.value?.isNotEmpty() == true) {
-                items(mainList.value!!.size) {
-                    Column() {
-                        Row(
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            verticalAlignment = Alignment.CenterVertically,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
-                            MainListItem(
-                                mainListItem = mainList.value!![it],
-                                navController = navController
-                            )
-                        }
+                items(
+                    items = mainList.value!!,
+                    key = { item -> item }
+                ) {item ->
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                    ) {
+                        MainListItem(
+                            mainListItem = item,
+                            navController = navController
+                        )
                     }
                     Divider(
                         color = white,

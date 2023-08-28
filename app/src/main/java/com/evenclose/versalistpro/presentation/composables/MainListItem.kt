@@ -11,6 +11,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Checklist
 import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.material.icons.outlined.PriorityHigh
 import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -41,6 +42,7 @@ fun MainListItem(
 ) {
 
     var expanded by remember { mutableStateOf(false) }
+    var favouriteStatus by remember { mutableStateOf(mainListItem.isFav) }
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -48,7 +50,7 @@ fun MainListItem(
         modifier = Modifier
             .fillMaxWidth()
             .padding(12.dp)
-            .combinedClickable (
+            .combinedClickable(
                 // Disable ripple effect because it sucks
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() },
@@ -82,13 +84,41 @@ fun MainListItem(
                     listViewModel.deleteMainListItem(mainListItem.id!!)
                 }
             )
+            val importantText = if (favouriteStatus) "Unmark as important" else "Mark as important"
+            DropdownMenuItem(
+                text = {
+                    Text(
+                        text = importantText,
+                        fontSize = 16.sp
+                    )
+                },
+                onClick = {
+                    expanded = false
+                    favouriteStatus = !favouriteStatus
+                    listViewModel.updateMainListFavouriteStatus(
+                        mainListItemId = mainListItem.id!!,
+                        newFavouriteStatus = favouriteStatus
+                    )
+                }
+            )
         }
-        Icon(
-            imageVector = icon,
-            contentDescription = "Menu Icon",
-            tint = white
-        )
-
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            if (favouriteStatus) {
+                Icon(
+                    imageVector = Icons.Outlined.PriorityHigh,
+                    contentDescription = "Fav Icon",
+                    tint = white
+                )
+            }
+            Icon(
+                imageVector = icon,
+                contentDescription = "Menu Icon",
+                tint = white
+            )
+        }
 
 
     }

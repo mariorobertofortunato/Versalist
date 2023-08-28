@@ -39,7 +39,8 @@ class ListRepository @Inject constructor(
         try {
             dao.addNewList(MainListItem(
                 name = name,
-                type = type
+                type = type,
+                isFav = false
             )
             )
         } catch (e: Exception) {
@@ -52,6 +53,14 @@ class ListRepository @Inject constructor(
             dao.deleteMainListItem(id)
         } catch (e: Exception) {
             Log.e("TAG Error Delete main List item", "$e")
+        }
+    }
+
+    suspend fun updateMainListFavouriteStatus(id: Int, newFavouriteStatus: Boolean) {
+        try {
+            dao.updateMainListFavouriteStatus(id, newFavouriteStatus)
+        } catch (e: Exception) {
+            Log.e("TAG Error Update Main List Favourite Status", "$e")
         }
     }
 
