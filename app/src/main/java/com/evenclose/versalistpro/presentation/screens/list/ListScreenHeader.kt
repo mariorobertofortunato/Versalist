@@ -65,7 +65,7 @@ fun ListScreenHeader(
         IconButton(
             onClick = {
                 //navController.navigate(Screens.UserSettingsScreen.route)
-                // TODO navigate to settings of this inner list(sempre che ce ne siano)
+                // TODO make a dropdown lkkike in the main list screen
             }
         ) {
             Icon(

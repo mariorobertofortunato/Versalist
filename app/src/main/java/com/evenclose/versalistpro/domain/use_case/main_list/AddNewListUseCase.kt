@@ -5,6 +5,6 @@ import javax.inject.Inject
 
 class AddNewListUseCase @Inject constructor(private val listRepository: ListRepository) {
 
-    suspend operator fun invoke(name: String) = listRepository.addNewList(name)
+    suspend operator fun invoke(name: String, type: String) = listRepository.addNewList(name, type)
 
 }

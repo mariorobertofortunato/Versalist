@@ -31,8 +31,9 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.presentation.composables.EmptyListPlaceholder
-import com.evenclose.versalistpro.presentation.composables.InnerListItem
+import com.evenclose.versalistpro.presentation.composables.CheckListItem
 import com.evenclose.versalistpro.presentation.composables.NewItemDialog
+import com.evenclose.versalistpro.presentation.composables.OpenListItem
 import com.evenclose.versalistpro.presentation.ui.theme.inversePrimary
 import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
@@ -132,9 +133,16 @@ fun ListScreen(
                         modifier = Modifier
                             .fillMaxWidth()
                     ) {
-                        InnerListItem(
-                            innerListItem = item,
-                        )
+                        if (currentListData.value?.type == "Open list") {
+                            OpenListItem(
+                                innerListItem = item,
+                            )
+                        } else {
+                            CheckListItem(
+                                innerListItem = item,
+                            )
+                        }
+
                     }
                     Divider(
                         color = white,

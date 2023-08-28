@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -57,8 +58,8 @@ fun MainScreenHeader(
                 }
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.Menu,
-                    contentDescription = "Menu Icon",
+                    imageVector = Icons.Outlined.Info,
+                    contentDescription = "Info Icon",
                     tint = white
                 )
             }

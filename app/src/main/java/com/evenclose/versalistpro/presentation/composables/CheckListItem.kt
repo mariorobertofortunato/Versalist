@@ -30,7 +30,7 @@ import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun InnerListItem(
+fun CheckListItem(
     innerListItem: InnerListItem,
     listViewModel: ListViewModel = hiltViewModel(),
 ) {

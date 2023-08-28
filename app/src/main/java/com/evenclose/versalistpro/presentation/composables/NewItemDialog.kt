@@ -5,6 +5,7 @@ import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,6 +13,9 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.widthIn
+import androidx.compose.foundation.selection.selectable
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -51,6 +55,9 @@ fun NewItemDialog(
     var value by remember { mutableStateOf("") }
     var errorTextVisibility by remember { mutableStateOf(false) }
     val focusRequester = FocusRequester()
+    val radioOptions = listOf("Open list", "Checklist")
+    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
+
 
     LaunchedEffect(Unit) {
         delay(150)
@@ -84,7 +91,7 @@ fun NewItemDialog(
                     )
                 }
 
-                /** TextField Body */
+                /** TextField */
                 Row(
                     modifier = Modifier
                         .padding(16.dp),
@@ -113,6 +120,37 @@ fun NewItemDialog(
                         ),
                         modifier = Modifier.focusRequester(focusRequester)
                     )
+                }
+
+                /** Main List type radio button (for main list only) */
+                if (mainListId == null) {
+                    Row(
+                        modifier = Modifier
+                            .padding(16.dp)
+                            .fillMaxWidth()
+                    ) {
+                        radioOptions.forEach { text ->
+                            Row(
+                                verticalAlignment = Alignment.CenterVertically,
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .selectable(
+                                        selected = (text == selectedOption),
+                                        onClick = { onOptionSelected(text) }
+                                    )
+                            ) {
+                                RadioButton(
+                                    selected = (text == selectedOption),
+                                    onClick = { onOptionSelected(text) }
+                                )
+                                Text(
+                                    text = text,
+                                    color = white
+                                )
+
+                            }
+                        }
+                    }
                 }
 
                 /** Error Text */
@@ -144,7 +182,7 @@ fun NewItemDialog(
                     onClick = {
                         if (value != "") {
                             if (type == "MainListItem") {
-                                listViewModel.addNewList(value)
+                                listViewModel.addNewList(value, selectedOption)
                             } else {
                                 if (mainListId != null) {
                                     listViewModel.addNewInnerListItem(

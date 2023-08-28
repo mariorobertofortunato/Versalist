@@ -35,9 +35,13 @@ class ListRepository @Inject constructor(
         }
     }
 
-    suspend fun addNewList(name: String) {
+    suspend fun addNewList(name: String, type: String) {
         try {
-            dao.addNewList(MainListItem(name = name))
+            dao.addNewList(MainListItem(
+                name = name,
+                type = type
+            )
+            )
         } catch (e: Exception) {
             Log.e("TAG Error Add New List", "$e")
         }
