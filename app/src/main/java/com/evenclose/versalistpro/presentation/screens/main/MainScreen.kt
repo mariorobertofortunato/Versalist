@@ -1,5 +1,6 @@
 package com.evenclose.versalistpro.presentation.screens.main
 
+import android.provider.CalendarContract
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.core.tween
@@ -52,6 +53,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.layout.onGloballyPositioned
 import androidx.compose.ui.text.font.FontVariation.weight
@@ -172,7 +174,7 @@ fun MainScreen(
                 .fillMaxWidth()
                 .padding(it)
                 .background(primaryContainer)
-                .border(2.dp, primaryContainer)
+                .border(2.dp, inversePrimary)
         ) {
 
             if (mainList.value?.isNotEmpty() == true) {
@@ -220,7 +222,6 @@ fun MainScreen(
                         }
                     }
                 }
-
             }
             /** Add new List Footer */
             item {
@@ -253,12 +254,6 @@ fun MainScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .focusRequester(focusRequester)
-/*                                .onGloballyPositioned {
-                                    if (!textFieldLoaded) {
-                                        focusRequester.requestFocus()
-                                        textFieldLoaded = true
-                                    }
-                                },*/
                         )
 
                         /** Error Text */
@@ -339,10 +334,8 @@ fun MainScreen(
                                 )
                             }
                         }
-
                     }
                 }
-
             }
 
         }
