@@ -48,28 +48,18 @@ fun OpenListItem(
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() },
                 onClick = { // TODO      eventualmente azione di click su questi item, ma al momento non ce ne sono
-                     },
+                },
                 onLongClick = {
                     expanded = true
                 }
             )
     ) {
 
-/*        Icon(
-            imageVector =  if (checkStatus) {
-                Icons.Outlined.CheckCircle
-            } else {
-                Icons.Outlined.RadioButtonUnchecked
-            },
-            contentDescription = "Check Icon",
-            tint = white
-        )*/
-
         Text(
-            text = innerListItem.name,
+            text = "• ${innerListItem.name}",
             fontSize = 16.sp,
             color = white,
-            modifier = Modifier.padding(start = 8.dp)
+            //modifier = Modifier.padding(start = 8.dp)
         )
         DropdownMenu(
             expanded = expanded,

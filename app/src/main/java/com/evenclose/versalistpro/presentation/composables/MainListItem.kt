@@ -10,9 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Checklist
 import androidx.compose.material.icons.outlined.List
-import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.PriorityHigh
-import androidx.compose.material3.DrawerValue
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -69,7 +67,7 @@ fun MainListItem(
         }
 
         Text(
-            text = mainListItem.name,
+            text = "• ${mainListItem.name}",
             fontSize = 16.sp,
             color = white,
         )

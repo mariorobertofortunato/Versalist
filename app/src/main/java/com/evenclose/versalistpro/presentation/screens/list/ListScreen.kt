@@ -34,6 +34,7 @@ import com.evenclose.versalistpro.presentation.composables.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.composables.CheckListItem
 import com.evenclose.versalistpro.presentation.composables.NewItemDialog
 import com.evenclose.versalistpro.presentation.composables.OpenListItem
+import com.evenclose.versalistpro.presentation.ui.theme.grey
 import com.evenclose.versalistpro.presentation.ui.theme.inversePrimary
 import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
@@ -124,12 +125,11 @@ fun ListScreen(
             if (currentInnerList.value?.isNotEmpty() == true) {
                 items(
                     items = currentInnerList.value!!,
-                    /** For reasons beyond our understanding, this is the only way to make the key parameter work */
                     key = { item -> item }
                 ) { item ->
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        //verticalAlignment = Alignment.CenterVertically,
                         modifier = Modifier
                             .fillMaxWidth()
                     ) {
@@ -142,12 +142,14 @@ fun ListScreen(
                                 innerListItem = item,
                             )
                         }
+                        Divider(
+                            color = grey,
+                            thickness = 1.dp,
+                            modifier = Modifier
+                                .fillMaxWidth(0.95f)
+                        )
 
                     }
-                    Divider(
-                        color = white,
-                        thickness = 1.dp
-                    )
                 }
             } else {
                 /** PLACEHOLDER */

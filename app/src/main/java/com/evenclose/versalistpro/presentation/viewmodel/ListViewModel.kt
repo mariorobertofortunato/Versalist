@@ -28,6 +28,7 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
     fun addNewList(name: String, type: String) {
         viewModelScope.launch {
             useCase.AddNewListUseCase(name, type)
+            fetchAllLists()
         }
     }
 
