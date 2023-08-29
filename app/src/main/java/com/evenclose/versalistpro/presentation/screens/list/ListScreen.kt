@@ -152,10 +152,8 @@ fun ListScreen(
                             color = white,
                         )
                     }
-
                 }
             }
-
         }
     ) {
         LazyColumn(
@@ -165,7 +163,7 @@ fun ListScreen(
                 .fillMaxWidth()
                 .padding(it)
                 .background(primaryContainer)
-                .border(2.dp, inversePrimary)
+                .border(2.dp, primaryContainer)
         ) {
 
             if (currentInnerList.value?.isNotEmpty() == true) {

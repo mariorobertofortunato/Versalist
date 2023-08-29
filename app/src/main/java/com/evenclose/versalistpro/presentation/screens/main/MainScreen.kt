@@ -174,11 +174,11 @@ fun MainScreen(
                 .fillMaxWidth()
                 .padding(it)
                 .background(primaryContainer)
-                .border(2.dp, inversePrimary)
+                .border(2.dp, primaryContainer)
         ) {
 
+            /** MAIN LIST */
             if (mainList.value?.isNotEmpty() == true) {
-                /** MAIN LIST */
                 items(
                     items = mainList.value!!,
                     key = { item -> item }
