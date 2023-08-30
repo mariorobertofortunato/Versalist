@@ -9,7 +9,7 @@ val inversePrimary = Color(0xFF80B9A0)
 val secondary = Color(0xFF2F4858)
 val secondaryContainer = Color(0xFF3D6D78)
 
-val background = Color(0xFFFFFFDE)
+val background = Color(0xFFFFFFDF)
 
 val outline = Color(0xFF333333)
 

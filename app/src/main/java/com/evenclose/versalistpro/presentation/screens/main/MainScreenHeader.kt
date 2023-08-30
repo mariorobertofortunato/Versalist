@@ -1,5 +1,6 @@
 package com.evenclose.versalistpro.presentation.screens.main
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
@@ -11,6 +12,7 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
+import androidx.compose.material3.MenuItemColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -24,6 +26,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
 @Composable
 fun MainScreenHeader(
@@ -63,18 +66,19 @@ fun MainScreenHeader(
             }
             DropdownMenu(
                 expanded = expanded,
-                onDismissRequest = { expanded = false }
+                onDismissRequest = { expanded = false },
+                modifier = Modifier.background(secondaryContainer)
             ) {
                 DropdownMenuItem(
-                    text = { Text(text = "Help", fontSize = 16.sp) },
+                    text = { Text(text = "Help", fontSize = 16.sp, color = onDark) },
                     onClick = { /* TODO */ }
                 )
                 DropdownMenuItem(
-                    text = { Text(text = "About", fontSize = 16.sp) },
+                    text = { Text(text = "About", fontSize = 16.sp, color = onDark) },
                     onClick = { /* TODO */ }
                 )
                 DropdownMenuItem(
-                    text = { Text(text = "Privacy", fontSize = 16.sp) },
+                    text = { Text(text = "Privacy", fontSize = 16.sp, color = onDark) },
                     onClick = { /* TODO*/ }
                 )
             }

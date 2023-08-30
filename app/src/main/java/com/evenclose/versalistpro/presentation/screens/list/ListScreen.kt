@@ -57,6 +57,7 @@ import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
+import androidx.compose.ui.text.TextStyle
 
 @Composable
 fun ListScreen(
@@ -78,7 +79,7 @@ fun ListScreen(
 
     val focusRequester = remember { FocusRequester() }
 
-    LaunchedEffect(Unit,newItemTextFieldVisibility) {
+    LaunchedEffect(Unit, newItemTextFieldVisibility) {
         listViewModel.getListData(listId)
         listViewModel.getCurrentInnerList(listId)
     }
@@ -90,7 +91,7 @@ fun ListScreen(
     }
 
     // The delay is needed as the focus must not be requested before or during the composition of the text field
-    LaunchedEffect(newItemTextFieldVisibility){
+    LaunchedEffect(newItemTextFieldVisibility) {
         if (newItemTextFieldVisibility) {
             delay(150)
             focusRequester.requestFocus()
@@ -160,7 +161,7 @@ fun ListScreen(
                 .fillMaxWidth()
                 .padding(it)
                 .background(primary)
-                //.border(2.dp, primaryContainer)
+            //.border(2.dp, primaryContainer)
         ) {
 
             if (currentInnerList.value?.isNotEmpty() == true) {
@@ -237,8 +238,16 @@ fun ListScreen(
                             },
                             singleLine = true,
                             shape = RectangleShape,
-                            placeholder = { Text(text = "New item", color = onLight) },
+                            placeholder = {
+                                Text(
+                                    text = "New item",
+                                    color = onLight,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp
+                                )
+                            },
                             colors = TextFieldDefaults.colors(
+                                cursorColor = secondary,
                                 focusedContainerColor = background,
                                 unfocusedContainerColor = background,
                                 disabledContainerColor = background,
@@ -246,7 +255,11 @@ fun ListScreen(
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .focusRequester(focusRequester)
+                                .focusRequester(focusRequester),
+                            textStyle = TextStyle(
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp
+                            )
                         )
 
                         /** Error Text */
@@ -256,6 +269,7 @@ fun ListScreen(
                             Text(
                                 text = "Please enter a value",
                                 color = secondary,
+                                fontWeight = FontWeight.Bold
                             )
                         }
 
@@ -263,7 +277,9 @@ fun ListScreen(
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 4.dp)
                         ) {
                             IconButton(
                                 onClick = {

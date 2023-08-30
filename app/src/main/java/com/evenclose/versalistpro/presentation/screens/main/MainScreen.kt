@@ -46,7 +46,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -89,7 +91,7 @@ fun MainScreen(
     }
 
     // The delay is needed as the focus must not be requested before or during the composition of the text field
-    LaunchedEffect(newListTextFieldVisibility){
+    LaunchedEffect(newListTextFieldVisibility) {
         if (newListTextFieldVisibility) {
             delay(150)
             focusRequester.requestFocus()
@@ -161,7 +163,7 @@ fun MainScreen(
                 .fillMaxWidth()
                 .padding(it)
                 .background(primary)
-                //.border(2.dp, onLight)
+            //.border(2.dp, onLight)
         ) {
 
             /** MAIN LIST */
@@ -193,7 +195,7 @@ fun MainScreen(
                 item {
                     AnimatedVisibility(
                         visible = !newListTextFieldVisibility,
-                    ){
+                    ) {
                         Column() {
                             Row(
                                 horizontalArrangement = Arrangement.Center,
@@ -232,8 +234,16 @@ fun MainScreen(
                             },
                             singleLine = true,
                             shape = RectangleShape,
-                            placeholder = { Text(text = "New list", color = onLight) },
+                            placeholder = {
+                                Text(
+                                    text = "New list",
+                                    color = onLight,
+                                    fontWeight = FontWeight.Bold,
+                                    fontSize = 16.sp
+                                )
+                            },
                             colors = TextFieldDefaults.colors(
+                                cursorColor = secondary,
                                 focusedContainerColor = background,
                                 unfocusedContainerColor = background,
                                 disabledContainerColor = background,
@@ -241,7 +251,11 @@ fun MainScreen(
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .focusRequester(focusRequester)
+                                .focusRequester(focusRequester),
+                            textStyle = TextStyle(
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp
+                            )
                         )
 
                         /** Error Text */
@@ -251,6 +265,7 @@ fun MainScreen(
                             Text(
                                 text = "Please enter a value",
                                 color = secondary,
+                                fontWeight = FontWeight.Bold
                             )
                         }
 
@@ -280,7 +295,8 @@ fun MainScreen(
                                     )
                                     Text(
                                         text = text,
-                                        color = onLight
+                                        color = onLight,
+                                        fontWeight = FontWeight.Bold
                                     )
                                 }
                             }
@@ -290,7 +306,9 @@ fun MainScreen(
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly,
-                            modifier = Modifier.fillMaxWidth()
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(bottom = 4.dp)
                         ) {
                             IconButton(
                                 onClick = {
