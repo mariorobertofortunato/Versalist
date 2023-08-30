@@ -6,7 +6,6 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -40,7 +39,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.RectangleShape
@@ -52,12 +50,11 @@ import androidx.navigation.NavController
 import com.evenclose.versalistpro.presentation.composables.CheckListItem
 import com.evenclose.versalistpro.presentation.composables.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.composables.OpenListItem
-import com.evenclose.versalistpro.presentation.ui.theme.grey
-import com.evenclose.versalistpro.presentation.ui.theme.inversePrimary
+import com.evenclose.versalistpro.presentation.ui.theme.background
+import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.onLight
 import com.evenclose.versalistpro.presentation.ui.theme.primary
-import com.evenclose.versalistpro.presentation.ui.theme.primaryContainer
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
-import com.evenclose.versalistpro.presentation.ui.theme.white
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
 
@@ -104,7 +101,7 @@ fun ListScreen(
         topBar = {
             Column(
                 modifier = Modifier
-                    .background(primary)
+                    .background(secondary)
             ) {
 
                 /** HEADER */
@@ -117,7 +114,7 @@ fun ListScreen(
                     modifier = Modifier
                         .height(1.dp)
                         .fillMaxWidth()
-                        .background(inversePrimary)
+                        .background(onDark)
                 )
             }
 
@@ -133,7 +130,7 @@ fun ListScreen(
             ) {
                 FloatingActionButton(
                     containerColor = secondary,
-                    contentColor = white,
+                    contentColor = onDark,
                     shape = RoundedCornerShape(50),
                     onClick = {
                         newItemTextFieldVisibility = true
@@ -149,7 +146,7 @@ fun ListScreen(
                             text = "Add new item",
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
-                            color = white,
+                            color = onDark,
                         )
                     }
                 }
@@ -159,11 +156,11 @@ fun ListScreen(
         LazyColumn(
             state = listState,
             modifier = Modifier
-                .clip(RoundedCornerShape(8.dp))
+                //.clip(RoundedCornerShape(8.dp))
                 .fillMaxWidth()
                 .padding(it)
-                .background(primaryContainer)
-                .border(2.dp, primaryContainer)
+                .background(primary)
+                //.border(2.dp, primaryContainer)
         ) {
 
             if (currentInnerList.value?.isNotEmpty() == true) {
@@ -187,7 +184,7 @@ fun ListScreen(
                             )
                         }
                         Divider(
-                            color = grey,
+                            color = secondary,
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
@@ -240,12 +237,12 @@ fun ListScreen(
                             },
                             singleLine = true,
                             shape = RectangleShape,
-                            placeholder = { Text(text = "New item", color = primary) },
+                            placeholder = { Text(text = "New item", color = onLight) },
                             colors = TextFieldDefaults.colors(
-                                focusedContainerColor = white,
-                                unfocusedContainerColor = white,
-                                disabledContainerColor = white,
-                                focusedTextColor = primary
+                                focusedContainerColor = background,
+                                unfocusedContainerColor = background,
+                                disabledContainerColor = background,
+                                focusedTextColor = onLight
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -277,7 +274,7 @@ fun ListScreen(
                                 Icon(
                                     imageVector = Icons.Outlined.Cancel,
                                     contentDescription = "Cancel Icon",
-                                    tint = white,
+                                    tint = onLight,
                                     // As these icon serves as the main way to accept and cancel the input we want them to be BIG
                                     modifier = Modifier.fillMaxSize(1f)
                                 )
@@ -299,7 +296,7 @@ fun ListScreen(
                                 Icon(
                                     imageVector = Icons.Outlined.CheckCircle,
                                     contentDescription = "Ok Icon",
-                                    tint = white,
+                                    tint = onLight,
                                     // As these icon serves as the main way to accept and cancel the input we want them to be BIG
                                     modifier = Modifier.fillMaxSize(1f)
                                 )

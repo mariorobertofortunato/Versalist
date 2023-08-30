@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Info
-import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -24,7 +23,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.evenclose.versalistpro.presentation.ui.theme.white
+import com.evenclose.versalistpro.presentation.ui.theme.onDark
 
 @Composable
 fun MainScreenHeader(
@@ -38,7 +37,6 @@ fun MainScreenHeader(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                //horizontal = 12.dp,
                 vertical = 8.dp
             )
     ) {
@@ -46,7 +44,7 @@ fun MainScreenHeader(
             text = "Versalist Pro",
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
-            color = white,
+            color = onDark,
             modifier = Modifier.padding(start = 12.dp)
         )
         Box(
@@ -60,7 +58,7 @@ fun MainScreenHeader(
                 Icon(
                     imageVector = Icons.Outlined.Info,
                     contentDescription = "Info Icon",
-                    tint = white
+                    tint = onDark
                 )
             }
             DropdownMenu(

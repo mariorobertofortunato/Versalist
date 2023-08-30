@@ -20,7 +20,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.evenclose.versalistpro.presentation.ui.theme.white
+import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.onLight
 
 @Composable
 fun ListScreenHeader(
@@ -33,7 +34,6 @@ fun ListScreenHeader(
         modifier = Modifier
             .fillMaxWidth()
             .padding(
-                //horizontal = 12.dp,
                 vertical = 8.dp
             )
     ) {
@@ -45,7 +45,7 @@ fun ListScreenHeader(
             Icon(
                 imageVector = Icons.Outlined.ArrowBack,
                 contentDescription = "Arrow Back Icon",
-                tint = white
+                tint = onDark
             )
         }
         BoxWithConstraints(
@@ -58,7 +58,7 @@ fun ListScreenHeader(
                 fontSize =  32.sp,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
-                color = white,
+                color = onDark,
                 overflow = TextOverflow.Ellipsis
             )
         }
@@ -71,7 +71,7 @@ fun ListScreenHeader(
             Icon(
                 imageVector = Icons.Outlined.Settings,
                 contentDescription = "Setting Icon",
-                tint = white
+                tint = onDark
             )
         }
     }

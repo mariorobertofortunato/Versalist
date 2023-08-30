@@ -25,7 +25,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalistpro.data.model.InnerListItem
-import com.evenclose.versalistpro.presentation.ui.theme.white
+import com.evenclose.versalistpro.presentation.ui.theme.onLight
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -58,7 +58,7 @@ fun OpenListItem(
         Text(
             text = "• ${innerListItem.name}",
             fontSize = 16.sp,
-            color = white,
+            color = onLight,
             //modifier = Modifier.padding(start = 8.dp)
         )
         DropdownMenu(

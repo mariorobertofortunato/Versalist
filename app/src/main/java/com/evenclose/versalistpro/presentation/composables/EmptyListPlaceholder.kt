@@ -13,8 +13,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.evenclose.versalistpro.presentation.ui.theme.primary
-import com.evenclose.versalistpro.presentation.ui.theme.white
+import com.evenclose.versalistpro.presentation.ui.theme.onLight
 
 @Composable
 fun EmptyListPlaceholder(type: String) {
@@ -42,14 +41,14 @@ fun EmptyListPlaceholder(type: String) {
                 .align(Alignment.CenterHorizontally),
             imageVector = Icons.Outlined.Warning,
             contentDescription = "Warning icon",
-            tint = primary
+            tint = onLight
         )
         Text(
             text = text,
             textAlign = TextAlign.Center,
             // TODO typography style, this was title medium
             //  style = ,
-            color = white,
+            color = onLight,
             modifier = Modifier.align(Alignment.CenterHorizontally)
         )
     }

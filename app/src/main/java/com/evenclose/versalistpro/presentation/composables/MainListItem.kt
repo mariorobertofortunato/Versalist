@@ -28,7 +28,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.data.model.MainListItem
 import com.evenclose.versalistpro.presentation.navigation.Screens
-import com.evenclose.versalistpro.presentation.ui.theme.white
+import com.evenclose.versalistpro.presentation.ui.theme.onLight
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -69,7 +69,7 @@ fun MainListItem(
         Text(
             text = "• ${mainListItem.name}",
             fontSize = 16.sp,
-            color = white,
+            color = onLight,
         )
         DropdownMenu(
             expanded = expanded,
@@ -108,13 +108,13 @@ fun MainListItem(
                 Icon(
                     imageVector = Icons.Outlined.PriorityHigh,
                     contentDescription = "Fav Icon",
-                    tint = white
+                    tint = onLight
                 )
             }
             Icon(
                 imageVector = icon,
                 contentDescription = "Menu Icon",
-                tint = white
+                tint = onLight
             )
         }
 

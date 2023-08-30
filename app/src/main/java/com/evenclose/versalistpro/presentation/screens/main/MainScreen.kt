@@ -1,16 +1,11 @@
 package com.evenclose.versalistpro.presentation.screens.main
 
-import android.provider.CalendarContract
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterTransition
-import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
-import androidx.compose.animation.shrinkVertically
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -22,11 +17,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.ArrowBack
 import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material3.Divider
@@ -35,13 +28,13 @@ import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
-import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
@@ -50,13 +43,9 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.RectangleShape
-import androidx.compose.ui.layout.onGloballyPositioned
-import androidx.compose.ui.text.font.FontVariation.weight
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -64,13 +53,11 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.presentation.composables.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.composables.MainListItem
-import com.evenclose.versalistpro.presentation.composables.NewItemDialog
-import com.evenclose.versalistpro.presentation.ui.theme.grey
-import com.evenclose.versalistpro.presentation.ui.theme.inversePrimary
+import com.evenclose.versalistpro.presentation.ui.theme.background
+import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.onLight
 import com.evenclose.versalistpro.presentation.ui.theme.primary
-import com.evenclose.versalistpro.presentation.ui.theme.primaryContainer
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
-import com.evenclose.versalistpro.presentation.ui.theme.white
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
 
@@ -115,7 +102,7 @@ fun MainScreen(
         topBar = {
             Column(
                 modifier = Modifier
-                    .background(primary)
+                    .background(secondary)
             ) {
                 /** HEADER */
                 MainScreenHeader(
@@ -126,7 +113,7 @@ fun MainScreen(
                     modifier = Modifier
                         .height(1.dp)
                         .fillMaxWidth()
-                        .background(inversePrimary)
+                        .background(onDark)
                 )
             }
 
@@ -142,7 +129,7 @@ fun MainScreen(
             ) {
                 FloatingActionButton(
                     containerColor = secondary,
-                    contentColor = white,
+                    contentColor = onDark,
                     shape = RoundedCornerShape(50),
                     onClick = {
                         newListTextFieldVisibility = true
@@ -158,7 +145,7 @@ fun MainScreen(
                             text = "Add new list",
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
-                            color = white,
+                            color = onDark,
                         )
                     }
 
@@ -170,11 +157,11 @@ fun MainScreen(
         LazyColumn(
             state = listState,
             modifier = Modifier
-                .clip(RoundedCornerShape(8.dp))
+                //.clip(RoundedCornerShape(8.dp))
                 .fillMaxWidth()
                 .padding(it)
-                .background(primaryContainer)
-                .border(2.dp, primaryContainer)
+                .background(primary)
+                //.border(2.dp, onLight)
         ) {
 
             /** MAIN LIST */
@@ -193,13 +180,14 @@ fun MainScreen(
                             navController = navController
                         )
                         Divider(
-                            color = grey,
+                            color = secondary,
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
                         )
                     }
                 }
+
             } else {
                 /** PLACEHOLDER */
                 item {
@@ -244,12 +232,12 @@ fun MainScreen(
                             },
                             singleLine = true,
                             shape = RectangleShape,
-                            placeholder = { Text(text = "New list", color = primary) },
+                            placeholder = { Text(text = "New list", color = onLight) },
                             colors = TextFieldDefaults.colors(
-                                focusedContainerColor = white,
-                                unfocusedContainerColor = white,
-                                disabledContainerColor = white,
-                                focusedTextColor = primary
+                                focusedContainerColor = background,
+                                unfocusedContainerColor = background,
+                                disabledContainerColor = background,
+                                focusedTextColor = onLight
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -284,11 +272,15 @@ fun MainScreen(
                                 ) {
                                     RadioButton(
                                         selected = (text == selectedOption),
-                                        onClick = { onOptionSelected(text) }
+                                        onClick = { onOptionSelected(text) },
+                                        colors = RadioButtonDefaults.colors(
+                                            selectedColor = onLight,
+                                            unselectedColor = onLight
+                                        )
                                     )
                                     Text(
                                         text = text,
-                                        color = white
+                                        color = onLight
                                     )
                                 }
                             }
@@ -309,7 +301,7 @@ fun MainScreen(
                                 Icon(
                                     imageVector = Icons.Outlined.Cancel,
                                     contentDescription = "Cancel Icon",
-                                    tint = white,
+                                    tint = onLight,
                                     // As these icon serves as the main way to accept and cancel the input we want them to be BIG
                                     modifier = Modifier.fillMaxSize(1f)
                                 )
@@ -328,7 +320,7 @@ fun MainScreen(
                                 Icon(
                                     imageVector = Icons.Outlined.CheckCircle,
                                     contentDescription = "Ok Icon",
-                                    tint = white,
+                                    tint = onLight,
                                     // As these icon serves as the main way to accept and cancel the input we want them to be BIG
                                     modifier = Modifier.fillMaxSize(1f)
                                 )

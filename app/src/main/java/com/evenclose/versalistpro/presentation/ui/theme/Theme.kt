@@ -4,6 +4,7 @@ import android.app.Activity
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.MaterialTheme.colorScheme
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
@@ -16,67 +17,34 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
-// TODO provide different colors for the dark theme, at the moment the colors are the same
-
-private val DarkColorScheme = darkColorScheme(
-    primary = primary,
-    onPrimary = white,
-    primaryContainer = primaryContainer,
-    onPrimaryContainer = white,
-    inversePrimary = inversePrimary,
-    secondary = secondary,
-    onSecondary = white,
-    secondaryContainer = secondaryContainer,
-    onSecondaryContainer = white,
-    tertiary = Color(0xFF388E3C),
-    onTertiary = white,
-    tertiaryContainer = Color(0xFF1A237E),
-    onTertiaryContainer = white,
-    background = background,
-    onBackground = white,
-    surface = Color(0xFF333333),
-    onSurface = white,
-    surfaceVariant = Color(0xFF283593),
-    onSurfaceVariant = white,
-    surfaceTint = Color(0xFF283593),
-    inverseSurface = white,
-    inverseOnSurface = Color(0xFF333333),
-    error = error,
-    onError = white,
-    errorContainer = errorContainer,
-    onErrorContainer = white,
-    outline = outline,
-    outlineVariant = Color(0xFF283593),
-    scrim = Color(0x99000000)
-)
 
 private val LightColorScheme = lightColorScheme(
     primary = primary,
-    onPrimary = white,
+    onPrimary = background,
     primaryContainer = primaryContainer,
-    onPrimaryContainer = white,
+    onPrimaryContainer = background,
     inversePrimary = inversePrimary,
     secondary = secondary,
-    onSecondary = white,
+    onSecondary = background,
     secondaryContainer = secondaryContainer,
-    onSecondaryContainer = white,
+    onSecondaryContainer = background,
     tertiary = Color(0xFF388E3C),
-    onTertiary = white,
+    onTertiary = background,
     tertiaryContainer = Color(0xFF1A237E),
-    onTertiaryContainer = white,
+    onTertiaryContainer = background,
     background = background,
-    onBackground = white,
+    onBackground = background,
     surface = Color(0xFF333333),
-    onSurface = white,
+    onSurface = background,
     surfaceVariant = Color(0xFF283593),
-    onSurfaceVariant = white,
+    onSurfaceVariant = background,
     surfaceTint = Color(0xFF283593),
-    inverseSurface = white,
+    inverseSurface = background,
     inverseOnSurface = Color(0xFF333333),
     error = error,
-    onError = white,
+    onError = background,
     errorContainer = errorContainer,
-    onErrorContainer = white,
+    onErrorContainer = background,
     outline = outline,
     outlineVariant = Color(0xFF283593),
     scrim = Color(0x99000000)
@@ -86,23 +54,24 @@ private val LightColorScheme = lightColorScheme(
 fun VersalistProTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true,
+    dynamicColor: Boolean = false,
     content: @Composable () -> Unit
 ) {
     val colorScheme = when {
         dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S -> {
             val context = LocalContext.current
-            if (darkTheme) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            dynamicLightColorScheme(context)
         }
 
-        darkTheme -> DarkColorScheme
+        darkTheme -> LightColorScheme
         else -> LightColorScheme
     }
+
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = colorScheme.primary.toArgb()
+            window.statusBarColor = colorScheme.secondary.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
