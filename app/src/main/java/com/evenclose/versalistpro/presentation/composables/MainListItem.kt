@@ -12,10 +12,13 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Checklist
 import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.PriorityHigh
+import androidx.compose.material.icons.outlined.Warning
+import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -26,6 +29,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.data.model.MainListItem
@@ -45,6 +49,7 @@ fun MainListItem(
 
     var expanded by remember { mutableStateOf(false) }
     var favouriteStatus by remember { mutableStateOf(mainListItem.isFav) }
+    var openDialog by remember { mutableStateOf(false) }
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -82,10 +87,16 @@ fun MainListItem(
             modifier = Modifier.background(secondaryContainer)
         ) {
             DropdownMenuItem(
-                text = { Text(text = "Delete list", fontSize = 16.sp, color = onDark) },
+                text = {
+                    Text(
+                        text = "Delete list",
+                        fontSize = 16.sp,
+                        color = onDark
+                    )
+                },
                 onClick = {
                     expanded = false
-                    listViewModel.deleteMainListItem(mainListItem.id!!)
+                    openDialog = true
                 }
             )
             val importantText = if (favouriteStatus) "Unmark as important" else "Mark as important"
@@ -122,6 +133,16 @@ fun MainListItem(
                 imageVector = icon,
                 contentDescription = "Menu Icon",
                 tint = onLight
+            )
+        }
+
+        if (openDialog) {
+            DeleteItemDialog(
+                mainListItem = mainListItem,
+                innerListItem = null,
+                onDismiss = {
+                    openDialog = false
+                }
             )
         }
 

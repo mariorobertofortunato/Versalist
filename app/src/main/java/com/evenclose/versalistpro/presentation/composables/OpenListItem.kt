@@ -40,6 +40,7 @@ fun OpenListItem(
 ) {
 
     var expanded by remember { mutableStateOf(false) }
+    var openDialog by remember { mutableStateOf(false) }
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -70,10 +71,26 @@ fun OpenListItem(
             modifier = Modifier.background(secondaryContainer)
         ) {
             DropdownMenuItem(
-                text = { Text(text = "Delete item", fontSize = 16.sp, color = onDark) },
+                text = {
+                    Text(
+                        text = "Delete item",
+                        fontSize = 16.sp,
+                        color = onDark
+                    )
+                },
                 onClick = {
                     expanded = false
-                    listViewModel.deleteInnerListItem(innerListItem.id!!, innerListItem.mainListId)
+                    openDialog = true
+                }
+            )
+        }
+
+        if (openDialog) {
+            DeleteItemDialog(
+                mainListItem = null,
+                innerListItem = innerListItem,
+                onDismiss = {
+                    openDialog = false
                 }
             )
         }

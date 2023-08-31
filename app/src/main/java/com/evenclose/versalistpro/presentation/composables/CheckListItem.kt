@@ -43,6 +43,7 @@ fun CheckListItem(
 
     var expanded by remember { mutableStateOf(false) }
     var checkStatus by remember { mutableStateOf(innerListItem.isChecked) }
+    var openDialog by remember { mutableStateOf(false) }
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -55,7 +56,11 @@ fun CheckListItem(
                 interactionSource = remember { MutableInteractionSource() },
                 onClick = {
                     checkStatus = !checkStatus
-                    listViewModel.updateItemCheckStatus(innerListItem.id!!, checkStatus, innerListItem.mainListId)
+                    listViewModel.updateItemCheckStatus(
+                        innerListItem.id!!,
+                        checkStatus,
+                        innerListItem.mainListId
+                    )
                 },
                 onLongClick = {
                     expanded = true
@@ -64,7 +69,7 @@ fun CheckListItem(
     ) {
 
         Icon(
-            imageVector =  if (checkStatus) {
+            imageVector = if (checkStatus) {
                 Icons.Outlined.CheckCircle
             } else {
                 Icons.Outlined.RadioButtonUnchecked
@@ -98,10 +103,26 @@ fun CheckListItem(
             modifier = Modifier.background(secondaryContainer)
         ) {
             DropdownMenuItem(
-                text = { Text(text = "Delete item", fontSize = 16.sp, color = onDark) },
+                text = {
+                    Text(
+                        text = "Delete item",
+                        fontSize = 16.sp,
+                        color = onDark
+                    )
+                },
                 onClick = {
                     expanded = false
-                    listViewModel.deleteInnerListItem(innerListItem.id!!, innerListItem.mainListId)
+                    openDialog = true
+                }
+            )
+        }
+
+        if (openDialog) {
+            DeleteItemDialog(
+                mainListItem = null,
+                innerListItem = innerListItem,
+                onDismiss = {
+                    openDialog = false
                 }
             )
         }
@@ -109,9 +130,3 @@ fun CheckListItem(
     }
 }
 
-@Preview
-@Composable
-fun InnerListItemPreview(
-) {
-   // InnerListItem(innerListItem = InnerListItem(1, "item prova", false, 1))
-}

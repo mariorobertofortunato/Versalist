@@ -121,13 +121,6 @@ fun MainScreen(
                 MainScreenHeader(
                     navController = navController
                 )
-                /** SPACER */
-/*                Spacer(
-                    modifier = Modifier
-                        .height(1.dp)
-                        .fillMaxWidth()
-                        .background(onDark)
-                )*/
             }
 
 
