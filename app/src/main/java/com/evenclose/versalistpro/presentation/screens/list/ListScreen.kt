@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -39,6 +40,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.RectangleShape
@@ -111,12 +113,12 @@ fun ListScreen(
                     listName = currentListData.value?.name ?: "Error"
                 )
                 /** SPACER */
-                Spacer(
+/*                Spacer(
                     modifier = Modifier
                         .height(1.dp)
                         .fillMaxWidth()
                         .background(onDark)
-                )
+                )*/
             }
 
 
@@ -157,11 +159,11 @@ fun ListScreen(
         LazyColumn(
             state = listState,
             modifier = Modifier
-                //.clip(RoundedCornerShape(8.dp))
+                .border(1.5.dp, onLight,RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp))
+                .clip(RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp))
                 .fillMaxWidth()
                 .padding(it)
                 .background(primary)
-            //.border(2.dp, primaryContainer)
         ) {
 
             if (currentInnerList.value?.isNotEmpty() == true) {

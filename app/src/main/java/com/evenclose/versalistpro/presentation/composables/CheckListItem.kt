@@ -21,7 +21,9 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -68,14 +70,26 @@ fun CheckListItem(
                 Icons.Outlined.RadioButtonUnchecked
             },
             contentDescription = "Check Icon",
-            tint = onLight
+            tint = if (checkStatus) {
+                secondaryContainer
+            } else {
+                onLight
+            }
         )
-
         Text(
             text = innerListItem.name,
             fontSize = 16.sp,
-            color = onLight,
+            color = if (checkStatus) {
+                secondaryContainer
+            } else {
+                onLight
+            },
             fontWeight = FontWeight.Bold,
+            style = if (checkStatus) {
+                TextStyle(textDecoration = TextDecoration.LineThrough)
+            } else {
+                TextStyle(textDecoration = TextDecoration.None)
+            },
             modifier = Modifier.padding(start = 8.dp)
         )
         DropdownMenu(

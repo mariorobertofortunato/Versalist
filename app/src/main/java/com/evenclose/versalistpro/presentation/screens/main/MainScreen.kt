@@ -5,9 +5,15 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.combinedClickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
@@ -43,6 +49,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.RectangleShape
@@ -55,6 +62,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.presentation.composables.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.composables.MainListItem
+import com.evenclose.versalistpro.presentation.navigation.Screens
 import com.evenclose.versalistpro.presentation.ui.theme.background
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.onLight
@@ -63,6 +71,7 @@ import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen(
     navController: NavController,
@@ -111,12 +120,12 @@ fun MainScreen(
                     navController = navController
                 )
                 /** SPACER */
-                Spacer(
+/*                Spacer(
                     modifier = Modifier
                         .height(1.dp)
                         .fillMaxWidth()
                         .background(onDark)
-                )
+                )*/
             }
 
 
@@ -159,11 +168,11 @@ fun MainScreen(
         LazyColumn(
             state = listState,
             modifier = Modifier
-                //.clip(RoundedCornerShape(8.dp))
+                .border(1.5.dp, onLight,RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp))
+                .clip(RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp))
                 .fillMaxWidth()
                 .padding(it)
                 .background(primary)
-            //.border(2.dp, onLight)
         ) {
 
             /** MAIN LIST */
@@ -282,6 +291,12 @@ fun MainScreen(
                                         .weight(1f)
                                         .selectable(
                                             selected = (text == selectedOption),
+                                            onClick = { onOptionSelected(text) }
+                                        )
+                                        .clickable(
+                                            // Disable ripple effect because it sucks
+                                            indication = null,
+                                            interactionSource = remember { MutableInteractionSource() },
                                             onClick = { onOptionSelected(text) }
                                         )
                                 ) {
