@@ -88,6 +88,9 @@ dependencies {
     kapt "androidx.room:room-compiler:2.5.2"
     implementation "androidx.room:room-paging:2.5.2"
 
+    // LOTTIE
+    implementation("com.airbnb.android:lottie-compose:6.0.1")
+
 
 
 }

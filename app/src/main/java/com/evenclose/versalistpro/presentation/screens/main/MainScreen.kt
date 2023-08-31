@@ -25,6 +25,7 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material.icons.outlined.CheckCircle
@@ -55,6 +56,7 @@ import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -242,7 +244,7 @@ fun MainScreen(
                                 errorTextVisibility = false
                             },
                             singleLine = true,
-                            shape = RectangleShape,
+                            shape = RoundedCornerShape(8.dp),
                             placeholder = {
                                 Text(
                                     text = "New list",
@@ -260,11 +262,14 @@ fun MainScreen(
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .focusRequester(focusRequester),
+                                .focusRequester(focusRequester)
+                                .border(1.dp, secondary,RoundedCornerShape(8.dp)),
                             textStyle = TextStyle(
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp
-                            )
+                            ),
+                            keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences)
+
                         )
 
                         /** Error Text */

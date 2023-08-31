@@ -19,6 +19,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material.icons.outlined.CheckCircle
@@ -60,6 +61,7 @@ import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.input.KeyboardCapitalization
 
 @Composable
 fun ListScreen(
@@ -239,7 +241,7 @@ fun ListScreen(
                                 errorTextVisibility = false
                             },
                             singleLine = true,
-                            shape = RectangleShape,
+                            shape = RoundedCornerShape(8.dp),
                             placeholder = {
                                 Text(
                                     text = "New item",
@@ -257,11 +259,13 @@ fun ListScreen(
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .focusRequester(focusRequester),
+                                .focusRequester(focusRequester)
+                                .border(1.dp, secondary,RoundedCornerShape(8.dp)),
                             textStyle = TextStyle(
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp
-                            )
+                            ),
+                            keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences)
                         )
 
                         /** Error Text */
