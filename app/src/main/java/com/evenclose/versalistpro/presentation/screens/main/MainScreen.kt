@@ -25,13 +25,13 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material.icons.outlined.CheckCircle
+import androidx.compose.material.icons.outlined.Checklist
+import androidx.compose.material.icons.outlined.List
 import androidx.compose.material3.Divider
 import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.RadioButton
-import androidx.compose.material3.RadioButtonDefaults
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -56,13 +56,14 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.composables.MainListItem
+import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.ui.theme.background
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.onLight
 import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
+import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
 
@@ -252,7 +253,7 @@ fun MainScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .focusRequester(focusRequester)
-                                .border(1.dp, secondary,RoundedCornerShape(8.dp)),
+                                .border(1.dp, secondary,RoundedCornerShape(12.dp)),
                             textStyle = TextStyle(
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp
@@ -266,7 +267,7 @@ fun MainScreen(
                             visible = errorTextVisibility,
                         ) {
                             Text(
-                                text = "Please enter a value",
+                                text = "Please enter a name for the list",
                                 color = secondary,
                                 fontWeight = FontWeight.Bold
                             )
@@ -274,14 +275,23 @@ fun MainScreen(
 
                         /** Radio Group */
                         Row(
+                            horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
-                                .padding(horizontal = 16.dp)
+                                .padding(start = 16.dp, end = 16.dp, top = 8.dp)
                                 .fillMaxWidth()
+                                .background(background, RoundedCornerShape(12.dp))
+                                .border(1.dp, secondary, RoundedCornerShape(12.dp)),
                         ) {
                             radioOptions.forEach { text ->
                                 Row(
+                                    horizontalArrangement = Arrangement.Center,
                                     verticalAlignment = Alignment.CenterVertically,
                                     modifier = Modifier
+                                        .padding(4.dp)
+                                        .border(
+                                            width = 1.dp,
+                                            color = secondary,
+                                            shape = RoundedCornerShape(12.dp))
                                         .weight(1f)
                                         .selectable(
                                             selected = (text == selectedOption),
@@ -293,23 +303,41 @@ fun MainScreen(
                                             interactionSource = remember { MutableInteractionSource() },
                                             onClick = { onOptionSelected(text) }
                                         )
-                                ) {
-                                    RadioButton(
-                                        selected = (text == selectedOption),
-                                        onClick = { onOptionSelected(text) },
-                                        colors = RadioButtonDefaults.colors(
-                                            selectedColor = onLight,
-                                            unselectedColor = onLight
+                                        .background(
+                                            color = if (text == selectedOption) secondary else background,
+                                            shape = RoundedCornerShape(12.dp)
                                         )
+                                ) {
+                                    Icon(
+                                        imageVector = if (text == "Open list") Icons.Outlined.List else Icons.Outlined.Checklist,
+                                        contentDescription = "List Type Icon",
+                                        tint = if (text == selectedOption) onDark else onLight,
+                                        modifier = Modifier
+                                            .padding(vertical = 8.dp)
                                     )
                                     Text(
                                         text = text,
-                                        color = onLight,
+                                        color = if (text == selectedOption) onDark else onLight,
                                         fontWeight = FontWeight.Bold
                                     )
                                 }
                             }
                         }
+
+
+                        /** Category Group */
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            //horizontalArrangement = Arrangement.,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                //.padding(bottom = 4.dp)
+                        ) {
+
+                        }
+
+
+
 
                         /** Icon Group */
                         Row(
