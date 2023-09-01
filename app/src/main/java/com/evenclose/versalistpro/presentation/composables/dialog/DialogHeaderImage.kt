@@ -1,4 +1,4 @@
-package com.evenclose.versalistpro.presentation.composables
+package com.evenclose.versalistpro.presentation.composables.dialog
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

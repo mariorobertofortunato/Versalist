@@ -10,10 +10,8 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
@@ -44,14 +42,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.presentation.composables.CheckListItem
-import com.evenclose.versalistpro.presentation.composables.EmptyListPlaceholder
+import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.composables.OpenListItem
 import com.evenclose.versalistpro.presentation.ui.theme.background
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
@@ -136,19 +133,24 @@ fun ListScreen(
                 FloatingActionButton(
                     containerColor = secondary,
                     contentColor = onDark,
-                    shape = RoundedCornerShape(50),
+                    shape = RoundedCornerShape(12.dp),
                     onClick = {
                         newItemTextFieldVisibility = true
                         errorTextVisibility = false
-                    }
+                    },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .padding(horizontal = 12.dp)
+                        .border(2.dp, primary, RoundedCornerShape(12.dp))
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier.padding(12.dp)
+                        modifier = Modifier
+                            .padding(12.dp)
                     ) {
                         Text(
-                            text = "Add new item",
+                            text = "Add item",
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
                             color = onDark,
@@ -161,8 +163,8 @@ fun ListScreen(
         LazyColumn(
             state = listState,
             modifier = Modifier
-                .border(1.5.dp, onLight,RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp))
-                .clip(RoundedCornerShape(bottomStart = 8.dp, bottomEnd = 8.dp))
+                .border(1.5.dp, onLight,RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
+                .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
                 .fillMaxWidth()
                 .padding(it)
                 .background(primary)

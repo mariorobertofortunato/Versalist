@@ -1,4 +1,4 @@
-package com.evenclose.versalistpro.presentation.composables
+package com.evenclose.versalistpro.presentation.composables.placeholder
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -72,11 +72,4 @@ fun EmptyListPlaceholder(type: String) {
             fontWeight = FontWeight.Bold,
         )
     }
-}
-
-
-@Preview
-@Composable
-fun EmptyListPlaceholderPreview() {
-    EmptyListPlaceholder("roomsPlaceHolder")
 }

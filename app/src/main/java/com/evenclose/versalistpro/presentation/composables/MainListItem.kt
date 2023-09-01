@@ -2,23 +2,23 @@ package com.evenclose.versalistpro.presentation.composables
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Checklist
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.PriorityHigh
-import androidx.compose.material.icons.outlined.Warning
-import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -29,10 +29,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.data.model.MainListItem
+import com.evenclose.versalistpro.presentation.composables.dialog.DeleteItemDialog
 import com.evenclose.versalistpro.presentation.navigation.Screens
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.onLight
@@ -84,12 +84,21 @@ fun MainListItem(
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            modifier = Modifier.background(secondaryContainer)
+            modifier = Modifier
+                .background(secondaryContainer)
+                .border(1.dp, onDark, RoundedCornerShape(4.dp))
         ) {
             DropdownMenuItem(
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.Delete,
+                        contentDescription = "Delete Icon",
+                        tint = onDark
+                    )
+                },
                 text = {
                     Text(
-                        text = "Delete list",
+                        text = "Delete ${mainListItem.name}",
                         fontSize = 16.sp,
                         color = onDark
                     )
@@ -101,6 +110,13 @@ fun MainListItem(
             )
             val importantText = if (favouriteStatus) "Unmark as important" else "Mark as important"
             DropdownMenuItem(
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.PriorityHigh,
+                        contentDescription = "Important Icon",
+                        tint = onDark
+                    )
+                },
                 text = {
                     Text(
                         text = importantText,

@@ -2,14 +2,15 @@ package com.evenclose.versalistpro.presentation.composables
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.CheckCircle
-import androidx.compose.material.icons.outlined.RadioButtonUnchecked
+import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -22,11 +23,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalistpro.data.model.InnerListItem
+import com.evenclose.versalistpro.presentation.composables.dialog.DeleteItemDialog
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.onLight
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
@@ -68,12 +69,21 @@ fun OpenListItem(
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
-            modifier = Modifier.background(secondaryContainer)
+            modifier = Modifier
+                .background(secondaryContainer)
+                .border(1.dp, onDark, RoundedCornerShape(4.dp))
         ) {
             DropdownMenuItem(
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.Delete,
+                        contentDescription = "Delete Icon",
+                        tint = onDark
+                    )
+                },
                 text = {
                     Text(
-                        text = "Delete item",
+                        text = "Delete ${innerListItem.name}",
                         fontSize = 16.sp,
                         color = onDark
                     )

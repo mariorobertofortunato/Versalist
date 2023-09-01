@@ -1,13 +1,20 @@
 package com.evenclose.versalistpro.presentation.screens.main
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Help
+import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Help
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Menu
+import androidx.compose.material.icons.outlined.Policy
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -59,25 +66,48 @@ fun MainScreenHeader(
                 }
             ) {
                 Icon(
-                    imageVector = Icons.Outlined.Info,
-                    contentDescription = "Info Icon",
+                    imageVector = Icons.Outlined.Menu,
+                    contentDescription = "Menu Icon",
                     tint = onDark
                 )
             }
             DropdownMenu(
                 expanded = expanded,
                 onDismissRequest = { expanded = false },
-                modifier = Modifier.background(secondaryContainer)
+                modifier = Modifier
+                    .background(secondaryContainer)
+                    .border(1.dp, onDark, RoundedCornerShape(4.dp))
             ) {
                 DropdownMenuItem(
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Help,
+                            contentDescription = "Help Icon",
+                            tint = onDark
+                        )
+                    },
                     text = { Text(text = "Help", fontSize = 16.sp, color = onDark) },
                     onClick = { /* TODO */ }
                 )
                 DropdownMenuItem(
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Info,
+                            contentDescription = "Info Icon",
+                            tint = onDark
+                        )
+                    },
                     text = { Text(text = "About", fontSize = 16.sp, color = onDark) },
                     onClick = { /* TODO */ }
                 )
                 DropdownMenuItem(
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Policy,
+                            contentDescription = "Privacy Icon",
+                            tint = onDark
+                        )
+                    },
                     text = { Text(text = "Privacy", fontSize = 16.sp, color = onDark) },
                     onClick = { /* TODO*/ }
                 )

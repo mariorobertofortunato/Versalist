@@ -1,6 +1,7 @@
-package com.evenclose.versalistpro.presentation.composables
+package com.evenclose.versalistpro.presentation.composables.dialog
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -11,7 +12,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -24,7 +24,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
@@ -62,6 +61,7 @@ fun DeleteItemDialog (
                             color = secondaryContainer,
                             shape = RoundedCornerShape(12.dp)
                         )
+                        .border(1.dp, onDark,RoundedCornerShape(12.dp))
                 ) {
                     Column(
                         modifier = Modifier
@@ -85,7 +85,7 @@ fun DeleteItemDialog (
                         )
 
                         Text(
-                            text = "This will delete $itemName permanently.",
+                            text = "$itemName will be permanently deleted.",
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .padding(top = 8.dp,)
