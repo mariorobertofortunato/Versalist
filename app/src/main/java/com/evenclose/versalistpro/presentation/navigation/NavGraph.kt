@@ -80,7 +80,7 @@ fun NavGraph(navController: NavHostController) {
                     animationSpec = tween(tweenDuration)
                 )
             }
-        ) {navBackstackEntry ->
+        ) { navBackstackEntry ->
             val listId = navBackstackEntry.arguments?.getString("listId")
             if (listId != null) {
                 val id = listId.toInt()
