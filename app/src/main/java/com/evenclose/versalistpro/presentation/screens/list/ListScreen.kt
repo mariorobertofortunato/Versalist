@@ -111,24 +111,19 @@ fun ListScreen(
                     navController = navController,
                     listName = currentListData.value?.name ?: "Error"
                 )
-                /** SPACER */
-/*                Spacer(
-                    modifier = Modifier
-                        .height(1.dp)
-                        .fillMaxWidth()
-                        .background(onDark)
-                )*/
             }
-
-
         },
-        /** New list FAB */
-        floatingActionButtonPosition = FabPosition.Center,
-        floatingActionButton = {
+        bottomBar = {
             AnimatedVisibility(
                 visible = !newItemTextFieldVisibility,
                 enter = slideInVertically() + fadeIn(),
-                exit = slideOutVertically() + fadeOut()
+                exit = slideOutVertically() + fadeOut(),
+                modifier = Modifier
+                    .padding(start = 2.dp, end = 2.dp, bottom = 2.dp)
+                    .background(
+                        color = primary,
+                        shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
+                    )
             ) {
                 FloatingActionButton(
                     containerColor = secondary,
@@ -140,14 +135,12 @@ fun ListScreen(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 12.dp)
+                        .padding(12.dp)
                         .border(2.dp, primary, RoundedCornerShape(12.dp))
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
                         verticalAlignment = Alignment.CenterVertically,
-                        modifier = Modifier
-                            .padding(12.dp)
                     ) {
                         Text(
                             text = "Add item",
@@ -158,14 +151,15 @@ fun ListScreen(
                     }
                 }
             }
-        }
+
+        },
     ) {
         LazyColumn(
             state = listState,
             modifier = Modifier
                 .border(1.5.dp, onLight,RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
                 .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(it)
                 .background(primary)
         ) {

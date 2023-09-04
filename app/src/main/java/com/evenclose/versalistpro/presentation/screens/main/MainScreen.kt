@@ -1,5 +1,6 @@
 package com.evenclose.versalistpro.presentation.screens.main
 
+import android.provider.CalendarContract
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -52,6 +53,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -118,13 +120,17 @@ fun MainScreen(
                 )
             }
         },
-        /** New list FAB */
-        floatingActionButtonPosition = FabPosition.Center,
-        floatingActionButton = {
+        bottomBar = {
             AnimatedVisibility(
                 visible = !newListTextFieldVisibility,
                 enter = slideInVertically() + fadeIn(),
-                exit = slideOutVertically() + fadeOut()
+                exit = slideOutVertically() + fadeOut(),
+                modifier = Modifier
+                    .padding(start = 2.dp, end = 2.dp, bottom = 2.dp)
+                    .background(
+                        color = primary,
+                        shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
+                    )
             ) {
                 FloatingActionButton(
                     containerColor = secondary,
@@ -136,7 +142,7 @@ fun MainScreen(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(horizontal = 12.dp)
+                        .padding(12.dp)
                         .border(2.dp, primary, RoundedCornerShape(12.dp))
                 ) {
                     Row(
@@ -150,10 +156,8 @@ fun MainScreen(
                             color = onDark,
                         )
                     }
-
                 }
             }
-
         },
     ) {
         LazyColumn(
@@ -165,7 +169,7 @@ fun MainScreen(
                     shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
                 )
                 .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(it)
                 .background(primary)
         ) {
@@ -386,7 +390,6 @@ fun MainScreen(
                     }
                 }
             }
-
         }
     }
 
