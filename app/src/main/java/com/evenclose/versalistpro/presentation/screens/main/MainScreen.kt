@@ -5,17 +5,18 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -26,6 +27,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Checklist
+import androidx.compose.material.icons.outlined.FormatListBulleted
 import androidx.compose.material.icons.outlined.List
 import androidx.compose.material3.Divider
 import androidx.compose.material3.FabPosition
@@ -44,6 +46,7 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
@@ -63,11 +66,9 @@ import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.onLight
 import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
-import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen(
     navController: NavController,
@@ -85,7 +86,7 @@ fun MainScreen(
 
     val focusRequester = remember { FocusRequester() }
 
-    // We fetch the main list at the start of the app
+    // We fetch the main list at the start of the screen.
     LaunchedEffect(Unit) {
         listViewModel.fetchAllLists()
     }
@@ -116,8 +117,6 @@ fun MainScreen(
                     navController = navController
                 )
             }
-
-
         },
         /** New list FAB */
         floatingActionButtonPosition = FabPosition.Center,
@@ -160,7 +159,11 @@ fun MainScreen(
         LazyColumn(
             state = listState,
             modifier = Modifier
-                .border(1.5.dp, onLight,RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
+                .border(
+                    width = 1.5.dp,
+                    color = onLight,
+                    shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
+                )
                 .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
                 .fillMaxWidth()
                 .padding(it)
@@ -253,7 +256,7 @@ fun MainScreen(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .focusRequester(focusRequester)
-                                .border(1.dp, secondary,RoundedCornerShape(12.dp)),
+                                .border(1.dp, secondary, RoundedCornerShape(12.dp)),
                             textStyle = TextStyle(
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 16.sp
@@ -291,7 +294,8 @@ fun MainScreen(
                                         .border(
                                             width = 1.dp,
                                             color = secondary,
-                                            shape = RoundedCornerShape(12.dp))
+                                            shape = RoundedCornerShape(12.dp)
+                                        )
                                         .weight(1f)
                                         .selectable(
                                             selected = (text == selectedOption),
@@ -331,12 +335,10 @@ fun MainScreen(
                             //horizontalArrangement = Arrangement.,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                //.padding(bottom = 4.dp)
+                            //.padding(bottom = 4.dp)
                         ) {
 
                         }
-
-
 
 
                         /** Icon Group */
@@ -387,4 +389,6 @@ fun MainScreen(
 
         }
     }
+
+
 }

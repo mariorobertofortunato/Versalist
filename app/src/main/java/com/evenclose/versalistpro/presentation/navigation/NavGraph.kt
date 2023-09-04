@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
+import com.evenclose.versalistpro.presentation.screens.SplashScreen
 import com.evenclose.versalistpro.presentation.screens.list.ListScreen
 import com.evenclose.versalistpro.presentation.screens.main.MainScreen
 
@@ -16,8 +17,13 @@ fun NavGraph(navController: NavHostController) {
 
     NavHost(
         navController = navController,
-        startDestination = Screens.MainScreen.route
+        startDestination = Screens.SplashScreen.route
     ) {
+        composable(
+            route = Screens.SplashScreen.route,
+        ) {
+            SplashScreen(navController)
+        }
         composable(
             route = Screens.MainScreen.route,
             enterTransition = {
