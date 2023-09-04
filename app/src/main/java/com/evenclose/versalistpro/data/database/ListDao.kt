@@ -36,6 +36,9 @@ interface ListDao {
     @Query("DELETE FROM inner_list WHERE id = :id")
     suspend fun deleteInnerListItem(id: Int)
 
+    @Query("DELETE FROM inner_list WHERE mainListId = :id")
+    suspend fun deleteInnerListItemFromMainList(id: Int)
+
     @Query("UPDATE inner_list SET isChecked=:newCheckStatus WHERE id = :id")
     suspend fun updateItemCheckStatus(id: Int, newCheckStatus: Boolean)
 

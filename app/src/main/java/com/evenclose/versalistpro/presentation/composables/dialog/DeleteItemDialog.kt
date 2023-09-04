@@ -140,10 +140,6 @@ fun DeleteItemDialog (
                 modifier = Modifier
                     .size(250.dp)
                     .align(Alignment.TopCenter)
-                /*.border(
-                    border = BorderStroke(width = 5.dp, color = Color.White),
-                    shape = CircleShape
-                )*/
             )
         }
     }

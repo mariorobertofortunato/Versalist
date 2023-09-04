@@ -1,6 +1,7 @@
 package com.evenclose.versalistpro.domain.use_case
 
 import com.evenclose.versalistpro.domain.use_case.inner_list.AddNewInnerListItemUseCase
+import com.evenclose.versalistpro.domain.use_case.inner_list.DeleteInnerListItemFromMainListUseCase
 import com.evenclose.versalistpro.domain.use_case.main_list.AddNewListUseCase
 import com.evenclose.versalistpro.domain.use_case.inner_list.DeleteInnerListItemUseCase
 import com.evenclose.versalistpro.domain.use_case.main_list.DeleteMainListItemUseCase
@@ -19,5 +20,6 @@ class UseCase (
     var UpdateItemCheckStatusUseCase: UpdateItemCheckStatusUseCase,
     var DeleteMainListItemUseCase: DeleteMainListItemUseCase,
     var DeleteInnerListItemUseCase: DeleteInnerListItemUseCase,
-    var UpdateMainListFavouriteStatusUseCase: UpdateMainListFavouriteStatusUseCase
+    var UpdateMainListFavouriteStatusUseCase: UpdateMainListFavouriteStatusUseCase,
+    var DeleteInnerListItemFromMainListUseCase: DeleteInnerListItemFromMainListUseCase
         )

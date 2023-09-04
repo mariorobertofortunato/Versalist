@@ -35,6 +35,7 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
     fun deleteMainListItem(id: Int) {
         viewModelScope.launch {
             useCase.DeleteMainListItemUseCase(id)
+            useCase.DeleteInnerListItemFromMainListUseCase(id)
             fetchAllLists()
         }
     }

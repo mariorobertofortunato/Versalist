@@ -86,7 +86,15 @@ class ListRepository @Inject constructor(
         try {
             dao.deleteInnerListItem(id)
         } catch (e: Exception) {
-            Log.e("TAG Error Delete main List item", "$e")
+            Log.e("TAG Error Delete Inner List item", "$e")
+        }
+    }
+
+    suspend fun deleteInnerListItemFromMainList(id: Int) {
+        try {
+            dao.deleteInnerListItemFromMainList(id)
+        } catch (e: Exception) {
+            Log.e("TAG Error Delete Inner List item from Main List", "$e")
         }
     }
 
