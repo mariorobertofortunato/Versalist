@@ -57,6 +57,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.TextStyle
@@ -79,6 +80,7 @@ import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.onLight
 import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
+import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
 
@@ -91,17 +93,13 @@ fun MainScreen(
     val mainList = listViewModel.mainList.observeAsState(emptyList())
 
     var newListValue by remember { mutableStateOf("") }
-    var newListTextFieldVisibility by remember { mutableStateOf(false) }
+    var newListFormVisibility by remember { mutableStateOf(false) }
     var errorTextVisibility by remember { mutableStateOf(false) }
     val listTypeOptions = listOf("Open list", "Checklist")
     val (selectedListTypeOption, onListTypeOptionSelected) = remember { mutableStateOf(listTypeOptions[0]) }
-    val listCategoryOptions = listOf("Personal", "Work", "Health", "Shopping", "Social", "Generic")
-    val (selectedListCategoryOption, onListCategoryOptionSelected) = remember {
-        mutableStateOf(
-            listCategoryOptions[0]
-        )
-    }
-    val listState = rememberLazyListState()
+    val listCategoryOptions = listOf("Personal", "Work", "Health", "Shopping", "Social", "Misc")
+    val (selectedListCategoryOption, onListCategoryOptionSelected) = remember { mutableStateOf(listCategoryOptions[0]) }
+    val listState = rememberLazyListState(0)
 
     val focusRequester = remember { FocusRequester() }
 
@@ -111,13 +109,13 @@ fun MainScreen(
     }
 
     // When a new item is added we scroll to the bottom of the list
-    LaunchedEffect(mainList.value.size, newListTextFieldVisibility) {
+    LaunchedEffect(mainList.value.size, newListFormVisibility) {
         listState.animateScrollToItem(mainList.value.size)
     }
 
     // The delay is needed as the focus must not be requested before or during the composition of the text field
-    LaunchedEffect(newListTextFieldVisibility) {
-        if (newListTextFieldVisibility) {
+    LaunchedEffect(newListFormVisibility) {
+        if (newListFormVisibility) {
             delay(150)
             focusRequester.requestFocus()
         }
@@ -139,7 +137,7 @@ fun MainScreen(
         },
         bottomBar = {
             AnimatedVisibility(
-                visible = !newListTextFieldVisibility,
+                visible = !newListFormVisibility,
                 enter = slideInVertically() + fadeIn(),
                 exit = slideOutVertically() + fadeOut(),
                 modifier = Modifier
@@ -154,7 +152,7 @@ fun MainScreen(
                     contentColor = onDark,
                     shape = RoundedCornerShape(12.dp),
                     onClick = {
-                        newListTextFieldVisibility = true
+                        newListFormVisibility = true
                         errorTextVisibility = false
                     },
                     modifier = Modifier
@@ -197,29 +195,35 @@ fun MainScreen(
                     items = mainList.value!!,
                     key = { item -> item }
                 ) { item ->
-                    Column(
-                        horizontalAlignment = CenterHorizontally,
-                        modifier = Modifier
-                            .fillMaxWidth()
+
+                    AnimatedVisibility(
+                        visible = !newListFormVisibility,
                     ) {
-                        MainListItem(
-                            mainListItem = item,
-                            navController = navController
-                        )
-                        Divider(
-                            color = secondary,
-                            thickness = 1.dp,
+                        Column(
+                            horizontalAlignment = CenterHorizontally,
                             modifier = Modifier
-                                .fillMaxWidth(0.95f)
-                        )
+                                .fillMaxWidth()
+                        ) {
+                            MainListItem(
+                                mainListItem = item,
+                                navController = navController
+                            )
+                            Divider(
+                                color = secondary,
+                                thickness = 1.dp,
+                                modifier = Modifier
+                                    .fillMaxWidth(0.95f)
+                            )
+                        }
                     }
+
                 }
 
             } else {
                 /** PLACEHOLDER */
                 item {
                     AnimatedVisibility(
-                        visible = !newListTextFieldVisibility,
+                        visible = !newListFormVisibility,
                     ) {
                         Column() {
                             Row(
@@ -238,19 +242,30 @@ fun MainScreen(
                     }
                 }
             }
-            /** Add new List Footer */
+            /** Add new List Form */
             item {
                 AnimatedVisibility(
-                    visible = newListTextFieldVisibility,
+                    visible = newListFormVisibility,
                 ) {
                     Column(
                         modifier = Modifier
-                            .fillMaxWidth()
+                            .fillMaxSize()
                             .padding(top = 16.dp, start = 16.dp, end = 16.dp),
                         horizontalAlignment = CenterHorizontally
                     ) {
-
                         /** Text field */
+                        Row(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(bottom = 4.dp),
+                        ) {
+                            Text(
+                                text = "New list name:",
+                                color = onLight,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp
+                            )
+                        }
                         TextField(
                             value = newListValue,
                             onValueChange = { newValue ->
@@ -262,7 +277,7 @@ fun MainScreen(
                             placeholder = {
                                 Text(
                                     text = "New list",
-                                    color = onLight,
+                                    color = secondaryContainer,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp
                                 )
@@ -283,7 +298,6 @@ fun MainScreen(
                                 fontSize = 16.sp
                             ),
                             keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences)
-
                         )
 
                         /** Error Text */
@@ -299,9 +313,20 @@ fun MainScreen(
 
                         /** List type "radio" group */
                         Row(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(bottom = 4.dp, top = 8.dp),
+                        ) {
+                            Text(
+                                text = "List type:",
+                                color = onLight,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp
+                            )
+                        }
+                        Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
-                                .padding(start = 16.dp, end = 16.dp, top = 8.dp)
                                 .fillMaxWidth()
                                 .background(background, RoundedCornerShape(12.dp))
                                 .border(1.dp, secondary, RoundedCornerShape(12.dp)),
@@ -350,12 +375,25 @@ fun MainScreen(
                         }
 
                         /** List Category Group */
+                        Row(
+                            modifier = Modifier
+                                .fillMaxSize()
+                                .padding(bottom = 4.dp, top = 8.dp),
+                        ) {
+                            Text(
+                                text = "List category:",
+                                color = onLight,
+                                fontWeight = FontWeight.Bold,
+                                fontSize = 16.sp
+                            )
+                        }
                         LazyVerticalGrid(
                             columns = GridCells.Fixed(3),
                             contentPadding = PaddingValues(4.dp),
+                            verticalArrangement = Arrangement.Center,
+                            horizontalArrangement = Arrangement.Center,
                             modifier = Modifier
                                 .height(135.dp)
-                                .padding(start = 16.dp, end = 16.dp, top = 8.dp)
                                 .fillMaxWidth()
                                 .background(background, RoundedCornerShape(12.dp))
                                 .border(1.dp, secondary, RoundedCornerShape(12.dp)),
@@ -425,11 +463,10 @@ fun MainScreen(
                                             text = category,
                                             color = if (category == selectedListCategoryOption) onDark else onLight,
                                             fontWeight = FontWeight.Bold,
-                                            maxLines = 1
+                                            maxLines = 1,
                                         )
                                     }
                                 }
-
                             }
                         }
 
@@ -439,11 +476,11 @@ fun MainScreen(
                             horizontalArrangement = Arrangement.SpaceEvenly,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(bottom = 4.dp)
+                                .padding(top = 8.dp, bottom = 4.dp)
                         ) {
                             IconButton(
                                 onClick = {
-                                    newListTextFieldVisibility = false
+                                    newListFormVisibility = false
                                     newListValue = ""
                                 }
                             ) {
@@ -451,7 +488,7 @@ fun MainScreen(
                                     imageVector = Icons.Outlined.Cancel,
                                     contentDescription = "Cancel Icon",
                                     tint = onLight,
-                                    // As these icon serves as the main way to accept and cancel the input we want them to be BIG
+                                    // As these icon serves as the main way to accept and cancel the input we want them to be as big as the container
                                     modifier = Modifier.fillMaxSize(1f)
                                 )
                             }
@@ -463,7 +500,7 @@ fun MainScreen(
                                             selectedListTypeOption,
                                             selectedListCategoryOption
                                         )
-                                        newListTextFieldVisibility = false
+                                        newListFormVisibility = false
                                         newListValue = ""
                                     } else {
                                         errorTextVisibility = true
@@ -474,7 +511,7 @@ fun MainScreen(
                                     imageVector = Icons.Outlined.CheckCircle,
                                     contentDescription = "Ok Icon",
                                     tint = onLight,
-                                    // As these icon serves as the main way to accept and cancel the input we want them to be BIG
+                                    // As these icon serves as the main way to accept and cancel the input we want them to be as big as the container
                                     modifier = Modifier.fillMaxSize(1f)
                                 )
                             }
@@ -484,6 +521,4 @@ fun MainScreen(
             }
         }
     }
-
-
 }

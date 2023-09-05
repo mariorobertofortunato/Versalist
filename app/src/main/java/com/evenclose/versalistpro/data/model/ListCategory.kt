@@ -6,5 +6,5 @@ object ListCategory {
     const val HEALTH = "Health"
     const val SHOPPING = "Shopping"
     const val SOCIAL = "Social"
-    const val GENERIC = "Generic"
+    const val GENERIC = "Misc"
 }
