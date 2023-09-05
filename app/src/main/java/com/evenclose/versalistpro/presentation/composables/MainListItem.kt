@@ -39,7 +39,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.data.model.ListCategory
 import com.evenclose.versalistpro.data.model.MainListItem
-import com.evenclose.versalistpro.presentation.composables.dialog.DeleteItemDialog
+import com.evenclose.versalistpro.presentation.composables.dialog.deleteitem.DeleteItemDialog
 import com.evenclose.versalistpro.presentation.navigation.Screens
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.onLight

@@ -1,4 +1,4 @@
-package com.evenclose.versalistpro.presentation.composables.dialog
+package com.evenclose.versalistpro.presentation.composables.dialog.deleteitem
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -136,7 +136,7 @@ fun DeleteItemDialog (
                     }
                 }
             }
-            DialogHeaderImage(
+            DeleteItemDialogHeaderImage(
                 modifier = Modifier
                     .size(250.dp)
                     .align(Alignment.TopCenter)

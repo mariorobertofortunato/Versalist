@@ -92,16 +92,21 @@ fun MainScreen(
 
     val mainList = listViewModel.mainList.observeAsState(emptyList())
 
+    /** New List Form */
     var newListValue by remember { mutableStateOf("") }
     var newListFormVisibility by remember { mutableStateOf(false) }
     var errorTextVisibility by remember { mutableStateOf(false) }
+    val focusRequester = remember { FocusRequester() }
     val listTypeOptions = listOf("Open list", "Checklist")
     val (selectedListTypeOption, onListTypeOptionSelected) = remember { mutableStateOf(listTypeOptions[0]) }
     val listCategoryOptions = listOf("Personal", "Work", "Health", "Shopping", "Social", "Misc")
     val (selectedListCategoryOption, onListCategoryOptionSelected) = remember { mutableStateOf(listCategoryOptions[0]) }
+
+    /** lazyColumn */
     val listState = rememberLazyListState(0)
 
-    val focusRequester = remember { FocusRequester() }
+
+
 
     // We fetch the main list at the start of the screen.
     LaunchedEffect(Unit) {

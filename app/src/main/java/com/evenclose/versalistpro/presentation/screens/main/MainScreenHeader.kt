@@ -9,8 +9,6 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Help
-import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Help
 import androidx.compose.material.icons.outlined.Info
 import androidx.compose.material.icons.outlined.Menu
@@ -19,7 +17,6 @@ import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MenuItemColors
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -32,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.presentation.composables.dialog.mainscreenheldialog.MainScreenHelpDialog
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
@@ -40,6 +38,10 @@ fun MainScreenHeader(
     navController: NavController,
 ) {
     var expanded by remember { mutableStateOf(false) }
+
+    /** Dialog */
+    var openHelpDialog by remember { mutableStateOf(false) }
+
 
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
@@ -87,7 +89,10 @@ fun MainScreenHeader(
                         )
                     },
                     text = { Text(text = "Help", fontSize = 16.sp, color = onDark) },
-                    onClick = { /* TODO */ }
+                    onClick = {
+                        expanded = false
+                        openHelpDialog = true
+                    }
                 )
                 DropdownMenuItem(
                     leadingIcon = {
@@ -112,6 +117,14 @@ fun MainScreenHeader(
                     onClick = { /* TODO*/ }
                 )
             }
+        }
+
+        if (openHelpDialog) {
+            MainScreenHelpDialog(
+                onDismiss = {
+                    openHelpDialog = false
+                }
+            )
         }
 
     }
