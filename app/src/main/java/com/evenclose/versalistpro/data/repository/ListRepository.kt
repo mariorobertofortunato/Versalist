@@ -35,11 +35,12 @@ class ListRepository @Inject constructor(
         }
     }
 
-    suspend fun addNewList(name: String, type: String) {
+    suspend fun addNewList(name: String, type: String, category: String) {
         try {
             dao.addNewList(MainListItem(
                 name = name,
                 type = type,
+                category = category,
                 isFav = false
             )
             )

@@ -11,10 +11,16 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Badge
 import androidx.compose.material.icons.outlined.Checklist
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.Diversity1
+import androidx.compose.material.icons.outlined.EmojiPeople
+import androidx.compose.material.icons.outlined.EventNote
 import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.PriorityHigh
+import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material.icons.outlined.Spa
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -31,6 +37,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.data.model.ListCategory
 import com.evenclose.versalistpro.data.model.MainListItem
 import com.evenclose.versalistpro.presentation.composables.dialog.DeleteItemDialog
 import com.evenclose.versalistpro.presentation.navigation.Screens
@@ -69,18 +76,54 @@ fun MainListItem(
                 }
             )
     ) {
-        val icon = if (mainListItem.type == "Open list") {
+        val typeIcon = if (mainListItem.type == "Open list") {
             Icons.Outlined.List
         } else {
             Icons.Outlined.Checklist
         }
+        val categoryIcon = when (mainListItem.category) {
+            ListCategory.PERSONAL -> {
+                Icons.Outlined.EmojiPeople
+            }
+            ListCategory.WORK -> {
+                Icons.Outlined.Badge
+            }
+            ListCategory.HEALTH -> {
+                Icons.Outlined.Spa
+            }
+            ListCategory.SHOPPING -> {
+                Icons.Outlined.ShoppingCart
+            }
+            ListCategory.SOCIAL -> {
+                Icons.Outlined.Diversity1
+            }
+            ListCategory.GENERIC -> {
+                Icons.Outlined.EventNote
+            }
+            else -> {
+                Icons.Outlined.List
+            }
+        }
 
-        Text(
-            text = "• ${mainListItem.name}",
-            fontSize = 16.sp,
-            color = onLight,
-            fontWeight = FontWeight.Bold
-        )
+        Row(
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween,
+        ) {
+            Icon(
+                imageVector = categoryIcon,
+                contentDescription = "Category Icon",
+                tint = onLight
+            )
+            Text(
+                text = mainListItem.name,
+                fontSize = 16.sp,
+                color = onLight,
+                fontWeight = FontWeight.Bold,
+                modifier = Modifier.padding(start = 4.dp)
+            )
+        }
+
+
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
@@ -146,8 +189,8 @@ fun MainListItem(
                 )
             }
             Icon(
-                imageVector = icon,
-                contentDescription = "Menu Icon",
+                imageVector = typeIcon,
+                contentDescription = "Type Icon",
                 tint = onLight
             )
         }

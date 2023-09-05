@@ -1,6 +1,5 @@
 package com.evenclose.versalistpro.presentation.screens.main
 
-import android.provider.CalendarContract
 import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
@@ -13,25 +12,33 @@ import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.outlined.Badge
 import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Checklist
-import androidx.compose.material.icons.outlined.FormatListBulleted
+import androidx.compose.material.icons.outlined.Diversity1
+import androidx.compose.material.icons.outlined.EmojiPeople
+import androidx.compose.material.icons.outlined.EventNote
 import androidx.compose.material.icons.outlined.List
+import androidx.compose.material.icons.outlined.ShoppingCart
+import androidx.compose.material.icons.outlined.Spa
 import androidx.compose.material3.Divider
-import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -47,13 +54,11 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
-import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -61,6 +66,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.data.model.ListCategory.GENERIC
+import com.evenclose.versalistpro.data.model.ListCategory.HEALTH
+import com.evenclose.versalistpro.data.model.ListCategory.PERSONAL
+import com.evenclose.versalistpro.data.model.ListCategory.SHOPPING
+import com.evenclose.versalistpro.data.model.ListCategory.SOCIAL
+import com.evenclose.versalistpro.data.model.ListCategory.WORK
 import com.evenclose.versalistpro.presentation.composables.MainListItem
 import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.ui.theme.background
@@ -82,8 +93,14 @@ fun MainScreen(
     var newListValue by remember { mutableStateOf("") }
     var newListTextFieldVisibility by remember { mutableStateOf(false) }
     var errorTextVisibility by remember { mutableStateOf(false) }
-    val radioOptions = listOf("Open list", "Checklist")
-    val (selectedOption, onOptionSelected) = remember { mutableStateOf(radioOptions[0]) }
+    val listTypeOptions = listOf("Open list", "Checklist")
+    val (selectedListTypeOption, onListTypeOptionSelected) = remember { mutableStateOf(listTypeOptions[0]) }
+    val listCategoryOptions = listOf("Personal", "Work", "Health", "Shopping", "Social", "Generic")
+    val (selectedListCategoryOption, onListCategoryOptionSelected) = remember {
+        mutableStateOf(
+            listCategoryOptions[0]
+        )
+    }
     val listState = rememberLazyListState()
 
     val focusRequester = remember { FocusRequester() }
@@ -280,7 +297,7 @@ fun MainScreen(
                             )
                         }
 
-                        /** Radio Group */
+                        /** List type "radio" group */
                         Row(
                             horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
@@ -289,7 +306,7 @@ fun MainScreen(
                                 .background(background, RoundedCornerShape(12.dp))
                                 .border(1.dp, secondary, RoundedCornerShape(12.dp)),
                         ) {
-                            radioOptions.forEach { text ->
+                            listTypeOptions.forEach { text ->
                                 Row(
                                     horizontalArrangement = Arrangement.Center,
                                     verticalAlignment = Alignment.CenterVertically,
@@ -302,50 +319,121 @@ fun MainScreen(
                                         )
                                         .weight(1f)
                                         .selectable(
-                                            selected = (text == selectedOption),
-                                            onClick = { onOptionSelected(text) }
+                                            selected = (text == selectedListTypeOption),
+                                            onClick = { onListTypeOptionSelected(text) }
                                         )
                                         .clickable(
                                             // Disable ripple effect because it sucks
                                             indication = null,
                                             interactionSource = remember { MutableInteractionSource() },
-                                            onClick = { onOptionSelected(text) }
+                                            onClick = { onListTypeOptionSelected(text) }
                                         )
                                         .background(
-                                            color = if (text == selectedOption) secondary else background,
+                                            color = if (text == selectedListTypeOption) secondary else background,
                                             shape = RoundedCornerShape(12.dp)
                                         )
                                 ) {
                                     Icon(
                                         imageVector = if (text == "Open list") Icons.Outlined.List else Icons.Outlined.Checklist,
                                         contentDescription = "List Type Icon",
-                                        tint = if (text == selectedOption) onDark else onLight,
+                                        tint = if (text == selectedListTypeOption) onDark else onLight,
                                         modifier = Modifier
                                             .padding(vertical = 8.dp)
                                     )
                                     Text(
                                         text = text,
-                                        color = if (text == selectedOption) onDark else onLight,
+                                        color = if (text == selectedListTypeOption) onDark else onLight,
                                         fontWeight = FontWeight.Bold
                                     )
                                 }
                             }
                         }
 
-
-                        /** Category Group */
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            //horizontalArrangement = Arrangement.,
+                        /** List Category Group */
+                        LazyVerticalGrid(
+                            columns = GridCells.Fixed(3),
+                            contentPadding = PaddingValues(4.dp),
                             modifier = Modifier
+                                .height(135.dp)
+                                .padding(start = 16.dp, end = 16.dp, top = 8.dp)
                                 .fillMaxWidth()
-                            //.padding(bottom = 4.dp)
+                                .background(background, RoundedCornerShape(12.dp))
+                                .border(1.dp, secondary, RoundedCornerShape(12.dp)),
                         ) {
+                            items(
+                                items = listCategoryOptions,
+                                key = { item -> item }) { category ->
+                                Box(
+                                    modifier = Modifier
+                                        .padding(4.dp)
+                                        .border(
+                                            width = 1.dp,
+                                            color = secondary,
+                                            shape = RoundedCornerShape(12.dp)
+                                        )
+                                        .weight(1f)
+                                        .selectable(
+                                            selected = (category == selectedListCategoryOption),
+                                            onClick = { onListCategoryOptionSelected(category) }
+                                        )
+                                        .clickable(
+                                            // Disable ripple effect because it sucks
+                                            indication = null,
+                                            interactionSource = remember { MutableInteractionSource() },
+                                            onClick = { onListCategoryOptionSelected(category) }
+                                        )
+                                        .background(
+                                            color = if (category == selectedListCategoryOption) secondary else background,
+                                            shape = RoundedCornerShape(12.dp)
+                                        )
+                                ) {
+                                    Column(
+                                        horizontalAlignment = CenterHorizontally,
+                                        modifier = Modifier
+                                            .fillMaxWidth()
+                                            .padding(4.dp)
+                                    ) {
+                                        val categoryIcon = when (category) {
+                                            PERSONAL -> {
+                                                Icons.Outlined.EmojiPeople
+                                            }
+                                            WORK -> {
+                                                Icons.Outlined.Badge
+                                            }
+                                            HEALTH -> {
+                                                Icons.Outlined.Spa
+                                            }
+                                            SHOPPING -> {
+                                                Icons.Outlined.ShoppingCart
+                                            }
+                                            SOCIAL -> {
+                                                Icons.Outlined.Diversity1
+                                            }
+                                            GENERIC -> {
+                                                Icons.Outlined.EventNote
+                                            }
+                                            else -> {
+                                                Icons.Outlined.List
+                                            }
+                                        }
+                                        Icon(
+                                            imageVector = categoryIcon,
+                                            contentDescription = "category icon",
+                                            tint = if (category == selectedListCategoryOption) onDark else onLight,
+                                        )
+                                        Text(
+                                            text = category,
+                                            color = if (category == selectedListCategoryOption) onDark else onLight,
+                                            fontWeight = FontWeight.Bold,
+                                            maxLines = 1
+                                        )
+                                    }
+                                }
 
+                            }
                         }
 
-
-                        /** Icon Group */
+                        /** Confirm/Cancel Icon Group */
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
                             horizontalArrangement = Arrangement.SpaceEvenly,
@@ -370,7 +458,11 @@ fun MainScreen(
                             IconButton(
                                 onClick = {
                                     if (newListValue != "") {
-                                        listViewModel.addNewList(newListValue, selectedOption)
+                                        listViewModel.addNewList(
+                                            newListValue,
+                                            selectedListTypeOption,
+                                            selectedListCategoryOption
+                                        )
                                         newListTextFieldVisibility = false
                                         newListValue = ""
                                     } else {

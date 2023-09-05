@@ -12,5 +12,6 @@ data class MainListItem(
     var id: Int? = null,
     val name: String,
     var type: String,
+    var category: String,
     var isFav: Boolean
     ) : Parcelable
