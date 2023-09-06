@@ -1,6 +1,7 @@
 package com.evenclose.versalistpro.presentation.screens.main
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
@@ -41,7 +42,6 @@ import androidx.compose.material.icons.outlined.Spa
 import androidx.compose.material3.Divider
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -57,7 +57,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.text.TextStyle
@@ -67,8 +66,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.evenclose.versalistpro.data.model.ListCategory.GENERIC
 import com.evenclose.versalistpro.data.model.ListCategory.HEALTH
+import com.evenclose.versalistpro.data.model.ListCategory.MISC
 import com.evenclose.versalistpro.data.model.ListCategory.PERSONAL
 import com.evenclose.versalistpro.data.model.ListCategory.SHOPPING
 import com.evenclose.versalistpro.data.model.ListCategory.SOCIAL
@@ -98,14 +97,20 @@ fun MainScreen(
     var errorTextVisibility by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
     val listTypeOptions = listOf("Open list", "Checklist")
-    val (selectedListTypeOption, onListTypeOptionSelected) = remember { mutableStateOf(listTypeOptions[0]) }
+    val (selectedListTypeOption, onListTypeOptionSelected) = remember {
+        mutableStateOf(
+            listTypeOptions[0]
+        )
+    }
     val listCategoryOptions = listOf("Personal", "Work", "Health", "Shopping", "Social", "Misc")
-    val (selectedListCategoryOption, onListCategoryOptionSelected) = remember { mutableStateOf(listCategoryOptions[0]) }
+    val (selectedListCategoryOption, onListCategoryOptionSelected) = remember {
+        mutableStateOf(
+            listCategoryOptions[0]
+        )
+    }
 
     /** lazyColumn */
     val listState = rememberLazyListState(0)
-
-
 
 
     // We fetch the main list at the start of the screen.
@@ -143,8 +148,6 @@ fun MainScreen(
         bottomBar = {
             AnimatedVisibility(
                 visible = !newListFormVisibility,
-                enter = slideInVertically() + fadeIn(),
-                exit = slideOutVertically() + fadeOut(),
                 modifier = Modifier
                     .padding(start = 2.dp, end = 2.dp, bottom = 2.dp)
                     .background(
@@ -308,6 +311,8 @@ fun MainScreen(
                         /** Error Text */
                         AnimatedVisibility(
                             visible = errorTextVisibility,
+                            enter = slideInVertically(animationSpec = tween(100)) + fadeIn(),
+                            exit = slideOutVertically (animationSpec = tween(100)) + fadeOut()
                         ) {
                             Text(
                                 text = "Please enter a name for the list",
@@ -341,7 +346,7 @@ fun MainScreen(
                                     horizontalArrangement = Arrangement.Center,
                                     verticalAlignment = Alignment.CenterVertically,
                                     modifier = Modifier
-                                        .padding(4.dp)
+                                        .padding(8.dp)
                                         .border(
                                             width = 1.dp,
                                             color = secondary,
@@ -440,21 +445,27 @@ fun MainScreen(
                                             PERSONAL -> {
                                                 Icons.Outlined.EmojiPeople
                                             }
+
                                             WORK -> {
                                                 Icons.Outlined.Badge
                                             }
+
                                             HEALTH -> {
                                                 Icons.Outlined.Spa
                                             }
+
                                             SHOPPING -> {
                                                 Icons.Outlined.ShoppingCart
                                             }
+
                                             SOCIAL -> {
                                                 Icons.Outlined.Diversity1
                                             }
-                                            GENERIC -> {
+
+                                            MISC -> {
                                                 Icons.Outlined.EventNote
                                             }
+
                                             else -> {
                                                 Icons.Outlined.List
                                             }
@@ -478,26 +489,51 @@ fun MainScreen(
                         /** Confirm/Cancel Icon Group */
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceEvenly,
+                            horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .padding(top = 8.dp, bottom = 4.dp)
                         ) {
-                            IconButton(
+                            FloatingActionButton(
+                                containerColor = secondary,
+                                contentColor = onDark,
+                                shape = RoundedCornerShape(12.dp),
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(end = 4.dp)
+                                    .border(2.dp, primary, RoundedCornerShape(12.dp)),
                                 onClick = {
                                     newListFormVisibility = false
                                     newListValue = ""
                                 }
                             ) {
-                                Icon(
-                                    imageVector = Icons.Outlined.Cancel,
-                                    contentDescription = "Cancel Icon",
-                                    tint = onLight,
-                                    // As these icon serves as the main way to accept and cancel the input we want them to be as big as the container
-                                    modifier = Modifier.fillMaxSize(1f)
-                                )
+                                Row(
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Outlined.Cancel,
+                                        contentDescription = "Cancel Icon",
+                                        tint = onDark,
+                                        modifier = Modifier
+                                            .padding(vertical = 12.dp)
+                                    )
+                                    Text(
+                                        text = "Cancel",
+                                        color = onDark,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 20.sp
+                                    )
+                                }
                             }
-                            IconButton(
+                            FloatingActionButton(
+                                containerColor = secondary,
+                                contentColor = onDark,
+                                shape = RoundedCornerShape(12.dp),
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(start = 4.dp)
+                                    .border(2.dp, primary, RoundedCornerShape(12.dp)),
                                 onClick = {
                                     if (newListValue != "") {
                                         listViewModel.addNewList(
@@ -512,13 +548,24 @@ fun MainScreen(
                                     }
                                 }
                             ) {
-                                Icon(
-                                    imageVector = Icons.Outlined.CheckCircle,
-                                    contentDescription = "Ok Icon",
-                                    tint = onLight,
-                                    // As these icon serves as the main way to accept and cancel the input we want them to be as big as the container
-                                    modifier = Modifier.fillMaxSize(1f)
-                                )
+                                Row(
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Outlined.CheckCircle,
+                                        contentDescription = "Ok Icon",
+                                        tint = onDark,
+                                        modifier = Modifier
+                                            .padding(vertical = 12.dp)
+                                    )
+                                    Text(
+                                        text = "Confirm",
+                                        color = onDark,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 20.sp
+                                    )
+                                }
                             }
                         }
                     }

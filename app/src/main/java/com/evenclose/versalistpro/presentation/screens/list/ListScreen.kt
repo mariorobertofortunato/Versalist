@@ -1,6 +1,7 @@
 package com.evenclose.versalistpro.presentation.screens.list
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.core.tween
 import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
@@ -22,10 +23,8 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material3.Divider
-import androidx.compose.material3.FabPosition
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
-import androidx.compose.material3.IconButton
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -42,14 +41,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.presentation.composables.CheckListItem
-import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.composables.OpenListItem
+import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.ui.theme.background
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.onLight
@@ -57,8 +58,6 @@ import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.input.KeyboardCapitalization
 
 @Composable
 fun ListScreen(
@@ -116,8 +115,6 @@ fun ListScreen(
         bottomBar = {
             AnimatedVisibility(
                 visible = !newItemTextFieldVisibility,
-                enter = slideInVertically() + fadeIn(),
-                exit = slideOutVertically() + fadeOut(),
                 modifier = Modifier
                     .padding(start = 2.dp, end = 2.dp, bottom = 2.dp)
                     .background(
@@ -217,7 +214,7 @@ fun ListScreen(
 
                 }
             }
-            /** Add new List Footer */
+            /** Add new Item */
             item {
                 AnimatedVisibility(
                     visible = newItemTextFieldVisibility,
@@ -267,6 +264,8 @@ fun ListScreen(
                         /** Error Text */
                         AnimatedVisibility(
                             visible = errorTextVisibility,
+                            enter = slideInVertically(animationSpec = tween(100)) + fadeIn(),
+                            exit = slideOutVertically (animationSpec = tween(100)) + fadeOut()
                         ) {
                             Text(
                                 text = "Please enter a value",
@@ -275,29 +274,54 @@ fun ListScreen(
                             )
                         }
 
-                        /** Icon Group */
+                        /** Confirm/Cancel Icon Group */
                         Row(
                             verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceEvenly,
+                            horizontalArrangement = Arrangement.SpaceBetween,
                             modifier = Modifier
                                 .fillMaxWidth()
-                                .padding(bottom = 4.dp)
+                                .padding(top = 8.dp, bottom = 4.dp)
                         ) {
-                            IconButton(
+                            FloatingActionButton(
+                                containerColor = secondary,
+                                contentColor = onDark,
+                                shape = RoundedCornerShape(12.dp),
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(end = 4.dp)
+                                    .border(2.dp, primary, RoundedCornerShape(12.dp)),
                                 onClick = {
                                     newItemTextFieldVisibility = false
                                     newItemValue = ""
                                 }
                             ) {
-                                Icon(
-                                    imageVector = Icons.Outlined.Cancel,
-                                    contentDescription = "Cancel Icon",
-                                    tint = onLight,
-                                    // As these icon serves as the main way to accept and cancel the input we want them to be BIG
-                                    modifier = Modifier.fillMaxSize(1f)
-                                )
+                                Row(
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Outlined.Cancel,
+                                        contentDescription = "Cancel Icon",
+                                        tint = onDark,
+                                        modifier = Modifier
+                                            .padding(vertical = 12.dp)
+                                    )
+                                    Text(
+                                        text = "Cancel",
+                                        color = onDark,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 20.sp
+                                    )
+                                }
                             }
-                            IconButton(
+                            FloatingActionButton(
+                                containerColor = secondary,
+                                contentColor = onDark,
+                                shape = RoundedCornerShape(12.dp),
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .padding(start = 4.dp)
+                                    .border(2.dp, primary, RoundedCornerShape(12.dp)),
                                 onClick = {
                                     if (newItemValue != "") {
                                         listViewModel.addNewInnerListItem(
@@ -311,13 +335,24 @@ fun ListScreen(
                                     }
                                 }
                             ) {
-                                Icon(
-                                    imageVector = Icons.Outlined.CheckCircle,
-                                    contentDescription = "Ok Icon",
-                                    tint = onLight,
-                                    // As these icon serves as the main way to accept and cancel the input we want them to be BIG
-                                    modifier = Modifier.fillMaxSize(1f)
-                                )
+                                Row(
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = Alignment.CenterVertically,
+                                ) {
+                                    Icon(
+                                        imageVector = Icons.Outlined.CheckCircle,
+                                        contentDescription = "Ok Icon",
+                                        tint = onDark,
+                                        modifier = Modifier
+                                            .padding(vertical = 12.dp)
+                                    )
+                                    Text(
+                                        text = "Confirm",
+                                        color = onDark,
+                                        fontWeight = FontWeight.Bold,
+                                        fontSize = 20.sp
+                                    )
+                                }
                             }
                         }
                     }

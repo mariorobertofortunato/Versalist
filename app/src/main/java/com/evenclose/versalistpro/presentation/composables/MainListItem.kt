@@ -97,7 +97,7 @@ fun MainListItem(
             ListCategory.SOCIAL -> {
                 Icons.Outlined.Diversity1
             }
-            ListCategory.GENERIC -> {
+            ListCategory.MISC -> {
                 Icons.Outlined.EventNote
             }
             else -> {
