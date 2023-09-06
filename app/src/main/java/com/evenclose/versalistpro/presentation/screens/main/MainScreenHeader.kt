@@ -29,7 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
-import com.evenclose.versalistpro.presentation.composables.dialog.mainscreenheldialog.MainScreenHelpDialog
+import com.evenclose.versalistpro.presentation.composables.dialog.mainscreenhelpdialog.MainScreenHelpDialog
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 

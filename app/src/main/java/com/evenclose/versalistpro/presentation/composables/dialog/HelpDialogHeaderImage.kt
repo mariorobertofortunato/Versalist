@@ -1,4 +1,4 @@
-package com.evenclose.versalistpro.presentation.composables.dialog.mainscreenheldialog
+package com.evenclose.versalistpro.presentation.composables.dialog
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -10,7 +10,7 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.evenclose.versalistpro.R
 
 @Composable
-fun MainScreenHelpDialogHeaderImage(modifier: Modifier) {
+fun HelpDialogHeaderImage(modifier: Modifier) {
     val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.animation_help))
 
     LottieAnimation(

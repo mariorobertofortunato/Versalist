@@ -1,4 +1,4 @@
-package com.evenclose.versalistpro.presentation.composables.dialog.mainscreenheldialog
+package com.evenclose.versalistpro.presentation.composables.dialog.mainscreenhelpdialog
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.evenclose.versalistpro.presentation.composables.dialog.HelpDialogHeaderImage
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
@@ -175,7 +176,7 @@ fun MainScreenHelpDialog(
                     }
                 }
             }
-            MainScreenHelpDialogHeaderImage(
+            HelpDialogHeaderImage(
                 modifier = Modifier
                     .size(150.dp)
                     .align(Alignment.TopCenter)
