@@ -21,6 +21,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
 import com.airbnb.lottie.LottieProperty
@@ -59,8 +60,7 @@ fun EmptyListPlaceholder(type: String) {
     ){
         LottieAnimation(
             modifier = Modifier
-                .height(100.dp)
-            ,
+                .height(100.dp),
             composition = composition,
             iterations = LottieConstants.IterateForever,
         )
@@ -70,6 +70,7 @@ fun EmptyListPlaceholder(type: String) {
             color = onLight,
             modifier = Modifier.align(Alignment.CenterHorizontally),
             fontWeight = FontWeight.Bold,
+            fontSize = 18.sp,
         )
     }
 }

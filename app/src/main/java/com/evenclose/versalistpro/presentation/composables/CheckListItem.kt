@@ -86,7 +86,7 @@ fun CheckListItem(
         )
         Text(
             text = innerListItem.name,
-            fontSize = 16.sp,
+            fontSize = 20.sp,
             color = if (checkStatus) {
                 secondaryContainer
             } else {

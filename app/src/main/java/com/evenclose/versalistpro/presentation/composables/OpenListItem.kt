@@ -62,7 +62,7 @@ fun OpenListItem(
 
         Text(
             text = "• ${innerListItem.name}",
-            fontSize = 16.sp,
+            fontSize = 20.sp,
             color = onLight,
             fontWeight = FontWeight.Bold
         )

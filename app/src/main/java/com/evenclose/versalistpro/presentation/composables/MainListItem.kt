@@ -6,6 +6,7 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -24,6 +25,7 @@ import androidx.compose.material.icons.outlined.Spa
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
+import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -33,6 +35,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -41,8 +44,11 @@ import com.evenclose.versalistpro.data.model.ListCategory
 import com.evenclose.versalistpro.data.model.MainListItem
 import com.evenclose.versalistpro.presentation.composables.dialog.deleteitem.DeleteItemDialog
 import com.evenclose.versalistpro.presentation.navigation.Screens
+import com.evenclose.versalistpro.presentation.ui.theme.background
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.onLight
+import com.evenclose.versalistpro.presentation.ui.theme.primary
+import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
@@ -109,18 +115,41 @@ fun MainListItem(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            Icon(
-                imageVector = categoryIcon,
-                contentDescription = "Category Icon",
-                tint = onLight
-            )
-            Text(
-                text = mainListItem.name,
-                fontSize = 16.sp,
-                color = onLight,
-                fontWeight = FontWeight.Bold,
-                modifier = Modifier.padding(start = 4.dp)
-            )
+            IconButton(
+                onClick = {},
+                modifier = Modifier
+                    .background(color = background, shape = RoundedCornerShape(12.dp))
+                    .border(2.dp, secondary, RoundedCornerShape(12.dp)),
+            ) {
+                Icon(
+                    imageVector = categoryIcon,
+                    contentDescription = "Category Icon",
+                    tint = onLight,
+                    modifier = Modifier
+                )
+            }
+            Column(
+                modifier = Modifier
+                    .padding(start = 8.dp)
+            ){
+                Text(
+                    text = mainListItem.category,
+                    fontSize = 14.sp,
+                    color = secondaryContainer,
+                    fontWeight = FontWeight.Bold,
+                    //modifier = Modifier.padding(start = 4.dp)
+                )
+                Text(
+                    text = mainListItem.name,
+                    fontSize = 20.sp,
+                    color = onLight,
+                    fontWeight = FontWeight.Bold,
+                    maxLines = 1,
+                    overflow = TextOverflow.Ellipsis
+                   // modifier = Modifier.padding(start = 4.dp)
+                )
+            }
+
         }
 
 
@@ -177,6 +206,8 @@ fun MainListItem(
                 }
             )
         }
+
+
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,

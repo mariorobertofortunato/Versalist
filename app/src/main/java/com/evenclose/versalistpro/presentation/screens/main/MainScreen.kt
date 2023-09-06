@@ -218,7 +218,7 @@ fun MainScreen(
                             )
                             Divider(
                                 color = secondary,
-                                thickness = 1.dp,
+                                thickness = 2.dp,
                                 modifier = Modifier
                                     .fillMaxWidth(0.95f)
                             )
@@ -271,7 +271,7 @@ fun MainScreen(
                                 text = "New list name:",
                                 color = onLight,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
+                                fontSize = 18.sp
                             )
                         }
                         TextField(
@@ -331,7 +331,7 @@ fun MainScreen(
                                 text = "List type:",
                                 color = onLight,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
+                                fontSize = 18.sp
                             )
                         }
                         Row(
@@ -394,7 +394,7 @@ fun MainScreen(
                                 text = "List category:",
                                 color = onLight,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
+                                fontSize = 18.sp
                             )
                         }
                         LazyVerticalGrid(
