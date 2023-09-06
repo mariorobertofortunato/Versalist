@@ -304,7 +304,7 @@ fun ListScreen(
                                         contentDescription = "Cancel Icon",
                                         tint = onDark,
                                         modifier = Modifier
-                                            .padding(vertical = 12.dp)
+                                            .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
                                         text = "Cancel",
@@ -344,7 +344,7 @@ fun ListScreen(
                                         contentDescription = "Ok Icon",
                                         tint = onDark,
                                         modifier = Modifier
-                                            .padding(vertical = 12.dp)
+                                            .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
                                         text = "Confirm",

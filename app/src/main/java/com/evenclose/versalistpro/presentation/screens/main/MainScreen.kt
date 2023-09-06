@@ -373,7 +373,7 @@ fun MainScreen(
                                         contentDescription = "List Type Icon",
                                         tint = if (text == selectedListTypeOption) onDark else onLight,
                                         modifier = Modifier
-                                            .padding(vertical = 8.dp)
+                                            .padding(top = 8.dp, bottom = 8.dp, end = 4.dp)
                                     )
                                     Text(
                                         text = text,
@@ -516,7 +516,7 @@ fun MainScreen(
                                         contentDescription = "Cancel Icon",
                                         tint = onDark,
                                         modifier = Modifier
-                                            .padding(vertical = 12.dp)
+                                            .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
                                         text = "Cancel",
@@ -554,10 +554,10 @@ fun MainScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Outlined.CheckCircle,
-                                        contentDescription = "Ok Icon",
+                                        contentDescription = "Confirm Icon",
                                         tint = onDark,
                                         modifier = Modifier
-                                            .padding(vertical = 12.dp)
+                                            .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
                                         text = "Confirm",
