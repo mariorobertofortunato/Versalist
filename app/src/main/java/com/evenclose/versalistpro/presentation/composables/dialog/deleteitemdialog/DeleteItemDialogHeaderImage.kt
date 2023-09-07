@@ -1,4 +1,4 @@
-package com.evenclose.versalistpro.presentation.composables.dialog.deleteitem
+package com.evenclose.versalistpro.presentation.composables.dialog.deleteitemdialog
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

@@ -29,6 +29,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.presentation.composables.dialog.aboutdialog.AboutDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.mainscreenhelpdialog.MainScreenHelpDialog
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
@@ -41,6 +42,7 @@ fun MainScreenHeader(
 
     /** Dialog */
     var openHelpDialog by remember { mutableStateOf(false) }
+    var openAboutDialog by remember { mutableStateOf(false) }
 
 
     Row(
@@ -103,7 +105,10 @@ fun MainScreenHeader(
                         )
                     },
                     text = { Text(text = "About", fontSize = 16.sp, color = onDark) },
-                    onClick = { /* TODO */ }
+                    onClick = {
+                        expanded = false
+                        openAboutDialog = true
+                    }
                 )
                 DropdownMenuItem(
                     leadingIcon = {
@@ -123,6 +128,13 @@ fun MainScreenHeader(
             MainScreenHelpDialog(
                 onDismiss = {
                     openHelpDialog = false
+                }
+            )
+        }
+        if (openAboutDialog) {
+            AboutDialog(
+                onDismiss = {
+                    openAboutDialog = false
                 }
             )
         }

@@ -1,7 +1,13 @@
-package com.evenclose.versalistpro.presentation.composables.dialog.listscreenhelpdialog
+package com.evenclose.versalistpro.presentation.composables.dialog.aboutdialog
 
+import android.content.ActivityNotFoundException
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -20,6 +26,7 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -30,9 +37,11 @@ import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
 @Composable
-fun ListScreenHelpDialog(
+fun AboutDialog(
     onDismiss: () -> Unit
 ) {
+
+    val context = LocalContext.current
 
     Dialog(
         onDismissRequest = onDismiss
@@ -70,17 +79,16 @@ fun ListScreenHelpDialog(
                             modifier = Modifier.height(18.dp)
                         )
                         Text(
-                            text = "How it works",
+                            text = "About Us",
                             textAlign = TextAlign.Center,
                             modifier = Modifier
-                                //.padding(top = 8.dp)
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.headlineSmall,
                             color = onDark,
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
-                            text = "Explore all your list items here and add new ones by tapping the button at the bottom of the screen.",
+                            text = "Versalist Pro has been developed by Even Close.\n" + "Get in touch using the link below!",
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(top = 4.dp)
@@ -97,28 +105,17 @@ fun ListScreenHelpDialog(
                                 .padding(top = 16.dp)
                         )
                         Text(
-                            text = "Easily mark items as complete or incomplete with a simple tap if your list is in checklist format.",
-                            textAlign = TextAlign.Start,
+                            text = "evenclosedigital@gmail.com",
+                            textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .padding(top = 16.dp)
-                                .fillMaxWidth(),
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = onDark,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Divider(
-                            color = onDark,
-                            thickness = 1.dp,
-                            modifier = Modifier
-                                .fillMaxWidth(0.95f)
-                                .padding(top = 16.dp)
-                        )
-                        Text(
-                            text = "Quickly remove items by performing a long tap to access the dropdown menu.",
-                            textAlign = TextAlign.Start,
-                            modifier = Modifier
-                                .padding(top = 16.dp)
-                                .fillMaxWidth(),
+                                .fillMaxWidth()
+                                .clickable {
+                                    val email = "evenclosedigital@gmail.com"
+                                    val intent = Intent(Intent.ACTION_SENDTO)
+                                    intent.data = Uri.parse("mailto:$email")
+                                    context.startActivity(intent)
+                                },
                             style = MaterialTheme.typography.bodyLarge,
                             color = onDark,
                             fontWeight = FontWeight.Bold,
@@ -141,7 +138,7 @@ fun ListScreenHelpDialog(
                                 }
                             ) {
                                 Text(
-                                    text = "Got it!",
+                                    text = "Dismiss",
                                     fontSize = 16.sp,
                                     color = onDark,
                                     fontWeight = FontWeight.Bold,
@@ -153,11 +150,25 @@ fun ListScreenHelpDialog(
                     }
                 }
             }
-            HelpDialogHeaderImage(
+            AboutDialogHeaderImage(
                 modifier = Modifier
                     .size(150.dp)
                     .align(Alignment.TopCenter)
             )
         }
+    }
+}
+
+fun Context.sendMail(to: String, subject: String) {
+    try {
+        val intent = Intent(Intent.ACTION_SEND)
+        intent.type = "vnd.android.cursor.item/email" // or "message/rfc822"
+        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(to))
+        intent.putExtra(Intent.EXTRA_SUBJECT, subject)
+        startActivity(intent)
+    } catch (e: ActivityNotFoundException) {
+        // TODO: Handle case where no email app is available
+    } catch (t: Throwable) {
+        // TODO: Handle potential other type of exceptions
     }
 }

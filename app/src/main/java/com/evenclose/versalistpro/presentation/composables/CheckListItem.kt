@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalistpro.data.model.InnerListItem
-import com.evenclose.versalistpro.presentation.composables.dialog.deleteitem.DeleteItemDialog
+import com.evenclose.versalistpro.presentation.composables.dialog.deleteitemdialog.DeleteItemDialog
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.onLight
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
