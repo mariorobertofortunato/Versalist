@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">वर्सालिस्ट प्रो</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">सहायता</string>
+    <string name="about">के बारे में</string>
+    <string name="privacy">गोपनीयता</string>
+    <string name="delete">हटाएं</string>
+    <string name="mark_as_important">महत्वपूर्ण चिह्नित करें</string>
+    <string name="unmark_as_important">महत्वपूर्ण चिह्न हटाएं</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"आपके पास वर्तमान में कोई सूची नहीं है। कृपया नीचे दिए गए बटन पर क्लिक करके एक बनाएं।"</string>
+    <string name="list_screen_placeholder">"वर्तमान सूची खाली है। कृपया नीचे दिए गए बटन का उपयोग करके एक आइटम जोड़कर शुरू करें।"</string>
+    <string name="placeholder_error">"कुछ गलत हो गया! स्क्रीन को फिर से लोड करने का प्रयास करें।"</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">नई सूची का नाम:</string>
+    <string name="empty_new_list_name_error">सूची के लिए एक नाम दर्ज करें</string>
+    <string name="list_type">सूची का प्रकार:</string>
+    <string name="list_category">सूची का श्रेणी:</string>
+    <string name="new_item">नई आइटम</string>
+    <string name="empty_new_item_error">कृपया एक मूल्य दर्ज करें</string>
+
+    <!-- Buttons -->
+    <string name="cancel">रद्द करें</string>
+    <string name="confirm">पुष्टि करें</string>
+    <string name="new_list">नई सूची</string>
+    <string name="add_item">आइटम जोड़ें</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">कैसे काम करता है</string>
+    <string name="how_it_works_text">यह आपकी सभी सूचियों के लिए आपका केंद्र है। नीचे स्क्रीन पर दिए गए बटन पर क्लिक करके आसानी से एक नई सूची बना सकते हैं।</string>
+    <string name="types_and_categories">प्रकार और श्रेणियाँ:</string>
+    <string name="types_and_categories_text">प्रत्येक सूची के साथ दो गुण होते हैं:\n• प्रकार: यह तय करें कि यह एक खुली सूची है या एक नियंत्रण सूची है।\n• श्रेणी: अपनी सूचियों को व्यवस्थित करने के लिए काम, खरीददारी, स्वास्थ्य आदि जैसी श्रेणी दें।</string>
+    <string name="navigating_your_lists">अपनी सूचियों का नेविगेट करना:</string>
+    <string name="navigating_your_lists_text">आपकी सूची के नाम पर क्लिक करने के लिए बस उसके नाम पर क्लिक करें और सूची में व्यक्तिगत आइटम जोड़ना शुरू करें। अधिक विकल्पों तक पहुँचने के लिए, जैसे कि सूची को हटाना या महत्वपूर्ण चिह्नित करना, सूची के नाम को बस पकड़ कर रखें।</string>
+    <string name="got_it">समझ गया!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">यहां अपने सूची आइटमों का अन्वेषण करें और नए जोड़ने के लिए नीचे दिए गए बटन पर क्लिक करें।</string>
+    <string name="list_screen_help_text_2">अगर आपकी सूची नियंत्रण सूची के प्रारूप में है, तो एक सिंपल क्लिक के साथ आइटम को त्यागित या अत्यावश्यक करें।</string>
+    <string name="list_screen_help_text_3">आइटम्स को त्वरित रूप से हटाने के लिए एक दीर्घ दबाएं ताकि ड्रॉपडाउन मेनू तक पहुँच सकें।</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">क्या आपको यकीन है?</string>
+    <string name="will_be_permanently_deleted">हमेशा के लिए हटा दिया जाएगा</string>
+
+    <!-- About dialog -->
+    <string name="about_us">हमारे बारे में</string>
+    <string name="about_us_text">वर्सालिस्ट प्रो को Even Close ने विकसित किया है।\nहमसे नीचे दिए गए लिंक के माध्यम से संपर्क करें!</string>
+    <string name="dismiss">खारिज करें</string>
+</resources>

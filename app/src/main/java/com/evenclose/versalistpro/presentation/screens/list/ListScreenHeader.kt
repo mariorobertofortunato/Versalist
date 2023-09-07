@@ -25,11 +25,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.listscreenhelpdialog.ListScreenHelpDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.mainscreenhelpdialog.MainScreenHelpDialog
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
@@ -39,7 +41,7 @@ import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 fun ListScreenHeader(
     navController: NavController,
     listName: String
-){
+) {
 
     var expanded by remember { mutableStateOf(false) }
 
@@ -73,7 +75,7 @@ fun ListScreenHeader(
         ) {
             Text(
                 text = listName,
-                fontSize =  32.sp,
+                fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
                 color = onDark,
@@ -109,7 +111,13 @@ fun ListScreenHeader(
                             tint = onDark
                         )
                     },
-                    text = { Text(text = "Help", fontSize = 16.sp, color = onDark) },
+                    text = {
+                        Text(
+                            text = stringResource(id = R.string.help),
+                            fontSize = 16.sp,
+                            color = onDark
+                        )
+                    },
                     onClick = {
                         expanded = false
                         openHelpDialog = true

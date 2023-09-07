@@ -25,10 +25,12 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.aboutdialog.AboutDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.mainscreenhelpdialog.MainScreenHelpDialog
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
@@ -55,7 +57,7 @@ fun MainScreenHeader(
             )
     ) {
         Text(
-            text = "Versalist Pro",
+            text = stringResource(R.string.app_name),
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
             color = onDark,
@@ -90,7 +92,13 @@ fun MainScreenHeader(
                             tint = onDark
                         )
                     },
-                    text = { Text(text = "Help", fontSize = 16.sp, color = onDark) },
+                    text = {
+                        Text(
+                            text = stringResource(id = R.string.help),
+                            fontSize = 16.sp,
+                            color = onDark
+                        )
+                    },
                     onClick = {
                         expanded = false
                         openHelpDialog = true
@@ -104,7 +112,13 @@ fun MainScreenHeader(
                             tint = onDark
                         )
                     },
-                    text = { Text(text = "About", fontSize = 16.sp, color = onDark) },
+                    text = {
+                        Text(
+                            text = stringResource(id = R.string.about),
+                            fontSize = 16.sp,
+                            color = onDark
+                        )
+                    },
                     onClick = {
                         expanded = false
                         openAboutDialog = true
@@ -118,7 +132,13 @@ fun MainScreenHeader(
                             tint = onDark
                         )
                     },
-                    text = { Text(text = "Privacy", fontSize = 16.sp, color = onDark) },
+                    text = {
+                        Text(
+                            text = stringResource(id = R.string.privacy),
+                            fontSize = 16.sp,
+                            color = onDark
+                        )
+                    },
                     onClick = { /* TODO*/ }
                 )
             }

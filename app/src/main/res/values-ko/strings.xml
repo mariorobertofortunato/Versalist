@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">도움말</string>
+    <string name="about">소개</string>
+    <string name="privacy">개인 정보</string>
+    <string name="delete">삭제</string>
+    <string name="mark_as_important">중요 표시</string>
+    <string name="unmark_as_important">중요 표시 해제</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"현재 목록이 없습니다. 아래 버튼을 클릭하여 새로운 목록을 생성하세요."</string>
+    <string name="list_screen_placeholder">"현재 목록이 비어 있습니다. 아래 버튼을 사용하여 항목을 추가하십시오."</string>
+    <string name="placeholder_error">"문제가 발생했습니다! 화면을 다시로드해 보세요."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">새로운 목록 이름:</string>
+    <string name="empty_new_list_name_error">목록 이름을 입력하세요</string>
+    <string name="list_type">목록 유형:</string>
+    <string name="list_category">목록 카테고리:</string>
+    <string name="new_item">새 항목</string>
+    <string name="empty_new_item_error">값을 입력하세요</string>
+
+    <!-- Buttons -->
+    <string name="cancel">취소</string>
+    <string name="confirm">확인</string>
+    <string name="new_list">새 목록</string>
+    <string name="add_item">항목 추가</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">사용 방법</string>
+    <string name="how_it_works_text">이것은 모든 목록의 중심입니다. 화면 하단의 버튼을 탭하여 새 목록을 쉽게 생성할 수 있습니다.</string>
+    <string name="types_and_categories">유형 및 카테고리:</string>
+    <string name="types_and_categories_text">각 목록에는 두 가지 속성이 있습니다:\n• 유형: 열린 목록 또는 체크리스트 여부를 결정합니다.\n• 카테고리: 작업, 쇼핑, 건강 등과 같은 카테고리를 할당하여 목록을 구성하세요.</string>
+    <string name="navigating_your_lists">목록 탐색:</string>
+    <string name="navigating_your_lists_text">목록 이름을 탭하여 액세스하고 목록에 개별 항목을 추가하기 시작하세요. 목록 삭제 또는 중요 표시와 같은 추가 옵션에 액세스하려면 목록 이름을 길게 누르세요.</string>
+    <string name="got_it">알겠습니다!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">여기에서 모든 목록 항목을 살펴보고 화면 하단의 버튼을 탭하여 새 항목을 추가할 수 있습니다.</string>
+    <string name="list_screen_help_text_2">목록이 체크리스트 형식인 경우 한 번 탭으로 항목을 빠르게 완료 또는 완료하지 않음으로 표시할 수 있습니다.</string>
+    <string name="list_screen_help_text_3">드롭다운 메뉴에 액세스하려면 길게 눌러 항목을 빠르게 삭제할 수 있습니다.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">확실합니까?</string>
+    <string name="will_be_permanently_deleted">영구적으로 삭제됩니다</string>
+
+    <!-- About dialog -->
+    <string name="about_us">회사 정보</string>
+    <string name="about_us_text">Versalist Pro는 Even Close에서 개발했습니다.\n아래 링크를 통해 연락처를 남겨주세요!</string>
+    <string name="dismiss">닫기</string>
+</resources>

@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.scale
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -36,20 +37,19 @@ import com.evenclose.versalistpro.presentation.ui.theme.onLight
 
 @Composable
 fun EmptyListPlaceholder(type: String) {
-    // TODO sistemare hardcoded strings
 
+    val context = LocalContext.current
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.filesearching))
-
 
     val text = when (type) {
         "mainScreenPlaceholder" -> {
-            "You currently do not have any lists. Please create one by clicking the button below."
+            context.getString(R.string.main_screen_placeholder)
         }
         "listScreenPlaceholder" -> {
-            "The current list is empty. Please start by adding an item using the button below."
+            context.getString(R.string.list_screen_placeholder)
         }
         else -> {
-            "ERROR"
+            context.getString(R.string.placeholder_error)
         }
     }
 

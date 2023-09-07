@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">Βοήθεια</string>
+    <string name="about">Σχετικά</string>
+    <string name="privacy">Απορρήτου</string>
+    <string name="delete">Διαγραφή</string>
+    <string name="mark_as_important">Επισημάνετε ως σημαντικό</string>
+    <string name="unmark_as_important">Αφαιρέστε το σήμα ως σημαντικό</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"Δεν έχετε καμία λίστα αυτή τη στιγμή. Παρακαλώ, δημιουργήστε μία κάνοντας κλικ στο κουμπί παρακάτω."</string>
+    <string name="list_screen_placeholder">"Η τρέχουσα λίστα είναι κενή. Παρακαλώ, ξεκινήστε προσθέτοντας ένα στοιχείο χρησιμοποιώντας το κουμπί παρακάτω."</string>
+    <string name="placeholder_error">"Κάτι πήγε στραβά! Δοκιμάστε να ανανεώσετε την οθόνη."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">Όνομα νέας λίστας:</string>
+    <string name="empty_new_list_name_error">Παρακαλώ, εισάγετε ένα όνομα για τη λίστα</string>
+    <string name="list_type">Τύπος λίστας:</string>
+    <string name="list_category">Κατηγορία λίστας:</string>
+    <string name="new_item">Νέο στοιχείο</string>
+    <string name="empty_new_item_error">Παρακαλώ, εισάγετε μια τιμή</string>
+
+    <!-- Buttons -->
+    <string name="cancel">Ακύρωση</string>
+    <string name="confirm">Επιβεβαίωση</string>
+    <string name="new_list">Νέα λίστα</string>
+    <string name="add_item">Προσθήκη στοιχείου</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">Πώς λειτουργεί</string>
+    <string name="how_it_works_text">Αυτή είναι η κεντρική σας τοποθεσία για όλες τις λίστες σας. Δημιουργήστε εύκολα μια νέα λίστα κάνοντας κλικ στο κουμπί στο κάτω μέρος της οθόνης.</string>
+    <string name="types_and_categories">Τύποι και κατηγορίες:</string>
+    <string name="types_and_categories_text">Κάθε λίστα έχει δύο χαρακτηριστικά:\n• Τύπος: Αποφασίστε εάν είναι μια ανοιχτή λίστα ή μια λίστα ελέγχου.\n• Κατηγορία: Αντιστοιχίστε μια κατηγορία όπως Εργασία, Αγορές, Υγεία κ.λπ., για να οργανώσετε τις λίστες σας.</string>
+    <string name="navigating_your_lists">Πλοήγηση στις λίστες σας:</string>
+    <string name="navigating_your_lists_text">Απλώς κάντε κλικ στο όνομα μιας λίστας για να αποκτήσετε πρόσβαση σε αυτήν και αρχίστε να προσθέτετε ατομικά στοιχεία στη λίστα. Για να αποκτήσετε πρόσβαση σε επιπλέον επιλογές, όπως διαγραφή λίστας ή σημείωσή της ως σημαντική, απλά κρατήστε πατημένο το όνομα της λίστας.</string>
+    <string name="got_it">Το κατάλαβα!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">Εξερευνήστε όλα τα στοιχεία της λίστας σας εδώ και προσθέστε νέα κάνοντας κλικ στο κουμπί στο κάτω μέρος της οθόνης.</string>
+    <string name="list_screen_help_text_2">Επισημάνετε γρήγορα τα στοιχεία ως ολοκληρωμένα ή μη ολοκληρωμένα με ένα απλό πάτημα αν η λίστα σας είναι σε μορφή ελέγχου.</string>
+    <string name="list_screen_help_text_3">Αφαιρέστε γρήγορα στοιχεία με μακρά πίεση για πρόσβαση στο αναπτυσσόμενο μενού.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">Είστε σίγουροι;</string>
+    <string name="will_be_permanently_deleted">θα διαγραφεί μόνιμα</string>
+
+    <!-- About dialog -->
+    <string name="about_us">Σχετικά με εμάς</string>
+    <string name="about_us_text">Το Versalist Pro έχει αναπτυχθεί από την Even Close.\nΕπικοινωνήστε μαζί μας μέσω του παρακάτω συνδέσμου!</string>
+    <string name="dismiss">Απόρριψη</string>
+</resources>

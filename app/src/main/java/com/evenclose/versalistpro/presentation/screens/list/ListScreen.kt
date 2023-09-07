@@ -41,6 +41,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -48,6 +49,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.CheckListItem
 import com.evenclose.versalistpro.presentation.composables.OpenListItem
 import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
@@ -69,8 +71,6 @@ fun ListScreen(
     /** Current List */
     val currentListData = listViewModel.currentListData.observeAsState(null)
     val currentInnerList = listViewModel.currentInnerList.observeAsState(null)
-
-    //var showDialog by remember { mutableStateOf(false) }
 
     var newItemValue by remember { mutableStateOf("") }
     var newItemTextFieldVisibility by remember { mutableStateOf(false) }
@@ -140,7 +140,7 @@ fun ListScreen(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Text(
-                            text = "Add item",
+                            text = stringResource(id = R.string.add_item),
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
                             color = onDark,
@@ -237,7 +237,7 @@ fun ListScreen(
                             shape = RoundedCornerShape(8.dp),
                             placeholder = {
                                 Text(
-                                    text = "New item",
+                                    text = stringResource(id = R.string.new_item),
                                     color = onLight,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp
@@ -268,7 +268,7 @@ fun ListScreen(
                             exit = slideOutVertically (animationSpec = tween(100)) + fadeOut()
                         ) {
                             Text(
-                                text = "Please enter a value",
+                                text = stringResource(id = R.string.empty_new_item_error),
                                 color = secondary,
                                 fontWeight = FontWeight.Bold
                             )
@@ -307,7 +307,7 @@ fun ListScreen(
                                             .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
-                                        text = "Cancel",
+                                        text = stringResource(id = R.string.cancel),
                                         color = onDark,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 20.sp
@@ -341,13 +341,13 @@ fun ListScreen(
                                 ) {
                                     Icon(
                                         imageVector = Icons.Outlined.CheckCircle,
-                                        contentDescription = "Ok Icon",
+                                        contentDescription = "Confirm Icon",
                                         tint = onDark,
                                         modifier = Modifier
                                             .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
-                                        text = "Confirm",
+                                        text = stringResource(id = R.string.confirm),
                                         color = onDark,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 20.sp

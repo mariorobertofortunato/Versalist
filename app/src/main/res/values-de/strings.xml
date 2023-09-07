@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">Hilfe</string>
+    <string name="about">Über</string>
+    <string name="privacy">Datenschutz</string>
+    <string name="delete">Löschen</string>
+    <string name="mark_as_important">Als wichtig markieren</string>
+    <string name="unmark_as_important">Als unwichtig markieren</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"Sie haben derzeit keine Listen. Bitte erstellen Sie eine, indem Sie unten auf die Schaltfläche klicken."</string>
+    <string name="list_screen_placeholder">"Die aktuelle Liste ist leer. Bitte fangen Sie an, indem Sie einen Artikel hinzufügen, indem Sie unten auf die Schaltfläche klicken."</string>
+    <string name="placeholder_error">"Etwas ist schiefgelaufen! Versuchen Sie, den Bildschirm neu zu laden."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">Neuer Listenname:</string>
+    <string name="empty_new_list_name_error">Bitte geben Sie einen Namen für die Liste ein</string>
+    <string name="list_type">Listentyp:</string>
+    <string name="list_category">Listenkategorie:</string>
+    <string name="new_item">Neuer Artikel</string>
+    <string name="empty_new_item_error">Bitte geben Sie einen Wert ein</string>
+
+    <!-- Buttons -->
+    <string name="cancel">Abbrechen</string>
+    <string name="confirm">Bestätigen</string>
+    <string name="new_list">Neue Liste</string>
+    <string name="add_item">Artikel hinzufügen</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">So funktioniert\'s</string>
+    <string name="how_it_works_text">Dies ist Ihr Zentrum für alle Ihre Listen. Erstellen Sie ganz einfach eine neue Liste, indem Sie auf die Schaltfläche unten auf dem Bildschirm tippen.</string>
+    <string name="types_and_categories">Typen und Kategorien:</string>
+    <string name="types_and_categories_text">Jede Liste wird mit zwei Attributen geliefert:\n• Typ: Entscheiden Sie, ob es sich um eine offene Liste oder eine Checkliste handelt.\n• Kategorie: Weisen Sie eine Kategorie wie Arbeit, Einkaufen, Gesundheit usw. zu, um Ihre Listen zu organisieren.</string>
+    <string name="navigating_your_lists">Navigieren Ihrer Listen:</string>
+    <string name="navigating_your_lists_text">Tippen Sie einfach auf den Namen einer Liste, um darauf zuzugreifen, und beginnen Sie, einzelne Artikel zur Liste hinzuzufügen. Um auf zusätzliche Optionen zuzugreifen, wie das Löschen einer Liste oder das Markieren als wichtig, halten Sie einfach den Listenamen gedrückt.</string>
+    <string name="got_it">Verstanden!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">Erkunden Sie hier alle Ihre Listenelemente und fügen Sie neue hinzu, indem Sie auf die Schaltfläche unten auf dem Bildschirm tippen.</string>
+    <string name="list_screen_help_text_2">Markieren Sie Artikel einfach als abgeschlossen oder unvollständig, indem Sie bei Listen im Checklistenformat einfach tippen.</string>
+    <string name="list_screen_help_text_3">Entfernen Sie Artikel schnell, indem Sie einen langen Tipp ausführen, um das Dropdown-Menü zu öffnen.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">Sind Sie sicher?</string>
+    <string name="will_be_permanently_deleted">wird dauerhaft gelöscht</string>
+
+    <!-- About dialog -->
+    <string name="about_us">Über uns</string>
+    <string name="about_us_text">Versalist Pro wurde von Even Close entwickelt.\nKontaktieren Sie uns über den unten stehenden Link!</string>
+    <string name="dismiss">Schließen</string>
+</resources>

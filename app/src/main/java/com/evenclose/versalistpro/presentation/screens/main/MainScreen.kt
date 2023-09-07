@@ -59,6 +59,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
@@ -66,6 +67,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.data.model.ListCategory.HEALTH
 import com.evenclose.versalistpro.data.model.ListCategory.MISC
 import com.evenclose.versalistpro.data.model.ListCategory.PERSONAL
@@ -173,7 +175,7 @@ fun MainScreen(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Text(
-                            text = "New list",
+                            text = stringResource(id = R.string.new_list),
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
                             color = onDark,
@@ -268,7 +270,7 @@ fun MainScreen(
                                 .padding(bottom = 4.dp),
                         ) {
                             Text(
-                                text = "New list name:",
+                                text = stringResource(id = R.string.new_list_name),
                                 color = onLight,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp
@@ -284,7 +286,7 @@ fun MainScreen(
                             shape = RoundedCornerShape(8.dp),
                             placeholder = {
                                 Text(
-                                    text = "New list",
+                                    text = stringResource(id = R.string.new_list),
                                     color = secondaryContainer,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp
@@ -315,7 +317,7 @@ fun MainScreen(
                             exit = slideOutVertically (animationSpec = tween(100)) + fadeOut()
                         ) {
                             Text(
-                                text = "Please enter a name for the list",
+                                text = stringResource(id = R.string.empty_new_list_name_error),
                                 color = secondary,
                                 fontWeight = FontWeight.Bold
                             )
@@ -328,7 +330,7 @@ fun MainScreen(
                                 .padding(bottom = 4.dp, top = 8.dp),
                         ) {
                             Text(
-                                text = "List type:",
+                                text = stringResource(id = R.string.list_type),
                                 color = onLight,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp
@@ -391,7 +393,7 @@ fun MainScreen(
                                 .padding(bottom = 4.dp, top = 8.dp),
                         ) {
                             Text(
-                                text = "List category:",
+                                text = stringResource(id = R.string.list_category),
                                 color = onLight,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp
@@ -519,7 +521,7 @@ fun MainScreen(
                                             .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
-                                        text = "Cancel",
+                                        text = stringResource(id = R.string.cancel),
                                         color = onDark,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 20.sp
@@ -560,7 +562,7 @@ fun MainScreen(
                                             .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
-                                        text = "Confirm",
+                                        text = stringResource(id = R.string.confirm),
                                         color = onDark,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 20.sp

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">Help</string>
+    <string name="about">Over</string>
+    <string name="privacy">Privacy</string>
+    <string name="delete">Verwijderen</string>
+    <string name="mark_as_important">Als belangrijk markeren</string>
+    <string name="unmark_as_important">Als onbelangrijk markeren</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"U heeft momenteel geen lijsten. Maak er een aan door op de knop hieronder te klikken."</string>
+    <string name="list_screen_placeholder">"De huidige lijst is leeg. Begin door een item toe te voegen met de knop hieronder."</string>
+    <string name="placeholder_error">"Er is iets misgegaan! Probeer het scherm opnieuw te laden."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">Nieuwe lijstnaam:</string>
+    <string name="empty_new_list_name_error">Voer een naam voor de lijst in</string>
+    <string name="list_type">Lijsttype:</string>
+    <string name="list_category">Lijstcategorie:</string>
+    <string name="new_item">Nieuw item</string>
+    <string name="empty_new_item_error">Voer een waarde in</string>
+
+    <!-- Buttons -->
+    <string name="cancel">Annuleren</string>
+    <string name="confirm">Bevestigen</string>
+    <string name="new_list">Nieuwe Lijst</string>
+    <string name="add_item">Item toevoegen</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">Hoe het werkt</string>
+    <string name="how_it_works_text">Dit is uw centrale hub voor al uw lijsten. Maak eenvoudig een nieuwe lijst door op de knop onderaan het scherm te tikken.</string>
+    <string name="types_and_categories">Soorten en Categorieën:</string>
+    <string name="types_and_categories_text">Elke lijst heeft twee attributen:\n• Soort: Beslis of het een open lijst of een checklist is.\n• Categorie: Wijs een categorie toe, zoals Werk, Winkelen, Gezondheid, enz., om uw lijsten te organiseren.</string>
+    <string name="navigating_your_lists">Uw Lijsten Navigeren:</string>
+    <string name="navigating_your_lists_text">Tik eenvoudig op de naam van een lijst om deze te openen en individuele items aan de lijst toe te voegen. Om toegang te krijgen tot extra opties, zoals het verwijderen van een lijst of het markeren als belangrijk, houdt u de naam van de lijst lang ingedrukt.</string>
+    <string name="got_it">Begrepen!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">Verken hier al uw lijstitems en voeg nieuwe toe door op de knop onderaan het scherm te tikken.</string>
+    <string name="list_screen_help_text_2">Markeer items snel als voltooid of onvoltooid met een eenvoudige tik als uw lijst een checklist is.</string>
+    <string name="list_screen_help_text_3">Verwijder items snel door lang te tikken om het vervolgkeuzemenu te openen.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">Weet u het zeker?</string>
+    <string name="will_be_permanently_deleted">zal permanent worden verwijderd</string>
+
+    <!-- About dialog -->
+    <string name="about_us">Over ons</string>
+    <string name="about_us_text">Versalist Pro is ontwikkeld door Even Close.\nNeem contact met ons op via de onderstaande link!</string>
+    <string name="dismiss">Sluiten</string>
+</resources>

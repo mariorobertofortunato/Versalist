@@ -1,3 +1,54 @@
 <resources>
     <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">Help</string>
+    <string name="about">About</string>
+    <string name="privacy">Privacy</string>
+    <string name="delete">Delete</string>
+    <string name="mark_as_important">Mark as important</string>
+    <string name="unmark_as_important">Unmark as important</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"You currently do not have any lists. Please create one by clicking the button below."</string>
+    <string name="list_screen_placeholder">"The current list is empty. Please start by adding an item using the button below."</string>
+    <string name="placeholder_error">"Something went wrong! Try reloading the screen."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">New list name:</string>
+    <string name="empty_new_list_name_error">Please enter a name for the list</string>
+    <string name="list_type">List type:</string>
+    <string name="list_category">List category:</string>
+    <string name="new_item">New item</string>
+    <string name="empty_new_item_error">Please enter a value</string>
+
+    <!-- Buttons -->
+    <string name="cancel">Cancel</string>
+    <string name="confirm">Confirm</string>
+    <string name="new_list">New List</string>
+    <string name="add_item">Add item</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">How it works</string>
+    <string name="how_it_works_text">This is your hub for all your lists. Easily create a new list by tapping the button at the bottom of the screen.</string>
+    <string name="types_and_categories">Types and Categories:</string>
+    <string name="types_and_categories_text">Each list comes with two attributes:\n• Type: Decide if it\'s an open list or a checklist.\n• Category: Assign a category like Work, Shopping, Health, etc., to organize your lists.</string>
+    <string name="navigating_your_lists">Navigating Your Lists:</string>
+    <string name="navigating_your_lists_text">Simply tap a list\'s name to access it and start adding individual items to the list. To access additional options, such as deleting a list or marking it as important, just long-press the list name.</string>
+    <string name="got_it">Got it!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">Explore all your list items here and add new ones by tapping the button at the bottom of the screen.</string>
+    <string name="list_screen_help_text_2">Easily mark items as complete or incomplete with a simple tap if your list is in checklist format.</string>
+    <string name="list_screen_help_text_3">Quickly remove items by performing a long tap to access the dropdown menu.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">Are you sure?</string>
+    <string name="will_be_permanently_deleted">will be permanently deleted</string>
+
+    <!-- About dialog -->
+    <string name="about_us">About us</string>
+    <string name="about_us_text">Versalist Pro has been developed by Even Close.\nGet in touch using the link below!</string>
+    <string name="dismiss">Dismiss</string>
+
 </resources>

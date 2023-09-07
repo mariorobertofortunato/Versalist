@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">Trợ giúp</string>
+    <string name="about">Về chúng tôi</string>
+    <string name="privacy">Quyền riêng tư</string>
+    <string name="delete">Xóa</string>
+    <string name="mark_as_important">Đánh dấu quan trọng</string>
+    <string name="unmark_as_important">Bỏ đánh dấu quan trọng</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"Hiện tại bạn không có danh sách nào. Vui lòng tạo một danh sách bằng cách nhấn nút bên dưới."</string>
+    <string name="list_screen_placeholder">"Danh sách hiện tại trống rỗng. Vui lòng bắt đầu thêm một mục bằng cách sử dụng nút bên dưới."</string>
+    <string name="placeholder_error">"Có lỗi xảy ra! Hãy thử tải lại màn hình."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">Tên danh sách mới:</string>
+    <string name="empty_new_list_name_error">Vui lòng nhập tên danh sách</string>
+    <string name="list_type">Loại danh sách:</string>
+    <string name="list_category">Danh mục danh sách:</string>
+    <string name="new_item">Mục mới</string>
+    <string name="empty_new_item_error">Vui lòng nhập giá trị</string>
+
+    <!-- Buttons -->
+    <string name="cancel">Hủy</string>
+    <string name="confirm">Xác nhận</string>
+    <string name="new_list">Danh sách mới</string>
+    <string name="add_item">Thêm mục</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">Cách hoạt động</string>
+    <string name="how_it_works_text">Đây là trung tâm của tất cả các danh sách của bạn. Dễ dàng tạo danh sách mới bằng cách nhấn nút ở dưới cùng của màn hình.</string>
+    <string name="types_and_categories">Loại và Danh mục:</string>
+    <string name="types_and_categories_text">Mỗi danh sách đi kèm với hai thuộc tính:\n• Loại: Quyết định xem nó là một danh sách mở hay một danh sách kiểm tra.\n• Danh mục: Gán một danh mục như Làm việc, Mua sắm, Sức khỏe, v.v., để tổ chức các danh sách của bạn.</string>
+    <string name="navigating_your_lists">Dẫn hướng qua các danh sách của bạn:</string>
+    <string name="navigating_your_lists_text">Chỉ cần nhấp vào tên danh sách để truy cập nó và bắt đầu thêm các mục cá nhân vào danh sách. Để truy cập các tùy chọn bổ sung, như xóa danh sách hoặc đánh dấu nó là quan trọng, chỉ cần nhấn và giữ tên danh sách.</string>
+    <string name="got_it">Rõ rồi!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">Khám phá tất cả các mục của danh sách của bạn ở đây và thêm mới bằng cách nhấn vào nút ở dưới cùng của màn hình.</string>
+    <string name="list_screen_help_text_2">Dễ dàng đánh dấu các mục là hoàn thành hoặc chưa hoàn thành chỉ bằng một lần chạm nếu danh sách của bạn là kiểu danh sách kiểm tra.</string>
+    <string name="list_screen_help_text_3">Nhanh chóng xóa các mục bằng cách thực hiện một lần chạm và giữ để truy cập menu thả xuống.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">Bạn chắc chứ?</string>
+    <string name="will_be_permanently_deleted">sẽ bị xóa vĩnh viễn</string>
+
+    <!-- About dialog -->
+    <string name="about_us">Về chúng tôi</string>
+    <string name="about_us_text">Versalist Pro đã được phát triển bởi Even Close.\nLiên hệ với chúng tôi thông qua liên kết dưới đây!</string>
+    <string name="dismiss">Đóng</string>
+</resources>

@@ -20,11 +20,13 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.HelpDialogHeaderImage
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
@@ -70,7 +72,7 @@ fun ListScreenHelpDialog(
                             modifier = Modifier.height(18.dp)
                         )
                         Text(
-                            text = "How it works",
+                            text = stringResource(id = R.string.how_it_works),
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 //.padding(top = 8.dp)
@@ -80,7 +82,7 @@ fun ListScreenHelpDialog(
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
-                            text = "Explore all your list items here and add new ones by tapping the button at the bottom of the screen.",
+                            text = stringResource(id = R.string.list_screen_help_text_1),
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(top = 4.dp)
@@ -97,7 +99,7 @@ fun ListScreenHelpDialog(
                                 .padding(top = 16.dp)
                         )
                         Text(
-                            text = "Easily mark items as complete or incomplete with a simple tap if your list is in checklist format.",
+                            text = stringResource(id = R.string.list_screen_help_text_2),
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(top = 16.dp)
@@ -114,7 +116,7 @@ fun ListScreenHelpDialog(
                                 .padding(top = 16.dp)
                         )
                         Text(
-                            text = "Quickly remove items by performing a long tap to access the dropdown menu.",
+                            text = stringResource(id = R.string.list_screen_help_text_3),
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(top = 16.dp)
@@ -141,7 +143,7 @@ fun ListScreenHelpDialog(
                                 }
                             ) {
                                 Text(
-                                    text = "Got it!",
+                                    text = stringResource(id = R.string.got_it),
                                     fontSize = 16.sp,
                                     color = onDark,
                                     fontWeight = FontWeight.Bold,

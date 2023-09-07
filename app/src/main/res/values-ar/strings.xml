@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">المساعدة</string>
+    <string name="about">حول التطبيق</string>
+    <string name="privacy">الخصوصية</string>
+    <string name="delete">حذف</string>
+    <string name="mark_as_important">وضع علامة كمهم</string>
+    <string name="unmark_as_important">إلغاء وضع العلامة كمهم</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"ليس لديك حاليًا أي قوائم. الرجاء إنشاء قائمة عن طريق النقر على الزر أدناه."</string>
+    <string name="list_screen_placeholder">"القائمة الحالية فارغة. يرجى البدء بإضافة عنصر باستخدام الزر أدناه."</string>
+    <string name="placeholder_error">"حدث خطأ! حاول تحميل الشاشة مرة أخرى."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">اسم القائمة الجديدة:</string>
+    <string name="empty_new_list_name_error">الرجاء إدخال اسم للقائمة</string>
+    <string name="list_type">نوع القائمة:</string>
+    <string name="list_category">فئة القائمة:</string>
+    <string name="new_item">عنصر جديد</string>
+    <string name="empty_new_item_error">الرجاء إدخال قيمة</string>
+
+    <!-- Buttons -->
+    <string name="cancel">إلغاء</string>
+    <string name="confirm">تأكيد</string>
+    <string name="new_list">قائمة جديدة</string>
+    <string name="add_item">إضافة عنصر</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">كيف يعمل</string>
+    <string name="how_it_works_text">هذه هي محطتك لجميع قوائمك. يمكنك بسهولة إنشاء قائمة جديدة عن طريق النقر على الزر في أسفل الشاشة.</string>
+    <string name="types_and_categories">الأنواع والفئات:</string>
+    <string name="types_and_categories_text">تأتي كل قائمة مع خاصيتين:\n• النوع: قرر ما إذا كانت قائمة مفتوحة أو قائمة تدقيق.\n• الفئة: قم بتعيين فئة مثل العمل والتسوق والصحة وما إلى ذلك لتنظيم قوائمك.</string>
+    <string name="navigating_your_lists">تصفح قوائمك:</string>
+    <string name="navigating_your_lists_text">ببساطة، انقر على اسم القائمة للوصول إليها وبدء إضافة عناصر فردية إلى القائمة. للوصول إلى خيارات إضافية مثل حذف قائمة أو وضع علامة عليها كمهمة، ما عليك سوى الضغط المطول على اسم القائمة.</string>
+    <string name="got_it">فهمت!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">استكشف جميع عناصر قائمتك هنا وأضف عناصر جديدة عن طريق النقر على الزر في أسفل الشاشة.</string>
+    <string name="list_screen_help_text_2">قم بوضع علامات على العناصر بسهولة كاملة أو غير كاملة بنقرة بسيطة إذا كانت قائمتك من نوع القائمة التدقيق.</string>
+    <string name="list_screen_help_text_3">قم بإزالة العناصر بسرعة من خلال النقر الطويل للوصول إلى القائمة المنسدلة.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">هل أنت متأكد؟</string>
+    <string name="will_be_permanently_deleted">سيتم حذفه بشكل دائم</string>
+
+    <!-- About dialog -->
+    <string name="about_us">عنا</string>
+    <string name="about_us_text">تم تطوير Versalist Pro بواسطة Even Close.\nتواصل معنا من خلال الرابط أدناه!</string>
+    <string name="dismiss">تجاهل</string>
+</resources>

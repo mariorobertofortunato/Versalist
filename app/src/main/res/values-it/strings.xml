@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">Aiuto</string>
+    <string name="about">Informazioni</string>
+    <string name="privacy">Privacy</string>
+    <string name="delete">Elimina</string>
+    <string name="mark_as_important">Segna come importante</string>
+    <string name="unmark_as_important">Annulla segnalazione importante</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"Al momento non hai alcun elenco. Crea uno cliccando sul pulsante qui sotto."</string>
+    <string name="list_screen_placeholder">"L'elenco attuale è vuoto. Inizia aggiungendo un elemento utilizzando il pulsante qui sotto."</string>
+    <string name="placeholder_error">"Qualcosa è andato storto! Prova a ricaricare lo schermo."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">Nome nuovo elenco:</string>
+    <string name="empty_new_list_name_error">Inserisci un nome per l\'elenco</string>
+    <string name="list_type">Tipo di elenco:</string>
+    <string name="list_category">Categoria di elenco:</string>
+    <string name="new_item">Nuovo elemento</string>
+    <string name="empty_new_item_error">Inserisci un valore</string>
+
+    <!-- Buttons -->
+    <string name="cancel">Annulla</string>
+    <string name="confirm">Conferma</string>
+    <string name="new_list">Nuovo Elenco</string>
+    <string name="add_item">Aggiungi elemento</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">Come funziona</string>
+    <string name="how_it_works_text">Questo è il tuo centro per tutti i tuoi elenchi. Crea facilmente un nuovo elenco cliccando sul pulsante nella parte inferiore dello schermo.</string>
+    <string name="types_and_categories">Tipi e categorie:</string>
+    <string name="types_and_categories_text">Ogni elenco ha due attributi:\n• Tipo: Decidi se è un elenco aperto o una lista di controllo.\n• Categoria: Assegna una categoria come Lavoro, Spesa, Salute, ecc., per organizzare i tuoi elenchi.</string>
+    <string name="navigating_your_lists">Navigazione nei tuoi elenchi:</string>
+    <string name="navigating_your_lists_text">Basta fare clic sul nome di un elenco per accedere ad esso e inizia ad aggiungere singoli elementi all\'elenco. Per accedere a opzioni aggiuntive, come l\'eliminazione di un elenco o il contrassegno come importante, basta tenere premuto il nome dell\'elenco.</string>
+    <string name="got_it">Capito!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">Esplora tutti gli elementi del tuo elenco qui e aggiungine di nuovi cliccando sul pulsante nella parte inferiore dello schermo.</string>
+    <string name="list_screen_help_text_2">Segna rapidamente gli elementi come completati o non completati con un semplice tocco se il tuo elenco è in formato di elenco di controllo.</string>
+    <string name="list_screen_help_text_3">Rimuovi rapidamente gli elementi eseguendo un tocco prolungato per accedere al menu a discesa.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">Sei sicuro?</string>
+    <string name="will_be_permanently_deleted">verrà eliminato definitivamente</string>
+
+    <!-- About dialog -->
+    <string name="about_us">Chi siamo</string>
+    <string name="about_us_text">Versalist Pro è stato sviluppato da Even Close.\nContattaci tramite il link qui sotto!</string>
+    <string name="dismiss">Annulla</string>
+</resources>

@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">Hjælp</string>
+    <string name="about">Om</string>
+    <string name="privacy">Beskyttelse af personlige oplysninger</string>
+    <string name="delete">Slet</string>
+    <string name="mark_as_important">Marker som vigtig</string>
+    <string name="unmark_as_important">Fjern markering som vigtig</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"Du har i øjeblikket ingen lister. Opret venligst en ved at klikke på knappen nedenfor."</string>
+    <string name="list_screen_placeholder">"Den aktuelle liste er tom. Start venligst med at tilføje en genstand ved hjælp af knappen nedenfor."</string>
+    <string name="placeholder_error">"Noget gik galt! Prøv at genindlæse skærmen."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">Navn på ny liste:</string>
+    <string name="empty_new_list_name_error">Indtast venligst et navn for listen</string>
+    <string name="list_type">Listetype:</string>
+    <string name="list_category">Listekategori:</string>
+    <string name="new_item">Ny genstand</string>
+    <string name="empty_new_item_error">Indtast venligst en værdi</string>
+
+    <!-- Buttons -->
+    <string name="cancel">Annuller</string>
+    <string name="confirm">Bekræft</string>
+    <string name="new_list">Ny liste</string>
+    <string name="add_item">Tilføj genstand</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">Sådan fungerer det</string>
+    <string name="how_it_works_text">Dette er din central for alle dine lister. Opret nemt en ny liste ved at trykke på knappen nederst på skærmen.</string>
+    <string name="types_and_categories">Typer og kategorier:</string>
+    <string name="types_and_categories_text">Hver liste leveres med to attributter:\n• Type: Beslut, om det er en åben liste eller en tjekliste.\n• Kategori: Tildel en kategori som Arbejde, Shopping, Sundhed osv. for at organisere dine lister.</string>
+    <string name="navigating_your_lists">Navigering af dine lister:</string>
+    <string name="navigating_your_lists_text">Bare tryk på listenavnet for at få adgang til den og begynd at tilføje individuelle genstande til listen. For at få adgang til yderligere muligheder som sletning af en liste eller markering som vigtig, skal du blot trykke længe på listenavnet.</string>
+    <string name="got_it">Forstået!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">Udforsk alle dine listeobjekter her og tilføj nye ved at trykke på knappen nederst på skærmen.</string>
+    <string name="list_screen_help_text_2">Marker hurtigt elementer som komplette eller ufuldstændige med et enkelt tryk, hvis din liste er i tjeklisteformat.</string>
+    <string name="list_screen_help_text_3">Fjern hurtigt elementer ved at udføre et langt tryk for at få adgang til dropdown-menuen.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">Er du sikker?</string>
+    <string name="will_be_permanently_deleted">vil blive slettet permanent</string>
+
+    <!-- About dialog -->
+    <string name="about_us">Om os</string>
+    <string name="about_us_text">Versalist Pro er udviklet af Even Close.\nKontakt os via linket nedenfor!</string>
+    <string name="dismiss">Afvis</string>
+</resources>

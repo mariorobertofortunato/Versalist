@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">ヘルプ</string>
+    <string name="about">情報</string>
+    <string name="privacy">プライバシー</string>
+    <string name="delete">削除</string>
+    <string name="mark_as_important">重要としてマーク</string>
+    <string name="unmark_as_important">重要マークを解除</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"現在、リストがありません。下のボタンをクリックして新しいリストを作成してください。"</string>
+    <string name="list_screen_placeholder">"現在のリストは空です。下のボタンを使用してアイテムを追加して開始してください。"</string>
+    <string name="placeholder_error">"何かが間違っています！画面をリロードしてみてください。"</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">新しいリストの名前：</string>
+    <string name="empty_new_list_name_error">リストの名前を入力してください</string>
+    <string name="list_type">リストの種類：</string>
+    <string name="list_category">リストのカテゴリ：</string>
+    <string name="new_item">新しいアイテム</string>
+    <string name="empty_new_item_error">値を入力してください</string>
+
+    <!-- Buttons -->
+    <string name="cancel">キャンセル</string>
+    <string name="confirm">確認</string>
+    <string name="new_list">新しいリスト</string>
+    <string name="add_item">アイテムを追加</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">使い方</string>
+    <string name="how_it_works_text">これはすべてのリストのハブです。画面下部のボタンをタップして新しいリストを簡単に作成できます。</string>
+    <string name="types_and_categories">種類とカテゴリ：</string>
+    <string name="types_and_categories_text">各リストには2つの属性が付いています：\n• 種類：オープンリストかチェックリストかを決定します。\n• カテゴリ：仕事、買い物、健康などのカテゴリを割り当ててリストを整理します。</string>
+    <string name="navigating_your_lists">リストのナビゲーション：</string>
+    <string name="navigating_your_lists_text">リストの名前をタップするだけでアクセスして個々のアイテムをリストに追加できます。リストを削除したり重要としてマークしたりするなどの追加オプションにアクセスするには、リスト名を長押ししてください。</string>
+    <string name="got_it">了解しました！</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">ここですべてのリストアイテムを探索し、画面下部のボタンをタップして新しいアイテムを追加できます。</string>
+    <string name="list_screen_help_text_2">リストがチェックリスト形式の場合、タップしてアイテムをすばやく完了または未完了にマークできます。</string>
+    <string name="list_screen_help_text_3">ドロップダウンメニューにアクセスするために長押ししてアイテムを素早く削除できます。</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">本当に削除しますか？</string>
+    <string name="will_be_permanently_deleted">永久に削除されます</string>
+
+    <!-- About dialog -->
+    <string name="about_us">私たちについて</string>
+    <string name="about_us_text">Versalist Pro は Even Close によって開発されました。\n以下のリンクを使用してお問い合わせください！</string>
+    <string name="dismiss">閉じる</string>
+</resources>

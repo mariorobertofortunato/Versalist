@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">עזרה</string>
+    <string name="about">אודות</string>
+    <string name="privacy">פרטיות</string>
+    <string name="delete">מחק</string>
+    <string name="mark_as_important">סמן כחשוב</string>
+    <string name="unmark_as_important">הסר סימון חשוב</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"כרגע אין לך רשימות. אנא צור אחת על ידי לחיצה על הכפתור למטה."</string>
+    <string name="list_screen_placeholder">"הרשימה הנוכחית ריקה. התחל על ידי הוספת פריט באמצעות הכפתור למטה."</string>
+    <string name="placeholder_error">"משהו השתבש! נסה לטעון מחדש את המסך."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">שם רשימה חדשה:</string>
+    <string name="empty_new_list_name_error">אנא הזן שם לרשימה</string>
+    <string name="list_type">סוג רשימה:</string>
+    <string name="list_category">קטגורית רשימה:</string>
+    <string name="new_item">פריט חדש</string>
+    <string name="empty_new_item_error">אנא הזן ערך</string>
+
+    <!-- Buttons -->
+    <string name="cancel">ביטול</string>
+    <string name="confirm">אישור</string>
+    <string name="new_list">רשימה חדשה</string>
+    <string name="add_item">הוסף פריט</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">איך זה עובד</string>
+    <string name="how_it_works_text">זהו המרכז שלך לכל הרשימות שלך. ייצור רשימה חדשה הוא פשוט - רק ללחוץ על הכפתור למטה שבמסך.</string>
+    <string name="types_and_categories">סוגים וקטגוריות:</string>
+    <string name="types_and_categories_text">לכל רשימה יש שני תכונות:\n• סוג: החלט אם זו רשימה פתוחה או רשימת צ\'ק.\n• קטגוריה: הקצה קטגוריה כמו עבודה, קניות, בריאות ועוד, כדי לארגן את הרשימות שלך.</string>
+    <string name="navigating_your_lists">ניווט ברשימות שלך:</string>
+    <string name="navigating_your_lists_text">רק להקיש על שם רשימה כדי לגשת אליה ולהתחיל להוסיף פריטים אישיים לרשימה. כדי לגשת לאפשרויות נוספות, כמו מחיקת רשימה או סימון כחשוב, פשוט ללחוץ לחיצה ארוכה על שם הרשימה.</string>
+    <string name="got_it">הבנתי!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">חקור את כל הפריטים ברשימתך כאן והוסף פריטים חדשים על ידי לחיצה על הכפתור למטה שבמסך.</string>
+    <string name="list_screen_help_text_2">סמן פריטים במהירות כמו שהושלמו או שלא הושלמו בלחיצה אחת אם הרשימה שלך בפורמט של רשימת צ\'ק.</string>
+    <string name="list_screen_help_text_3">הסר פריטים במהירות על ידי ביצוע לחיצה ארוכה כדי לגשת לתפריט הנפתח.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">האם אתה בטוח?</string>
+    <string name="will_be_permanently_deleted">ימחק באופן קבוע</string>
+
+    <!-- About dialog -->
+    <string name="about_us">אודותינו</string>
+    <string name="about_us_text">Versalist Pro פותח על ידי Even Close.\nצור קשר דרך הקישור למטה!</string>
+    <string name="dismiss">סגור</string>
+</resources>

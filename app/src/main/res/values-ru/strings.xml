@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">Помощь</string>
+    <string name="about">О нас</string>
+    <string name="privacy">Конфиденциальность</string>
+    <string name="delete">Удалить</string>
+    <string name="mark_as_important">Отметить как важное</string>
+    <string name="unmark_as_important">Снять отметку важности</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"У вас в данный момент нет списков. Создайте список, нажав кнопку ниже."</string>
+    <string name="list_screen_placeholder">"Текущий список пуст. Начните, добавив элемент с помощью кнопки ниже."</string>
+    <string name="placeholder_error">"Что-то пошло не так! Попробуйте перезагрузить экран."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">Название нового списка:</string>
+    <string name="empty_new_list_name_error">Пожалуйста, введите название для списка</string>
+    <string name="list_type">Тип списка:</string>
+    <string name="list_category">Категория списка:</string>
+    <string name="new_item">Новый элемент</string>
+    <string name="empty_new_item_error">Пожалуйста, введите значение</string>
+
+    <!-- Buttons -->
+    <string name="cancel">Отмена</string>
+    <string name="confirm">Подтвердить</string>
+    <string name="new_list">Новый Список</string>
+    <string name="add_item">Добавить элемент</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">Как это работает</string>
+    <string name="how_it_works_text">Это ваш центр для всех ваших списков. Легко создайте новый список, нажав кнопку внизу экрана.</string>
+    <string name="types_and_categories">Типы и Категории:</string>
+    <string name="types_and_categories_text">Каждый список имеет два атрибута:\n• Тип: Решите, является ли он открытым списком или списком для проверки.\n• Категория: Назначьте категорию, такую как Работа, Покупки, Здоровье и т. д., для организации ваших списков.</string>
+    <string name="navigating_your_lists">Навигация по вашим спискам:</string>
+    <string name="navigating_your_lists_text">Просто коснитесь названия списка, чтобы получить к нему доступ и начать добавлять отдельные элементы в список. Чтобы получить доступ к дополнительным опциям, таким как удаление списка или отметка его как важного, просто удерживайте название списка.</string>
+    <string name="got_it">Понятно!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">Исследуйте все элементы вашего списка здесь и добавьте новые, нажав кнопку внизу экрана.</string>
+    <string name="list_screen_help_text_2">Быстро отмечайте элементы как выполненные или невыполненные одним касанием, если ваш список в формате проверки.</string>
+    <string name="list_screen_help_text_3">Быстро удаляйте элементы, проведя долгое касание, чтобы получить доступ к выпадающему меню.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">Вы уверены?</string>
+    <string name="will_be_permanently_deleted">будет удалено навсегда</string>
+
+    <!-- About dialog -->
+    <string name="about_us">О нас</string>
+    <string name="about_us_text">Versalist Pro разработан Even Close.\nСвяжитесь с нами по ссылке ниже!</string>
+    <string name="dismiss">Закрыть</string>
+</resources>

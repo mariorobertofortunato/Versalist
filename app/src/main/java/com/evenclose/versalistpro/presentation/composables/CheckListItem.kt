@@ -24,12 +24,14 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.presentation.composables.dialog.deleteitemdialog.DeleteItemDialog
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
@@ -117,7 +119,7 @@ fun CheckListItem(
                 },
                 text = {
                     Text(
-                        text = "Delete ${innerListItem.name}",
+                        text = stringResource(id = R.string.delete) + " " + innerListItem.name,
                         fontSize = 16.sp,
                         color = onDark
                     )

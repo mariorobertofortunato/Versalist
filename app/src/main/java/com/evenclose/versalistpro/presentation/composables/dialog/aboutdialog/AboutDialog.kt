@@ -27,11 +27,13 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.HelpDialogHeaderImage
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
@@ -79,7 +81,7 @@ fun AboutDialog(
                             modifier = Modifier.height(18.dp)
                         )
                         Text(
-                            text = "About Us",
+                            text = stringResource(id = R.string.about_us),
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .fillMaxWidth(),
@@ -88,8 +90,8 @@ fun AboutDialog(
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
-                            text = "Versalist Pro has been developed by Even Close.\n" + "Get in touch using the link below!",
-                            textAlign = TextAlign.Start,
+                            text = stringResource(id = R.string.about_us_text),
+                            textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .padding(top = 4.dp)
                                 .fillMaxWidth(),
@@ -138,7 +140,7 @@ fun AboutDialog(
                                 }
                             ) {
                                 Text(
-                                    text = "Dismiss",
+                                    text = stringResource(id = R.string.dismiss),
                                     fontSize = 16.sp,
                                     color = onDark,
                                     fontWeight = FontWeight.Bold,
@@ -156,19 +158,5 @@ fun AboutDialog(
                     .align(Alignment.TopCenter)
             )
         }
-    }
-}
-
-fun Context.sendMail(to: String, subject: String) {
-    try {
-        val intent = Intent(Intent.ACTION_SEND)
-        intent.type = "vnd.android.cursor.item/email" // or "message/rfc822"
-        intent.putExtra(Intent.EXTRA_EMAIL, arrayOf(to))
-        intent.putExtra(Intent.EXTRA_SUBJECT, subject)
-        startActivity(intent)
-    } catch (e: ActivityNotFoundException) {
-        // TODO: Handle case where no email app is available
-    } catch (t: Throwable) {
-        // TODO: Handle potential other type of exceptions
     }
 }

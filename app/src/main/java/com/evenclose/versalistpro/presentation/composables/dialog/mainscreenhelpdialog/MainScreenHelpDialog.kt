@@ -20,12 +20,14 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.HelpDialogHeaderImage
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
@@ -71,7 +73,7 @@ fun MainScreenHelpDialog(
                             modifier = Modifier.height(18.dp)
                         )
                         Text(
-                            text = "How it works",
+                            text = stringResource(id = R.string.how_it_works),
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 //.padding(top = 8.dp)
@@ -81,7 +83,7 @@ fun MainScreenHelpDialog(
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
-                            text = "This is your hub for all your lists. Easily create a new list by tapping the button at the bottom of the screen.",
+                            text = stringResource(id = R.string.how_it_works_text),
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(top = 4.dp)
@@ -98,7 +100,7 @@ fun MainScreenHelpDialog(
                                 .padding(top = 16.dp)
                         )
                         Text(
-                            text = "Types and Categories:",
+                            text = stringResource(id = R.string.types_and_categories),
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .padding(top = 16.dp)
@@ -108,9 +110,7 @@ fun MainScreenHelpDialog(
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
-                            text = "Each list comes with two attributes:\n" +
-                                    "• Type: Decide if it's an open list or a checklist.\n" +
-                                    "• Category: Assign a category like Work, Shopping, Health, etc., to organize your lists.",
+                            text = stringResource(id = R.string.types_and_categories_text),
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(top = 4.dp)
@@ -127,7 +127,7 @@ fun MainScreenHelpDialog(
                                 .padding(top = 16.dp)
                         )
                         Text(
-                            text = "Navigating Your Lists:",
+                            text = stringResource(id = R.string.navigating_your_lists),
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .padding(top = 16.dp)
@@ -137,7 +137,7 @@ fun MainScreenHelpDialog(
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
-                            text = "Simply tap a list's name to access it and start adding individual items to the list. To access additional options, such as deleting a list or marking it as important, just long-press the list name.",
+                            text = stringResource(id = R.string.navigating_your_lists_text),
                             textAlign = TextAlign.Start,
                             modifier = Modifier
                                 .padding(top = 4.dp)
@@ -164,7 +164,7 @@ fun MainScreenHelpDialog(
                                 }
                             ) {
                                 Text(
-                                    text = "Got it!",
+                                    text = stringResource(id = R.string.got_it),
                                     fontSize = 16.sp,
                                     color = onDark,
                                     fontWeight = FontWeight.Bold,

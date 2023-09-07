@@ -34,12 +34,15 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.data.model.ListCategory
 import com.evenclose.versalistpro.data.model.MainListItem
 import com.evenclose.versalistpro.presentation.composables.dialog.deleteitemdialog.DeleteItemDialog
@@ -58,6 +61,8 @@ fun MainListItem(
     navController: NavController,
     listViewModel: ListViewModel = hiltViewModel(),
 ) {
+
+    val context = LocalContext.current
 
     var expanded by remember { mutableStateOf(false) }
     var favouriteStatus by remember { mutableStateOf(mainListItem.isFav) }
@@ -169,7 +174,7 @@ fun MainListItem(
                 },
                 text = {
                     Text(
-                        text = "Delete ${mainListItem.name}",
+                        text = stringResource(id = R.string.delete) + " " + mainListItem.name,
                         fontSize = 16.sp,
                         color = onDark
                     )
@@ -179,7 +184,7 @@ fun MainListItem(
                     openDialog = true
                 }
             )
-            val importantText = if (favouriteStatus) "Unmark as important" else "Mark as important"
+            //val importantText = if (favouriteStatus) context.getString(R.string.unmark_as_important) else context.getString(R.string.mark_as_important)
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(
@@ -190,7 +195,7 @@ fun MainListItem(
                 },
                 text = {
                     Text(
-                        text = importantText,
+                        text = if (favouriteStatus) context.getString(R.string.unmark_as_important) else context.getString(R.string.mark_as_important),
                         fontSize = 16.sp,
                         color = onDark
                     )

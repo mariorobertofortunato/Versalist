@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Versalist Pro</string>
+
+    <!-- Dropdown menu -->
+    <string name="help">Ajuda</string>
+    <string name="about">Sobre</string>
+    <string name="privacy">Privacidade</string>
+    <string name="delete">Apagar</string>
+    <string name="mark_as_important">Marcar como importante</string>
+    <string name="unmark_as_important">Desmarcar como importante</string>
+
+    <!-- Placeholder -->
+    <string name="main_screen_placeholder">"Você não tem nenhuma lista no momento. Crie uma clicando no botão abaixo."</string>
+    <string name="list_screen_placeholder">"A lista atual está vazia. Comece adicionando um item usando o botão abaixo."</string>
+    <string name="placeholder_error">"Algo deu errado! Tente recarregar a tela."</string>
+
+    <!-- New List/New Item form -->
+    <string name="new_list_name">Nome da nova lista:</string>
+    <string name="empty_new_list_name_error">Por favor, insira um nome para a lista</string>
+    <string name="list_type">Tipo de lista:</string>
+    <string name="list_category">Categoria da lista:</string>
+    <string name="new_item">Novo item</string>
+    <string name="empty_new_item_error">Por favor, insira um valor</string>
+
+    <!-- Buttons -->
+    <string name="cancel">Cancelar</string>
+    <string name="confirm">Confirmar</string>
+    <string name="new_list">Nova Lista</string>
+    <string name="add_item">Adicionar item</string>
+
+    <!-- Main Screen help dialog -->
+    <string name="how_it_works">Como funciona</string>
+    <string name="how_it_works_text">Este é o hub de todas as suas listas. Crie facilmente uma nova lista clicando no botão na parte inferior da tela.</string>
+    <string name="types_and_categories">Tipos e Categorias:</string>
+    <string name="types_and_categories_text">Cada lista vem com dois atributos:\n• Tipo: Decida se é uma lista aberta ou uma lista de verificação.\n• Categoria: Atribua uma categoria como Trabalho, Compras, Saúde, etc., para organizar suas listas.</string>
+    <string name="navigating_your_lists">Navegando nas suas listas:</string>
+    <string name="navigating_your_lists_text">Basta tocar no nome da lista para acessá-la e começar a adicionar itens individuais à lista. Para acessar opções adicionais, como excluir uma lista ou marcá-la como importante, basta manter pressionado o nome da lista.</string>
+    <string name="got_it">Entendi!</string>
+
+    <!-- List Screen help dialog -->
+    <string name="list_screen_help_text_1">Explore todos os itens da sua lista aqui e adicione novos clicando no botão na parte inferior da tela.</string>
+    <string name="list_screen_help_text_2">Marque rapidamente os itens como concluídos ou não concluídos com um simples toque, se sua lista estiver no formato de lista de verificação.</string>
+    <string name="list_screen_help_text_3">Remova rapidamente os itens executando um toque longo para acessar o menu suspenso.</string>
+
+    <!-- Delete item dialog -->
+    <string name="are_you_sure">Tem certeza?</string>
+    <string name="will_be_permanently_deleted">será apagado permanentemente</string>
+
+    <!-- About dialog -->
+    <string name="about_us">Sobre nós</string>
+    <string name="about_us_text">Versalist Pro foi desenvolvido pela Even Close.\nEntre em contato conosco pelo link abaixo!</string>
+    <string name="dismiss">Fechar</string>
+</resources>

@@ -19,12 +19,14 @@ import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
+import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
@@ -74,7 +76,7 @@ fun DeleteItemDialog (
                         )
 
                         Text(
-                            text = "Are you sure?",
+                            text = stringResource(id = R.string.are_you_sure),
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .padding(top = 8.dp)
@@ -85,7 +87,7 @@ fun DeleteItemDialog (
                         )
 
                         Text(
-                            text = "$itemName will be permanently deleted.",
+                            text = itemName + " " + stringResource(id = R.string.will_be_permanently_deleted),
                             textAlign = TextAlign.Center,
                             modifier = Modifier
                                 .padding(top = 8.dp,)
@@ -109,7 +111,7 @@ fun DeleteItemDialog (
                                 }
                             ) {
                                 Text(
-                                    text = "Cancel",
+                                    text = stringResource(id = R.string.cancel),
                                     fontSize = 16.sp,
                                     color = onDark,
                                     fontWeight = FontWeight.Bold,
@@ -126,7 +128,7 @@ fun DeleteItemDialog (
                                 }
                             ) {
                                 Text(
-                                    text = "Ok",
+                                    text = stringResource(id = R.string.confirm),
                                     fontSize = 16.sp,
                                     color = onDark,
                                     fontWeight = FontWeight.Bold,
