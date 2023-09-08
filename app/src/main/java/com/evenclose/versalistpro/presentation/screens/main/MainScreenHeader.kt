@@ -11,6 +11,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Help
 import androidx.compose.material.icons.outlined.Info
+import androidx.compose.material.icons.outlined.Language
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.Policy
 import androidx.compose.material3.DropdownMenu
@@ -32,6 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.aboutdialog.AboutDialog
+import com.evenclose.versalistpro.presentation.composables.dialog.languagedialog.LanguageDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.mainscreenhelpdialog.MainScreenHelpDialog
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
@@ -45,6 +47,7 @@ fun MainScreenHeader(
     /** Dialog */
     var openHelpDialog by remember { mutableStateOf(false) }
     var openAboutDialog by remember { mutableStateOf(false) }
+    var openLanguageDialog by remember { mutableStateOf(false) }
 
 
     Row(
@@ -141,6 +144,26 @@ fun MainScreenHeader(
                     },
                     onClick = { /* TODO*/ }
                 )
+                DropdownMenuItem(
+                    leadingIcon = {
+                        Icon(
+                            imageVector = Icons.Outlined.Language,
+                            contentDescription = "Language Icon",
+                            tint = onDark
+                        )
+                    },
+                    text = {
+                        Text(
+                            text = stringResource(id = R.string.language),
+                            fontSize = 16.sp,
+                            color = onDark
+                        )
+                    },
+                    onClick = {
+                        expanded = false
+                        openLanguageDialog = true
+                    }
+                )
             }
         }
 
@@ -155,6 +178,13 @@ fun MainScreenHeader(
             AboutDialog(
                 onDismiss = {
                     openAboutDialog = false
+                }
+            )
+        }
+        if (openLanguageDialog) {
+            LanguageDialog(
+                onDismiss = {
+                    openLanguageDialog = false
                 }
             )
         }

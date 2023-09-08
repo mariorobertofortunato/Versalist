@@ -51,4 +51,9 @@
     <string name="about_us_text">Versalist Pro has been developed by Even Close.\nGet in touch using the link below!</string>
     <string name="dismiss">Dismiss</string>
 
+
+    <string name="language" translatable="false">Language</string>
+    <string name="choose_language" translatable="false">Choose language</string>
+
+
 </resources>
