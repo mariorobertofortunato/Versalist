@@ -1,8 +1,10 @@
 package com.evenclose.versalistpro.presentation.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.evenclose.versalistpro.data.DataStore
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
 import com.evenclose.versalistpro.domain.use_case.UseCase
@@ -83,4 +85,11 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
         }
     }
 
+
+    fun saveLanguage(newLanguage: String, context: Context) {
+        viewModelScope.launch {
+            val dataStore = DataStore(context)
+            dataStore.saveLanguage(newLanguage)
+        }
+    }
 }

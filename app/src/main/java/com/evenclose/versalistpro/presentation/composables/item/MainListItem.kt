@@ -1,4 +1,4 @@
-package com.evenclose.versalistpro.presentation.composables
+package com.evenclose.versalistpro.presentation.composables.item
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -136,12 +136,35 @@ fun MainListItem(
                 modifier = Modifier
                     .padding(start = 8.dp)
             ){
+                val categoryName: String
+                when (mainListItem.category) {
+                    ListCategory.PERSONAL -> {
+                        categoryName = stringResource(id = R.string.personal)
+                    }
+                    ListCategory.WORK -> {
+                        categoryName = stringResource(id = R.string.work)
+                    }
+                    ListCategory.HEALTH -> {
+                        categoryName = stringResource(id = R.string.health)
+                    }
+                    ListCategory.SHOPPING -> {
+                        categoryName = stringResource(id = R.string.shopping)
+                    }
+                    ListCategory.SOCIAL -> {
+                        categoryName = stringResource(id = R.string.social)
+                    }
+                    ListCategory.MISC -> {
+                        categoryName = stringResource(id = R.string.misc)
+                    }
+                    else -> {
+                        categoryName = stringResource(id = R.string.misc)
+                    }
+                }
                 Text(
-                    text = mainListItem.category,
+                    text = categoryName,
                     fontSize = 14.sp,
                     color = secondaryContainer,
                     fontWeight = FontWeight.Bold,
-                    //modifier = Modifier.padding(start = 4.dp)
                 )
                 Text(
                     text = mainListItem.name,
@@ -150,10 +173,8 @@ fun MainListItem(
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
-                   // modifier = Modifier.padding(start = 4.dp)
                 )
             }
-
         }
 
 
@@ -184,7 +205,6 @@ fun MainListItem(
                     openDialog = true
                 }
             )
-            //val importantText = if (favouriteStatus) context.getString(R.string.unmark_as_important) else context.getString(R.string.mark_as_important)
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(

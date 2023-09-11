@@ -28,25 +28,25 @@ fun NavGraph(navController: NavHostController) {
             route = Screens.MainScreen.route,
             enterTransition = {
                 slideIntoContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Start,
                     animationSpec = tween(tweenDuration)
                 )
             },
             exitTransition = {
                 slideOutOfContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Start,
                     animationSpec = tween(tweenDuration)
                 )
             },
             popEnterTransition = {
                 slideIntoContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.End,
                     animationSpec = tween(tweenDuration)
                 )
             },
             popExitTransition = {
                 slideOutOfContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.End,
                     animationSpec = tween(tweenDuration)
                 )
             }
@@ -58,25 +58,25 @@ fun NavGraph(navController: NavHostController) {
             route = "${Screens.ListScreen.route}/{listId}",
             enterTransition = {
                 slideIntoContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Start,
                     animationSpec = tween(tweenDuration)
                 )
             },
             exitTransition = {
                 slideOutOfContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Left,
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Start,
                     animationSpec = tween(tweenDuration)
                 )
             },
             popEnterTransition = {
                 slideIntoContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.End,
                     animationSpec = tween(tweenDuration)
                 )
             },
             popExitTransition = {
                 slideOutOfContainer(
-                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.Right,
+                    towards = AnimatedContentTransitionScope.SlideDirection.Companion.End,
                     animationSpec = tween(tweenDuration)
                 )
             }

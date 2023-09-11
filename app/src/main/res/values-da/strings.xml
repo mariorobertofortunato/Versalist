@@ -51,4 +51,13 @@
     <string name="about_us">Om os</string>
     <string name="about_us_text">Versalist Pro er udviklet af Even Close.\nKontakt os via linket nedenfor!</string>
     <string name="dismiss">Afvis</string>
+
+    <string name="language">Sprog</string>
+    <string name="choose_language">Vælg sprog</string>
+    <string name="personal">Personligt</string>
+    <string name="work">Arbejde</string>
+    <string name="health">Sundhed</string>
+    <string name="shopping">Indkøb</string>
+    <string name="social">Sociale liv</string>
+    <string name="misc">Diverse</string>
 </resources>

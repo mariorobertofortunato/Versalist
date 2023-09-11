@@ -51,4 +51,14 @@
     <string name="about_us">Tietoja meistä</string>
     <string name="about_us_text">Versalist Pro on kehittänyt Even Close.\nOta yhteyttä alla olevan linkin kautta!</string>
     <string name="dismiss">Sulje</string>
+
+    <string name="language">Kieli</string>
+    <string name="choose_language">Valitse kieli</string>
+
+    <string name="personal">Henkilökohtainen</string>
+    <string name="work">Työ</string>
+    <string name="health">Terveys</string>
+    <string name="shopping">Ostokset</string>
+    <string name="social">Sosiaalinen elämä</string>
+    <string name="misc">Muut</string>
 </resources>

@@ -51,4 +51,14 @@
     <string name="about_us">Tentang kami</string>
     <string name="about_us_text">Versalist Pro telah dikembangkan oleh Even Close.\nHubungi kami melalui tautan di bawah!</string>
     <string name="dismiss">Tutup</string>
+
+    <string name="language">Bahasa</string>
+    <string name="choose_language">Pilih bahasa</string>
+
+    <string name="personal">Pribadi</string>
+    <string name="work">Pekerjaan</string>
+    <string name="health">Kesehatan</string>
+    <string name="shopping">Belanja</string>
+    <string name="social">Kehidupan sosial</string>
+    <string name="misc">Lainnya</string>
 </resources>

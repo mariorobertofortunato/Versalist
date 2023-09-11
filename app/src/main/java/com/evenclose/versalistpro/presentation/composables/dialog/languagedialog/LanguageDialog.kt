@@ -1,8 +1,6 @@
 package com.evenclose.versalistpro.presentation.composables.dialog.languagedialog
 
 
-import android.content.Intent
-import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -16,7 +14,6 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.wrapContentSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -29,9 +26,6 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
-import androidx.compose.ui.draw.clipToBounds
-import androidx.compose.ui.graphics.RectangleShape
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -39,16 +33,17 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalistpro.R
-import com.evenclose.versalistpro.presentation.composables.MainListItem
-import com.evenclose.versalistpro.presentation.composables.dialog.aboutdialog.AboutDialogHeaderImage
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
-import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
+import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
+import com.evenclose.versalistpro.presentation.setLanguage
 
 @Composable
 fun LanguageDialog(
+    viewModel: ListViewModel = hiltViewModel(),
     onDismiss: () -> Unit
 ) {
 
@@ -59,6 +54,7 @@ fun LanguageDialog(
         "Czech",
         "Danish",
         "Dutch",
+        "English",
         "Finnish",
         "French",
         "German",
@@ -108,7 +104,7 @@ fun LanguageDialog(
                         .fillMaxWidth()
                 ) {
                     Column(
-                        horizontalAlignment = Alignment.CenterHorizontally,
+                        horizontalAlignment = CenterHorizontally,
                         modifier = Modifier
                             .padding(horizontal = 32.dp, vertical = 16.dp)
                     ) {
@@ -173,18 +169,130 @@ fun LanguageDialog(
                                     key = { language -> language }
                                 ) { language ->
                                     Column(
-                                        horizontalAlignment = Alignment.CenterHorizontally,
+                                        horizontalAlignment = CenterHorizontally,
                                         modifier = Modifier
                                             .fillMaxWidth()
+                                            .clickable(
+                                                onClick = {
+                                                    val newLanguage = when (language) {
+                                                        "Arabic" -> {
+                                                            "ar"
+                                                        }
+
+                                                        "Chinese (Simplified)" -> {
+                                                            "zh"
+                                                        }
+
+                                                        "Czech" -> {
+                                                            "cs"
+                                                        }
+
+                                                        "Danish" -> {
+                                                            "da"
+                                                        }
+
+                                                        "Dutch" -> {
+                                                            "nl"
+                                                        }
+
+                                                        "English" -> {
+                                                            "en"
+                                                        }
+
+                                                        "Finnish" -> {
+                                                            "fi"
+                                                        }
+
+                                                        "French" -> {
+                                                            "fr"
+                                                        }
+
+                                                        "German" -> {
+                                                            "de"
+                                                        }
+
+                                                        "Greek" -> {
+                                                            "el"
+                                                        }
+
+                                                        "Hebrew" -> {
+                                                            "he"
+                                                        }
+
+                                                        "Hindi" -> {
+                                                            "hi"
+                                                        }
+
+                                                        "Indonesian" -> {
+                                                            "in"
+                                                        }
+
+                                                        "Italian" -> {
+                                                            "it"
+                                                        }
+
+                                                        "Japanese" -> {
+                                                            "ja"
+                                                        }
+
+                                                        "Korean" -> {
+                                                            "ko"
+                                                        }
+
+                                                        "Norwegian" -> {
+                                                            "no"
+                                                        }
+
+                                                        "Polish" -> {
+                                                            "pl"
+                                                        }
+
+                                                        "Portuguese" -> {
+                                                            "pt"
+                                                        }
+
+                                                        "Russian" -> {
+                                                            "ru"
+                                                        }
+
+                                                        "Spanish" -> {
+                                                            "es"
+                                                        }
+
+                                                        "Swedish" -> {
+                                                            "sv"
+                                                        }
+
+                                                        "Thai" -> {
+                                                            "th"
+                                                        }
+
+                                                        "Turkish" -> {
+                                                            "tr"
+                                                        }
+
+                                                        "Vietnamese" -> {
+                                                            "vi"
+                                                        }
+
+                                                        else -> {
+                                                            "en"
+                                                        }
+                                                    }
+                                                    viewModel.saveLanguage(newLanguage, context)
+                                                    context.setLanguage(newLanguage, true)
+                                                    onDismiss()
+                                                }
+                                            )
                                     ) {
                                         Text(
                                             text = language,
-                                            modifier = Modifier
-                                                .fillMaxWidth()
-                                                .padding(vertical = 4.dp),
                                             style = MaterialTheme.typography.headlineSmall,
                                             color = onDark,
                                             fontWeight = FontWeight.Bold,
+                                            modifier = Modifier
+                                                .fillMaxWidth()
+                                                .padding(vertical = 4.dp)
                                         )
                                         Divider(
                                             color = secondary,

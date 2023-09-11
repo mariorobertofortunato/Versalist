@@ -51,4 +51,14 @@
     <string name="about_us">회사 정보</string>
     <string name="about_us_text">Versalist Pro는 Even Close에서 개발했습니다.\n아래 링크를 통해 연락처를 남겨주세요!</string>
     <string name="dismiss">닫기</string>
+
+    <string name="language">언어</string>
+    <string name="choose_language">언어 선택</string>
+
+    <string name="personal">개인</string>
+    <string name="work">업무</string>
+    <string name="health">건강</string>
+    <string name="shopping">쇼핑</string>
+    <string name="social">사회생활</string>
+    <string name="misc">기타</string>
 </resources>

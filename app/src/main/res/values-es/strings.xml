@@ -51,4 +51,14 @@
     <string name="about_us">Acerca de nosotros</string>
     <string name="about_us_text">Versalist Pro ha sido desarrollado por Even Close.\n¡Contáctanos usando el enlace de abajo!</string>
     <string name="dismiss">Descartar</string>
+
+    <string name="language">Idioma</string>
+    <string name="choose_language">Seleccionar idioma</string>
+
+    <string name="personal">Personal</string>
+    <string name="work">Trabajo</string>
+    <string name="health">Salud</string>
+    <string name="shopping">Compras</string>
+    <string name="social">Vida social</string>
+    <string name="misc">Miscelánea</string>
 </resources>

@@ -51,4 +51,14 @@
     <string name="about_us">אודותינו</string>
     <string name="about_us_text">Versalist Pro פותח על ידי Even Close.\nצור קשר דרך הקישור למטה!</string>
     <string name="dismiss">סגור</string>
+
+    <string name="language">שפה</string>
+    <string name="choose_language">בחר שפה</string>
+
+    <string name="personal">אישי</string>
+    <string name="work">עבודה</string>
+    <string name="health">בריאות</string>
+    <string name="shopping">קניות</string>
+    <string name="social">חיים חברתיים</string>
+    <string name="misc">שונות</string>
 </resources>

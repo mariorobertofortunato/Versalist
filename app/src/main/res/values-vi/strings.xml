@@ -51,4 +51,14 @@
     <string name="about_us">Về chúng tôi</string>
     <string name="about_us_text">Versalist Pro đã được phát triển bởi Even Close.\nLiên hệ với chúng tôi thông qua liên kết dưới đây!</string>
     <string name="dismiss">Đóng</string>
+
+    <string name="language">Ngôn ngữ</string>
+    <string name="choose_language">Chọn ngôn ngữ</string>
+
+    <string name="personal">Cá nhân</string>
+    <string name="work">Công việc</string>
+    <string name="health">Sức khỏe</string>
+    <string name="shopping">Mua sắm</string>
+    <string name="social">Cuộc sống xã hội</string>
+    <string name="misc">Khác</string>
 </resources>

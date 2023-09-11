@@ -14,10 +14,10 @@ fun LanguageDialogHeaderImage(modifier: Modifier) {
 
     val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.animation_language))
 
-        LottieAnimation(
-            composition = composition,
-            iterations = LottieConstants.IterateForever,
-            modifier = modifier
-        )
+    LottieAnimation(
+        composition = composition,
+        iterations = LottieConstants.IterateForever,
+        modifier = modifier
+    )
 
 }

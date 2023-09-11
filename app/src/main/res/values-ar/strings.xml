@@ -51,4 +51,13 @@
     <string name="about_us">عنا</string>
     <string name="about_us_text">تم تطوير Versalist Pro بواسطة Even Close.\nتواصل معنا من خلال الرابط أدناه!</string>
     <string name="dismiss">تجاهل</string>
+
+    <string name="language">اللغة</string>
+    <string name="choose_language">اختر اللغة</string>
+    <string name="personal">شخصي</string>
+    <string name="work">عمل</string>
+    <string name="health">صحة</string>
+    <string name="shopping">تسوق</string>
+    <string name="social">حياة اجتماعية</string>
+    <string name="misc">متفرقات</string>
 </resources>

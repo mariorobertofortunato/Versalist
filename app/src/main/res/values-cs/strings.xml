@@ -51,4 +51,13 @@
     <string name="about_us">O nás</string>
     <string name="about_us_text">Versalist Pro byl vyvinut společností Even Close.\nKontaktujte nás pomocí odkazu níže!</string>
     <string name="dismiss">Zavřít</string>
+
+    <string name="language">Jazyk</string>
+    <string name="choose_language">Vyberte jazyk</string>
+    <string name="personal">Osobní</string>
+    <string name="work">Práce</string>
+    <string name="health">Zdraví</string>
+    <string name="shopping">Nákupy</string>
+    <string name="social">Sociální život</string>
+    <string name="misc">Různé</string>
 </resources>

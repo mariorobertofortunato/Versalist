@@ -51,4 +51,14 @@
     <string name="about_us">Hakkımızda</string>
     <string name="about_us_text">Versalist Pro, Even Close tarafından geliştirilmiştir.\nAşağıdaki bağlantıyı kullanarak bizimle iletişime geçin!</string>
     <string name="dismiss">Kapat</string>
+
+    <string name="language">Dil</string>
+    <string name="choose_language">Dil seçin</string>
+
+    <string name="personal">Kişisel</string>
+    <string name="work">İş</string>
+    <string name="health">Sağlık</string>
+    <string name="shopping">Alışveriş</string>
+    <string name="social">Sosyal hayat</string>
+    <string name="misc">Çeşitli</string>
 </resources>

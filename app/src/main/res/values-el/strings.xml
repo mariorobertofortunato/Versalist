@@ -51,4 +51,14 @@
     <string name="about_us">Σχετικά με εμάς</string>
     <string name="about_us_text">Το Versalist Pro έχει αναπτυχθεί από την Even Close.\nΕπικοινωνήστε μαζί μας μέσω του παρακάτω συνδέσμου!</string>
     <string name="dismiss">Απόρριψη</string>
+
+    <string name="language">Γλώσσα</string>
+    <string name="choose_language">Επιλέξτε γλώσσα</string>
+
+    <string name="personal">Προσωπικό</string>
+    <string name="work">Εργασία</string>
+    <string name="health">Υγεία</string>
+    <string name="shopping">Αγορές</string>
+    <string name="social">Κοινωνική ζωή</string>
+    <string name="misc">Διάφορα</string>
 </resources>

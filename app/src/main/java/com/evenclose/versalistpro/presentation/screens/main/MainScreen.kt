@@ -59,10 +59,13 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -74,7 +77,8 @@ import com.evenclose.versalistpro.data.model.ListCategory.PERSONAL
 import com.evenclose.versalistpro.data.model.ListCategory.SHOPPING
 import com.evenclose.versalistpro.data.model.ListCategory.SOCIAL
 import com.evenclose.versalistpro.data.model.ListCategory.WORK
-import com.evenclose.versalistpro.presentation.composables.MainListItem
+import com.evenclose.versalistpro.presentation.composables.NewListFab
+import com.evenclose.versalistpro.presentation.composables.item.MainListItem
 import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.ui.theme.background
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
@@ -170,17 +174,7 @@ fun MainScreen(
                         .padding(12.dp)
                         .border(2.dp, primary, RoundedCornerShape(12.dp))
                 ) {
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.new_list),
-                            fontSize = 32.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = onDark,
-                        )
-                    }
+                    NewListFab()
                 }
             }
         },
@@ -273,7 +267,8 @@ fun MainScreen(
                                 text = stringResource(id = R.string.new_list_name),
                                 color = onLight,
                                 fontWeight = FontWeight.Bold,
-                                fontSize = 18.sp
+                                fontSize = 18.sp,
+                                textAlign = TextAlign.Start
                             )
                         }
                         TextField(
@@ -443,33 +438,42 @@ fun MainScreen(
                                             .fillMaxWidth()
                                             .padding(4.dp)
                                     ) {
-                                        val categoryIcon = when (category) {
+                                        val categoryIcon : ImageVector
+                                        val categoryName: String
+                                        when (category) {
                                             PERSONAL -> {
-                                                Icons.Outlined.EmojiPeople
+                                                categoryIcon = Icons.Outlined.EmojiPeople
+                                                categoryName = stringResource(id = R.string.personal)
                                             }
 
                                             WORK -> {
-                                                Icons.Outlined.Badge
+                                                categoryIcon = Icons.Outlined.Badge
+                                                categoryName = stringResource(id = R.string.work)
                                             }
 
                                             HEALTH -> {
-                                                Icons.Outlined.Spa
+                                                categoryIcon = Icons.Outlined.Spa
+                                                categoryName = stringResource(id = R.string.health)
                                             }
 
                                             SHOPPING -> {
-                                                Icons.Outlined.ShoppingCart
+                                                categoryIcon = Icons.Outlined.ShoppingCart
+                                                categoryName = stringResource(id = R.string.shopping)
                                             }
 
                                             SOCIAL -> {
-                                                Icons.Outlined.Diversity1
+                                                categoryIcon = Icons.Outlined.Diversity1
+                                                categoryName = stringResource(id = R.string.social)
                                             }
 
                                             MISC -> {
-                                                Icons.Outlined.EventNote
+                                                categoryIcon = Icons.Outlined.EventNote
+                                                categoryName = stringResource(id = R.string.misc)
                                             }
 
                                             else -> {
-                                                Icons.Outlined.List
+                                                categoryIcon = Icons.Outlined.List
+                                                categoryName = stringResource(id = R.string.misc)
                                             }
                                         }
                                         Icon(
@@ -478,10 +482,11 @@ fun MainScreen(
                                             tint = if (category == selectedListCategoryOption) onDark else onLight,
                                         )
                                         Text(
-                                            text = category,
+                                            text = categoryName,
                                             color = if (category == selectedListCategoryOption) onDark else onLight,
                                             fontWeight = FontWeight.Bold,
                                             maxLines = 1,
+                                            overflow = TextOverflow.Ellipsis
                                         )
                                     }
                                 }

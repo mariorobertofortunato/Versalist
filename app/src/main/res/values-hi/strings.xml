@@ -51,4 +51,14 @@
     <string name="about_us">हमारे बारे में</string>
     <string name="about_us_text">वर्सालिस्ट प्रो को Even Close ने विकसित किया है।\nहमसे नीचे दिए गए लिंक के माध्यम से संपर्क करें!</string>
     <string name="dismiss">खारिज करें</string>
+
+    <string name="language">भाषा</string>
+    <string name="choose_language">भाषा चुनें</string>
+
+    <string name="personal">व्यक्तिगत</string>
+    <string name="work">काम</string>
+    <string name="health">स्वास्थ्य</string>
+    <string name="shopping">खरीददारी</string>
+    <string name="social">सामाजिक जीवन</string>
+    <string name="misc">विविध</string>
 </resources>

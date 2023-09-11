@@ -52,8 +52,8 @@
     <string name="dismiss">Dismiss</string>
 
 
-    <string name="language">Language</string>
-    <string name="choose_language">Choose language</string>
+    <string name="language" translatable="false">Language</string>
+    <string name="choose_language" translatable="false">Choose language</string>
 
     <string name="personal">Personal</string>
     <string name="work">Work</string>

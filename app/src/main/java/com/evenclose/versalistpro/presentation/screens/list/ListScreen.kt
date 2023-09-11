@@ -50,8 +50,8 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.R
-import com.evenclose.versalistpro.presentation.composables.CheckListItem
-import com.evenclose.versalistpro.presentation.composables.OpenListItem
+import com.evenclose.versalistpro.presentation.composables.item.CheckListItem
+import com.evenclose.versalistpro.presentation.composables.item.OpenListItem
 import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.ui.theme.background
 import com.evenclose.versalistpro.presentation.ui.theme.onDark
