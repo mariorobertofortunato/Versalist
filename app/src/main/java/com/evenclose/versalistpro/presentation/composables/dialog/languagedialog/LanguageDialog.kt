@@ -216,7 +216,7 @@ fun LanguageDialog(
                                                         }
 
                                                         "Hebrew" -> {
-                                                            "he"
+                                                            "iw"
                                                         }
 
                                                         "Hindi" -> {

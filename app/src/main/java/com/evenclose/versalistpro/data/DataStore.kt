@@ -16,7 +16,7 @@ class DataStore(private val context: Context) {
     }
 
     val getLanguage: Flow<String> = context.dataStore.data.map { preferences ->
-        preferences[LANGUAGE] ?: "en"
+        preferences[LANGUAGE] ?: ""
     }
 
     suspend fun saveLanguage(language: String) {

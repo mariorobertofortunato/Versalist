@@ -45,20 +45,22 @@ fun Navigation(
     val navController = rememberNavController()
     val context = LocalContext.current
     val dataStore = DataStore(context)
-    val language = dataStore.getLanguage.collectAsState("en")
+    val language = dataStore.getLanguage.collectAsState("")
 
-    if (language.value != "en") {
-        context.setLanguage(language.value, false)
+    if (language.value == "") {
+        context.setLanguage(context.resources.configuration.locales.get(0).language, false)
     } else {
-        context.setLanguage("en", false)
+        context.setLanguage(language.value, false)
     }
 
-    if (language.value == "ar" || language.value == "he") {
+    if (language.value == "ar" || language.value == "iw") {
         CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Rtl) {
             NavGraph(navController = navController)
         }
     } else {
-        NavGraph(navController = navController)
+        CompositionLocalProvider(LocalLayoutDirection provides LayoutDirection.Ltr) {
+            NavGraph(navController = navController)
+        }
     }
 
 
