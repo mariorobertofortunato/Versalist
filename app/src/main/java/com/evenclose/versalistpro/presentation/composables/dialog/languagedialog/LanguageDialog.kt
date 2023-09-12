@@ -301,7 +301,6 @@ fun LanguageDialog(
                                                 .fillMaxWidth()
                                         )
                                     }
-
                                 }
                             }
                         }

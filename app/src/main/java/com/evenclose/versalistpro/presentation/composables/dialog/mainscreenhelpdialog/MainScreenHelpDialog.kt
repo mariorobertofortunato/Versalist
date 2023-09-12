@@ -12,9 +12,13 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -72,107 +76,118 @@ fun MainScreenHelpDialog(
                         Spacer(
                             modifier = Modifier.height(18.dp)
                         )
-                        Text(
-                            text = stringResource(id = R.string.how_it_works),
-                            textAlign = TextAlign.Center,
+                        Column(
                             modifier = Modifier
-                                //.padding(top = 8.dp)
-                                .fillMaxWidth(),
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = onDark,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = stringResource(id = R.string.how_it_works_text),
-                            textAlign = TextAlign.Start,
-                            modifier = Modifier
-                                .padding(top = 4.dp)
-                                .fillMaxWidth(),
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = onDark,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Divider(
-                            color = onDark,
-                            thickness = 1.dp,
-                            modifier = Modifier
-                                .fillMaxWidth(0.95f)
-                                .padding(top = 16.dp)
-                        )
-                        Text(
-                            text = stringResource(id = R.string.types_and_categories),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier
-                                .padding(top = 16.dp)
-                                .fillMaxWidth(),
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = onDark,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = stringResource(id = R.string.types_and_categories_text),
-                            textAlign = TextAlign.Start,
-                            modifier = Modifier
-                                .padding(top = 4.dp)
-                                .fillMaxWidth(),
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = onDark,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Divider(
-                            color = onDark,
-                            thickness = 1.dp,
-                            modifier = Modifier
-                                .fillMaxWidth(0.95f)
-                                .padding(top = 16.dp)
-                        )
-                        Text(
-                            text = stringResource(id = R.string.navigating_your_lists),
-                            textAlign = TextAlign.Center,
-                            modifier = Modifier
-                                .padding(top = 16.dp)
-                                .fillMaxWidth(),
-                            style = MaterialTheme.typography.headlineSmall,
-                            color = onDark,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Text(
-                            text = stringResource(id = R.string.navigating_your_lists_text),
-                            textAlign = TextAlign.Start,
-                            modifier = Modifier
-                                .padding(top = 4.dp)
-                                .fillMaxWidth(),
-                            style = MaterialTheme.typography.bodyLarge,
-                            color = onDark,
-                            fontWeight = FontWeight.Bold,
-                        )
-                        Divider(
-                            color = onDark,
-                            thickness = 1.dp,
-                            modifier = Modifier
-                                .fillMaxWidth(0.95f)
-                                .padding(top = 16.dp)
-                        )
-                        Row(
-                            horizontalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ){
-                            TextButton(
-                                onClick = {
-                                    onDismiss()
-                                }
-                            ) {
-                                Text(
-                                    text = stringResource(id = R.string.got_it),
-                                    fontSize = 16.sp,
-                                    color = onDark,
-                                    fontWeight = FontWeight.Bold,
-                                    modifier = Modifier
-                                        .padding(top = 4.dp)
+                                .verticalScroll(
+                                    state = rememberScrollState(),
+                                    enabled = true
                                 )
+                        ) {
+
+                            Text(
+                                text = stringResource(id = R.string.how_it_works),
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    //.padding(top = 8.dp)
+                                    .fillMaxWidth(),
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = onDark,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            Text(
+                                text = stringResource(id = R.string.how_it_works_text),
+                                textAlign = TextAlign.Start,
+                                modifier = Modifier
+                                    .padding(top = 4.dp)
+                                    .fillMaxWidth(),
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = onDark,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            Divider(
+                                color = onDark,
+                                thickness = 1.dp,
+                                modifier = Modifier
+                                    .fillMaxWidth(0.95f)
+                                    .padding(top = 16.dp)
+                            )
+                            Text(
+                                text = stringResource(id = R.string.types_and_categories),
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .padding(top = 16.dp)
+                                    .fillMaxWidth(),
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = onDark,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            Text(
+                                text = stringResource(id = R.string.types_and_categories_text),
+                                textAlign = TextAlign.Start,
+                                modifier = Modifier
+                                    .padding(top = 4.dp)
+                                    .fillMaxWidth(),
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = onDark,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            Divider(
+                                color = onDark,
+                                thickness = 1.dp,
+                                modifier = Modifier
+                                    .fillMaxWidth(0.95f)
+                                    .padding(top = 16.dp)
+                            )
+                            Text(
+                                text = stringResource(id = R.string.navigating_your_lists),
+                                textAlign = TextAlign.Center,
+                                modifier = Modifier
+                                    .padding(top = 16.dp)
+                                    .fillMaxWidth(),
+                                style = MaterialTheme.typography.headlineSmall,
+                                color = onDark,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            Text(
+                                text = stringResource(id = R.string.navigating_your_lists_text),
+                                textAlign = TextAlign.Start,
+                                modifier = Modifier
+                                    .padding(top = 4.dp)
+                                    .fillMaxWidth(),
+                                style = MaterialTheme.typography.bodyLarge,
+                                color = onDark,
+                                fontWeight = FontWeight.Bold,
+                            )
+                            Divider(
+                                color = onDark,
+                                thickness = 1.dp,
+                                modifier = Modifier
+                                    .fillMaxWidth(0.95f)
+                                    .padding(top = 16.dp)
+                            )
+                            Row(
+                                horizontalArrangement = Arrangement.Center,
+                                modifier = Modifier
+                                    .fillMaxWidth()
+                            ) {
+                                TextButton(
+                                    onClick = {
+                                        onDismiss()
+                                    }
+                                ) {
+                                    Text(
+                                        text = stringResource(id = R.string.got_it),
+                                        fontSize = 16.sp,
+                                        color = onDark,
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier
+                                            .padding(top = 4.dp)
+                                    )
+                                }
                             }
+
                         }
+
                     }
                 }
             }
@@ -181,15 +196,6 @@ fun MainScreenHelpDialog(
                     .size(150.dp)
                     .align(Alignment.TopCenter)
             )
-
         }
-
     }
-}
-
-
-@Composable
-@Preview
-fun MainScreenHelpPreview() {
-    MainScreenHelpDialog(onDismiss = {})
 }
