@@ -34,8 +34,8 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.presentation.composables.dialog.deleteitemdialog.DeleteItemDialog
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
-import com.evenclose.versalistpro.presentation.ui.theme.onLight
+import com.evenclose.versalistpro.presentation.ui.theme.light
+import com.evenclose.versalistpro.presentation.ui.theme.dark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
@@ -83,7 +83,7 @@ fun CheckListItem(
             tint = if (checkStatus) {
                 secondaryContainer
             } else {
-                onLight
+                dark
             }
         )
         Text(
@@ -92,7 +92,7 @@ fun CheckListItem(
             color = if (checkStatus) {
                 secondaryContainer
             } else {
-                onLight
+                dark
             },
             fontWeight = FontWeight.Bold,
             style = if (checkStatus) {
@@ -107,21 +107,21 @@ fun CheckListItem(
             onDismissRequest = { expanded = false },
             modifier = Modifier
                 .background(secondaryContainer)
-                .border(1.dp, onDark, RoundedCornerShape(4.dp))
+                .border(1.dp, light, RoundedCornerShape(4.dp))
         ) {
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = "Delete Icon",
-                        tint = onDark
+                        tint = light
                     )
                 },
                 text = {
                     Text(
                         text = stringResource(id = R.string.delete) + " " + innerListItem.name,
                         fontSize = 16.sp,
-                        color = onDark
+                        color = light
                     )
                 },
                 onClick = {

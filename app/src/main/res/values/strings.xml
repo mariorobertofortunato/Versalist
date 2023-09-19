@@ -62,5 +62,8 @@
     <string name="social">Social life</string>
     <string name="misc">Misc</string>
 
+    <string name="set_alarm" translatable="false">Set Alarm</string>
+    <string name="cancel_alarm" translatable="false">Cancel Alarm</string>
+
 
 </resources>

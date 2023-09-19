@@ -6,6 +6,7 @@ import androidx.compose.animation.fadeIn
 import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -81,14 +82,15 @@ import com.evenclose.versalistpro.presentation.composables.NewListFab
 import com.evenclose.versalistpro.presentation.composables.item.MainListItem
 import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.ui.theme.background
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
-import com.evenclose.versalistpro.presentation.ui.theme.onLight
+import com.evenclose.versalistpro.presentation.ui.theme.light
+import com.evenclose.versalistpro.presentation.ui.theme.dark
 import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
 
+@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen(
     navController: NavController,
@@ -163,7 +165,7 @@ fun MainScreen(
             ) {
                 FloatingActionButton(
                     containerColor = secondary,
-                    contentColor = onDark,
+                    contentColor = light,
                     shape = RoundedCornerShape(12.dp),
                     onClick = {
                         newListFormVisibility = true
@@ -184,7 +186,7 @@ fun MainScreen(
             modifier = Modifier
                 .border(
                     width = 1.5.dp,
-                    color = onLight,
+                    color = dark,
                     shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
                 )
                 .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
@@ -265,7 +267,7 @@ fun MainScreen(
                         ) {
                             Text(
                                 text = stringResource(id = R.string.new_list_name),
-                                color = onLight,
+                                color = dark,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp,
                                 textAlign = TextAlign.Start
@@ -292,7 +294,7 @@ fun MainScreen(
                                 focusedContainerColor = background,
                                 unfocusedContainerColor = background,
                                 disabledContainerColor = background,
-                                focusedTextColor = onLight
+                                focusedTextColor = dark
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -326,7 +328,7 @@ fun MainScreen(
                         ) {
                             Text(
                                 text = stringResource(id = R.string.list_type),
-                                color = onLight,
+                                color = dark,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp
                             )
@@ -368,13 +370,13 @@ fun MainScreen(
                                     Icon(
                                         imageVector = if (text == "Open list") Icons.Outlined.List else Icons.Outlined.Checklist,
                                         contentDescription = "List Type Icon",
-                                        tint = if (text == selectedListTypeOption) onDark else onLight,
+                                        tint = if (text == selectedListTypeOption) light else dark,
                                         modifier = Modifier
                                             .padding(top = 8.dp, bottom = 8.dp, end = 4.dp)
                                     )
                                     Text(
                                         text = text,
-                                        color = if (text == selectedListTypeOption) onDark else onLight,
+                                        color = if (text == selectedListTypeOption) light else dark,
                                         fontWeight = FontWeight.Bold
                                     )
                                 }
@@ -389,7 +391,7 @@ fun MainScreen(
                         ) {
                             Text(
                                 text = stringResource(id = R.string.list_category),
-                                color = onLight,
+                                color = dark,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 18.sp
                             )
@@ -479,11 +481,11 @@ fun MainScreen(
                                         Icon(
                                             imageVector = categoryIcon,
                                             contentDescription = "category icon",
-                                            tint = if (category == selectedListCategoryOption) onDark else onLight,
+                                            tint = if (category == selectedListCategoryOption) light else dark,
                                         )
                                         Text(
                                             text = categoryName,
-                                            color = if (category == selectedListCategoryOption) onDark else onLight,
+                                            color = if (category == selectedListCategoryOption) light else dark,
                                             fontWeight = FontWeight.Bold,
                                             maxLines = 1,
                                             overflow = TextOverflow.Ellipsis
@@ -503,7 +505,7 @@ fun MainScreen(
                         ) {
                             FloatingActionButton(
                                 containerColor = secondary,
-                                contentColor = onDark,
+                                contentColor = light,
                                 shape = RoundedCornerShape(12.dp),
                                 modifier = Modifier
                                     .weight(1f)
@@ -521,13 +523,13 @@ fun MainScreen(
                                     Icon(
                                         imageVector = Icons.Outlined.Cancel,
                                         contentDescription = "Cancel Icon",
-                                        tint = onDark,
+                                        tint = light,
                                         modifier = Modifier
                                             .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
                                         text = stringResource(id = R.string.cancel),
-                                        color = onDark,
+                                        color = light,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 20.sp
                                     )
@@ -535,7 +537,7 @@ fun MainScreen(
                             }
                             FloatingActionButton(
                                 containerColor = secondary,
-                                contentColor = onDark,
+                                contentColor = light,
                                 shape = RoundedCornerShape(12.dp),
                                 modifier = Modifier
                                     .weight(1f)
@@ -562,13 +564,13 @@ fun MainScreen(
                                     Icon(
                                         imageVector = Icons.Outlined.CheckCircle,
                                         contentDescription = "Confirm Icon",
-                                        tint = onDark,
+                                        tint = light,
                                         modifier = Modifier
                                             .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
                                         text = stringResource(id = R.string.confirm),
-                                        color = onDark,
+                                        color = light,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 20.sp
                                     )

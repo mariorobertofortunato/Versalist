@@ -9,7 +9,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.evenclose.versalistpro.R
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 
 @Composable
 fun NewListFab() {
@@ -21,7 +21,7 @@ fun NewListFab() {
             text = stringResource(id = R.string.new_list),
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
-            color = onDark,
+            color = light,
         )
     }
 }

@@ -1,5 +1,9 @@
 package com.evenclose.versalistpro.presentation.composables.item
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -19,6 +23,8 @@ import androidx.compose.material.icons.outlined.Diversity1
 import androidx.compose.material.icons.outlined.EmojiPeople
 import androidx.compose.material.icons.outlined.EventNote
 import androidx.compose.material.icons.outlined.List
+import androidx.compose.material.icons.outlined.Notifications
+import androidx.compose.material.icons.outlined.NotificationsActive
 import androidx.compose.material.icons.outlined.PriorityHigh
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.Spa
@@ -42,17 +48,20 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.AlarmReceiver
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.data.model.ListCategory
 import com.evenclose.versalistpro.data.model.MainListItem
+import com.evenclose.versalistpro.presentation.composables.dialog.alarmpickerdialog.AlarmPickerDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.deleteitemdialog.DeleteItemDialog
 import com.evenclose.versalistpro.presentation.navigation.Screens
 import com.evenclose.versalistpro.presentation.ui.theme.background
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
-import com.evenclose.versalistpro.presentation.ui.theme.onLight
+import com.evenclose.versalistpro.presentation.ui.theme.light
+import com.evenclose.versalistpro.presentation.ui.theme.dark
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
+import java.util.Calendar
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -66,7 +75,9 @@ fun MainListItem(
 
     var expanded by remember { mutableStateOf(false) }
     var favouriteStatus by remember { mutableStateOf(mainListItem.isFav) }
-    var openDialog by remember { mutableStateOf(false) }
+    var isAlarmSet by remember { mutableStateOf(false) }
+    var openDeleteDialog by remember { mutableStateOf(false) }
+    var openReminderDialog by remember { mutableStateOf(false) }
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -128,7 +139,7 @@ fun MainListItem(
                 Icon(
                     imageVector = categoryIcon,
                     contentDescription = "Category Icon",
-                    tint = onLight,
+                    tint = dark,
                     modifier = Modifier
                 )
             }
@@ -169,7 +180,7 @@ fun MainListItem(
                 Text(
                     text = mainListItem.name,
                     fontSize = 20.sp,
-                    color = onLight,
+                    color = dark,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -183,26 +194,26 @@ fun MainListItem(
             onDismissRequest = { expanded = false },
             modifier = Modifier
                 .background(secondaryContainer)
-                .border(1.dp, onDark, RoundedCornerShape(4.dp))
+                .border(1.dp, light, RoundedCornerShape(4.dp))
         ) {
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = "Delete Icon",
-                        tint = onDark
+                        tint = light
                     )
                 },
                 text = {
                     Text(
                         text = stringResource(id = R.string.delete) + " " + mainListItem.name,
                         fontSize = 16.sp,
-                        color = onDark
+                        color = light
                     )
                 },
                 onClick = {
                     expanded = false
-                    openDialog = true
+                    openDeleteDialog = true
                 }
             )
             DropdownMenuItem(
@@ -210,14 +221,14 @@ fun MainListItem(
                     Icon(
                         imageVector = Icons.Outlined.PriorityHigh,
                         contentDescription = "Important Icon",
-                        tint = onDark
+                        tint = light
                     )
                 },
                 text = {
                     Text(
                         text = if (favouriteStatus) context.getString(R.string.unmark_as_important) else context.getString(R.string.mark_as_important),
                         fontSize = 16.sp,
-                        color = onDark
+                        color = light
                     )
                 },
                 onClick = {
@@ -227,6 +238,27 @@ fun MainListItem(
                         mainListItemId = mainListItem.id!!,
                         newFavouriteStatus = favouriteStatus
                     )
+                }
+            )
+            DropdownMenuItem(
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.Notifications,
+                        contentDescription = "Set Alarm Icon",
+                        tint = light
+                    )
+                },
+                text = {
+                    Text(
+                        text = if (isAlarmSet) context.getString(R.string.cancel_alarm) else context.getString(R.string.set_alarm),
+                        fontSize = 16.sp,
+                        color = light
+                    )
+                },
+                onClick = {
+                    expanded = false
+                    isAlarmSet = !isAlarmSet
+                    openReminderDialog = true
                 }
             )
         }
@@ -240,24 +272,51 @@ fun MainListItem(
                 Icon(
                     imageVector = Icons.Outlined.PriorityHigh,
                     contentDescription = "Fav Icon",
-                    tint = onLight
+                    tint = dark
+                )
+            }
+            if (isAlarmSet) {
+                Icon(
+                    imageVector = Icons.Outlined.NotificationsActive,
+                    contentDescription = "Alarm Icon",
+                    tint = dark
                 )
             }
             Icon(
                 imageVector = typeIcon,
                 contentDescription = "Type Icon",
-                tint = onLight
+                tint = dark
             )
         }
 
-        if (openDialog) {
+        if (openDeleteDialog) {
             DeleteItemDialog(
                 mainListItem = mainListItem,
                 innerListItem = null,
                 onDismiss = {
-                    openDialog = false
+                    openDeleteDialog = false
                 }
             )
+        }
+        if (openReminderDialog) {
+            AlarmPickerDialog(
+                //mainListItem = mainListItem,
+                onDismiss = {
+                    openReminderDialog = false
+                }
+            )
+            val calendar: Calendar = Calendar.getInstance().apply {
+                timeInMillis = System.currentTimeMillis()
+                set(Calendar.HOUR_OF_DAY,14)
+                set(Calendar.MINUTE,16)
+            }
+
+            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+            val intent = Intent(context, AlarmReceiver::class.java)
+            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+            alarmManager.setExact(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,pendingIntent)
+
         }
 
 

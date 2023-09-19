@@ -16,5 +16,5 @@ val outline = Color(0xFF333333)
 val error = Color(0xFFC62828)
 val errorContainer = Color(0xFFC62828)
 
-val onLight = secondary
-val onDark = background
+val dark = secondary
+val light = background

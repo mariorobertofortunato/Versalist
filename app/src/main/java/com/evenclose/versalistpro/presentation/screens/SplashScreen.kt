@@ -20,10 +20,9 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.presentation.navigation.Screens
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
-import kotlinx.coroutines.delay
 
 /** We made a splash screen in order to load the lists from room,
  * thus ensuring the main list screen to show updated data right when is shown
@@ -61,7 +60,7 @@ fun SplashScreen(
         Icon(
             imageVector = Icons.Outlined.FormatListBulleted,
             contentDescription = "Loading Icon",
-            tint = onDark,
+            tint = light,
             modifier = Modifier
                 .size(value.value.dp)
                 .background(

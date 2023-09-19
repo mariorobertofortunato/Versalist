@@ -28,7 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.HelpDialogHeaderImage
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
 @Composable
@@ -58,7 +58,7 @@ fun ListScreenHelpDialog(
                         )
                         .border(
                             width = 1.dp,
-                            color = onDark,
+                            color = light,
                             shape = RoundedCornerShape(12.dp)
                         )
                         .fillMaxWidth()
@@ -78,7 +78,7 @@ fun ListScreenHelpDialog(
                                 //.padding(top = 8.dp)
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.headlineSmall,
-                            color = onDark,
+                            color = light,
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
@@ -88,11 +88,11 @@ fun ListScreenHelpDialog(
                                 .padding(top = 4.dp)
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.bodyLarge,
-                            color = onDark,
+                            color = light,
                             fontWeight = FontWeight.Bold,
                         )
                         Divider(
-                            color = onDark,
+                            color = light,
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
@@ -105,11 +105,11 @@ fun ListScreenHelpDialog(
                                 .padding(top = 16.dp)
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.bodyLarge,
-                            color = onDark,
+                            color = light,
                             fontWeight = FontWeight.Bold,
                         )
                         Divider(
-                            color = onDark,
+                            color = light,
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
@@ -122,11 +122,11 @@ fun ListScreenHelpDialog(
                                 .padding(top = 16.dp)
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.bodyLarge,
-                            color = onDark,
+                            color = light,
                             fontWeight = FontWeight.Bold,
                         )
                         Divider(
-                            color = onDark,
+                            color = light,
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
@@ -145,7 +145,7 @@ fun ListScreenHelpDialog(
                                 Text(
                                     text = stringResource(id = R.string.got_it),
                                     fontSize = 16.sp,
-                                    color = onDark,
+                                    color = light,
                                     fontWeight = FontWeight.Bold,
                                     modifier = Modifier
                                         .padding(top = 4.dp)

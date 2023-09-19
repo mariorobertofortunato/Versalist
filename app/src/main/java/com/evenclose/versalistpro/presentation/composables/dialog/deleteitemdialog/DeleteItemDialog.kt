@@ -29,7 +29,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
@@ -63,7 +63,7 @@ fun DeleteItemDialog (
                             color = secondaryContainer,
                             shape = RoundedCornerShape(12.dp)
                         )
-                        .border(1.dp, onDark,RoundedCornerShape(12.dp))
+                        .border(1.dp, light,RoundedCornerShape(12.dp))
                 ) {
                     Column(
                         modifier = Modifier
@@ -82,7 +82,7 @@ fun DeleteItemDialog (
                                 .padding(top = 8.dp)
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.headlineSmall,
-                            color = onDark,
+                            color = light,
                             fontWeight = FontWeight.Bold,
                         )
 
@@ -93,7 +93,7 @@ fun DeleteItemDialog (
                                 .padding(top = 8.dp,)
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.bodyLarge,
-                            color = onDark,
+                            color = light,
                             fontWeight = FontWeight.Bold,
                         )
                         Spacer(
@@ -113,7 +113,7 @@ fun DeleteItemDialog (
                                 Text(
                                     text = stringResource(id = R.string.cancel),
                                     fontSize = 16.sp,
-                                    color = onDark,
+                                    color = light,
                                     fontWeight = FontWeight.Bold,
                                 )
                             }
@@ -130,7 +130,7 @@ fun DeleteItemDialog (
                                 Text(
                                     text = stringResource(id = R.string.confirm),
                                     fontSize = 16.sp,
-                                    color = onDark,
+                                    color = light,
                                     fontWeight = FontWeight.Bold,
                                 )
                             }

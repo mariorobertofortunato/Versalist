@@ -54,8 +54,8 @@ import com.evenclose.versalistpro.presentation.composables.item.CheckListItem
 import com.evenclose.versalistpro.presentation.composables.item.OpenListItem
 import com.evenclose.versalistpro.presentation.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalistpro.presentation.ui.theme.background
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
-import com.evenclose.versalistpro.presentation.ui.theme.onLight
+import com.evenclose.versalistpro.presentation.ui.theme.light
+import com.evenclose.versalistpro.presentation.ui.theme.dark
 import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
@@ -124,7 +124,7 @@ fun ListScreen(
             ) {
                 FloatingActionButton(
                     containerColor = secondary,
-                    contentColor = onDark,
+                    contentColor = light,
                     shape = RoundedCornerShape(12.dp),
                     onClick = {
                         newItemTextFieldVisibility = true
@@ -143,7 +143,7 @@ fun ListScreen(
                             text = stringResource(id = R.string.add_item),
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
-                            color = onDark,
+                            color = light,
                         )
                     }
                 }
@@ -154,7 +154,7 @@ fun ListScreen(
         LazyColumn(
             state = listState,
             modifier = Modifier
-                .border(1.5.dp, onLight,RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
+                .border(1.5.dp, dark,RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
                 .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
                 .fillMaxSize()
                 .padding(it)
@@ -238,7 +238,7 @@ fun ListScreen(
                             placeholder = {
                                 Text(
                                     text = stringResource(id = R.string.new_item),
-                                    color = onLight,
+                                    color = dark,
                                     fontWeight = FontWeight.Bold,
                                     fontSize = 16.sp
                                 )
@@ -248,7 +248,7 @@ fun ListScreen(
                                 focusedContainerColor = background,
                                 unfocusedContainerColor = background,
                                 disabledContainerColor = background,
-                                focusedTextColor = onLight
+                                focusedTextColor = dark
                             ),
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -284,7 +284,7 @@ fun ListScreen(
                         ) {
                             FloatingActionButton(
                                 containerColor = secondary,
-                                contentColor = onDark,
+                                contentColor = light,
                                 shape = RoundedCornerShape(12.dp),
                                 modifier = Modifier
                                     .weight(1f)
@@ -302,13 +302,13 @@ fun ListScreen(
                                     Icon(
                                         imageVector = Icons.Outlined.Cancel,
                                         contentDescription = "Cancel Icon",
-                                        tint = onDark,
+                                        tint = light,
                                         modifier = Modifier
                                             .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
                                         text = stringResource(id = R.string.cancel),
-                                        color = onDark,
+                                        color = light,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 20.sp
                                     )
@@ -316,7 +316,7 @@ fun ListScreen(
                             }
                             FloatingActionButton(
                                 containerColor = secondary,
-                                contentColor = onDark,
+                                contentColor = light,
                                 shape = RoundedCornerShape(12.dp),
                                 modifier = Modifier
                                     .weight(1f)
@@ -342,13 +342,13 @@ fun ListScreen(
                                     Icon(
                                         imageVector = Icons.Outlined.CheckCircle,
                                         contentDescription = "Confirm Icon",
-                                        tint = onDark,
+                                        tint = light,
                                         modifier = Modifier
                                             .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
                                     )
                                     Text(
                                         text = stringResource(id = R.string.confirm),
-                                        color = onDark,
+                                        color = light,
                                         fontWeight = FontWeight.Bold,
                                         fontSize = 20.sp
                                     )

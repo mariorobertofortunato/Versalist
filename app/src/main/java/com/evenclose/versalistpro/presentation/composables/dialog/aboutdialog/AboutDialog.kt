@@ -1,10 +1,7 @@
 package com.evenclose.versalistpro.presentation.composables.dialog.aboutdialog
 
-import android.content.ActivityNotFoundException
-import android.content.Context
 import android.content.Intent
 import android.net.Uri
-import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -34,8 +31,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.evenclose.versalistpro.R
-import com.evenclose.versalistpro.presentation.composables.dialog.HelpDialogHeaderImage
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
 @Composable
@@ -67,7 +63,7 @@ fun AboutDialog(
                         )
                         .border(
                             width = 1.dp,
-                            color = onDark,
+                            color = light,
                             shape = RoundedCornerShape(12.dp)
                         )
                         .fillMaxWidth()
@@ -86,7 +82,7 @@ fun AboutDialog(
                             modifier = Modifier
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.headlineSmall,
-                            color = onDark,
+                            color = light,
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
@@ -96,11 +92,11 @@ fun AboutDialog(
                                 .padding(top = 4.dp)
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.bodyLarge,
-                            color = onDark,
+                            color = light,
                             fontWeight = FontWeight.Bold,
                         )
                         Divider(
-                            color = onDark,
+                            color = light,
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
@@ -119,11 +115,11 @@ fun AboutDialog(
                                     context.startActivity(intent)
                                 },
                             style = MaterialTheme.typography.bodyLarge,
-                            color = onDark,
+                            color = light,
                             fontWeight = FontWeight.Bold,
                         )
                         Divider(
-                            color = onDark,
+                            color = light,
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
@@ -142,7 +138,7 @@ fun AboutDialog(
                                 Text(
                                     text = stringResource(id = R.string.dismiss),
                                     fontSize = 16.sp,
-                                    color = onDark,
+                                    color = light,
                                     fontWeight = FontWeight.Bold,
                                     modifier = Modifier
                                         .padding(top = 4.dp)

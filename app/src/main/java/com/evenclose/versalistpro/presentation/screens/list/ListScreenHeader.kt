@@ -25,7 +25,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.scale
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
@@ -34,8 +33,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.listscreenhelpdialog.ListScreenHelpDialog
-import com.evenclose.versalistpro.presentation.composables.dialog.mainscreenhelpdialog.MainScreenHelpDialog
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
 @Composable
@@ -66,7 +64,7 @@ fun ListScreenHeader(
             Icon(
                 imageVector = Icons.Outlined.ArrowBack,
                 contentDescription = "Arrow Back Icon",
-                tint = onDark
+                tint = light
             )
         }
         BoxWithConstraints(
@@ -79,7 +77,7 @@ fun ListScreenHeader(
                 fontSize = 32.sp,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
-                color = onDark,
+                color = light,
                 overflow = TextOverflow.Ellipsis
             )
         }
@@ -94,7 +92,7 @@ fun ListScreenHeader(
                 Icon(
                     imageVector = Icons.Outlined.Menu,
                     contentDescription = "Menu Icon",
-                    tint = onDark
+                    tint = light
                 )
             }
             DropdownMenu(
@@ -102,21 +100,21 @@ fun ListScreenHeader(
                 onDismissRequest = { expanded = false },
                 modifier = Modifier
                     .background(secondaryContainer)
-                    .border(1.dp, onDark, RoundedCornerShape(4.dp))
+                    .border(1.dp, light, RoundedCornerShape(4.dp))
             ) {
                 DropdownMenuItem(
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Help,
                             contentDescription = "Help Icon",
-                            tint = onDark
+                            tint = light
                         )
                     },
                     text = {
                         Text(
                             text = stringResource(id = R.string.help),
                             fontSize = 16.sp,
-                            color = onDark
+                            color = light
                         )
                     },
                     onClick = {

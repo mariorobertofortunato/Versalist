@@ -35,7 +35,7 @@ import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.aboutdialog.AboutDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.languagedialog.LanguageDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.mainscreenhelpdialog.MainScreenHelpDialog
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
 @Composable
@@ -63,7 +63,7 @@ fun MainScreenHeader(
             text = stringResource(R.string.app_name),
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
-            color = onDark,
+            color = light,
             modifier = Modifier.padding(start = 12.dp)
         )
         Box(
@@ -77,7 +77,7 @@ fun MainScreenHeader(
                 Icon(
                     imageVector = Icons.Outlined.Menu,
                     contentDescription = "Menu Icon",
-                    tint = onDark
+                    tint = light
                 )
             }
             DropdownMenu(
@@ -85,21 +85,21 @@ fun MainScreenHeader(
                 onDismissRequest = { expanded = false },
                 modifier = Modifier
                     .background(secondaryContainer)
-                    .border(1.dp, onDark, RoundedCornerShape(4.dp))
+                    .border(1.dp, light, RoundedCornerShape(4.dp))
             ) {
                 DropdownMenuItem(
                     leadingIcon = {
                         Icon(
                             imageVector = Icons.Outlined.Help,
                             contentDescription = "Help Icon",
-                            tint = onDark
+                            tint = light
                         )
                     },
                     text = {
                         Text(
                             text = stringResource(id = R.string.help),
                             fontSize = 16.sp,
-                            color = onDark
+                            color = light
                         )
                     },
                     onClick = {
@@ -112,14 +112,14 @@ fun MainScreenHeader(
                         Icon(
                             imageVector = Icons.Outlined.Info,
                             contentDescription = "Info Icon",
-                            tint = onDark
+                            tint = light
                         )
                     },
                     text = {
                         Text(
                             text = stringResource(id = R.string.about),
                             fontSize = 16.sp,
-                            color = onDark
+                            color = light
                         )
                     },
                     onClick = {
@@ -132,14 +132,14 @@ fun MainScreenHeader(
                         Icon(
                             imageVector = Icons.Outlined.Policy,
                             contentDescription = "Privacy Icon",
-                            tint = onDark
+                            tint = light
                         )
                     },
                     text = {
                         Text(
                             text = stringResource(id = R.string.privacy),
                             fontSize = 16.sp,
-                            color = onDark
+                            color = light
                         )
                     },
                     onClick = { /* TODO*/ }
@@ -149,14 +149,14 @@ fun MainScreenHeader(
                         Icon(
                             imageVector = Icons.Outlined.Language,
                             contentDescription = "Language Icon",
-                            tint = onDark
+                            tint = light
                         )
                     },
                     text = {
                         Text(
                             text = stringResource(id = R.string.language),
                             fontSize = 16.sp,
-                            color = onDark
+                            color = light
                         )
                     },
                     onClick = {

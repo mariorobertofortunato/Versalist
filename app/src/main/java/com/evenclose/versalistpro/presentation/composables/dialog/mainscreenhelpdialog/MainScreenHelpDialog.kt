@@ -12,13 +12,11 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Divider
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
@@ -27,13 +25,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.HelpDialogHeaderImage
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
 @Composable
@@ -63,7 +60,7 @@ fun MainScreenHelpDialog(
                         )
                         .border(
                             width = 1.dp,
-                            color = onDark,
+                            color = light,
                             shape = RoundedCornerShape(12.dp)
                         )
                         .fillMaxWidth()
@@ -91,7 +88,7 @@ fun MainScreenHelpDialog(
                                     //.padding(top = 8.dp)
                                     .fillMaxWidth(),
                                 style = MaterialTheme.typography.headlineSmall,
-                                color = onDark,
+                                color = light,
                                 fontWeight = FontWeight.Bold,
                             )
                             Text(
@@ -101,11 +98,11 @@ fun MainScreenHelpDialog(
                                     .padding(top = 4.dp)
                                     .fillMaxWidth(),
                                 style = MaterialTheme.typography.bodyLarge,
-                                color = onDark,
+                                color = light,
                                 fontWeight = FontWeight.Bold,
                             )
                             Divider(
-                                color = onDark,
+                                color = light,
                                 thickness = 1.dp,
                                 modifier = Modifier
                                     .fillMaxWidth(0.95f)
@@ -118,7 +115,7 @@ fun MainScreenHelpDialog(
                                     .padding(top = 16.dp)
                                     .fillMaxWidth(),
                                 style = MaterialTheme.typography.headlineSmall,
-                                color = onDark,
+                                color = light,
                                 fontWeight = FontWeight.Bold,
                             )
                             Text(
@@ -128,11 +125,11 @@ fun MainScreenHelpDialog(
                                     .padding(top = 4.dp)
                                     .fillMaxWidth(),
                                 style = MaterialTheme.typography.bodyLarge,
-                                color = onDark,
+                                color = light,
                                 fontWeight = FontWeight.Bold,
                             )
                             Divider(
-                                color = onDark,
+                                color = light,
                                 thickness = 1.dp,
                                 modifier = Modifier
                                     .fillMaxWidth(0.95f)
@@ -145,7 +142,7 @@ fun MainScreenHelpDialog(
                                     .padding(top = 16.dp)
                                     .fillMaxWidth(),
                                 style = MaterialTheme.typography.headlineSmall,
-                                color = onDark,
+                                color = light,
                                 fontWeight = FontWeight.Bold,
                             )
                             Text(
@@ -155,11 +152,11 @@ fun MainScreenHelpDialog(
                                     .padding(top = 4.dp)
                                     .fillMaxWidth(),
                                 style = MaterialTheme.typography.bodyLarge,
-                                color = onDark,
+                                color = light,
                                 fontWeight = FontWeight.Bold,
                             )
                             Divider(
-                                color = onDark,
+                                color = light,
                                 thickness = 1.dp,
                                 modifier = Modifier
                                     .fillMaxWidth(0.95f)
@@ -178,7 +175,7 @@ fun MainScreenHelpDialog(
                                     Text(
                                         text = stringResource(id = R.string.got_it),
                                         fontSize = 16.sp,
-                                        color = onDark,
+                                        color = light,
                                         fontWeight = FontWeight.Bold,
                                         modifier = Modifier
                                             .padding(top = 4.dp)

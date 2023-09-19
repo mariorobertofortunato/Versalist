@@ -26,14 +26,12 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.presentation.composables.dialog.deleteitemdialog.DeleteItemDialog
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
-import com.evenclose.versalistpro.presentation.ui.theme.onLight
+import com.evenclose.versalistpro.presentation.ui.theme.light
+import com.evenclose.versalistpro.presentation.ui.theme.dark
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
-import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -63,7 +61,7 @@ fun OpenListItem(
         Text(
             text = "• ${innerListItem.name}",
             fontSize = 20.sp,
-            color = onLight,
+            color = dark,
             fontWeight = FontWeight.Bold
         )
         DropdownMenu(
@@ -71,21 +69,21 @@ fun OpenListItem(
             onDismissRequest = { expanded = false },
             modifier = Modifier
                 .background(secondaryContainer)
-                .border(1.dp, onDark, RoundedCornerShape(4.dp))
+                .border(1.dp, light, RoundedCornerShape(4.dp))
         ) {
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = "Delete Icon",
-                        tint = onDark
+                        tint = light
                     )
                 },
                 text = {
                     Text(
                         text = stringResource(id = R.string.delete) + " " + innerListItem.name,
                         fontSize = 16.sp,
-                        color = onDark
+                        color = light
                     )
                 },
                 onClick = {

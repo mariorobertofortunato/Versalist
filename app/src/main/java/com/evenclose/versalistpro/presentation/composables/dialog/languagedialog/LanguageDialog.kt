@@ -35,7 +35,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalistpro.R
-import com.evenclose.versalistpro.presentation.ui.theme.onDark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
@@ -98,7 +98,7 @@ fun LanguageDialog(
                         )
                         .border(
                             width = 1.dp,
-                            color = onDark,
+                            color = light,
                             shape = RoundedCornerShape(12.dp)
                         )
                         .fillMaxWidth()
@@ -117,11 +117,11 @@ fun LanguageDialog(
                             modifier = Modifier
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.headlineSmall,
-                            color = onDark,
+                            color = light,
                             fontWeight = FontWeight.Bold,
                         )
                         Divider(
-                            color = onDark,
+                            color = light,
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
@@ -131,7 +131,7 @@ fun LanguageDialog(
                             containerColor = secondaryContainer,
                             bottomBar = {
                                 Divider(
-                                    color = onDark,
+                                    color = light,
                                     thickness = 1.dp,
                                     modifier = Modifier
                                         .fillMaxWidth(1f)
@@ -151,7 +151,7 @@ fun LanguageDialog(
                                         Text(
                                             text = stringResource(id = R.string.dismiss),
                                             fontSize = 16.sp,
-                                            color = onDark,
+                                            color = light,
                                             fontWeight = FontWeight.Bold,
                                             modifier = Modifier
                                                 .padding(top = 4.dp)
@@ -288,7 +288,7 @@ fun LanguageDialog(
                                         Text(
                                             text = language,
                                             style = MaterialTheme.typography.headlineSmall,
-                                            color = onDark,
+                                            color = light,
                                             fontWeight = FontWeight.Bold,
                                             modifier = Modifier
                                                 .fillMaxWidth()
