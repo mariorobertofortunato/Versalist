@@ -75,7 +75,7 @@ fun MainListItem(
 
     var expanded by remember { mutableStateOf(false) }
     var favouriteStatus by remember { mutableStateOf(mainListItem.isFav) }
-    var isAlarmSet by remember { mutableStateOf(false) }
+    var isAlarmSet by remember { mutableStateOf(false) }// TODO the initial state will be mainListItem.reminder or something
     var openDeleteDialog by remember { mutableStateOf(false) }
     var openReminderDialog by remember { mutableStateOf(false) }
 
@@ -257,8 +257,9 @@ fun MainListItem(
                 },
                 onClick = {
                     expanded = false
-                    isAlarmSet = !isAlarmSet
-                    openReminderDialog = true
+                    navController.navigate(route = "${Screens.ReminderScreen.route}/${mainListItem.id}")
+                    //isAlarmSet = !isAlarmSet
+                    //openReminderDialog = true
                 }
             )
         }

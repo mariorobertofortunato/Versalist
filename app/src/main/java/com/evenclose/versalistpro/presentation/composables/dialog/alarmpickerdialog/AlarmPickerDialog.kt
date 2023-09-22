@@ -26,6 +26,7 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.material3.TimePicker
 import androidx.compose.material3.TimePickerDefaults
+import androidx.compose.material3.TimePickerLayoutType
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
@@ -78,6 +79,7 @@ fun AlarmPickerDialog(
     val timePickerState = rememberTimePickerState(
         initialHour = calendar.get(Calendar.HOUR_OF_DAY),
         initialMinute = calendar.get(Calendar.MINUTE),
+        //is24Hour = true
     )
 
     Dialog(
@@ -98,7 +100,7 @@ fun AlarmPickerDialog(
                         color = light,
                         shape = RoundedCornerShape(12.dp)
                     )
-                    .size(550.dp)
+                    //.size(550.dp)
                 //.defaultMinSize(minHeight = 600.dp)
             ) {
                 /** HEADER */
@@ -212,6 +214,7 @@ fun AlarmPickerDialog(
                                 timeSelectorSelectedContentColor = light,
                                 timeSelectorUnselectedContentColor = secondaryContainer
                             ),
+                            layoutType = TimePickerLayoutType.Horizontal
                         )
                     }
                 }
