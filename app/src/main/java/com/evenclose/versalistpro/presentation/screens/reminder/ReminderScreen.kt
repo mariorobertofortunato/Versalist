@@ -1,5 +1,9 @@
 package com.evenclose.versalistpro.presentation.screens.reminder
 
+import android.app.AlarmManager
+import android.app.PendingIntent
+import android.content.Context
+import android.content.Intent
 import android.widget.TimePicker
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -45,12 +49,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
+import com.evenclose.versalistpro.AlarmReceiver
+import com.evenclose.versalistpro.presentation.composables.dialog.customdatepickerdialog.CustomDatePickerDialog
+import com.evenclose.versalistpro.presentation.composables.dialog.customtimepickerdialog.CustomTimePickerDialog
 import com.evenclose.versalistpro.presentation.ui.theme.background
 import com.evenclose.versalistpro.presentation.ui.theme.dark
 import com.evenclose.versalistpro.presentation.ui.theme.light
@@ -69,16 +77,17 @@ fun ReminderScreen(
     listViewModel: ListViewModel = hiltViewModel(),
 ) {
 
+    val context = LocalContext.current
     /** Dialog */
     var openDatePicker by remember { mutableStateOf(false) }
     var openTimePicker by remember { mutableStateOf(false) }
 
     val calendar = Calendar.getInstance()
-    val datePickerState = rememberDatePickerState(initialSelectedDateMillis = Instant.now().toEpochMilli())
+    val datePickerState =
+        rememberDatePickerState(initialSelectedDateMillis = Instant.now().toEpochMilli())
     val timePickerState = rememberTimePickerState(
         initialHour = calendar.get(Calendar.HOUR_OF_DAY),
         initialMinute = calendar.get(Calendar.MINUTE),
-        //is24Hour = true
     )
 
     /** Data*/
@@ -174,7 +183,19 @@ fun ReminderScreen(
                     contentColor = light,
                     shape = RoundedCornerShape(12.dp),
                     onClick = {
-                        // TODO save reminder
+                        // TODO save reminder to DB
+
+/*                        val calendarReminder: Calendar = Calendar.getInstance().apply {
+                            timeInMillis = System.currentTimeMillis()
+                            set(Calendar.HOUR_OF_DAY,14)
+                            set(Calendar.MINUTE,16)
+                        }
+
+                        val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
+                        val intent = Intent(context, AlarmReceiver::class.java)
+                        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+
+                        alarmManager.setExact(AlarmManager.RTC_WAKEUP,calendarReminder.timeInMillis,pendingIntent)*/
                     },
                     modifier = Modifier
                         .weight(1f)
@@ -357,83 +378,20 @@ fun ReminderScreen(
     }
 
     if (openDatePicker) {
-        DatePickerDialog(
+        CustomDatePickerDialog(
+            datePickerState = datePickerState,
             onDismissRequest = {
                 openDatePicker = false
-            },
-            confirmButton = {
-                TextButton(onClick = {
-                    /*TODO*/
-                    openDatePicker = false
-                }) {
-                    Text(
-                        text = "Done",
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = light,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
-            },
-            dismissButton = {
-                TextButton(
-                    onClick = { openDatePicker = false }
-                ) {
-                    Text(
-                        text = "Cancel",
-                        style = MaterialTheme.typography.headlineSmall,
-                        color = light,
-                        fontWeight = FontWeight.Bold,
-                    )
-                }
-            },
-        ) {
-            DatePicker(
-                state = datePickerState,
-                showModeToggle = false,
-                dateValidator = { timestamp ->
-                    timestamp > (Instant.now().toEpochMilli() - 8.64e+7)
-                },
-                colors = DatePickerDefaults.colors(
-                    //containerColor = dark,
-                    titleContentColor = light,
-                    headlineContentColor = light,
-                    weekdayContentColor = light,
-                    yearContentColor = light,
-                    currentYearContentColor = light,
-                    selectedYearContentColor = light,
-                    selectedYearContainerColor = secondaryContainer,
-                    dayContentColor = light,
-                    disabledDayContentColor = dark,
-                    selectedDayContentColor = light,
-                    selectedDayContainerColor = dark,
-                    todayContentColor = light,
-                    todayDateBorderColor = secondaryContainer,
-                ),
-            )
-        }
-
+            }
+        )
     }
 
     if (openTimePicker) {
-/*        TimePicker(
-            state = timePickerState,
-            colors = TimePickerDefaults.colors(
-                clockDialColor = secondary,
-                clockDialSelectedContentColor = secondary,
-                clockDialUnselectedContentColor = light,
-                selectorColor = light,
-                periodSelectorBorderColor = secondary,
-                periodSelectorSelectedContainerColor = secondary,
-                periodSelectorUnselectedContainerColor = light,
-                periodSelectorSelectedContentColor = light,
-                periodSelectorUnselectedContentColor = secondaryContainer,
-                timeSelectorSelectedContainerColor = secondary,
-                timeSelectorUnselectedContainerColor = light,
-                timeSelectorSelectedContentColor = light,
-                timeSelectorUnselectedContentColor = secondaryContainer
-            ),
-            layoutType = TimePickerLayoutType.Horizontal
-        )*/
-
+        CustomTimePickerDialog(
+            timePickerState = timePickerState,
+            onDismissRequest = {
+                openTimePicker = false
+            }
+        )
     }
 }

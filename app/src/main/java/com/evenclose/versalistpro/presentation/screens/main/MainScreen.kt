@@ -148,9 +148,7 @@ fun MainScreen(
                     .background(secondary)
             ) {
                 /** HEADER */
-                MainScreenHeader(
-                    navController = navController
-                )
+                MainScreenHeader()
             }
         },
         bottomBar = {

@@ -39,9 +39,8 @@ import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
 @Composable
-fun MainScreenHeader(
-    navController: NavController,
-) {
+fun MainScreenHeader()
+{
     var expanded by remember { mutableStateOf(false) }
 
     /** Dialog */
@@ -66,9 +65,8 @@ fun MainScreenHeader(
             color = light,
             modifier = Modifier.padding(start = 12.dp)
         )
-        Box(
-            //modifier = Modifier.fillMaxSize().wrapContentSize(Alignment.TopStart)
-        ) {
+        Box()
+        {
             IconButton(
                 onClick = {
                     expanded = true

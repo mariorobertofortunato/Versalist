@@ -1,9 +1,5 @@
 package com.evenclose.versalistpro.presentation.composables.item
 
-import android.app.AlarmManager
-import android.app.PendingIntent
-import android.content.Context
-import android.content.Intent
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -48,20 +44,17 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
-import com.evenclose.versalistpro.AlarmReceiver
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.data.model.ListCategory
 import com.evenclose.versalistpro.data.model.MainListItem
-import com.evenclose.versalistpro.presentation.composables.dialog.alarmpickerdialog.AlarmPickerDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.deleteitemdialog.DeleteItemDialog
 import com.evenclose.versalistpro.presentation.navigation.Screens
 import com.evenclose.versalistpro.presentation.ui.theme.background
-import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.dark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
-import java.util.Calendar
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -77,7 +70,7 @@ fun MainListItem(
     var favouriteStatus by remember { mutableStateOf(mainListItem.isFav) }
     var isAlarmSet by remember { mutableStateOf(false) }// TODO the initial state will be mainListItem.reminder or something
     var openDeleteDialog by remember { mutableStateOf(false) }
-    var openReminderDialog by remember { mutableStateOf(false) }
+
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
@@ -258,8 +251,6 @@ fun MainListItem(
                 onClick = {
                     expanded = false
                     navController.navigate(route = "${Screens.ReminderScreen.route}/${mainListItem.id}")
-                    //isAlarmSet = !isAlarmSet
-                    //openReminderDialog = true
                 }
             )
         }
@@ -299,27 +290,5 @@ fun MainListItem(
                 }
             )
         }
-        if (openReminderDialog) {
-            AlarmPickerDialog(
-                //mainListItem = mainListItem,
-                onDismiss = {
-                    openReminderDialog = false
-                }
-            )
-            val calendar: Calendar = Calendar.getInstance().apply {
-                timeInMillis = System.currentTimeMillis()
-                set(Calendar.HOUR_OF_DAY,14)
-                set(Calendar.MINUTE,16)
-            }
-
-            val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
-            val intent = Intent(context, AlarmReceiver::class.java)
-            val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
-
-            alarmManager.setExact(AlarmManager.RTC_WAKEUP,calendar.timeInMillis,pendingIntent)
-
-        }
-
-
     }
 }
