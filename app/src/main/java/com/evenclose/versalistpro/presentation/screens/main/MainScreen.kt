@@ -90,7 +90,6 @@ import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainScreen(
     navController: NavController,
@@ -105,17 +104,9 @@ fun MainScreen(
     var errorTextVisibility by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
     val listTypeOptions = listOf("Open list", "Checklist")
-    val (selectedListTypeOption, onListTypeOptionSelected) = remember {
-        mutableStateOf(
-            listTypeOptions[0]
-        )
-    }
+    val (selectedListTypeOption, onListTypeOptionSelected) = remember { mutableStateOf(listTypeOptions[0]) }
     val listCategoryOptions = listOf("Personal", "Work", "Health", "Shopping", "Social", "Misc")
-    val (selectedListCategoryOption, onListCategoryOptionSelected) = remember {
-        mutableStateOf(
-            listCategoryOptions[0]
-        )
-    }
+    val (selectedListCategoryOption, onListCategoryOptionSelected) = remember { mutableStateOf(listCategoryOptions[0]) }
 
     /** lazyColumn */
     val listState = rememberLazyListState(0)
@@ -213,7 +204,7 @@ fun MainScreen(
                                 navController = navController
                             )
                             Divider(
-                                color = secondary,
+                                color = secondary.copy(alpha = 0.25f),
                                 thickness = 2.dp,
                                 modifier = Modifier
                                     .fillMaxWidth(0.95f)

@@ -4,6 +4,8 @@ import android.os.Parcelable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import kotlinx.parcelize.Parcelize
+import java.time.Instant
+import java.util.Calendar
 
 @Parcelize
 @Entity(tableName = "main_list")
@@ -13,5 +15,6 @@ data class MainListItem(
     val name: String,
     var type: String,
     var category: String,
-    var isFav: Boolean
+    var isFav: Boolean,
+    var reminderDate: Instant?
     ) : Parcelable

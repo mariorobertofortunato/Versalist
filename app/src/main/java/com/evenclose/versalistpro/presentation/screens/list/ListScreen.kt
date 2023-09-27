@@ -182,7 +182,7 @@ fun ListScreen(
                             )
                         }
                         Divider(
-                            color = secondary,
+                            color = secondary.copy(alpha = 0.25f),
                             thickness = 2.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)

@@ -68,7 +68,7 @@ fun MainListItem(
 
     var expanded by remember { mutableStateOf(false) }
     var favouriteStatus by remember { mutableStateOf(mainListItem.isFav) }
-    var isAlarmSet by remember { mutableStateOf(false) }// TODO the initial state will be mainListItem.reminder or something
+    var reminderDate by remember { mutableStateOf(mainListItem.reminderDate) }
     var openDeleteDialog by remember { mutableStateOf(false) }
 
 
@@ -243,7 +243,7 @@ fun MainListItem(
                 },
                 text = {
                     Text(
-                        text = if (isAlarmSet) context.getString(R.string.cancel_alarm) else context.getString(R.string.set_alarm),
+                        text = if (reminderDate != null) context.getString(R.string.modify_alarm) else context.getString(R.string.set_alarm),
                         fontSize = 16.sp,
                         color = light
                     )
@@ -267,7 +267,7 @@ fun MainListItem(
                     tint = dark
                 )
             }
-            if (isAlarmSet) {
+            if (reminderDate != null) {
                 Icon(
                     imageVector = Icons.Outlined.NotificationsActive,
                     contentDescription = "Alarm Icon",

@@ -16,6 +16,7 @@ import com.evenclose.versalistpro.domain.use_case.inner_list.GetCurrentInnerList
 import com.evenclose.versalistpro.domain.use_case.main_list.GetListDataUseCase
 import com.evenclose.versalistpro.domain.use_case.inner_list.UpdateItemCheckStatusUseCase
 import com.evenclose.versalistpro.domain.use_case.main_list.UpdateMainListFavouriteStatusUseCase
+import com.evenclose.versalistpro.domain.use_case.main_list.UpdateMainListReminderUseCase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -60,6 +61,7 @@ object AppModule {
         DeleteMainListItemUseCase(listRepository),
         DeleteInnerListItemUseCase(listRepository),
         UpdateMainListFavouriteStatusUseCase(listRepository),
-        DeleteInnerListItemFromMainListUseCase(listRepository)
+        DeleteInnerListItemFromMainListUseCase(listRepository),
+        UpdateMainListReminderUseCase(listRepository)
     )
 }

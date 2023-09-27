@@ -4,7 +4,6 @@ import android.app.AlarmManager
 import android.app.PendingIntent
 import android.content.Context
 import android.content.Intent
-import android.widget.TimePicker
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -22,21 +21,13 @@ import androidx.compose.material.icons.outlined.CalendarMonth
 import androidx.compose.material.icons.outlined.Edit
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material.icons.outlined.PunchClock
-import androidx.compose.material3.DatePicker
-import androidx.compose.material3.DatePickerDefaults
-import androidx.compose.material3.DatePickerDialog
 import androidx.compose.material3.Divider
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
-import androidx.compose.material3.TimePicker
-import androidx.compose.material3.TimePickerDefaults
-import androidx.compose.material3.TimePickerLayoutType
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
@@ -59,6 +50,7 @@ import androidx.navigation.NavController
 import com.evenclose.versalistpro.AlarmReceiver
 import com.evenclose.versalistpro.presentation.composables.dialog.customdatepickerdialog.CustomDatePickerDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.customtimepickerdialog.CustomTimePickerDialog
+import com.evenclose.versalistpro.presentation.composables.dialog.deletereminderdialog.DeleteReminderDialog
 import com.evenclose.versalistpro.presentation.ui.theme.background
 import com.evenclose.versalistpro.presentation.ui.theme.dark
 import com.evenclose.versalistpro.presentation.ui.theme.light
@@ -66,8 +58,19 @@ import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
+import com.google.android.material.timepicker.TimeFormat
+import java.text.DateFormat
+import java.text.SimpleDateFormat
 import java.time.Instant
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.LocalTime
+import java.time.ZoneId
+import java.time.ZoneOffset
 import java.util.Calendar
+import java.util.Locale
+import kotlin.time.Duration.Companion.hours
+import kotlin.time.DurationUnit
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -77,21 +80,41 @@ fun ReminderScreen(
     listViewModel: ListViewModel = hiltViewModel(),
 ) {
 
+    val instant = Instant.now()
     val context = LocalContext.current
-    /** Dialog */
-    var openDatePicker by remember { mutableStateOf(false) }
-    var openTimePicker by remember { mutableStateOf(false) }
-
-    val calendar = Calendar.getInstance()
-    val datePickerState =
-        rememberDatePickerState(initialSelectedDateMillis = Instant.now().toEpochMilli())
-    val timePickerState = rememberTimePickerState(
-        initialHour = calendar.get(Calendar.HOUR_OF_DAY),
-        initialMinute = calendar.get(Calendar.MINUTE),
-    )
 
     /** Data*/
     val currentListData = listViewModel.currentListData.observeAsState(null)
+
+    val datePickerState = if (currentListData.value?.reminderDate != null) {
+        rememberDatePickerState(
+            initialSelectedDateMillis = currentListData.value?.reminderDate!!.toEpochMilli()
+        )
+    } else {
+        rememberDatePickerState(
+            initialSelectedDateMillis = instant.toEpochMilli()
+        )
+    }
+
+    val timePickerState = if (currentListData.value?.reminderDate != null) {
+        rememberTimePickerState(
+            initialHour = currentListData.value?.reminderDate!!.atZone(ZoneId.systemDefault()).hour,
+            initialMinute = currentListData.value?.reminderDate!!.atZone(ZoneId.systemDefault()).minute,
+        )
+    } else {
+        rememberTimePickerState(
+            initialHour = instant.atZone(ZoneId.systemDefault()).hour,
+            initialMinute = instant.atZone(ZoneId.systemDefault()).minute,
+        )
+    }
+
+
+    /** Dialog */
+    var openDatePicker by remember { mutableStateOf(false) }
+    var openTimePicker by remember { mutableStateOf(false) }
+    var openDeleteDialog by remember { mutableStateOf(false) }
+
+
 
     listViewModel.getListData(listId)
 
@@ -153,6 +176,7 @@ fun ReminderScreen(
                         shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
                     )
             ) {
+                /** Back Btn */
                 FloatingActionButton(
                     containerColor = secondary,
                     contentColor = light,
@@ -170,7 +194,7 @@ fun ReminderScreen(
                         verticalAlignment = Alignment.CenterVertically,
                     ) {
                         Text(
-                            text = "Cancel",
+                            text = "Back",
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
                             color = light,
@@ -178,24 +202,43 @@ fun ReminderScreen(
                     }
                 }
 
+                /** Save Btn */
                 FloatingActionButton(
                     containerColor = secondary,
                     contentColor = light,
                     shape = RoundedCornerShape(12.dp),
                     onClick = {
-                        // TODO save reminder to DB
+                        val localDateTime = LocalDateTime.of(
+                            Instant.ofEpochMilli(datePickerState.selectedDateMillis!!).atZone(ZoneId.systemDefault()).toLocalDate(),
+                            LocalTime.of(timePickerState.hour, timePickerState.minute)
+                        )
+                        val instantReminder: Instant = localDateTime.atZone(ZoneId.systemDefault()).toInstant()
 
-/*                        val calendarReminder: Calendar = Calendar.getInstance().apply {
-                            timeInMillis = System.currentTimeMillis()
-                            set(Calendar.HOUR_OF_DAY,14)
-                            set(Calendar.MINUTE,16)
-                        }
-
+                        // SET ALARM
                         val alarmManager = context.getSystemService(Context.ALARM_SERVICE) as AlarmManager
                         val intent = Intent(context, AlarmReceiver::class.java)
-                        val pendingIntent = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_IMMUTABLE)
+                        intent.putExtra("list_name", currentListData.value?.name)
+                        intent.putExtra("list_id", currentListData.value?.id)
+                        val pendingIntent = PendingIntent.getBroadcast(
+                            context,
+                            currentListData.value?.id ?: 0,
+                            intent,
+                            PendingIntent.FLAG_IMMUTABLE
+                        )
+                        alarmManager.setExact(
+                            AlarmManager.RTC_WAKEUP,
+                            instantReminder.toEpochMilli(),
+                            pendingIntent
+                        )
 
-                        alarmManager.setExact(AlarmManager.RTC_WAKEUP,calendarReminder.timeInMillis,pendingIntent)*/
+                        // SAVE TO DB
+                        currentListData.value?.id?.let {
+                            listViewModel.updateMainListReminder(
+                                mainListItemId = it,
+                                reminderDate = instantReminder
+                            )
+                        }
+                        navController.navigateUp()
                     },
                     modifier = Modifier
                         .weight(1f)
@@ -246,6 +289,7 @@ fun ReminderScreen(
                     )
                     .background(light)
             ) {
+                /** DATE */
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -273,7 +317,7 @@ fun ReminderScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.CalendarMonth,
-                                contentDescription = "Category Icon",
+                                contentDescription = "date Icon",
                                 tint = dark,
                                 modifier = Modifier
                             )
@@ -283,6 +327,9 @@ fun ReminderScreen(
                             modifier = Modifier
                                 .padding(start = 8.dp)
                         ) {
+                            val dateFormat =
+                                DateFormat.getDateInstance(DateFormat.MEDIUM, Locale.getDefault())
+                            val date = dateFormat.format(datePickerState.selectedDateMillis)
                             Text(
                                 text = "Date",
                                 fontSize = 14.sp,
@@ -290,7 +337,7 @@ fun ReminderScreen(
                                 fontWeight = FontWeight.Bold,
                             )
                             Text(
-                                text = "TODO 23/3/2043",
+                                text = date,
                                 fontSize = 20.sp,
                                 color = dark,
                                 fontWeight = FontWeight.Bold,
@@ -301,7 +348,7 @@ fun ReminderScreen(
                     }
                     Icon(
                         imageVector = Icons.Outlined.Edit,
-                        contentDescription = "Type Icon",
+                        contentDescription = "Edit Icon",
                         tint = dark,
                     )
                 }
@@ -311,9 +358,10 @@ fun ReminderScreen(
                     thickness = 2.dp,
                     modifier = Modifier
                         .fillMaxWidth(0.95f)
-                        //.alpha(0.25f)
                         .align(CenterHorizontally)
                 )
+
+                /** TIME */
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -340,7 +388,7 @@ fun ReminderScreen(
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.PunchClock,
-                                contentDescription = "Category Icon",
+                                contentDescription = "Time Icon",
                                 tint = dark,
                                 modifier = Modifier
                             )
@@ -350,6 +398,13 @@ fun ReminderScreen(
                             modifier = Modifier
                                 .padding(start = 8.dp)
                         ) {
+                            val timeCalendar = Calendar.getInstance()
+                            timeCalendar.set(Calendar.HOUR_OF_DAY, timePickerState.hour)
+                            timeCalendar.set(Calendar.MINUTE, timePickerState.minute)
+                            val timeFormat =
+                                DateFormat.getTimeInstance(DateFormat.SHORT, Locale.getDefault())
+                            val time = timeFormat.format(timeCalendar.time)
+
                             Text(
                                 text = "Time",
                                 fontSize = 14.sp,
@@ -357,7 +412,7 @@ fun ReminderScreen(
                                 fontWeight = FontWeight.Bold,
                             )
                             Text(
-                                text = "TODO 12:34",
+                                text = time,
                                 fontSize = 20.sp,
                                 color = dark,
                                 fontWeight = FontWeight.Bold,
@@ -368,11 +423,45 @@ fun ReminderScreen(
                     }
                     Icon(
                         imageVector = Icons.Outlined.Edit,
-                        contentDescription = "Type Icon",
+                        contentDescription = "Edit Icon",
                         tint = dark
                     )
 
                 }
+            }
+
+            /** DELETE REMINDER BUTTON*/
+            if (currentListData.value?.reminderDate != null) {
+                FloatingActionButton(
+                    containerColor = primary,
+                    contentColor = dark,
+                    shape = RoundedCornerShape(12.dp),
+                    onClick = {
+                        openDeleteDialog = true
+                    },
+                    modifier = Modifier
+                        .padding(12.dp)
+                        .border(
+                            2.dp,
+                            secondaryContainer.copy(alpha = 0.5f),
+                            RoundedCornerShape(12.dp)
+                        )
+                ) {
+                    Row(
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = Alignment.CenterVertically,
+                        modifier = Modifier
+                            .padding(horizontal = 12.dp)
+                    ) {
+                        Text(
+                            text = "Delete reminder",
+                            fontSize = 20.sp,
+                            fontWeight = FontWeight.Bold,
+                            color = secondaryContainer,
+                        )
+                    }
+                }
+
             }
         }
     }
@@ -392,6 +481,16 @@ fun ReminderScreen(
             onDismissRequest = {
                 openTimePicker = false
             }
+        )
+    }
+
+    if (openDeleteDialog) {
+        DeleteReminderDialog(
+            mainListId = listId,
+            onDismiss = {
+                openDeleteDialog = false
+            },
+            navController = navController
         )
     }
 }

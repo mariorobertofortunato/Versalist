@@ -5,6 +5,8 @@ import com.evenclose.versalistpro.data.database.ListDao
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
 import kotlinx.coroutines.flow.flow
+import java.time.Instant
+import java.util.Calendar
 import javax.inject.Inject
 
 class ListRepository @Inject constructor(
@@ -41,7 +43,8 @@ class ListRepository @Inject constructor(
                 name = name,
                 type = type,
                 category = category,
-                isFav = false
+                isFav = false,
+                reminderDate = null
             )
             )
         } catch (e: Exception) {
@@ -62,6 +65,14 @@ class ListRepository @Inject constructor(
             dao.updateMainListFavouriteStatus(id, newFavouriteStatus)
         } catch (e: Exception) {
             Log.e("TAG Error Update Main List Favourite Status", "$e")
+        }
+    }
+
+    suspend fun updateMainListReminder(id: Int, reminderDate: Instant?) {
+        try {
+            dao.updateMainListReminder(id, reminderDate)
+        } catch (e: Exception) {
+            Log.e("TAG Error Update Main List Reminder", "$e")
         }
     }
 

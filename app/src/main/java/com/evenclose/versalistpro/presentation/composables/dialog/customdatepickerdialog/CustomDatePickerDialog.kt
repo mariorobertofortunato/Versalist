@@ -32,7 +32,6 @@ fun CustomDatePickerDialog(
         },
         confirmButton = {
             TextButton(onClick = {
-                /*TODO*/
                 onDismissRequest()
             }) {
                 Text(

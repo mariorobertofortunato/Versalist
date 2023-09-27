@@ -11,7 +11,7 @@
     <string name="unmark_as_important">Annulla segnalazione importante</string>
 
     <!-- Placeholder -->
-    <string name="main_screen_placeholder">"Al momento non hai alcun elenco. Crea uno cliccando sul pulsante qui sotto."</string>
+    <string name="main_screen_placeholder">"Al momento non hai alcun elenco. Creane uno cliccando sul pulsante qui sotto."</string>
     <string name="list_screen_placeholder">"L'elenco attuale è vuoto. Inizia aggiungendo un elemento utilizzando il pulsante qui sotto."</string>
     <string name="placeholder_error">"Qualcosa è andato storto! Prova a ricaricare lo schermo."</string>
 

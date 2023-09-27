@@ -6,6 +6,8 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
+import java.time.Instant
+import java.util.Calendar
 
 @Dao
 interface ListDao {
@@ -25,6 +27,9 @@ interface ListDao {
 
     @Query("UPDATE main_list SET isFav=:newFavouriteStatus WHERE id = :id")
     suspend fun updateMainListFavouriteStatus(id: Int, newFavouriteStatus: Boolean)
+
+    @Query("UPDATE main_list SET reminderDate=:reminderDate WHERE id = :id")
+    suspend fun updateMainListReminder(id: Int, reminderDate: Instant?)
 
     /** INNER LIST */
     @Insert(onConflict = OnConflictStrategy.REPLACE)

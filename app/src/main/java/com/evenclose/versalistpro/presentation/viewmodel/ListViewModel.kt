@@ -10,6 +10,8 @@ import com.evenclose.versalistpro.data.model.MainListItem
 import com.evenclose.versalistpro.domain.use_case.UseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
+import java.time.Instant
+import java.util.Calendar
 import javax.inject.Inject
 
 @HiltViewModel
@@ -53,6 +55,13 @@ class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel
     fun updateMainListFavouriteStatus(mainListItemId: Int, newFavouriteStatus: Boolean) {
         viewModelScope.launch {
             useCase.UpdateMainListFavouriteStatusUseCase(mainListItemId, newFavouriteStatus)
+            fetchAllLists()
+        }
+    }
+
+    fun updateMainListReminder(mainListItemId: Int, reminderDate: Instant?) {
+        viewModelScope.launch {
+            useCase.UpdateMainListReminderUseCase(mainListItemId, reminderDate)
             fetchAllLists()
         }
     }

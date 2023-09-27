@@ -100,7 +100,6 @@ fun CustomTimePickerDialog(
                     )
                 }
                 TextButton(onClick = {
-                    /*TODO*/
                     onDismissRequest()
                 }) {
                     Text(
