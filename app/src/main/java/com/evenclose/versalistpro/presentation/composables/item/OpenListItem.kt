@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Delete
+import androidx.compose.material.icons.outlined.RadioButtonChecked
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -29,8 +30,8 @@ import androidx.compose.ui.unit.sp
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.presentation.composables.dialog.deleteitemdialog.DeleteItemDialog
-import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.dark
+import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -51,18 +52,25 @@ fun OpenListItem(
                 // Disable ripple effect because it sucks
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() },
-                onClick = {   },
+                onClick = { },
                 onLongClick = {
                     expanded = true
                 }
             )
     ) {
+        Icon(
+            imageVector = Icons.Outlined.RadioButtonChecked,
+            contentDescription = "Bullet Icon",
+            tint = dark,
+            modifier = Modifier
+        )
 
         Text(
-            text = "• ${innerListItem.name}",
+            text = innerListItem.name,
             fontSize = 20.sp,
             color = dark,
-            fontWeight = FontWeight.Bold
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier.padding(start = 8.dp)
         )
         DropdownMenu(
             expanded = expanded,
