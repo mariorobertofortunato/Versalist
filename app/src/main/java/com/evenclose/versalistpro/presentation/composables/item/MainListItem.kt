@@ -6,12 +6,18 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.Alarm
+import androidx.compose.material.icons.filled.NotificationsActive
+import androidx.compose.material.icons.outlined.Alarm
 import androidx.compose.material.icons.outlined.Badge
 import androidx.compose.material.icons.outlined.Checklist
 import androidx.compose.material.icons.outlined.Delete
@@ -24,6 +30,7 @@ import androidx.compose.material.icons.outlined.NotificationsActive
 import androidx.compose.material.icons.outlined.PriorityHigh
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.Spa
+import androidx.compose.material.icons.outlined.SportsCricket
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
 import androidx.compose.material3.Icon
@@ -36,6 +43,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -68,7 +76,7 @@ fun MainListItem(
 
     var expanded by remember { mutableStateOf(false) }
     var favouriteStatus by remember { mutableStateOf(mainListItem.isFav) }
-    var reminderDate by remember { mutableStateOf(mainListItem.reminderDate) }
+    val reminderDate by remember { mutableStateOf(mainListItem.reminderDate) }
     var openDeleteDialog by remember { mutableStateOf(false) }
 
 
@@ -90,30 +98,31 @@ fun MainListItem(
                 }
             )
     ) {
-        val typeIcon = if (mainListItem.type == "Open list") {
-            Icons.Outlined.List
-        } else {
-            Icons.Outlined.Checklist
-        }
         val categoryIcon = when (mainListItem.category) {
             ListCategory.PERSONAL -> {
                 Icons.Outlined.EmojiPeople
             }
+
             ListCategory.WORK -> {
                 Icons.Outlined.Badge
             }
+
             ListCategory.HEALTH -> {
                 Icons.Outlined.Spa
             }
+
             ListCategory.SHOPPING -> {
                 Icons.Outlined.ShoppingCart
             }
+
             ListCategory.SOCIAL -> {
                 Icons.Outlined.Diversity1
             }
+
             ListCategory.MISC -> {
                 Icons.Outlined.EventNote
             }
+
             else -> {
                 Icons.Outlined.List
             }
@@ -122,6 +131,7 @@ fun MainListItem(
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
+            modifier = Modifier.weight(1f)
         ) {
             IconButton(
                 onClick = {},
@@ -139,33 +149,40 @@ fun MainListItem(
             Column(
                 modifier = Modifier
                     .padding(start = 8.dp)
-            ){
+                    .weight(1f)
+            ) {
                 val categoryName: String
                 when (mainListItem.category) {
                     ListCategory.PERSONAL -> {
                         categoryName = stringResource(id = R.string.personal)
                     }
+
                     ListCategory.WORK -> {
                         categoryName = stringResource(id = R.string.work)
                     }
+
                     ListCategory.HEALTH -> {
                         categoryName = stringResource(id = R.string.health)
                     }
+
                     ListCategory.SHOPPING -> {
                         categoryName = stringResource(id = R.string.shopping)
                     }
+
                     ListCategory.SOCIAL -> {
                         categoryName = stringResource(id = R.string.social)
                     }
+
                     ListCategory.MISC -> {
                         categoryName = stringResource(id = R.string.misc)
                     }
+
                     else -> {
                         categoryName = stringResource(id = R.string.misc)
                     }
                 }
                 Text(
-                    text = categoryName,
+                    text = categoryName + " - " + mainListItem.type,
                     fontSize = 14.sp,
                     color = secondaryContainer,
                     fontWeight = FontWeight.Bold,
@@ -192,6 +209,54 @@ fun MainListItem(
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(
+                        imageVector = Icons.Outlined.PriorityHigh,
+                        contentDescription = "Important Icon",
+                        tint = light
+                    )
+                },
+                text = {
+                    Text(
+                        text = if (favouriteStatus) context.getString(R.string.unmark_as_important) else context.getString(
+                            R.string.mark_as_important
+                        ),
+                        fontSize = 16.sp,
+                        color = light
+                    )
+                },
+                onClick = {
+                    expanded = false
+                    favouriteStatus = !favouriteStatus
+                    listViewModel.updateMainListFavouriteStatus(
+                        mainListItemId = mainListItem.id!!,
+                        newFavouriteStatus = favouriteStatus
+                    )
+                }
+            )
+/*            DropdownMenuItem(
+                leadingIcon = {
+                    Icon(
+                        imageVector = Icons.Outlined.Notifications,
+                        contentDescription = "Set Alarm Icon",
+                        tint = light
+                    )
+                },
+                text = {
+                    Text(
+                        text = if (reminderDate != null) context.getString(R.string.modify_alarm) else context.getString(
+                            R.string.set_alarm
+                        ),
+                        fontSize = 16.sp,
+                        color = light
+                    )
+                },
+                onClick = {
+                    expanded = false
+                    navController.navigate(route = "${Screens.ReminderScreen.route}/${mainListItem.id}")
+                }
+            )*/
+            DropdownMenuItem(
+                leadingIcon = {
+                    Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = "Delete Icon",
                         tint = light
@@ -209,50 +274,6 @@ fun MainListItem(
                     openDeleteDialog = true
                 }
             )
-            DropdownMenuItem(
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Outlined.PriorityHigh,
-                        contentDescription = "Important Icon",
-                        tint = light
-                    )
-                },
-                text = {
-                    Text(
-                        text = if (favouriteStatus) context.getString(R.string.unmark_as_important) else context.getString(R.string.mark_as_important),
-                        fontSize = 16.sp,
-                        color = light
-                    )
-                },
-                onClick = {
-                    expanded = false
-                    favouriteStatus = !favouriteStatus
-                    listViewModel.updateMainListFavouriteStatus(
-                        mainListItemId = mainListItem.id!!,
-                        newFavouriteStatus = favouriteStatus
-                    )
-                }
-            )
-            DropdownMenuItem(
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Outlined.Notifications,
-                        contentDescription = "Set Alarm Icon",
-                        tint = light
-                    )
-                },
-                text = {
-                    Text(
-                        text = if (reminderDate != null) context.getString(R.string.modify_alarm) else context.getString(R.string.set_alarm),
-                        fontSize = 16.sp,
-                        color = light
-                    )
-                },
-                onClick = {
-                    expanded = false
-                    navController.navigate(route = "${Screens.ReminderScreen.route}/${mainListItem.id}")
-                }
-            )
         }
 
 
@@ -261,24 +282,39 @@ fun MainListItem(
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
             if (favouriteStatus) {
-                Icon(
-                    imageVector = Icons.Outlined.PriorityHigh,
-                    contentDescription = "Fav Icon",
-                    tint = dark
-                )
+                Box(
+                    modifier = Modifier
+                        .padding(end = 2.dp)
+                        .background(color = secondary, shape = RoundedCornerShape(8.dp))
+                        .border(2.dp, background, RoundedCornerShape(8.dp))
+
+                ){
+                    Icon(
+                        imageVector = Icons.Outlined.PriorityHigh,
+                        contentDescription = "Fav Icon",
+                        tint = background,
+                        modifier = Modifier
+                            .padding(4.dp)
+                    )
+                }
             }
             if (reminderDate != null) {
-                Icon(
-                    imageVector = Icons.Outlined.NotificationsActive,
-                    contentDescription = "Alarm Icon",
-                    tint = dark
-                )
+                Box(
+                    modifier = Modifier
+                        .padding(end = 2.dp)
+                        .background(color = secondary, shape = RoundedCornerShape(8.dp))
+                        .border(2.dp, background, RoundedCornerShape(8.dp))
+
+                ){
+                    Icon(
+                        imageVector = Icons.Outlined.NotificationsActive,
+                        contentDescription = "Alarm Icon",
+                        tint = background,
+                        modifier = Modifier
+                            .padding(4.dp)
+                    )
+                }
             }
-            Icon(
-                imageVector = typeIcon,
-                contentDescription = "Type Icon",
-                tint = dark
-            )
         }
 
         if (openDeleteDialog) {
