@@ -108,7 +108,7 @@ fun MainScreen(
     val listCategoryOptions = listOf("Personal", "Work", "Health", "Shopping", "Social", "Misc")
     val (selectedListCategoryOption, onListCategoryOptionSelected) = remember { mutableStateOf(listCategoryOptions[0]) }
 
-    /** lazyColumn */
+    /** lazyColumn State*/
     val listState = rememberLazyListState(0)
 
 

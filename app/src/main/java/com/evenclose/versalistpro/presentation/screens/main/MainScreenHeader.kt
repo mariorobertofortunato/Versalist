@@ -35,6 +35,7 @@ import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.composables.dialog.aboutdialog.AboutDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.languagedialog.LanguageDialog
 import com.evenclose.versalistpro.presentation.composables.dialog.mainscreenhelpdialog.MainScreenHelpDialog
+import com.evenclose.versalistpro.presentation.composables.dialog.privacydialog.PrivacyDialog
 import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 
@@ -46,6 +47,7 @@ fun MainScreenHeader()
     /** Dialog */
     var openHelpDialog by remember { mutableStateOf(false) }
     var openAboutDialog by remember { mutableStateOf(false) }
+    var openPrivacyDialog by remember { mutableStateOf(false) }
     var openLanguageDialog by remember { mutableStateOf(false) }
 
 
@@ -85,6 +87,8 @@ fun MainScreenHeader()
                     .background(secondaryContainer)
                     .border(1.dp, light, RoundedCornerShape(4.dp))
             ) {
+
+                /** HELP */
                 DropdownMenuItem(
                     leadingIcon = {
                         Icon(
@@ -105,6 +109,8 @@ fun MainScreenHeader()
                         openHelpDialog = true
                     }
                 )
+
+                /** INFO / ABOUT */
                 DropdownMenuItem(
                     leadingIcon = {
                         Icon(
@@ -125,6 +131,8 @@ fun MainScreenHeader()
                         openAboutDialog = true
                     }
                 )
+
+                /** PRIVACY */
                 DropdownMenuItem(
                     leadingIcon = {
                         Icon(
@@ -140,8 +148,13 @@ fun MainScreenHeader()
                             color = light
                         )
                     },
-                    onClick = { /* TODO*/ }
+                    onClick = {
+                        expanded = false
+                        openPrivacyDialog = true
+                    }
                 )
+
+                /** LANGUAGE */
                 DropdownMenuItem(
                     leadingIcon = {
                         Icon(
@@ -176,6 +189,13 @@ fun MainScreenHeader()
             AboutDialog(
                 onDismiss = {
                     openAboutDialog = false
+                }
+            )
+        }
+        if (openPrivacyDialog) {
+            PrivacyDialog(
+                onDismiss = {
+                    openPrivacyDialog = false
                 }
             )
         }
