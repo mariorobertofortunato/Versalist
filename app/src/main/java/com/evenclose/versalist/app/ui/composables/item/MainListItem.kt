@@ -11,20 +11,22 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.outlined.EventNote
+import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.outlined.Badge
 import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Diversity1
 import androidx.compose.material.icons.outlined.EmojiPeople
-import androidx.compose.material.icons.outlined.EventNote
-import androidx.compose.material.icons.outlined.List
 import androidx.compose.material.icons.outlined.NotificationsActive
 import androidx.compose.material.icons.outlined.PriorityHigh
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.Spa
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -39,21 +41,24 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalist.R
+import com.evenclose.versalist.app.navigation.Screens
+import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
+import com.evenclose.versalist.app.ui.theme.background
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
+import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
+import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
+import com.evenclose.versalist.app.ui.theme.primaryWhite
+import com.evenclose.versalist.app.ui.theme.primaryWhiteVariant
+import com.evenclose.versalist.app.ui.theme.secondary
+import com.evenclose.versalist.app.viewmodel.ListViewModel
 import com.evenclose.versalist.data.model.ListCategory
 import com.evenclose.versalist.data.model.MainListItem
-import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
-import com.evenclose.versalist.app.navigation.Screens
-import com.evenclose.versalist.app.ui.theme.background
-import com.evenclose.versalist.app.ui.theme.dark
-import com.evenclose.versalist.app.ui.theme.light
-import com.evenclose.versalist.app.ui.theme.secondary
-import com.evenclose.versalist.app.ui.theme.secondaryContainer
-import com.evenclose.versalist.app.viewmodel.ListViewModel
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
@@ -76,7 +81,7 @@ fun MainListItem(
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp)
+            .padding(16.dp)
             .combinedClickable(
                 // Disable ripple effect because it sucks
                 indication = null,
@@ -111,11 +116,11 @@ fun MainListItem(
             }
 
             ListCategory.MISC -> {
-                Icons.Outlined.EventNote
+                Icons.AutoMirrored.Outlined.EventNote
             }
 
             else -> {
-                Icons.Outlined.List
+                Icons.AutoMirrored.Outlined.List
             }
         }
 
@@ -127,14 +132,13 @@ fun MainListItem(
             IconButton(
                 onClick = {},
                 modifier = Modifier
-                    .background(color = background, shape = RoundedCornerShape(12.dp))
-                    .border(2.dp, secondary, RoundedCornerShape(12.dp)),
+                    .background(color = primaryWhite, shape = CircleShape)
+                    .border(2.dp, primaryGreen_Dark, CircleShape),
             ) {
                 Icon(
                     imageVector = categoryIcon,
                     contentDescription = "Category Icon",
-                    tint = dark,
-                    modifier = Modifier
+                    tint = primaryGreen_Dark
                 )
             }
             Column(
@@ -175,13 +179,13 @@ fun MainListItem(
                 Text(
                     text = categoryName + " - " + mainListItem.type,
                     fontSize = 14.sp,
-                    color = secondaryContainer,
+                    color = primaryWhiteVariant,
                     fontWeight = FontWeight.Bold,
                 )
                 Text(
                     text = mainListItem.name,
                     fontSize = 20.sp,
-                    color = dark,
+                    color = primaryWhite,
                     fontWeight = FontWeight.Bold,
                     maxLines = 1,
                     overflow = TextOverflow.Ellipsis
@@ -193,16 +197,20 @@ fun MainListItem(
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
+            offset = DpOffset(x = 4.dp, y = 4.dp),
+            shape = RoundedCornerShape(16.dp),
+            shadowElevation = 10.dp,
             modifier = Modifier
-                .background(secondaryContainer)
-                .border(1.dp, light, RoundedCornerShape(4.dp))
+                .fillMaxWidth(0.9f)
+                .background(primaryGreen_Light, RoundedCornerShape(16.dp))
+                .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
         ) {
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Outlined.PriorityHigh,
                         contentDescription = "Important Icon",
-                        tint = light
+                        tint = primaryWhite
                     )
                 },
                 text = {
@@ -211,7 +219,7 @@ fun MainListItem(
                             R.string.mark_as_important
                         ),
                         fontSize = 16.sp,
-                        color = light
+                        color = primaryWhite
                     )
                 },
                 onClick = {
@@ -222,6 +230,12 @@ fun MainListItem(
                         newFavouriteStatus = favouriteStatus
                     )
                 }
+            )
+            HorizontalDivider(
+                color = secondary.copy(alpha = 0.25f),
+                thickness = 2.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
             )
 /*            DropdownMenuItem(
                 leadingIcon = {
@@ -250,14 +264,14 @@ fun MainListItem(
                     Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = "Delete Icon",
-                        tint = light
+                        tint = primaryWhite
                     )
                 },
                 text = {
                     Text(
                         text = stringResource(id = R.string.delete) + " " + mainListItem.name,
                         fontSize = 16.sp,
-                        color = light
+                        color = primaryWhite
                     )
                 },
                 onClick = {
@@ -276,14 +290,14 @@ fun MainListItem(
                 Box(
                     modifier = Modifier
                         .padding(end = 2.dp)
-                        .background(color = secondary, shape = RoundedCornerShape(8.dp))
-                        .border(2.dp, background, RoundedCornerShape(8.dp))
+                        .background(color = primaryBlack_Dark, shape = RoundedCornerShape(8.dp))
+                        .border(2.dp, primaryWhite, RoundedCornerShape(8.dp))
 
                 ){
                     Icon(
                         imageVector = Icons.Outlined.PriorityHigh,
                         contentDescription = "Fav Icon",
-                        tint = background,
+                        tint = primaryWhite,
                         modifier = Modifier
                             .padding(4.dp)
                     )
@@ -293,14 +307,14 @@ fun MainListItem(
                 Box(
                     modifier = Modifier
                         .padding(end = 2.dp)
-                        .background(color = secondary, shape = RoundedCornerShape(8.dp))
+                        .background(color = primaryBlack_Dark, shape = RoundedCornerShape(8.dp))
                         .border(2.dp, background, RoundedCornerShape(8.dp))
 
                 ){
                     Icon(
                         imageVector = Icons.Outlined.NotificationsActive,
                         contentDescription = "Alarm Icon",
-                        tint = background,
+                        tint = primaryWhite,
                         modifier = Modifier
                             .padding(4.dp)
                     )

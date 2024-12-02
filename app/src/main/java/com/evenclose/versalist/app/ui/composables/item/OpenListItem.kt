@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Circle
@@ -27,6 +28,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evenclose.versalist.R
@@ -34,6 +36,9 @@ import com.evenclose.versalist.data.model.InnerListItem
 import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
 import com.evenclose.versalist.app.ui.theme.dark
 import com.evenclose.versalist.app.ui.theme.light
+import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
+import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
+import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.secondaryContainer
 
 @OptIn(ExperimentalFoundationApi::class)
@@ -49,7 +54,7 @@ fun OpenListItem(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp)
+            .padding(16.dp)
             .combinedClickable(
                 // Disable ripple effect because it sucks
                 indication = null,
@@ -65,37 +70,40 @@ fun OpenListItem(
             contentDescription = "Bullet Icon",
             tint = Color.Transparent,
             modifier = Modifier
-                .size(12.dp)
-                .background(dark, RoundedCornerShape(50))
+                .size(16.dp)
+                .background(primaryWhite, CircleShape)
         )
-
         Text(
             text = innerListItem.name,
-            fontSize = 20.sp,
-            color = dark,
+            fontSize = 24.sp,
+            color = primaryWhite,
             fontWeight = FontWeight.Bold,
             modifier = Modifier.padding(start = 8.dp)
         )
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
+            offset = DpOffset(x = 4.dp, y = 4.dp),
+            shape = RoundedCornerShape(16.dp),
+            shadowElevation = 10.dp,
             modifier = Modifier
-                .background(secondaryContainer)
-                .border(1.dp, light, RoundedCornerShape(4.dp))
+                .fillMaxWidth(0.9f)
+                .background(primaryGreen_Light, RoundedCornerShape(16.dp))
+                .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
         ) {
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = "Delete Icon",
-                        tint = light
+                        tint = primaryWhite
                     )
                 },
                 text = {
                     Text(
                         text = stringResource(id = R.string.delete) + " " + innerListItem.name,
                         fontSize = 16.sp,
-                        color = light
+                        color = primaryWhite
                     )
                 },
                 onClick = {

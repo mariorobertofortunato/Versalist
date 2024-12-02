@@ -1,4 +1,4 @@
-package com.evenclose.versalist.app.ui.composables.dialog
+package com.evenclose.versalist.app.ui.composables.dialog.helpdialog
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue

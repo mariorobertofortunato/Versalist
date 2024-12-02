@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Versalist Pro</string>
+    <string name="app_name" translatable="false">Versalist</string>
 
     <!-- Dropdown menu -->
     <string name="help">Help</string>

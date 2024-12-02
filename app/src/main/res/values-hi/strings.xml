@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">वर्सालिस्ट प्रो</string>
 
     <!-- Dropdown menu -->
     <string name="help">सहायता</string>

@@ -17,6 +17,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material.icons.Icons
@@ -24,6 +25,7 @@ import androidx.compose.material.icons.outlined.Cancel
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material3.Divider
 import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -41,6 +43,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
@@ -50,13 +53,18 @@ import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalist.R
+import com.evenclose.versalist.app.ui.composables.FabContent
+import com.evenclose.versalist.app.ui.composables.forms.NewItemForm
 import com.evenclose.versalist.app.ui.composables.item.CheckListItem
 import com.evenclose.versalist.app.ui.composables.item.OpenListItem
 import com.evenclose.versalist.app.ui.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalist.app.ui.theme.background
+import com.evenclose.versalist.app.ui.theme.backgroundGradient
 import com.evenclose.versalist.app.ui.theme.light
 import com.evenclose.versalist.app.ui.theme.dark
 import com.evenclose.versalist.app.ui.theme.primary
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
+import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.secondary
 import com.evenclose.versalist.utils.enums.PlaceholderType
 import com.evenclose.versalist.app.viewmodel.ListViewModel
@@ -73,9 +81,7 @@ fun ListScreen(
     val currentListData = listViewModel.currentListData.collectAsState(null)
     val currentInnerList = listViewModel.currentInnerList.collectAsState(null)
 
-    var newItemValue by remember { mutableStateOf("") }
     var newItemTextFieldVisibility by remember { mutableStateOf(false) }
-    var errorTextVisibility by remember { mutableStateOf(false) }
     val listState = rememberLazyListState()
 
     val focusRequester = remember { FocusRequester() }
@@ -84,7 +90,6 @@ fun ListScreen(
         listViewModel.getListData(listId)
         listViewModel.getCurrentInnerList(listId)
     }
-
 
     // When a new item is added we scroll to the bottom of the list
     LaunchedEffect(currentInnerList.value?.size, newItemTextFieldVisibility) {
@@ -100,13 +105,17 @@ fun ListScreen(
     }
 
     Scaffold(
+        modifier = Modifier
+            .background(
+                brush = Brush.linearGradient(backgroundGradient)
+            ),
         topBar = {
             Column(
                 modifier = Modifier
-                    .background(secondary)
+                    .background(
+                        brush = Brush.linearGradient(backgroundGradient)
+                    )
             ) {
-
-                /** HEADER */
                 ListScreenHeader(
                     navController = navController,
                     listName = currentListData.value?.name ?: "Error"
@@ -115,51 +124,35 @@ fun ListScreen(
         },
         bottomBar = {
             AnimatedVisibility(
-                visible = !newItemTextFieldVisibility,
-                modifier = Modifier
-                    .padding(start = 2.dp, end = 2.dp, bottom = 2.dp)
-                    .background(
-                        color = primary,
-                        shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
-                    )
+                visible = !newItemTextFieldVisibility
             ) {
                 FloatingActionButton(
-                    containerColor = secondary,
-                    contentColor = light,
-                    shape = RoundedCornerShape(12.dp),
+                    containerColor = primaryBlack_Dark,
+                    contentColor = primaryWhite,
+                    shape = CircleShape,
                     onClick = {
                         newItemTextFieldVisibility = true
-                        errorTextVisibility = false
+                        //errorTextVisibility = false
                     },
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(12.dp)
-                        .border(2.dp, primary, RoundedCornerShape(12.dp))
+                        .padding(16.dp)
+                        .border(1.dp, primaryWhite, CircleShape)
                 ) {
-                    Row(
-                        horizontalArrangement = Arrangement.SpaceBetween,
-                        verticalAlignment = Alignment.CenterVertically,
-                    ) {
-                        Text(
-                            text = stringResource(id = R.string.add_item),
-                            fontSize = 32.sp,
-                            fontWeight = FontWeight.Bold,
-                            color = light,
-                        )
-                    }
+                    FabContent(
+                        text = stringResource(id = R.string.add_item)
+                    )
                 }
             }
 
         },
     ) {
         LazyColumn(
+            verticalArrangement = if (currentInnerList.value?.isNotEmpty() == true || newItemTextFieldVisibility) Arrangement.Top else Arrangement.Center,
             state = listState,
             modifier = Modifier
-                .border(1.5.dp, dark,RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
-                .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
                 .fillMaxSize()
                 .padding(it)
-                .background(primary)
         ) {
 
             if (currentInnerList.value?.isNotEmpty() == true) {
@@ -182,7 +175,7 @@ fun ListScreen(
                                 innerListItem = item,
                             )
                         }
-                        Divider(
+                        HorizontalDivider(
                             color = secondary.copy(alpha = 0.25f),
                             thickness = 2.dp,
                             modifier = Modifier
@@ -197,20 +190,9 @@ fun ListScreen(
                     AnimatedVisibility(
                         visible = !newItemTextFieldVisibility,
                     ) {
-                        Column() {
-                            Row(
-                                horizontalArrangement = Arrangement.Center,
-                                verticalAlignment = Alignment.CenterVertically,
-                                modifier = Modifier
-                                    .padding(
-                                        horizontal = 12.dp,
-                                        vertical = 6.dp
-                                    )
-                                    .fillMaxWidth()
-                            ) {
-                                EmptyListPlaceholder(type = PlaceholderType.PLACEHOLDER_LIST_SCREEN)
-                            }
-                        }
+                        EmptyListPlaceholder(
+                            type = PlaceholderType.PLACEHOLDER_LIST_SCREEN
+                        )
                     }
 
                 }
@@ -220,143 +202,19 @@ fun ListScreen(
                 AnimatedVisibility(
                     visible = newItemTextFieldVisibility,
                 ) {
-                    Column(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .padding(top = 16.dp, start = 16.dp, end = 16.dp),
-                        horizontalAlignment = Alignment.CenterHorizontally
-                    ) {
-
-                        /** Text field */
-                        TextField(
-                            value = newItemValue,
-                            onValueChange = { newValue ->
-                                newItemValue = newValue
-                                errorTextVisibility = false
-                            },
-                            singleLine = true,
-                            shape = RoundedCornerShape(8.dp),
-                            placeholder = {
-                                Text(
-                                    text = stringResource(id = R.string.new_item),
-                                    color = dark,
-                                    fontWeight = FontWeight.Bold,
-                                    fontSize = 16.sp
-                                )
-                            },
-                            colors = TextFieldDefaults.colors(
-                                cursorColor = secondary,
-                                focusedContainerColor = background,
-                                unfocusedContainerColor = background,
-                                disabledContainerColor = background,
-                                focusedTextColor = dark
-                            ),
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .focusRequester(focusRequester)
-                                .border(1.dp, secondary,RoundedCornerShape(8.dp)),
-                            textStyle = TextStyle(
-                                fontWeight = FontWeight.Bold,
-                                fontSize = 16.sp
-                            ),
-                            keyboardOptions = KeyboardOptions(capitalization = KeyboardCapitalization.Sentences)
-                        )
-
-                        /** Error Text */
-                        AnimatedVisibility(
-                            visible = errorTextVisibility,
-                            enter = slideInVertically(animationSpec = tween(100)) + fadeIn(),
-                            exit = slideOutVertically (animationSpec = tween(100)) + fadeOut()
-                        ) {
-                            Text(
-                                text = stringResource(id = R.string.empty_new_item_error),
-                                color = secondary,
-                                fontWeight = FontWeight.Bold
+                    NewItemForm(
+                        focusRequester = focusRequester,
+                        onCancelClick = {
+                            newItemTextFieldVisibility = false
+                        },
+                        onConfirmClick = { newItemValue ->
+                            listViewModel.addNewInnerListItem(
+                                value = newItemValue,
+                                mainListId = listId
                             )
+                            newItemTextFieldVisibility = false
                         }
-
-                        /** Confirm/Cancel Icon Group */
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                                .padding(top = 8.dp, bottom = 4.dp)
-                        ) {
-                            FloatingActionButton(
-                                containerColor = secondary,
-                                contentColor = light,
-                                shape = RoundedCornerShape(12.dp),
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .padding(end = 4.dp)
-                                    .border(2.dp, primary, RoundedCornerShape(12.dp)),
-                                onClick = {
-                                    newItemTextFieldVisibility = false
-                                    newItemValue = ""
-                                }
-                            ) {
-                                Row(
-                                    horizontalArrangement = Arrangement.SpaceBetween,
-                                    verticalAlignment = Alignment.CenterVertically,
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Outlined.Cancel,
-                                        contentDescription = "Cancel Icon",
-                                        tint = light,
-                                        modifier = Modifier
-                                            .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
-                                    )
-                                    Text(
-                                        text = stringResource(id = R.string.cancel),
-                                        color = light,
-                                        fontWeight = FontWeight.Bold,
-                                        fontSize = 20.sp
-                                    )
-                                }
-                            }
-                            FloatingActionButton(
-                                containerColor = secondary,
-                                contentColor = light,
-                                shape = RoundedCornerShape(12.dp),
-                                modifier = Modifier
-                                    .weight(1f)
-                                    .padding(start = 4.dp)
-                                    .border(2.dp, primary, RoundedCornerShape(12.dp)),
-                                onClick = {
-                                    if (newItemValue != "") {
-                                        listViewModel.addNewInnerListItem(
-                                            value = newItemValue,
-                                            mainListId = listId
-                                        )
-                                        newItemTextFieldVisibility = false
-                                        newItemValue = ""
-                                    } else {
-                                        errorTextVisibility = true
-                                    }
-                                }
-                            ) {
-                                Row(
-                                    horizontalArrangement = Arrangement.SpaceBetween,
-                                    verticalAlignment = Alignment.CenterVertically,
-                                ) {
-                                    Icon(
-                                        imageVector = Icons.Outlined.CheckCircle,
-                                        contentDescription = "Confirm Icon",
-                                        tint = light,
-                                        modifier = Modifier
-                                            .padding(top = 12.dp, bottom = 12.dp, end = 8.dp)
-                                    )
-                                    Text(
-                                        text = stringResource(id = R.string.confirm),
-                                        color = light,
-                                        fontWeight = FontWeight.Bold,
-                                        fontSize = 20.sp
-                                    )
-                                }
-                            }
-                        }
-                    }
+                    )
                 }
 
             }

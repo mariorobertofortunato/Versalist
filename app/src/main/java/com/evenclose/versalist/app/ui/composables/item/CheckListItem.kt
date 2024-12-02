@@ -28,6 +28,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextDecoration
+import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -36,6 +37,11 @@ import com.evenclose.versalist.data.model.InnerListItem
 import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
 import com.evenclose.versalist.app.ui.theme.dark
 import com.evenclose.versalist.app.ui.theme.light
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
+import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
+import com.evenclose.versalist.app.ui.theme.primaryGrey
+import com.evenclose.versalist.app.ui.theme.primaryWhite
+import com.evenclose.versalist.app.ui.theme.primaryWhiteVariant
 import com.evenclose.versalist.app.ui.theme.secondaryContainer
 import com.evenclose.versalist.app.viewmodel.ListViewModel
 
@@ -54,7 +60,7 @@ fun CheckListItem(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(12.dp)
+            .padding(16.dp)
             .combinedClickable(
                 // Disable ripple effect because it sucks
                 indication = null,
@@ -81,18 +87,18 @@ fun CheckListItem(
             },
             contentDescription = "Check Icon",
             tint = if (checkStatus) {
-                secondaryContainer
+                primaryGrey
             } else {
-                dark
+                primaryWhite
             }
         )
         Text(
             text = innerListItem.name,
-            fontSize = 20.sp,
+            fontSize = 24.sp,
             color = if (checkStatus) {
-                secondaryContainer
+                primaryGrey
             } else {
-                dark
+                primaryWhite
             },
             fontWeight = FontWeight.Bold,
             style = if (checkStatus) {
@@ -105,23 +111,27 @@ fun CheckListItem(
         DropdownMenu(
             expanded = expanded,
             onDismissRequest = { expanded = false },
+            offset = DpOffset(x = 4.dp, y = 4.dp),
+            shape = RoundedCornerShape(16.dp),
+            shadowElevation = 10.dp,
             modifier = Modifier
-                .background(secondaryContainer)
-                .border(1.dp, light, RoundedCornerShape(4.dp))
+                .fillMaxWidth(0.9f)
+                .background(primaryGreen_Light, RoundedCornerShape(16.dp))
+                .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
         ) {
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(
                         imageVector = Icons.Outlined.Delete,
                         contentDescription = "Delete Icon",
-                        tint = light
+                        tint = primaryWhite
                     )
                 },
                 text = {
                     Text(
                         text = stringResource(id = R.string.delete) + " " + innerListItem.name,
                         fontSize = 16.sp,
-                        color = light
+                        color = primaryWhite
                     )
                 },
                 onClick = {

@@ -9,26 +9,22 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.ui.theme.light
 import androidx.compose.ui.tooling.preview.Preview
+import com.evenclose.versalist.app.ui.theme.primaryWhite
 
 @Composable
-fun NewListFab() {
+fun FabContent(
+    text: String
+) {
     Row(
         horizontalArrangement = Arrangement.SpaceBetween,
         verticalAlignment = Alignment.CenterVertically,
     ) {
         Text(
-            text = stringResource(id = R.string.new_list),
+            text = text,
             fontSize = 32.sp,
             fontWeight = FontWeight.Bold,
-            color = light,
+            color = primaryWhite,
         )
     }
-}
-
-@Composable
-@Preview
-private fun NewListFabPreview() {
-    NewListFab()
 }

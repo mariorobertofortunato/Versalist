@@ -18,6 +18,7 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Divider
+import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
@@ -36,6 +37,8 @@ import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.theme.light
+import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
+import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.secondary
 import com.evenclose.versalist.app.ui.theme.secondaryContainer
 import com.evenclose.versalist.app.viewmodel.ListViewModel
@@ -92,24 +95,17 @@ fun LanguageDialog(
                 )
                 Box(
                     modifier = Modifier
-                        .background(
-                            color = secondaryContainer,
-                            shape = RoundedCornerShape(12.dp)
-                        )
-                        .border(
-                            width = 1.dp,
-                            color = light,
-                            shape = RoundedCornerShape(12.dp)
-                        )
+                        .background(primaryGreen_Light, RoundedCornerShape(16.dp))
+                        .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
                         .fillMaxWidth()
                 ) {
                     Column(
                         horizontalAlignment = CenterHorizontally,
                         modifier = Modifier
-                            .padding(horizontal = 32.dp, vertical = 16.dp)
+                            .padding(horizontal = 24.dp, vertical = 16.dp)
                     ) {
                         Spacer(
-                            modifier = Modifier.height(18.dp)
+                            modifier = Modifier.height(16.dp)
                         )
                         Text(
                             text = stringResource(id = R.string.choose_language),
@@ -117,21 +113,21 @@ fun LanguageDialog(
                             modifier = Modifier
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.headlineSmall,
-                            color = light,
+                            color = primaryWhite,
                             fontWeight = FontWeight.Bold,
                         )
-                        Divider(
-                            color = light,
+                        HorizontalDivider(
+                            color = primaryWhite,
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
                                 .padding(top = 16.dp, bottom = 4.dp)
                         )
                         Scaffold(
-                            containerColor = secondaryContainer,
+                            containerColor = primaryGreen_Light,
                             bottomBar = {
-                                Divider(
-                                    color = light,
+                                HorizontalDivider(
+                                    color = primaryWhite,
                                     thickness = 1.dp,
                                     modifier = Modifier
                                         .fillMaxWidth(1f)
@@ -151,7 +147,7 @@ fun LanguageDialog(
                                         Text(
                                             text = stringResource(id = R.string.dismiss),
                                             fontSize = 16.sp,
-                                            color = light,
+                                            color = primaryWhite,
                                             fontWeight = FontWeight.Bold,
                                             modifier = Modifier
                                                 .padding(top = 4.dp)
@@ -288,14 +284,14 @@ fun LanguageDialog(
                                         Text(
                                             text = language,
                                             style = MaterialTheme.typography.headlineSmall,
-                                            color = light,
+                                            color = primaryWhite,
                                             fontWeight = FontWeight.Bold,
                                             modifier = Modifier
                                                 .fillMaxWidth()
                                                 .padding(vertical = 4.dp)
                                         )
-                                        Divider(
-                                            color = secondary,
+                                        HorizontalDivider(
+                                            color = primaryWhite,
                                             thickness = 1.dp,
                                             modifier = Modifier
                                                 .fillMaxWidth()

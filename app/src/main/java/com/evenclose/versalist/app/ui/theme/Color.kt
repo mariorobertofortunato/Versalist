@@ -31,5 +31,9 @@ val primaryBlack_Dark = Color(0xFF121D23)
 val primaryWhite = Color(0xFFF5F5F5)
 val primaryWhiteVariant = Color(0xFFFFFFDF)
 
+val primaryGrey= Color(0xFFA4A4A4)
+
+val errorColor = Color(0xFFE83232)
+
 val backgroundGradient = listOf(primaryGreen_Light, primaryGreen_Dark, primaryBlack_Light, primaryBlack_Dark)
 val whiteGradient = listOf(primaryWhite, primaryWhite, primaryWhiteVariant)
