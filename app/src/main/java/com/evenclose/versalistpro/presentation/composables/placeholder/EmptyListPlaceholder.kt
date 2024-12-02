@@ -20,18 +20,20 @@ import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.ui.theme.dark
+import androidx.compose.ui.tooling.preview.Preview
+import com.evenclose.versalistpro.presentation.utils.enums.PlaceholderType
 
 @Composable
-fun EmptyListPlaceholder(type: String) {
+fun EmptyListPlaceholder(type: PlaceholderType) {
 
     val context = LocalContext.current
     val composition by rememberLottieComposition(LottieCompositionSpec.RawRes(R.raw.filesearching))
 
     val text = when (type) {
-        "mainScreenPlaceholder" -> {
+        PlaceholderType.PLACEHOLDER_MAIN_SCREEN -> {
             context.getString(R.string.main_screen_placeholder)
         }
-        "listScreenPlaceholder" -> {
+        PlaceholderType.PLACEHOLDER_LIST_SCREEN  -> {
             context.getString(R.string.list_screen_placeholder)
         }
         else -> {
@@ -59,4 +61,10 @@ fun EmptyListPlaceholder(type: String) {
             fontSize = 18.sp,
         )
     }
+}
+
+@Composable
+@Preview
+private fun EmptyListPlaceholderPreview() {
+    EmptyListPlaceholder(type = PlaceholderType.PLACEHOLDER_LIST_SCREEN)
 }

@@ -10,6 +10,7 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import com.evenclose.versalistpro.R
 import com.evenclose.versalistpro.presentation.ui.theme.light
+import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
 fun NewListFab() {
@@ -24,4 +25,10 @@ fun NewListFab() {
             color = light,
         )
     }
+}
+
+@Composable
+@Preview
+private fun NewListFabPreview() {
+    NewListFab()
 }

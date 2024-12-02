@@ -7,7 +7,6 @@ import androidx.room.Query
 import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
 import java.time.Instant
-import java.util.Calendar
 
 @Dao
 interface ListDao {

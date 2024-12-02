@@ -23,7 +23,6 @@ import com.evenclose.versalistpro.presentation.setLanguage
 import com.evenclose.versalistpro.presentation.ui.theme.VersalistProTheme
 import dagger.hilt.android.AndroidEntryPoint
 
-
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 

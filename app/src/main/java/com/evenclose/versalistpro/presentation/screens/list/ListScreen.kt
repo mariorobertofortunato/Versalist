@@ -58,6 +58,7 @@ import com.evenclose.versalistpro.presentation.ui.theme.light
 import com.evenclose.versalistpro.presentation.ui.theme.dark
 import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
+import com.evenclose.versalistpro.presentation.utils.enums.PlaceholderType
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import kotlinx.coroutines.delay
 
@@ -207,7 +208,7 @@ fun ListScreen(
                                     )
                                     .fillMaxWidth()
                             ) {
-                                EmptyListPlaceholder(type = "listScreenPlaceholder")
+                                EmptyListPlaceholder(type = PlaceholderType.PLACEHOLDER_LIST_SCREEN)
                             }
                         }
                     }

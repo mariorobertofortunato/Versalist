@@ -110,7 +110,7 @@ fun PrivacyDialog(
                                 .padding(top = 16.dp)
                                 .fillMaxWidth()
                                 .clickable {
-                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://evenclose.wordpress.com/2023/09/29/versalist-pro-privacy-policy/")))
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mariorobertofortunato.com/versalist_pro_privacy_policy.html")))
                                 },
                             style = MaterialTheme.typography.bodyLarge,
                             color = light,

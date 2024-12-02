@@ -21,8 +21,8 @@ android {
         applicationId = "com.evenclose.versalistpro"
         minSdk = 28
         targetSdk = 35
-        versionCode = 23
-        versionName = "2.7.1"
+        versionCode = 24
+        versionName = "2.7.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -43,18 +43,8 @@ android {
 
     buildTypes {
         getByName(BuildType.DEBUG) {
-/*            buildConfigField(
-                "String",
-                "BIG_DATA_CLOUD_API_KEY",
-                "\"${findProperty("BIG_DATA_CLOUD_API_KEY") ?: ""}\""
-            )*/
         }
         getByName(BuildType.RELEASE) {
-/*            buildConfigField(
-                "String",
-                "BIG_DATA_CLOUD_API_KEY",
-                "\"${findProperty("BIG_DATA_CLOUD_API_KEY") ?: ""}\""
-            )*/
             signingConfig = signingConfigs.getByName(BuildType.RELEASE)
             isMinifyEnabled = true
             proguardFiles(
@@ -73,18 +63,6 @@ android {
     kotlinOptions {
         jvmTarget = "17"
     }
-
-/*    composeOptions {
-        kotlinCompilerExtensionVersion '1.4.4'
-    }
-    packagingOptions {
-        resources {
-            excludes += '/META-INF/{AL2.0,LGPL2.1}'
-        }
-    }
-    hilt {
-        enableAggregatingTask = true
-    }*/
 }
 
 fun ApkSigningConfig.applyConfigs() {
@@ -96,6 +74,7 @@ fun ApkSigningConfig.applyConfigs() {
 
 dependencies {
 
+    debugImplementation(libs.androidx.ui.tooling)
     ksp(libs.hilt.android.compiler)
     ksp(libs.room.compiler)
     implementation(libs.androidx.core.ktx)
@@ -112,13 +91,9 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
-    //implementation(libs.retrofit)
-    //implementation(libs.converter.gson)
-    //implementation(libs.logging.interceptor)
     implementation(libs.lottie.compose)
     implementation(libs.material.icons.extended)
     implementation (libs.androidx.legacy.support.v4)
     implementation (libs.kotlinx.coroutines.core)
-
 
 }
