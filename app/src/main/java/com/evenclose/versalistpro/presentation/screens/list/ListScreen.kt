@@ -31,8 +31,8 @@ import androidx.compose.material3.TextField
 import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -69,8 +69,8 @@ fun ListScreen(
 ) {
 
     /** Current List */
-    val currentListData = listViewModel.currentListData.observeAsState(null)
-    val currentInnerList = listViewModel.currentInnerList.observeAsState(null)
+    val currentListData = listViewModel.currentListData.collectAsState(null)
+    val currentInnerList = listViewModel.currentInnerList.collectAsState(null)
 
     var newItemValue by remember { mutableStateOf("") }
     var newItemTextFieldVisibility by remember { mutableStateOf(false) }

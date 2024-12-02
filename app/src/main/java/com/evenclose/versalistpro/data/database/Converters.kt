@@ -1,7 +1,6 @@
 package com.evenclose.versalistpro.data.database
 
 import androidx.room.TypeConverter
-import java.sql.Timestamp
 import java.time.Instant
 
 object Converters {

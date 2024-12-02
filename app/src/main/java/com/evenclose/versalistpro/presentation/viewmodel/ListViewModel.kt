@@ -9,17 +9,24 @@ import com.evenclose.versalistpro.data.model.InnerListItem
 import com.evenclose.versalistpro.data.model.MainListItem
 import com.evenclose.versalistpro.domain.use_case.UseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
 import java.time.Instant
-import java.util.Calendar
 import javax.inject.Inject
 
 @HiltViewModel
 class ListViewModel @Inject constructor(private val useCase: UseCase): ViewModel(){
 
-    val mainList = MutableLiveData<List<MainListItem>>(emptyList())
-    val currentListData = MutableLiveData<MainListItem>(null)
-    val currentInnerList = MutableLiveData<List<InnerListItem>>(emptyList())
+    val mainList = MutableStateFlow<List<MainListItem>>(emptyList())
+    val currentListData = MutableStateFlow<MainListItem>(MainListItem(
+        id = -1,
+        name = "",
+        type = "",
+        category = "",
+        isFav = false,
+        reminderDate = null
+    ))
+    val currentInnerList = MutableStateFlow<List<InnerListItem>>(emptyList())
 
     fun fetchAllLists() {
         viewModelScope.launch {

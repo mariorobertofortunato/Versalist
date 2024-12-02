@@ -31,8 +31,8 @@ import androidx.compose.material3.Text
 import androidx.compose.material3.rememberDatePickerState
 import androidx.compose.material3.rememberTimePickerState
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
-import androidx.compose.runtime.livedata.observeAsState
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
@@ -58,19 +58,13 @@ import com.evenclose.versalistpro.presentation.ui.theme.primary
 import com.evenclose.versalistpro.presentation.ui.theme.secondary
 import com.evenclose.versalistpro.presentation.ui.theme.secondaryContainer
 import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
-import com.google.android.material.timepicker.TimeFormat
 import java.text.DateFormat
-import java.text.SimpleDateFormat
 import java.time.Instant
-import java.time.LocalDate
 import java.time.LocalDateTime
 import java.time.LocalTime
 import java.time.ZoneId
-import java.time.ZoneOffset
 import java.util.Calendar
 import java.util.Locale
-import kotlin.time.Duration.Companion.hours
-import kotlin.time.DurationUnit
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
@@ -84,7 +78,7 @@ fun ReminderScreen(
     val context = LocalContext.current
 
     /** Data*/
-    val currentListData = listViewModel.currentListData.observeAsState(null)
+    val currentListData = listViewModel.currentListData.collectAsState(null)
 
     val datePickerState = if (currentListData.value?.reminderDate != null) {
         rememberDatePickerState(

@@ -67,7 +67,7 @@ fun ListScreenHeader(
                 tint = light
             )
         }
-        BoxWithConstraints(
+        Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .weight(5f)

@@ -1,12 +1,11 @@
 package com.evenclose.versalistpro
 
-import android.content.pm.PackageManager
+import android.app.AlertDialog
 import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.result.contract.ActivityResultContracts
-import androidx.appcompat.app.AlertDialog
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
@@ -17,7 +16,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
-import androidx.core.content.ContextCompat
 import androidx.navigation.compose.rememberNavController
 import com.evenclose.versalistpro.data.DataStore
 import com.evenclose.versalistpro.presentation.navigation.NavGraph

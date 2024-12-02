@@ -1,16 +1,14 @@
 package com.evenclose.versalistpro.data.model
 
-import android.os.Parcelable
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import kotlinx.parcelize.Parcelize
+import java.io.Serializable
 
-@Parcelize
 @Entity(tableName = "inner_list")
 data class InnerListItem(
-    @PrimaryKey(autoGenerate = true)
-    var id: Int? = null,
-    val name: String = "",
-    var isChecked: Boolean,
-    val mainListId: Int
-) : Parcelable
+    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int? = null,
+    @ColumnInfo(name = "name") val name: String = "",
+    @ColumnInfo(name = "isChecked") var isChecked: Boolean,
+    @ColumnInfo(name = "mainListId") val mainListId: Int
+): Serializable

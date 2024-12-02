@@ -12,20 +12,13 @@ import android.content.Context
 import android.content.Context.NOTIFICATION_SERVICE
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.BitmapFactory
 import android.graphics.Color
-import androidx.appcompat.resources.Compatibility.Api18Impl.setAutoCancel
-import androidx.compose.material.icons.Icons
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
 import com.evenclose.versalistpro.data.repository.ListRepository
-import com.evenclose.versalistpro.domain.use_case.UseCase
-import com.evenclose.versalistpro.presentation.viewmodel.ListViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
-import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
-import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

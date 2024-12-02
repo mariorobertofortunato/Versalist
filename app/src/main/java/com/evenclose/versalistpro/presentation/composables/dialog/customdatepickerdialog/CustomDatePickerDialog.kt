@@ -68,9 +68,9 @@ fun CustomDatePickerDialog(
         DatePicker(
             state = datePickerState,
             showModeToggle = false,
-            dateValidator = { timestamp ->
+/*            dateValidator = { timestamp ->
                 timestamp > (Instant.now().toEpochMilli() - 8.64e+7)
-            },
+            },*/
             colors = DatePickerDefaults.colors(
                 titleContentColor = light,
                 headlineContentColor = light,
