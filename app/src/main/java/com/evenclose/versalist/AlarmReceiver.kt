@@ -15,6 +15,7 @@ import android.content.pm.PackageManager
 import android.graphics.Color
 import androidx.core.app.ActivityCompat
 import androidx.core.app.NotificationCompat
+import com.evenclose.versalist.app.MainActivity
 import com.evenclose.versalist.data.repository.ListRepository
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.DelicateCoroutinesApi
