@@ -14,15 +14,15 @@ object BuildType {
 }
 
 android {
-    namespace = "com.evenclose.versalistpro"
+    namespace = "com.evenclose.versalist"
     compileSdk = 35
 
     defaultConfig {
-        applicationId = "com.evenclose.versalistpro"
+        applicationId = "com.evenclose.versalist"
         minSdk = 28
         targetSdk = 35
-        versionCode = 24
-        versionName = "2.7.2"
+        versionCode = 1
+        versionName = "1.0.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }

@@ -18,4 +18,4 @@ Key Features:
 VersaList Pro goes beyond a simple to-do app by offering a versatile platform for all your list-making needs. Whether you're a busy professional, a student, or someone who enjoys staying organized, VersaList Pro empowers you to take control of your tasks, plans, and goals in one convenient location.
 
 Download VersaList Pro today and experience the ultimate flexibility in list management. Stay organized, stay ahead!
-https://play.google.com/store/apps/details?id=com.evenclose.versalistpro
+https://play.google.com/store/apps/details?id=versalist
