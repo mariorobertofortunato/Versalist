@@ -1,13 +1,10 @@
 package com.evenclose.versalist.app.ui.composables.dialog.languagedialog
 
-
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -21,7 +18,6 @@ import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
@@ -31,10 +27,10 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalist.R
+import com.evenclose.versalist.app.ui.composables.CustomCTA
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.viewmodel.ListViewModel
@@ -122,33 +118,21 @@ fun LanguageDialog(
                         Scaffold(
                             containerColor = primaryGreen_Light,
                             bottomBar = {
-                                HorizontalDivider(
-                                    color = primaryWhite,
-                                    thickness = 1.dp,
-                                    modifier = Modifier
-                                        .fillMaxWidth(1f)
-                                        .align(CenterHorizontally)
-                                        .padding(top = 2.dp)
-                                )
-                                Row(
-                                    horizontalArrangement = Arrangement.Center,
-                                    modifier = Modifier
-                                        .fillMaxWidth()
-                                ) {
-                                    TextButton(
+                                Column {
+                                    HorizontalDivider(
+                                        color = primaryWhite,
+                                        thickness = 1.dp,
+                                        modifier = Modifier
+                                            .fillMaxWidth(0.95f)
+                                            .align(CenterHorizontally)
+                                            .padding(vertical = 16.dp)
+                                    )
+                                    CustomCTA(
+                                        text = stringResource(id = R.string.dismiss),
                                         onClick = {
                                             onDismiss()
                                         }
-                                    ) {
-                                        Text(
-                                            text = stringResource(id = R.string.dismiss),
-                                            fontSize = 16.sp,
-                                            color = primaryWhite,
-                                            fontWeight = FontWeight.Bold,
-                                            modifier = Modifier
-                                                .padding(top = 4.dp)
-                                        )
-                                    }
+                                    )
                                 }
                             }
                         ) {

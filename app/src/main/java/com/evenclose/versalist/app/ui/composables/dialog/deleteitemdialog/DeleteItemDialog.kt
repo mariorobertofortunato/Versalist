@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -27,6 +28,7 @@ import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalist.R
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.viewmodel.ListViewModel
@@ -98,11 +100,16 @@ fun DeleteItemDialog (
                         )
 
                         Row(
-                            horizontalArrangement = Arrangement.SpaceBetween,
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
                             modifier = Modifier
                                 .fillMaxWidth()
                         ) {
+
                             TextButton(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .background(primaryBlack_Dark, CircleShape)
+                                    .border(1.dp, primaryWhite, CircleShape),
                                 onClick = {
                                     onDismiss()
                                 }
@@ -115,6 +122,10 @@ fun DeleteItemDialog (
                                 )
                             }
                             TextButton(
+                                modifier = Modifier
+                                    .weight(1f)
+                                    .background(primaryBlack_Dark, CircleShape)
+                                    .border(1.dp, primaryWhite, CircleShape),
                                 onClick = {
                                     if (mainListItem != null ) {
                                         listViewModel.deleteMainListItem(mainListItem.id!!)

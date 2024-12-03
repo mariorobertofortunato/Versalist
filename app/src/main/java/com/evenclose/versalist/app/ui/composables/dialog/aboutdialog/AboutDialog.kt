@@ -5,10 +5,8 @@ import android.net.Uri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
@@ -19,7 +17,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -27,10 +24,11 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
 import com.evenclose.versalist.R
+import com.evenclose.versalist.app.ui.composables.CustomCTA
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 
@@ -93,51 +91,37 @@ fun AboutDialog(
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
-                                .padding(top = 16.dp)
+                                .padding(vertical = 16.dp)
                         )
                         Text(
-                            text = "evenclosedigital@gmail.com",
+                            text = "Link",
                             textAlign = TextAlign.Center,
                             modifier = Modifier
-                                .padding(top = 16.dp)
                                 .fillMaxWidth()
                                 .clickable {
-                                    val email = "evenclosedigital@gmail.com"
-                                    val intent = Intent(Intent.ACTION_SENDTO)
-                                    intent.data = Uri.parse("mailto:$email")
-                                    context.startActivity(intent)
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mariorobertofortunato.com")))
                                 },
                             style = MaterialTheme.typography.bodyLarge,
                             color = primaryWhite,
                             fontWeight = FontWeight.Bold,
+                            textDecoration = TextDecoration.Underline
                         )
+
                         HorizontalDivider(
                             color = primaryWhite,
                             thickness = 1.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)
-                                .padding(top = 16.dp)
+                                .padding(vertical = 16.dp)
                         )
-                        Row(
-                            horizontalArrangement = Arrangement.Center,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ){
-                            TextButton(
-                                onClick = {
-                                    onDismiss()
-                                }
-                            ) {
-                                Text(
-                                    text = stringResource(id = R.string.dismiss),
-                                    fontSize = 16.sp,
-                                    color = primaryWhite,
-                                    fontWeight = FontWeight.Bold,
-                                    modifier = Modifier
-                                        .padding(top = 4.dp)
-                                )
+
+                        CustomCTA(
+                            text = stringResource(id = R.string.ok),
+                            onClick = {
+                                onDismiss()
                             }
-                        }
+                        )
+
                     }
                 }
             }

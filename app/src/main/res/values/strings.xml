@@ -65,5 +65,7 @@
     <string name="set_alarm" translatable="false">Set Alarm</string>
     <string name="modify_alarm" translatable="false">Modify Alarm</string>
 
+    <string name="ok" translatable="false">OK</string>
+
 
 </resources>
