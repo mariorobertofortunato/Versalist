@@ -157,7 +157,7 @@ fun MainScreen(
                                 navController = navController
                             )
                             HorizontalDivider(
-                                color = secondaryBlue.copy(alpha = 0.25f),
+                                color = primaryWhite.copy(alpha = 0.15f),
                                 thickness = 2.dp,
                                 modifier = Modifier
                                     .fillMaxWidth(0.95f)
