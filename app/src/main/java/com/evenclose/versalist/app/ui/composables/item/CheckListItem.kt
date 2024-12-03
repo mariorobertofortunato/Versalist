@@ -33,17 +33,12 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalist.R
-import com.evenclose.versalist.data.model.InnerListItem
 import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
-import com.evenclose.versalist.app.ui.theme.dark
-import com.evenclose.versalist.app.ui.theme.light
-import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryGrey
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.app.ui.theme.primaryWhiteVariant
-import com.evenclose.versalist.app.ui.theme.secondaryContainer
 import com.evenclose.versalist.app.viewmodel.ListViewModel
+import com.evenclose.versalist.data.model.InnerListItem
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

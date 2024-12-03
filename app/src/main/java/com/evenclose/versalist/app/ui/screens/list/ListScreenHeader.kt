@@ -12,8 +12,6 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.ArrowBack
 import androidx.compose.material.icons.automirrored.outlined.Help
-import androidx.compose.material.icons.outlined.ArrowBack
-import androidx.compose.material.icons.outlined.Help
 import androidx.compose.material.icons.outlined.Menu
 import androidx.compose.material3.DropdownMenu
 import androidx.compose.material3.DropdownMenuItem
@@ -36,10 +34,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.composables.dialog.helpdialog.listscreenhelpdialog.ListScreenHelpDialog
-import com.evenclose.versalist.app.ui.theme.light
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.app.ui.theme.secondaryContainer
 
 @Composable
 fun ListScreenHeader(

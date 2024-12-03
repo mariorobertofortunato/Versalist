@@ -24,6 +24,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
@@ -31,14 +32,16 @@ import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalist.R
+import com.evenclose.versalist.app.common.ViewState
 import com.evenclose.versalist.app.ui.composables.FabContent
+import com.evenclose.versalist.app.ui.composables.Loader
 import com.evenclose.versalist.app.ui.composables.forms.NewListForm
 import com.evenclose.versalist.app.ui.composables.item.MainListItem
 import com.evenclose.versalist.app.ui.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalist.app.ui.theme.backgroundGradient
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.app.ui.theme.secondary
+import com.evenclose.versalist.app.ui.theme.secondaryBlue
 import com.evenclose.versalist.app.viewmodel.ListViewModel
 import com.evenclose.versalist.utils.enums.PlaceholderType
 import kotlinx.coroutines.delay
@@ -50,6 +53,7 @@ fun MainScreen(
 ) {
 
     val mainList = listViewModel.mainList.collectAsState(emptyList())
+    val viewState by listViewModel.viewState.collectAsState()
 
     /** New List Form */
     var newListFormVisibility by remember { mutableStateOf(false) }
@@ -81,6 +85,16 @@ fun MainScreen(
         modifier = Modifier
             .background(
                 brush = Brush.linearGradient(backgroundGradient)
+            )
+            .then(
+                if (
+                    //popupType != null ||
+                    viewState is ViewState.Loading) {
+                    Modifier
+                        .blur(24.dp)
+                } else {
+                    Modifier
+                }
             ),
         topBar = {
             Column(
@@ -102,7 +116,6 @@ fun MainScreen(
                     shape = CircleShape,
                     onClick = {
                         newListFormVisibility = true
-                        //errorTextVisibility = false
                     },
                     modifier = Modifier
                         .fillMaxWidth()
@@ -125,9 +138,9 @@ fun MainScreen(
         ) {
 
             /** MAIN LIST */
-            if (mainList.value?.isNotEmpty() == true) {
+            if (mainList.value.isNotEmpty()) {
                 items(
-                    items = mainList.value!!,
+                    items = mainList.value,
                     key = { item -> item }
                 ) { item ->
 
@@ -144,7 +157,7 @@ fun MainScreen(
                                 navController = navController
                             )
                             HorizontalDivider(
-                                color = secondary.copy(alpha = 0.25f),
+                                color = secondaryBlue.copy(alpha = 0.25f),
                                 thickness = 2.dp,
                                 modifier = Modifier
                                     .fillMaxWidth(0.95f)
@@ -189,6 +202,21 @@ fun MainScreen(
                     )
                 }
             }
+        }
+    }
+
+    when (viewState) {
+        is ViewState.Done -> {
+            listViewModel.resetViewState()
+        }
+        is ViewState.Error -> {
+            listViewModel.resetViewState()
+        }
+        ViewState.Loading -> {
+            Loader()
+        }
+        ViewState.None -> {
+            // Do nothing
         }
     }
 }

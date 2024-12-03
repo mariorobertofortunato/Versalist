@@ -1,16 +1,10 @@
 package com.evenclose.versalist.app.ui.screens.list
 
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.core.tween
-import androidx.compose.animation.fadeIn
-import androidx.compose.animation.fadeOut
-import androidx.compose.animation.slideInVertically
-import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -18,19 +12,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.outlined.Cancel
-import androidx.compose.material.icons.outlined.CheckCircle
-import androidx.compose.material3.Divider
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
-import androidx.compose.material3.Icon
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.material3.TextField
-import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -40,16 +24,10 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusRequester
-import androidx.compose.ui.focus.focusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalist.R
@@ -58,16 +36,12 @@ import com.evenclose.versalist.app.ui.composables.forms.NewItemForm
 import com.evenclose.versalist.app.ui.composables.item.CheckListItem
 import com.evenclose.versalist.app.ui.composables.item.OpenListItem
 import com.evenclose.versalist.app.ui.composables.placeholder.EmptyListPlaceholder
-import com.evenclose.versalist.app.ui.theme.background
 import com.evenclose.versalist.app.ui.theme.backgroundGradient
-import com.evenclose.versalist.app.ui.theme.light
-import com.evenclose.versalist.app.ui.theme.dark
-import com.evenclose.versalist.app.ui.theme.primary
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.app.ui.theme.secondary
-import com.evenclose.versalist.utils.enums.PlaceholderType
+import com.evenclose.versalist.app.ui.theme.secondaryBlue
 import com.evenclose.versalist.app.viewmodel.ListViewModel
+import com.evenclose.versalist.utils.enums.PlaceholderType
 import kotlinx.coroutines.delay
 
 @Composable
@@ -176,7 +150,7 @@ fun ListScreen(
                             )
                         }
                         HorizontalDivider(
-                            color = secondary.copy(alpha = 0.25f),
+                            color = secondaryBlue.copy(alpha = 0.25f),
                             thickness = 2.dp,
                             modifier = Modifier
                                 .fillMaxWidth(0.95f)

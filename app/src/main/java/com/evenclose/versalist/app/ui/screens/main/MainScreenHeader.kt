@@ -39,7 +39,7 @@ import com.evenclose.versalist.app.ui.composables.dialog.helpdialog.mainscreenhe
 import com.evenclose.versalist.app.ui.composables.dialog.privacydialog.PrivacyDialog
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.app.ui.theme.secondary
+import com.evenclose.versalist.app.ui.theme.secondaryBlue
 
 @Composable
 fun MainScreenHeader() {
@@ -112,7 +112,7 @@ fun MainScreenHeader() {
                     )
 
                     HorizontalDivider(
-                        color = secondary.copy(alpha = 0.25f),
+                        color = secondaryBlue.copy(alpha = 0.25f),
                         thickness = 2.dp,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -141,7 +141,7 @@ fun MainScreenHeader() {
                     )
 
                     HorizontalDivider(
-                        color = secondary.copy(alpha = 0.25f),
+                        color = secondaryBlue.copy(alpha = 0.25f),
                         thickness = 2.dp,
                         modifier = Modifier
                             .fillMaxWidth()
@@ -170,7 +170,7 @@ fun MainScreenHeader() {
                     )
 
                     HorizontalDivider(
-                        color = secondary.copy(alpha = 0.25f),
+                        color = secondaryBlue.copy(alpha = 0.25f),
                         thickness = 2.dp,
                         modifier = Modifier
                             .fillMaxWidth()

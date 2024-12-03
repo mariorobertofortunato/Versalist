@@ -49,13 +49,12 @@ import androidx.navigation.NavController
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.navigation.Screens
 import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
-import com.evenclose.versalist.app.ui.theme.background
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.primaryWhiteVariant
-import com.evenclose.versalist.app.ui.theme.secondary
+import com.evenclose.versalist.app.ui.theme.secondaryBlue
 import com.evenclose.versalist.app.viewmodel.ListViewModel
 import com.evenclose.versalist.data.model.ListCategory
 import com.evenclose.versalist.data.model.MainListItem
@@ -232,7 +231,7 @@ fun MainListItem(
                 }
             )
             HorizontalDivider(
-                color = secondary.copy(alpha = 0.25f),
+                color = secondaryBlue.copy(alpha = 0.25f),
                 thickness = 2.dp,
                 modifier = Modifier
                     .fillMaxWidth()
@@ -308,7 +307,7 @@ fun MainListItem(
                     modifier = Modifier
                         .padding(end = 2.dp)
                         .background(color = primaryBlack_Dark, shape = RoundedCornerShape(8.dp))
-                        .border(2.dp, background, RoundedCornerShape(8.dp))
+                        .border(2.dp, primaryWhite, RoundedCornerShape(8.dp))
 
                 ){
                     Icon(

@@ -32,14 +32,10 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evenclose.versalist.R
-import com.evenclose.versalist.data.model.InnerListItem
 import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
-import com.evenclose.versalist.app.ui.theme.dark
-import com.evenclose.versalist.app.ui.theme.light
-import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.app.ui.theme.secondaryContainer
+import com.evenclose.versalist.data.model.InnerListItem
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable

@@ -35,8 +35,8 @@ import androidx.navigation.NavController
 import com.evenclose.versalist.AlarmReceiver
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialogHeaderImage
-import com.evenclose.versalist.app.ui.theme.light
-import com.evenclose.versalist.app.ui.theme.secondaryContainer
+import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
+import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.viewmodel.ListViewModel
 
 @Composable
@@ -66,10 +66,10 @@ fun DeleteReminderDialog(
                 Box(
                     modifier = Modifier
                         .background(
-                            color = secondaryContainer,
+                            color = primaryGreen_Dark,
                             shape = RoundedCornerShape(12.dp)
                         )
-                        .border(1.dp, light, RoundedCornerShape(12.dp))
+                        .border(1.dp, primaryWhite, RoundedCornerShape(12.dp))
                 ){
                     Column(
                         modifier = Modifier
@@ -87,7 +87,7 @@ fun DeleteReminderDialog(
                                 .padding(top = 8.dp)
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.headlineSmall,
-                            color = light,
+                            color = primaryWhite,
                             fontWeight = FontWeight.Bold,
                         )
                         Text(
@@ -97,7 +97,7 @@ fun DeleteReminderDialog(
                                 .padding(top = 8.dp,)
                                 .fillMaxWidth(),
                             style = MaterialTheme.typography.bodyLarge,
-                            color = light,
+                            color = primaryWhite,
                             fontWeight = FontWeight.Bold,
                         )
                         Spacer(
@@ -116,7 +116,7 @@ fun DeleteReminderDialog(
                                 Text(
                                     text = stringResource(id = R.string.cancel),
                                     fontSize = 16.sp,
-                                    color = light,
+                                    color = primaryWhite,
                                     fontWeight = FontWeight.Bold,
                                 )
                             }
@@ -141,7 +141,7 @@ fun DeleteReminderDialog(
                                 Text(
                                     text = stringResource(id = R.string.confirm),
                                     fontSize = 16.sp,
-                                    color = light,
+                                    color = primaryWhite,
                                     fontWeight = FontWeight.Bold,
                                 )
                             }

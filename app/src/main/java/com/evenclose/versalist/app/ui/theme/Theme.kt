@@ -15,18 +15,18 @@ import androidx.compose.ui.platform.LocalView
 import androidx.core.view.WindowCompat
 
 private val LightColorScheme = lightColorScheme(
-    primary = primary,
+    primary = primaryWhite,
     onPrimary = background,
-    primaryContainer = primaryContainer,
+    primaryContainer = primaryWhite,
     onPrimaryContainer = background,
-    inversePrimary = inversePrimary,
-    secondary = secondary,
+    inversePrimary = primaryWhite,
+    secondary = secondaryBlue,
     onSecondary = background,
     secondaryContainer = secondaryContainer,
     onSecondaryContainer = background,
     tertiary = Color(0xFF388E3C),
     onTertiary = background,
-    tertiaryContainer = light,
+    tertiaryContainer = primaryWhite,
     onTertiaryContainer = background,
     background = Color.Transparent,
     onBackground = background,
@@ -37,12 +37,12 @@ private val LightColorScheme = lightColorScheme(
     surfaceTint = Color(0xFF283593),
     inverseSurface = background,
     inverseOnSurface = Color(0xFF333333),
-    error = error,
+    error = errorColor,
     onError = background,
-    errorContainer = errorContainer,
+    errorContainer = errorColor,
     onErrorContainer = background,
-    outline = outline,
-    outlineVariant = light,
+    outline = primaryBlack_Light,
+    outlineVariant = primaryWhite,
     scrim = Color(0x99000000)
 )
 

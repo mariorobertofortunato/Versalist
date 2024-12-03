@@ -33,11 +33,15 @@ class ListViewModel @Inject constructor(
         reminderDate = null
     ))
 
+    fun resetViewState() {
+        viewState.value = ViewState.None
+    }
+
 
     fun fetchAllLists() {
         viewState.value = ViewState.Loading
         viewModelScope.launch {
-            delay(2000)
+            delay(500)
             useCase.FetchAllListsUseCase().collect {
                 mainList.value = it
                 viewState.value = ViewState.Done()
@@ -46,6 +50,7 @@ class ListViewModel @Inject constructor(
     }
 
     fun addNewList(name: String, type: String, category: String) {
+        viewState.value = ViewState.Loading
         viewModelScope.launch {
             useCase.AddNewListUseCase(name, type, category)
             fetchAllLists()
@@ -53,6 +58,7 @@ class ListViewModel @Inject constructor(
     }
 
     fun deleteMainListItem(id: Int) {
+        viewState.value = ViewState.Loading
         viewModelScope.launch {
             useCase.DeleteMainListItemUseCase(id)
             useCase.DeleteInnerListItemFromMainListUseCase(id)
@@ -61,14 +67,17 @@ class ListViewModel @Inject constructor(
     }
 
     fun getListData(id: Int) {
+        viewState.value = ViewState.Loading
         viewModelScope.launch {
             useCase.GetListDataUseCase(id).collect {
                 currentListData.value = it
+                viewState.value = ViewState.Done()
             }
         }
     }
 
     fun updateMainListFavouriteStatus(mainListItemId: Int, newFavouriteStatus: Boolean) {
+        viewState.value = ViewState.Loading
         viewModelScope.launch {
             useCase.UpdateMainListFavouriteStatusUseCase(mainListItemId, newFavouriteStatus)
             fetchAllLists()
@@ -76,6 +85,7 @@ class ListViewModel @Inject constructor(
     }
 
     fun updateMainListReminder(mainListItemId: Int, reminderDate: Instant?) {
+        viewState.value = ViewState.Loading
         viewModelScope.launch {
             useCase.UpdateMainListReminderUseCase(mainListItemId, reminderDate)
             fetchAllLists()
@@ -83,20 +93,24 @@ class ListViewModel @Inject constructor(
     }
 
     fun getCurrentInnerList(id: Int) {
+        viewState.value = ViewState.Loading
         viewModelScope.launch {
             useCase.GetCurrentInnerListUseCase(id).collect {
                 currentInnerList.value = it
+                viewState.value = ViewState.Done()
             }
         }
     }
 
     fun addNewInnerListItem(value: String, mainListId: Int) {
+        viewState.value = ViewState.Loading
         viewModelScope.launch {
             useCase.AddNewInnerListItemUseCase(value, mainListId)
         }
     }
 
     fun deleteInnerListItem(id: Int, mainListId: Int) {
+        viewState.value = ViewState.Loading
         viewModelScope.launch {
             useCase.DeleteInnerListItemUseCase(id)
             getCurrentInnerList(mainListId)

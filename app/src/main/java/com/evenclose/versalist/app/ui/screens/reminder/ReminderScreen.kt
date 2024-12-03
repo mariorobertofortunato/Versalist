@@ -51,11 +51,8 @@ import com.evenclose.versalist.AlarmReceiver
 import com.evenclose.versalist.app.ui.composables.dialog.customdatepickerdialog.CustomDatePickerDialog
 import com.evenclose.versalist.app.ui.composables.dialog.customtimepickerdialog.CustomTimePickerDialog
 import com.evenclose.versalist.app.ui.composables.dialog.deletereminderdialog.DeleteReminderDialog
-import com.evenclose.versalist.app.ui.theme.background
-import com.evenclose.versalist.app.ui.theme.dark
-import com.evenclose.versalist.app.ui.theme.light
-import com.evenclose.versalist.app.ui.theme.primary
-import com.evenclose.versalist.app.ui.theme.secondary
+import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
+import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.secondaryContainer
 import com.evenclose.versalist.app.viewmodel.ListViewModel
 import java.text.DateFormat
@@ -116,7 +113,7 @@ fun ReminderScreen(
         topBar = {
             Column(
                 modifier = Modifier
-                    .background(secondary)
+                    .background(primaryGreen_Dark)
             ) {
                 /** HEADER */
                 Row(
@@ -134,7 +131,7 @@ fun ReminderScreen(
                         Icon(
                             imageVector = Icons.Outlined.ArrowBack,
                             contentDescription = "Arrow Back Icon",
-                            tint = light
+                            tint = primaryWhite
                         )
                     }
                     Text(
@@ -142,7 +139,7 @@ fun ReminderScreen(
                         fontSize = 32.sp,
                         fontWeight = FontWeight.Bold,
                         maxLines = 1,
-                        color = light,
+                        color = primaryWhite,
                         overflow = TextOverflow.Ellipsis
                     )
                     // Placeholder icon
@@ -154,7 +151,7 @@ fun ReminderScreen(
                         Icon(
                             imageVector = Icons.Outlined.Menu,
                             contentDescription = "Menu Icon",
-                            tint = secondary
+                            tint = primaryGreen_Dark
                             // TODO cambiare colore nel caso la vogliamo utilizzare per aprire un menu
                         )
                     }
@@ -166,14 +163,14 @@ fun ReminderScreen(
                 modifier = Modifier
                     .padding(start = 2.dp, end = 2.dp, bottom = 2.dp)
                     .background(
-                        color = primary,
+                        color = primaryWhite,
                         shape = RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp)
                     )
             ) {
                 /** Back Btn */
                 FloatingActionButton(
-                    containerColor = secondary,
-                    contentColor = light,
+                    containerColor = primaryGreen_Dark,
+                    contentColor = primaryWhite,
                     shape = RoundedCornerShape(12.dp),
                     onClick = {
                         navController.navigateUp()
@@ -181,7 +178,7 @@ fun ReminderScreen(
                     modifier = Modifier
                         .weight(1f)
                         .padding(12.dp)
-                        .border(2.dp, primary, RoundedCornerShape(12.dp))
+                        .border(2.dp, primaryWhite, RoundedCornerShape(12.dp))
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -191,15 +188,15 @@ fun ReminderScreen(
                             text = "Back",
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
-                            color = light,
+                            color = primaryWhite,
                         )
                     }
                 }
 
                 /** Save Btn */
                 FloatingActionButton(
-                    containerColor = secondary,
-                    contentColor = light,
+                    containerColor = primaryGreen_Dark,
+                    contentColor = primaryWhite,
                     shape = RoundedCornerShape(12.dp),
                     onClick = {
                         val localDateTime = LocalDateTime.of(
@@ -237,7 +234,7 @@ fun ReminderScreen(
                     modifier = Modifier
                         .weight(1f)
                         .padding(12.dp)
-                        .border(2.dp, primary, RoundedCornerShape(12.dp))
+                        .border(2.dp, primaryWhite, RoundedCornerShape(12.dp))
                 ) {
                     Row(
                         horizontalArrangement = Arrangement.SpaceBetween,
@@ -247,7 +244,7 @@ fun ReminderScreen(
                             text = "Save",
                             fontSize = 32.sp,
                             fontWeight = FontWeight.Bold,
-                            color = light,
+                            color = primaryWhite,
                         )
                     }
                 }
@@ -258,11 +255,11 @@ fun ReminderScreen(
         Column(
             horizontalAlignment = CenterHorizontally,
             modifier = Modifier
-                .border(1.5.dp, dark, RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
+                .border(1.5.dp, primaryGreen_Dark, RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
                 .clip(RoundedCornerShape(bottomStart = 12.dp, bottomEnd = 12.dp))
                 .fillMaxSize()
                 .padding(it)
-                .background(primary)
+                .background(primaryWhite)
                 .padding(horizontal = 8.dp)
         ) {
             Text(
@@ -270,7 +267,7 @@ fun ReminderScreen(
                 fontSize = 24.sp,
                 fontWeight = FontWeight.Bold,
                 maxLines = 1,
-                color = dark,
+                color = primaryGreen_Dark,
                 overflow = TextOverflow.Ellipsis,
                 modifier = Modifier.padding(vertical = 4.dp)
             )
@@ -281,7 +278,7 @@ fun ReminderScreen(
                         secondaryContainer.copy(alpha = 0.5f),
                         RoundedCornerShape(12.dp)
                     )
-                    .background(light)
+                    .background(primaryWhite)
             ) {
                 /** DATE */
                 Row(
@@ -306,13 +303,13 @@ fun ReminderScreen(
                         IconButton(
                             onClick = {},
                             modifier = Modifier
-                                .background(color = background, shape = RoundedCornerShape(12.dp))
-                                .border(2.dp, secondary, RoundedCornerShape(12.dp)),
+                                .background(color = primaryWhite, shape = RoundedCornerShape(12.dp))
+                                .border(2.dp, primaryGreen_Dark, RoundedCornerShape(12.dp)),
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.CalendarMonth,
                                 contentDescription = "date Icon",
-                                tint = dark,
+                                tint = primaryGreen_Dark,
                                 modifier = Modifier
                             )
                         }
@@ -327,13 +324,13 @@ fun ReminderScreen(
                             Text(
                                 text = "Date",
                                 fontSize = 14.sp,
-                                color = secondaryContainer,
+                                color = primaryGreen_Dark,
                                 fontWeight = FontWeight.Bold,
                             )
                             Text(
                                 text = date,
                                 fontSize = 20.sp,
-                                color = dark,
+                                color = primaryGreen_Dark,
                                 fontWeight = FontWeight.Bold,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
@@ -343,7 +340,7 @@ fun ReminderScreen(
                     Icon(
                         imageVector = Icons.Outlined.Edit,
                         contentDescription = "Edit Icon",
-                        tint = dark,
+                        tint = primaryGreen_Dark,
                     )
                 }
 
@@ -377,13 +374,13 @@ fun ReminderScreen(
                         IconButton(
                             onClick = {},
                             modifier = Modifier
-                                .background(color = background, shape = RoundedCornerShape(12.dp))
-                                .border(2.dp, secondary, RoundedCornerShape(12.dp)),
+                                .background(color = primaryWhite, shape = RoundedCornerShape(12.dp))
+                                .border(2.dp, primaryGreen_Dark, RoundedCornerShape(12.dp)),
                         ) {
                             Icon(
                                 imageVector = Icons.Outlined.PunchClock,
                                 contentDescription = "Time Icon",
-                                tint = dark,
+                                tint = primaryGreen_Dark,
                                 modifier = Modifier
                             )
                         }
@@ -402,13 +399,13 @@ fun ReminderScreen(
                             Text(
                                 text = "Time",
                                 fontSize = 14.sp,
-                                color = secondaryContainer,
+                                color = primaryGreen_Dark,
                                 fontWeight = FontWeight.Bold,
                             )
                             Text(
                                 text = time,
                                 fontSize = 20.sp,
-                                color = dark,
+                                color = primaryGreen_Dark,
                                 fontWeight = FontWeight.Bold,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis
@@ -418,7 +415,7 @@ fun ReminderScreen(
                     Icon(
                         imageVector = Icons.Outlined.Edit,
                         contentDescription = "Edit Icon",
-                        tint = dark
+                        tint = primaryGreen_Dark
                     )
 
                 }
@@ -427,8 +424,8 @@ fun ReminderScreen(
             /** DELETE REMINDER BUTTON*/
             if (currentListData.value?.reminderDate != null) {
                 FloatingActionButton(
-                    containerColor = primary,
-                    contentColor = dark,
+                    containerColor = primaryWhite,
+                    contentColor = primaryGreen_Dark,
                     shape = RoundedCornerShape(12.dp),
                     onClick = {
                         openDeleteDialog = true
@@ -437,7 +434,7 @@ fun ReminderScreen(
                         .padding(12.dp)
                         .border(
                             2.dp,
-                            secondaryContainer.copy(alpha = 0.5f),
+                            primaryGreen_Dark.copy(alpha = 0.5f),
                             RoundedCornerShape(12.dp)
                         )
                 ) {
@@ -451,7 +448,7 @@ fun ReminderScreen(
                             text = "Delete reminder",
                             fontSize = 20.sp,
                             fontWeight = FontWeight.Bold,
-                            color = secondaryContainer,
+                            color = primaryGreen_Dark,
                         )
                     }
                 }

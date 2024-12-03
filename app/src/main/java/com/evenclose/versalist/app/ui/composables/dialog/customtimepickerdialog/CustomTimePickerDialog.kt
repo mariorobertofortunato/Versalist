@@ -24,7 +24,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.window.Dialog
 import androidx.compose.ui.window.DialogProperties
 import com.evenclose.versalist.app.ui.theme.light
-import com.evenclose.versalist.app.ui.theme.secondary
+import com.evenclose.versalist.app.ui.theme.secondaryBlue
 import com.evenclose.versalist.app.ui.theme.secondaryContainer
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -68,16 +68,16 @@ fun CustomTimePickerDialog(
             TimePicker(
                 state = timePickerState,
                 colors = TimePickerDefaults.colors(
-                    clockDialColor = secondary,
-                    clockDialSelectedContentColor = secondary,
+                    clockDialColor = secondaryBlue,
+                    clockDialSelectedContentColor = secondaryBlue,
                     clockDialUnselectedContentColor = light,
                     selectorColor = light,
-                    periodSelectorBorderColor = secondary,
-                    periodSelectorSelectedContainerColor = secondary,
+                    periodSelectorBorderColor = secondaryBlue,
+                    periodSelectorSelectedContainerColor = secondaryBlue,
                     periodSelectorUnselectedContainerColor = light,
                     periodSelectorSelectedContentColor = light,
                     periodSelectorUnselectedContentColor = secondaryContainer,
-                    timeSelectorSelectedContainerColor = secondary,
+                    timeSelectorSelectedContainerColor = secondaryBlue,
                     timeSelectorUnselectedContainerColor = light,
                     timeSelectorSelectedContentColor = light,
                     timeSelectorUnselectedContentColor = secondaryContainer

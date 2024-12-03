@@ -14,8 +14,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import com.evenclose.versalist.app.ui.theme.dark
 import com.evenclose.versalist.app.ui.theme.light
+import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
 import com.evenclose.versalist.app.ui.theme.secondaryContainer
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -77,13 +77,13 @@ fun CustomDatePickerDialog(
                 yearContentColor = light,
                 currentYearContentColor = light,
                 selectedYearContentColor = light,
-                selectedYearContainerColor = dark,
+                selectedYearContainerColor = primaryGreen_Dark,
                 dayContentColor = light,
-                disabledDayContentColor = dark,
+                disabledDayContentColor = primaryGreen_Dark,
                 selectedDayContentColor = light,
-                selectedDayContainerColor = dark,
+                selectedDayContainerColor = primaryGreen_Dark,
                 todayContentColor = light,
-                todayDateBorderColor = dark,
+                todayDateBorderColor = primaryGreen_Dark,
             ),
         )
     }
