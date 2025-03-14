@@ -5,8 +5,10 @@ import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.activity.enableEdgeToEdge
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.imePadding
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
@@ -17,10 +19,10 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
 import androidx.navigation.compose.rememberNavController
-import com.evenclose.versalist.data.DataStore
 import com.evenclose.versalist.app.navigation.NavGraph
-import com.evenclose.versalist.utils.setLanguage
 import com.evenclose.versalist.app.ui.theme.VersalistProTheme
+import com.evenclose.versalist.data.DataStore
+import com.evenclose.versalist.utils.setLanguage
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -30,11 +32,14 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
 
         //askNotificationPermission()
+        enableEdgeToEdge()
 
         setContent {
             VersalistProTheme {
                 Surface(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .imePadding()
+                        .fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Navigation()

@@ -7,7 +7,10 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.imePadding
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -39,7 +42,6 @@ import com.evenclose.versalist.app.ui.composables.placeholder.EmptyListPlacehold
 import com.evenclose.versalist.app.ui.theme.backgroundGradient
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.app.ui.theme.secondaryBlue
 import com.evenclose.versalist.app.viewmodel.ListViewModel
 import com.evenclose.versalist.utils.enums.PlaceholderType
 import kotlinx.coroutines.delay
@@ -89,6 +91,7 @@ fun ListScreen(
                     .background(
                         brush = Brush.linearGradient(backgroundGradient)
                     )
+                    .statusBarsPadding()
             ) {
                 ListScreenHeader(
                     navController = navController,
@@ -110,6 +113,8 @@ fun ListScreen(
                     },
                     modifier = Modifier
                         .fillMaxWidth()
+                        .navigationBarsPadding()
+                        .imePadding()
                         .padding(16.dp)
                         .border(1.dp, primaryWhite, CircleShape)
                 ) {
