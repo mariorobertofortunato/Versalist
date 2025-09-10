@@ -31,6 +31,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.composables.CustomCTA
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.viewmodel.ListViewModel
@@ -87,7 +88,7 @@ fun LanguageDialog(
                 )
                 Box(
                     modifier = Modifier
-                        .background(primaryGreen_Light, RoundedCornerShape(16.dp))
+                        .background(primaryBlack_Light, RoundedCornerShape(16.dp))
                         .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
                         .fillMaxWidth()
                 ) {
@@ -116,7 +117,7 @@ fun LanguageDialog(
                                 .padding(top = 16.dp, bottom = 4.dp)
                         )
                         Scaffold(
-                            containerColor = primaryGreen_Light,
+                            containerColor = primaryBlack_Light,
                             bottomBar = {
                                 Column {
                                     HorizontalDivider(

@@ -13,7 +13,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.painterResource
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.common.ViewState
@@ -21,10 +21,6 @@ import com.evenclose.versalist.app.navigation.Screens
 import com.evenclose.versalist.app.ui.theme.backgroundGradient
 import com.evenclose.versalist.app.ui.theme.whiteGradient
 import com.evenclose.versalist.app.viewmodel.ListViewModel
-
-/** We made a splash screen in order to load the lists from room,
- * thus ensuring the main list screen to show updated data right when is shown
- * (instead of showing the placeholder while waiting for room to load) */
 
 @Composable
 fun SplashScreen(

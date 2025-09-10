@@ -65,6 +65,7 @@ import androidx.compose.ui.unit.sp
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.theme.errorColor
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
@@ -131,7 +132,7 @@ fun NewListForm(
                     .fillMaxWidth()
                     .padding(top = 4.dp)
                     .focusRequester(focusRequester)
-                    .border(1.dp, primaryGreen_Dark, CircleShape),
+                    .border(1.dp, primaryBlack_Light, CircleShape),
                 value = newListValue,
                 onValueChange = { newValue ->
                     newListValue = newValue
@@ -142,17 +143,17 @@ fun NewListForm(
                 placeholder = {
                     Text(
                         text = stringResource(id = R.string.new_list),
-                        color = primaryGreen_Light,
+                        color = primaryBlack_Light,
                         fontWeight = FontWeight.Bold,
                         fontSize = 16.sp
                     )
                 },
                 colors = TextFieldDefaults.colors(
-                    cursorColor = primaryGreen_Dark,
+                    cursorColor = primaryBlack_Light,
                     focusedContainerColor = primaryWhite,
                     unfocusedContainerColor = primaryWhite,
                     disabledContainerColor = primaryWhite,
-                    focusedTextColor = primaryGreen_Dark,
+                    focusedTextColor = primaryBlack_Light,
                     focusedIndicatorColor = Color.Transparent,
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent
@@ -199,7 +200,7 @@ fun NewListForm(
                     .fillMaxWidth()
                     .padding(top = 4.dp)
                     .background(primaryWhite, CircleShape)
-                    .border(1.dp, primaryGreen_Dark, CircleShape),
+                    .border(1.dp, primaryBlack_Light, CircleShape),
             ) {
                 listTypeOptions.forEach { text ->
                     Row(
@@ -209,7 +210,7 @@ fun NewListForm(
                             .padding(4.dp)
                             .border(
                                 width = 1.dp,
-                                color = primaryGreen_Dark,
+                                color = primaryBlack_Light,
                                 shape = CircleShape
                             )
                             .weight(1f)
@@ -224,21 +225,21 @@ fun NewListForm(
                                 onClick = { onListTypeOptionSelected(text) }
                             )
                             .background(
-                                color = if (text == selectedListTypeOption) primaryGreen_Dark else primaryWhite,
+                                color = if (text == selectedListTypeOption) primaryBlack_Light else primaryWhite,
                                 shape = CircleShape
                             )
                     ) {
                         Icon(
                             imageVector = if (text == "Open list") Icons.AutoMirrored.Outlined.List else Icons.Outlined.Checklist,
                             contentDescription = "List Type Icon",
-                            tint = if (text == selectedListTypeOption) primaryWhite else primaryGreen_Dark,
+                            tint = if (text == selectedListTypeOption) primaryWhite else primaryBlack_Light,
                             modifier = Modifier
                                 .padding(end = 8.dp)
                                 .padding(vertical = 12.dp)
                         )
                         Text(
                             text = text,
-                            color = if (text == selectedListTypeOption) primaryWhite else primaryGreen_Dark,
+                            color = if (text == selectedListTypeOption) primaryWhite else primaryBlack_Light,
                             fontWeight = FontWeight.Bold
                         )
                     }
@@ -270,7 +271,7 @@ fun NewListForm(
                     .fillMaxWidth()
                     .padding(top = 4.dp)
                     .background(primaryWhite, RoundedCornerShape(32.dp))
-                    .border(1.dp, primaryGreen_Dark, RoundedCornerShape(32.dp)),
+                    .border(1.dp, primaryBlack_Light, RoundedCornerShape(32.dp)),
             ) {
                 items(
                     items = listCategoryOptions,
@@ -280,7 +281,7 @@ fun NewListForm(
                             .padding(4.dp)
                             .border(
                                 width = 1.dp,
-                                color = primaryGreen_Dark,
+                                color = primaryBlack_Light,
                                 shape = CircleShape
                             )
                             .weight(1f)
@@ -295,7 +296,7 @@ fun NewListForm(
                                 onClick = { onListCategoryOptionSelected(category) }
                             )
                             .background(
-                                color = if (category == selectedListCategoryOption) primaryGreen_Dark else primaryWhite,
+                                color = if (category == selectedListCategoryOption) primaryBlack_Light else primaryWhite,
                                 shape = CircleShape
                             )
                     ) {
@@ -348,11 +349,11 @@ fun NewListForm(
                             Icon(
                                 imageVector = categoryIcon,
                                 contentDescription = "category icon",
-                                tint = if (category == selectedListCategoryOption) primaryWhite else primaryGreen_Dark,
+                                tint = if (category == selectedListCategoryOption) primaryWhite else primaryBlack_Light,
                             )
                             Text(
                                 text = categoryName,
-                                color = if (category == selectedListCategoryOption) primaryWhite else primaryGreen_Dark,
+                                color = if (category == selectedListCategoryOption) primaryWhite else primaryBlack_Light,
                                 fontWeight = FontWeight.Bold,
                                 maxLines = 1,
                                 overflow = TextOverflow.Ellipsis

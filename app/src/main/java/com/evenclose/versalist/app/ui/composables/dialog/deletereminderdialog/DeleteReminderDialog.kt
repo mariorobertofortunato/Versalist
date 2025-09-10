@@ -35,6 +35,7 @@ import androidx.navigation.NavController
 import com.evenclose.versalist.AlarmReceiver
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialogHeaderImage
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.viewmodel.ListViewModel
@@ -66,7 +67,7 @@ fun DeleteReminderDialog(
                 Box(
                     modifier = Modifier
                         .background(
-                            color = primaryGreen_Dark,
+                            color = primaryBlack_Light,
                             shape = RoundedCornerShape(12.dp)
                         )
                         .border(1.dp, primaryWhite, RoundedCornerShape(12.dp))

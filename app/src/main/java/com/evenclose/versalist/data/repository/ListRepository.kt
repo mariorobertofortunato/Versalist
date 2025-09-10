@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 class ListRepository @Inject constructor(
     private val dao: ListDao,
-){
+) {
 
     private lateinit var allLists: List<MainListItem>
     private lateinit var currentInnerList: List<InnerListItem>
@@ -38,13 +38,14 @@ class ListRepository @Inject constructor(
 
     suspend fun addNewList(name: String, type: String, category: String) {
         try {
-            dao.addNewList(MainListItem(
-                name = name,
-                type = type,
-                category = category,
-                isFav = false,
-                reminderDate = null
-            )
+            dao.addNewList(
+                MainListItem(
+                    name = name,
+                    type = type,
+                    category = category,
+                    isFav = false,
+                    reminderDate = null
+                )
             )
         } catch (e: Exception) {
             Log.e("TAG Error Add New List", "$e")
@@ -79,7 +80,13 @@ class ListRepository @Inject constructor(
     /** INNER LIST */
     suspend fun addNewInnerListItem(value: String, mainListId: Int) {
         try {
-            dao.addNewInnerListItem(InnerListItem(name = value, isChecked = false, mainListId = mainListId))
+            dao.addNewInnerListItem(
+                InnerListItem(
+                    name = value,
+                    isChecked = false,
+                    mainListId = mainListId
+                )
+            )
         } catch (e: Exception) {
             Log.e("TAG Error Add New Inner List Item", "$e")
         }
@@ -117,7 +124,6 @@ class ListRepository @Inject constructor(
             Log.e("TAG Error Fetch Inner List", "$e")
         }
     }
-
 
 
 }

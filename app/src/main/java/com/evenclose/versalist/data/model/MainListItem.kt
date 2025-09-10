@@ -8,10 +8,11 @@ import java.time.Instant
 
 @Entity(tableName = "main_list")
 data class MainListItem(
-    @PrimaryKey(autoGenerate = true) @ColumnInfo(name = "id") var id: Int? = null,
-    @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "type") var type: String,
-    @ColumnInfo(name = "category") var category: String,
-    @ColumnInfo(name = "isFav") var isFav: Boolean,
-    @ColumnInfo(name = "reminderDate") var reminderDate: Instant?
+    @PrimaryKey(autoGenerate = true)
+    @ColumnInfo(name = "id")                                    var id: Int? = null,
+    @ColumnInfo(name = "name")                                  val name: String,
+    @ColumnInfo(name = "type")                                  var type: String,
+    @ColumnInfo(name = "category")                              var category: String,
+    @ColumnInfo(name = "isFav")                                 var isFav: Boolean,
+    @ColumnInfo(name = "reminderDate")                          var reminderDate: Instant?
 ): Serializable

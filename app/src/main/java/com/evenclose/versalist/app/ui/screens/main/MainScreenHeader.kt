@@ -40,6 +40,8 @@ import com.evenclose.versalist.app.ui.composables.dialog.privacydialog.PrivacyDi
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.secondaryBlue
+import androidx.compose.ui.tooling.preview.Preview
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 
 @Composable
 fun MainScreenHeader() {
@@ -57,7 +59,6 @@ fun MainScreenHeader() {
             verticalAlignment = Alignment.CenterVertically,
             modifier = Modifier
                 .fillMaxWidth()
-                .padding(vertical = 8.dp)
         ) {
             Text(
                 text = stringResource(R.string.app_name),
@@ -85,7 +86,7 @@ fun MainScreenHeader() {
                     shape = RoundedCornerShape(16.dp),
                     shadowElevation = 10.dp,
                     modifier = Modifier
-                        .background(primaryGreen_Light, RoundedCornerShape(16.dp))
+                        .background(primaryBlack_Light, RoundedCornerShape(16.dp))
                         .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
                 ) {
 
@@ -237,4 +238,10 @@ fun MainScreenHeader() {
         )
     }
 
+}
+
+@Composable
+@Preview
+private fun MainScreenHeaderPreview() {
+    MainScreenHeader()
 }

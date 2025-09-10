@@ -41,6 +41,7 @@ import androidx.compose.ui.unit.sp
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.theme.errorColor
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
@@ -67,7 +68,7 @@ fun NewItemForm (
             modifier = Modifier
                 .fillMaxWidth()
                 .focusRequester(focusRequester)
-                .border(1.dp, primaryGreen_Dark, CircleShape),
+                .border(1.dp, primaryBlack_Light, CircleShape),
             value = newItemValue,
             onValueChange = { newValue ->
                 newItemValue = newValue
@@ -84,11 +85,11 @@ fun NewItemForm (
                 )
             },
             colors = TextFieldDefaults.colors(
-                cursorColor = primaryGreen_Dark,
+                cursorColor = primaryBlack_Light,
                 focusedContainerColor = primaryWhite,
                 unfocusedContainerColor = primaryWhite,
                 disabledContainerColor = primaryWhite,
-                focusedTextColor = primaryGreen_Dark,
+                focusedTextColor = primaryBlack_Light,
                 focusedIndicatorColor = Color.Transparent,
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent

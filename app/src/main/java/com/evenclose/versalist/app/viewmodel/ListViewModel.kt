@@ -18,20 +18,22 @@ import javax.inject.Inject
 @HiltViewModel
 class ListViewModel @Inject constructor(
     private val useCase: UseCase
-): ViewModel(){
+) : ViewModel() {
 
     val viewState = MutableStateFlow<ViewState>(ViewState.None)
 
     val mainList = MutableStateFlow<List<MainListItem>>(emptyList())
     val currentInnerList = MutableStateFlow<List<InnerListItem>>(emptyList())
-    val currentListData = MutableStateFlow<MainListItem>(MainListItem(
-        id = -1,
-        name = "",
-        type = "",
-        category = "",
-        isFav = false,
-        reminderDate = null
-    ))
+    val currentListData = MutableStateFlow(
+        MainListItem(
+            id = -1,
+            name = "",
+            type = "",
+            category = "",
+            isFav = false,
+            reminderDate = null
+        )
+    )
 
     fun resetViewState() {
         viewState.value = ViewState.None

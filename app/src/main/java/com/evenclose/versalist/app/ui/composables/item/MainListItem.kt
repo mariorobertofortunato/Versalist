@@ -50,6 +50,7 @@ import com.evenclose.versalist.R
 import com.evenclose.versalist.app.navigation.Screens
 import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
@@ -132,12 +133,12 @@ fun MainListItem(
                 onClick = {},
                 modifier = Modifier
                     .background(color = primaryWhite, shape = CircleShape)
-                    .border(2.dp, primaryGreen_Dark, CircleShape),
+                    .border(2.dp, primaryBlack_Light, CircleShape),
             ) {
                 Icon(
                     imageVector = categoryIcon,
                     contentDescription = "Category Icon",
-                    tint = primaryGreen_Dark
+                    tint = primaryBlack_Light
                 )
             }
             Column(
@@ -201,7 +202,7 @@ fun MainListItem(
             shadowElevation = 10.dp,
             modifier = Modifier
                 .fillMaxWidth(0.9f)
-                .background(primaryGreen_Light, RoundedCornerShape(16.dp))
+                .background(primaryBlack_Light, RoundedCornerShape(16.dp))
                 .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
         ) {
             DropdownMenuItem(

@@ -34,6 +34,7 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.composables.dialog.helpdialog.listscreenhelpdialog.ListScreenHelpDialog
+import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 
@@ -101,7 +102,7 @@ fun ListScreenHeader(
                     shape = RoundedCornerShape(16.dp),
                     shadowElevation = 10.dp,
                     modifier = Modifier
-                        .background(primaryGreen_Light, RoundedCornerShape(16.dp))
+                        .background(primaryBlack_Light, RoundedCornerShape(16.dp))
                         .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
                 ) {
                     DropdownMenuItem(
