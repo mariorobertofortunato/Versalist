@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"כרגע אין לך רשימות. אנא צור אחת על ידי לחיצה על הכפתור למטה."</string>
     <string name="list_screen_placeholder">"הרשימה הנוכחית ריקה. התחל על ידי הוספת פריט באמצעות הכפתור למטה."</string>
-    <string name="placeholder_error">"משהו השתבש! נסה לטעון מחדש את המסך."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">שם רשימה חדשה:</string>

@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"현재 목록이 없습니다. 아래 버튼을 클릭하여 새로운 목록을 생성하세요."</string>
     <string name="list_screen_placeholder">"현재 목록이 비어 있습니다. 아래 버튼을 사용하여 항목을 추가하십시오."</string>
-    <string name="placeholder_error">"문제가 발생했습니다! 화면을 다시로드해 보세요."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">새로운 목록 이름:</string>

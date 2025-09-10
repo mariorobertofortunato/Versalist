@@ -2,6 +2,7 @@ package com.evenclose.versalist.app.ui.composables.dialog.privacydialog
 
 import android.content.Intent
 import android.net.Uri
+import androidx.core.net.toUri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -89,7 +90,7 @@ fun PrivacyDialog(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
-                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mariorobertofortunato.com/versalist_privacy_policy.html")))
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, "https://www.mariorobertofortunato.com/versalist_privacy_policy.html".toUri()))
                                 },
                             style = MaterialTheme.typography.bodyLarge,
                             color = primaryWhite,

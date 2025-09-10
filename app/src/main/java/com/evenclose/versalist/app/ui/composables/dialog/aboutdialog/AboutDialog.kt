@@ -2,6 +2,7 @@ package com.evenclose.versalist.app.ui.composables.dialog.aboutdialog
 
 import android.content.Intent
 import android.net.Uri
+import androidx.core.net.toUri
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -100,7 +101,7 @@ fun AboutDialog(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .clickable {
-                                    context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://www.mariorobertofortunato.com")))
+                                    context.startActivity(Intent(Intent.ACTION_VIEW, "https://www.mariorobertofortunato.com".toUri()))
                                 },
                             style = MaterialTheme.typography.bodyLarge,
                             color = primaryWhite,

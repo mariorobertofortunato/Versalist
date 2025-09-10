@@ -11,8 +11,7 @@
 
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"Şu anda herhangi bir liste bulunmuyor. Lütfen aşağıdaki düğmeye tıklayarak bir tane oluşturun."</string>
-    <string name="list_screen_placeholder">"Mevcut liste boş. Lütfen aşağıdaki düğmeyi kullanarak bir öğe ekleyerek başlayın."</string>
-    <string name="placeholder_error">"Bir şeyler yanlış gitti! Ekranı yeniden yüklemeyi deneyin."</string>
+        <string name="list_screen_placeholder">"Mevcut liste boş. Lütfen aşağıdaki düğmeyi kullanarak bir öğe ekleyerek başlayın."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Yeni liste adı:</string>

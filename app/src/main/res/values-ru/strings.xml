@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"У вас в данный момент нет списков. Создайте список, нажав кнопку ниже."</string>
     <string name="list_screen_placeholder">"Текущий список пуст. Начните, добавив элемент с помощью кнопки ниже."</string>
-    <string name="placeholder_error">"Что-то пошло не так! Попробуйте перезагрузить экран."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Название нового списка:</string>

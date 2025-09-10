@@ -15,6 +15,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalLayoutDirection
 import androidx.compose.ui.unit.LayoutDirection
@@ -85,7 +86,7 @@ fun Navigation(
     val language = dataStore.getLanguage.collectAsState("")
 
     if (language.value == "") {
-        context.setLanguage(context.resources.configuration.locales.get(0).language, false)
+        context.setLanguage(LocalConfiguration.current.locales.get(0).language, false)
     } else {
         context.setLanguage(language.value, false)
     }

@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"Actualmente no tienes ninguna lista. Por favor, crea una haciendo clic en el botón de abajo."</string>
     <string name="list_screen_placeholder">"La lista actual está vacía. Por favor, comienza agregando un elemento usando el botón de abajo."</string>
-    <string name="placeholder_error">"¡Algo salió mal! Intenta volver a cargar la pantalla."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Nombre de la nueva lista:</string>

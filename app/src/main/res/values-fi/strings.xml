@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"Sinulla ei tällä hetkellä ole mitään listoja. Luo lista napsauttamalla alla olevaa painiketta."</string>
     <string name="list_screen_placeholder">"Nykyinen lista on tyhjä. Aloita lisäämällä kohde käyttämällä alla olevaa painiketta."</string>
-    <string name="placeholder_error">"Jotain meni pieleen! Yritä ladata näyttö uudelleen."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Uuden listan nimi:</string>

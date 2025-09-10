@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"Du har i øjeblikket ingen lister. Opret venligst en ved at klikke på knappen nedenfor."</string>
     <string name="list_screen_placeholder">"Den aktuelle liste er tom. Start venligst med at tilføje en genstand ved hjælp af knappen nedenfor."</string>
-    <string name="placeholder_error">"Noget gik galt! Prøv at genindlæse skærmen."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Navn på ny liste:</string>

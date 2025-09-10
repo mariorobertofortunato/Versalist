@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"Du har för närvarande inga listor. Skapa en genom att klicka på knappen nedan."</string>
     <string name="list_screen_placeholder">"Den aktuella listan är tom. Börja genom att lägga till ett objekt med knappen nedan."</string>
-    <string name="placeholder_error">"Något gick fel! Försök ladda om skärmen."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Nytt listnamn:</string>

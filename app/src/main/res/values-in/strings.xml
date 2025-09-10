@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"Anda saat ini tidak memiliki daftar apa pun. Silakan buat satu dengan mengklik tombol di bawah."</string>
     <string name="list_screen_placeholder">"Daftar saat ini kosong. Silakan mulai dengan menambahkan item menggunakan tombol di bawah."</string>
-    <string name="placeholder_error">"Ada yang salah! Coba muat ulang layar."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Nama daftar baru:</string>

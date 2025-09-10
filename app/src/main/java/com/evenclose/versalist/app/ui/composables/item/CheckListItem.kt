@@ -31,17 +31,15 @@ import androidx.compose.ui.text.style.TextDecoration
 import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
-import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryGrey
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.viewmodel.ListViewModel
 import com.evenclose.versalist.data.model.InnerListItem
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun CheckListItem(
     innerListItem: InnerListItem,
@@ -58,7 +56,6 @@ fun CheckListItem(
             .fillMaxWidth()
             .padding(16.dp)
             .combinedClickable(
-                // Disable ripple effect because it sucks
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() },
                 onClick = {

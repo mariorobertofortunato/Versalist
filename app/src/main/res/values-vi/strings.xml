@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"Hiện tại bạn không có danh sách nào. Vui lòng tạo một danh sách bằng cách nhấn nút bên dưới."</string>
     <string name="list_screen_placeholder">"Danh sách hiện tại trống rỗng. Vui lòng bắt đầu thêm một mục bằng cách sử dụng nút bên dưới."</string>
-    <string name="placeholder_error">"Có lỗi xảy ra! Hãy thử tải lại màn hình."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Tên danh sách mới:</string>

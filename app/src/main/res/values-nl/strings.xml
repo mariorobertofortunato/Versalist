@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"U heeft momenteel geen lijsten. Maak er een aan door op de knop hieronder te klikken."</string>
     <string name="list_screen_placeholder">"De huidige lijst is leeg. Begin door een item toe te voegen met de knop hieronder."</string>
-    <string name="placeholder_error">"Er is iets misgegaan! Probeer het scherm opnieuw te laden."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Nieuwe lijstnaam:</string>
