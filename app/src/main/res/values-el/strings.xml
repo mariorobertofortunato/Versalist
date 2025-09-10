@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"Δεν έχετε καμία λίστα αυτή τη στιγμή. Παρακαλώ, δημιουργήστε μία κάνοντας κλικ στο κουμπί παρακάτω."</string>
     <string name="list_screen_placeholder">"Η τρέχουσα λίστα είναι κενή. Παρακαλώ, ξεκινήστε προσθέτοντας ένα στοιχείο χρησιμοποιώντας το κουμπί παρακάτω."</string>
-    <string name="placeholder_error">"Κάτι πήγε στραβά! Δοκιμάστε να ανανεώσετε την οθόνη."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Όνομα νέας λίστας:</string>

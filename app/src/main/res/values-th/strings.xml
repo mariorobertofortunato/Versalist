@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"คุณไม่มีรายการใด ๆ ในปัจจุบัน สร้างรายการโดยคลิกที่ปุ่มด้านล่าง"</string>
     <string name="list_screen_placeholder">"รายการปัจจุบันว่างเปล่า โปรดเริ่มด้วยการเพิ่มรายการด้วยปุ่มด้านล่าง"</string>
-    <string name="placeholder_error">"มีบางอย่างผิดพลาด! ลองรีโหลดหน้าจอ"</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">ชื่อรายการใหม่:</string>

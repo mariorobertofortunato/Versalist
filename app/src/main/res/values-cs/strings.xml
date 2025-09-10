@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"Momentálně nemáte žádné seznamy. Vytvořte prosím jeden klepnutím na tlačítko níže."</string>
     <string name="list_screen_placeholder">"Aktuální seznam je prázdný. Začněte přidáváním položek klepnutím na tlačítko níže."</string>
-    <string name="placeholder_error">"Něco se pokazilo! Zkuste znovu načíst obrazovku."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Název nového seznamu:</string>

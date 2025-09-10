@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"Sie haben derzeit keine Listen. Bitte erstellen Sie eine, indem Sie unten auf die Schaltfläche klicken."</string>
     <string name="list_screen_placeholder">"Die aktuelle Liste ist leer. Bitte fangen Sie an, indem Sie einen Artikel hinzufügen, indem Sie unten auf die Schaltfläche klicken."</string>
-    <string name="placeholder_error">"Etwas ist schiefgelaufen! Versuchen Sie, den Bildschirm neu zu laden."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">Neuer Listenname:</string>

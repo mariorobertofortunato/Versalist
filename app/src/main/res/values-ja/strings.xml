@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"現在、リストがありません。下のボタンをクリックして新しいリストを作成してください。"</string>
     <string name="list_screen_placeholder">"現在のリストは空です。下のボタンを使用してアイテムを追加して開始してください。"</string>
-    <string name="placeholder_error">"何かが間違っています！画面をリロードしてみてください。"</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">新しいリストの名前：</string>

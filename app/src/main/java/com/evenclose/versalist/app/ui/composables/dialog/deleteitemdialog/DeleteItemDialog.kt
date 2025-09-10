@@ -26,11 +26,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
-import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
-import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.viewmodel.ListViewModel
 import com.evenclose.versalist.data.model.InnerListItem

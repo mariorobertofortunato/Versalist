@@ -11,7 +11,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"You currently do not have any lists. Please create one by clicking the button below."</string>
     <string name="list_screen_placeholder">"The current list is empty. Please start by adding an item using the button below."</string>
-    <string name="placeholder_error">"Something went wrong! Try reloading the screen."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">New list name:</string>
@@ -51,8 +50,8 @@
     <string name="dismiss">Dismiss</string>
 
 
-    <string name="language" translatable="false">Language</string>
-    <string name="choose_language" translatable="false">Choose language</string>
+    <string name="language">Language</string>
+    <string name="choose_language">Choose language</string>
 
     <string name="personal">Personal</string>
     <string name="work">Work</string>

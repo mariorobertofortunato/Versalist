@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"You currently do not have any lists. Please create one by clicking the button below."</string>
     <string name="list_screen_placeholder">"The current list is empty. Please start by adding an item using the button below."</string>
-    <string name="placeholder_error">"Something went wrong! Try reloading the screen."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">New list name:</string>
@@ -61,9 +60,6 @@
     <string name="shopping">Shopping</string>
     <string name="social">Social life</string>
     <string name="misc">Misc</string>
-
-    <string name="set_alarm" translatable="false">Set Alarm</string>
-    <string name="modify_alarm" translatable="false">Modify Alarm</string>
 
     <string name="ok" translatable="false">OK</string>
 

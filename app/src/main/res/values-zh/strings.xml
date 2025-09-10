@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"您当前没有任何列表。请通过点击下方的按钮创建一个。"</string>
     <string name="list_screen_placeholder">"当前列表为空。请通过使用下方的按钮开始添加项目。"</string>
-    <string name="placeholder_error">"出现了问题！请尝试重新加载屏幕。"</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">新列表名称：</string>

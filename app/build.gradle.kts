@@ -21,8 +21,8 @@ android {
         applicationId = "com.evenclose.versalist"
         minSdk = 28
         targetSdk = 36
-        versionCode = 2
-        versionName = "1.0.1"
+        versionCode = 3
+        versionName = "1.0.2"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -32,20 +32,10 @@ android {
         compose = true
     }
 
-/*    signingConfigs {
-        getByName("debug") {
-            applyConfigs()
-        }
-        create("release") {
-            applyConfigs()
-        }
-    }*/
-
     buildTypes {
         getByName(BuildType.DEBUG) {
         }
         getByName(BuildType.RELEASE) {
-            //signingConfig = signingConfigs.getByName(BuildType.RELEASE)
             isMinifyEnabled = true
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
@@ -64,13 +54,6 @@ android {
         jvmTarget = "17"
     }
 }
-
-/*fun ApkSigningConfig.applyConfigs() {
-    storeFile = file(project.findProperty("STORE_FILE") as String)
-    storePassword = project.findProperty("STORE_PASSWORD") as String
-    keyAlias = project.findProperty("KEY_ALIAS") as String
-    keyPassword = project.findProperty("KEY_PASSWORD") as String
-}*/
 
 dependencies {
 

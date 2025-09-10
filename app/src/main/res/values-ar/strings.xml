@@ -12,7 +12,6 @@
     <!-- Placeholder -->
     <string name="main_screen_placeholder">"ليس لديك حاليًا أي قوائم. الرجاء إنشاء قائمة عن طريق النقر على الزر أدناه."</string>
     <string name="list_screen_placeholder">"القائمة الحالية فارغة. يرجى البدء بإضافة عنصر باستخدام الزر أدناه."</string>
-    <string name="placeholder_error">"حدث خطأ! حاول تحميل الشاشة مرة أخرى."</string>
 
     <!-- New List/New Item form -->
     <string name="new_list_name">اسم القائمة الجديدة:</string>
