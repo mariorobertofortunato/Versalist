@@ -1,4 +1,4 @@
-# VersaList Pro - Open Source Edition
+# VersaList Pro - Open Source
 
 ## Description
 VersaList Pro is a powerful and user-friendly list-making application designed to help you effortlessly create, organize, and manage lists for a wide range of purposes. Whether you're planning your day, organizing projects, or keeping track of important tasks, VersaList Pro provides the tools you need to stay on top of your to-dos.
