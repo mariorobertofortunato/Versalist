@@ -1,11 +1,13 @@
 package com.evenclose.versalist.data.model
 
+import androidx.compose.runtime.Immutable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "inner_list")
+@Immutable
 data class InnerListItem(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")                var id: Int?  = null,

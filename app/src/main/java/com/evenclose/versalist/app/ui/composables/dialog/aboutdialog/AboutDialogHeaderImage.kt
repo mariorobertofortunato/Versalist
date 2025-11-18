@@ -9,7 +9,11 @@ import com.airbnb.lottie.compose.rememberLottieComposition
 import com.evenclose.versalist.R
 
 @Composable
-fun AboutDialogHeaderImage(modifier: Modifier) {    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.animation_info))
+fun AboutDialogHeaderImage(modifier: Modifier) {
+
+    val composition by rememberLottieComposition(
+        spec = LottieCompositionSpec.RawRes(R.raw.animation_info)
+    )
 
     LottieAnimation(
         composition = composition,

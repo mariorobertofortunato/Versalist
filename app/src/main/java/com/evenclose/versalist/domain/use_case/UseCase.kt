@@ -10,7 +10,6 @@ import com.evenclose.versalist.domain.use_case.inner_list.GetCurrentInnerListUse
 import com.evenclose.versalist.domain.use_case.main_list.GetListDataUseCase
 import com.evenclose.versalist.domain.use_case.inner_list.UpdateItemCheckStatusUseCase
 import com.evenclose.versalist.domain.use_case.main_list.UpdateMainListFavouriteStatusUseCase
-import com.evenclose.versalist.domain.use_case.main_list.UpdateMainListReminderUseCase
 
 class UseCase (
     var FetchAllListsUseCase: FetchAllListsUseCase,
@@ -23,5 +22,4 @@ class UseCase (
     var DeleteInnerListItemUseCase: DeleteInnerListItemUseCase,
     var UpdateMainListFavouriteStatusUseCase: UpdateMainListFavouriteStatusUseCase,
     var DeleteInnerListItemFromMainListUseCase: DeleteInnerListItemFromMainListUseCase,
-    var UpdateMainListReminderUseCase: UpdateMainListReminderUseCase,
         )

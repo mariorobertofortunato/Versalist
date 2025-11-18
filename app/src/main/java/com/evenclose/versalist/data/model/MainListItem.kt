@@ -14,5 +14,4 @@ data class MainListItem(
     @ColumnInfo(name = "type")                                  var type: String,
     @ColumnInfo(name = "category")                              var category: String,
     @ColumnInfo(name = "isFav")                                 var isFav: Boolean,
-    @ColumnInfo(name = "reminderDate")                          var reminderDate: Instant?
 ): Serializable

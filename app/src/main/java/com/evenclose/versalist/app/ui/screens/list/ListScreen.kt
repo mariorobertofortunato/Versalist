@@ -48,7 +48,7 @@ import kotlinx.coroutines.delay
 
 @Composable
 fun ListScreen(
-    navController: NavController,
+    onNavigateUp: () -> Unit,
     listId: Int,
     listViewModel: ListViewModel = hiltViewModel(),
 ) {
@@ -94,7 +94,9 @@ fun ListScreen(
                     .statusBarsPadding()
             ) {
                 ListScreenHeader(
-                    navController = navController,
+                    onNavigateUp = {
+                        onNavigateUp()
+                    },
                     listName = currentListData.value?.name ?: "Error"
                 )
             }

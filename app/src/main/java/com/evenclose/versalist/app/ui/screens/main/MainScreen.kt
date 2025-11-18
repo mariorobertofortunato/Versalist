@@ -45,16 +45,17 @@ import com.evenclose.versalist.app.ui.theme.backgroundGradient
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.viewmodel.ListViewModel
+import com.evenclose.versalist.domain.model.ListsModel
 import com.evenclose.versalist.utils.enums.PlaceholderType
 import kotlinx.coroutines.delay
 
 @Composable
 fun MainScreen(
-    navController: NavController,
+    onNavigateToListId: (Int) -> Unit,
     listViewModel: ListViewModel = hiltViewModel(),
 ) {
 
-    val mainList = listViewModel.mainList.collectAsState(emptyList())
+    val mainList = listViewModel.mainList.collectAsState()
     val viewState by listViewModel.viewState.collectAsState()
 
     /** New List Form */
@@ -159,7 +160,9 @@ fun MainScreen(
                         ) {
                             MainListItem(
                                 mainListItem = item,
-                                navController = navController
+                                onNavigateToListId = { it ->
+                                    onNavigateToListId(it)
+                                }
                             )
                             HorizontalDivider(
                                 color = primaryWhite.copy(alpha = 0.15f),

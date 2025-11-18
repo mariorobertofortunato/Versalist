@@ -4,6 +4,7 @@ import android.util.Log
 import com.evenclose.versalist.data.database.ListDao
 import com.evenclose.versalist.data.model.InnerListItem
 import com.evenclose.versalist.data.model.MainListItem
+import com.evenclose.versalist.domain.model.ListsModel
 import kotlinx.coroutines.flow.flow
 import java.time.Instant
 import javax.inject.Inject
@@ -12,16 +13,10 @@ class ListRepository @Inject constructor(
     private val dao: ListDao,
 ) {
 
-    private lateinit var allLists: List<MainListItem>
-    private lateinit var currentInnerList: List<InnerListItem>
-    private lateinit var currentListData: MainListItem
-
-
     /** MAIN LIST */
     suspend fun fetchAllLists() = flow {
         try {
-            allLists = dao.fetchAllLists()
-            emit(allLists)
+            emit(ListsModel(lists = dao.fetchAllLists()))
         } catch (e: Exception) {
             Log.e("TAG Error Fetch All Lists", "$e")
         }
@@ -29,8 +24,7 @@ class ListRepository @Inject constructor(
 
     suspend fun getListData(id: Int) = flow {
         try {
-            currentListData = dao.fetchCurrentListData(id)
-            emit(currentListData)
+            emit(dao.fetchCurrentListData(id))
         } catch (e: Exception) {
             Log.e("TAG Error Fetch List data", "$e")
         }
@@ -43,8 +37,7 @@ class ListRepository @Inject constructor(
                     name = name,
                     type = type,
                     category = category,
-                    isFav = false,
-                    reminderDate = null
+                    isFav = false
                 )
             )
         } catch (e: Exception) {
@@ -65,14 +58,6 @@ class ListRepository @Inject constructor(
             dao.updateMainListFavouriteStatus(id, newFavouriteStatus)
         } catch (e: Exception) {
             Log.e("TAG Error Update Main List Favourite Status", "$e")
-        }
-    }
-
-    suspend fun updateMainListReminder(id: Int, reminderDate: Instant?) {
-        try {
-            dao.updateMainListReminder(id, reminderDate)
-        } catch (e: Exception) {
-            Log.e("TAG Error Update Main List Reminder", "$e")
         }
     }
 
@@ -118,8 +103,7 @@ class ListRepository @Inject constructor(
 
     suspend fun getCurrentInnerList(id: Int) = flow {
         try {
-            currentInnerList = dao.fetchCurrentInnerList(id)
-            emit(currentInnerList)
+            emit(dao.fetchCurrentInnerList(id))
         } catch (e: Exception) {
             Log.e("TAG Error Fetch Inner List", "$e")
         }

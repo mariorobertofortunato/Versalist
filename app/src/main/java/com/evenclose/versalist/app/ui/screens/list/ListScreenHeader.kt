@@ -40,7 +40,7 @@ import com.evenclose.versalist.app.ui.theme.primaryWhite
 
 @Composable
 fun ListScreenHeader(
-    navController: NavController,
+    onNavigateUp: () -> Unit,
     listName: String
 ) {
 
@@ -61,7 +61,7 @@ fun ListScreenHeader(
         ) {
             IconButton(
                 onClick = {
-                    navController.navigateUp()
+                    onNavigateUp()
                 }
             ) {
                 Icon(

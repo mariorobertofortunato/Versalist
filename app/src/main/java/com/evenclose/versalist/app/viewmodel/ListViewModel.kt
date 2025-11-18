@@ -12,7 +12,6 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.launch
-import java.time.Instant
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,8 +29,7 @@ class ListViewModel @Inject constructor(
             name = "",
             type = "",
             category = "",
-            isFav = false,
-            reminderDate = null
+            isFav = false
         )
     )
 
@@ -45,8 +43,8 @@ class ListViewModel @Inject constructor(
         viewModelScope.launch {
             delay(500)
             useCase.FetchAllListsUseCase().collect {
-                mainList.value = it
-                viewState.value = ViewState.Done()
+                mainList.value = it.lists
+                viewState.value = ViewState.Done(it)
             }
         }
     }
@@ -82,14 +80,6 @@ class ListViewModel @Inject constructor(
         viewState.value = ViewState.Loading
         viewModelScope.launch {
             useCase.UpdateMainListFavouriteStatusUseCase(mainListItemId, newFavouriteStatus)
-            fetchAllLists()
-        }
-    }
-
-    fun updateMainListReminder(mainListItemId: Int, reminderDate: Instant?) {
-        viewState.value = ViewState.Loading
-        viewModelScope.launch {
-            useCase.UpdateMainListReminderUseCase(mainListItemId, reminderDate)
             fetchAllLists()
         }
     }

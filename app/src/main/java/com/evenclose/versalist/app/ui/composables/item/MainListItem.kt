@@ -64,7 +64,7 @@ import com.evenclose.versalist.data.model.MainListItem
 @Composable
 fun MainListItem(
     mainListItem: MainListItem,
-    navController: NavController,
+    onNavigateToListId: (Int) -> Unit,
     listViewModel: ListViewModel = hiltViewModel(),
 ) {
 
@@ -72,7 +72,6 @@ fun MainListItem(
 
     var expanded by remember { mutableStateOf(false) }
     var favouriteStatus by remember { mutableStateOf(mainListItem.isFav) }
-    val reminderDate by remember { mutableStateOf(mainListItem.reminderDate) }
     var openDeleteDialog by remember { mutableStateOf(false) }
 
 
@@ -87,7 +86,7 @@ fun MainListItem(
                 indication = null,
                 interactionSource = remember { MutableInteractionSource() },
                 onClick = {
-                    navController.navigate(route = "${Screens.ListScreen.route}/${mainListItem.id}")
+                    onNavigateToListId(mainListItem.id ?: 0)
                 },
                 onLongClick = {
                     expanded = true
@@ -237,28 +236,6 @@ fun MainListItem(
                 modifier = Modifier
                     .fillMaxWidth()
             )
-/*            DropdownMenuItem(
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Outlined.Notifications,
-                        contentDescription = "Set Alarm Icon",
-                        tint = light
-                    )
-                },
-                text = {
-                    Text(
-                        text = if (reminderDate != null) context.getString(R.string.modify_alarm) else context.getString(
-                            R.string.set_alarm
-                        ),
-                        fontSize = 16.sp,
-                        color = light
-                    )
-                },
-                onClick = {
-                    expanded = false
-                    navController.navigate(route = "${Screens.ReminderScreen.route}/${mainListItem.id}")
-                }
-            )*/
             DropdownMenuItem(
                 leadingIcon = {
                     Icon(
@@ -297,23 +274,6 @@ fun MainListItem(
                     Icon(
                         imageVector = Icons.Outlined.PriorityHigh,
                         contentDescription = "Fav Icon",
-                        tint = primaryWhite,
-                        modifier = Modifier
-                            .padding(4.dp)
-                    )
-                }
-            }
-            if (reminderDate != null) {
-                Box(
-                    modifier = Modifier
-                        .padding(end = 2.dp)
-                        .background(color = primaryBlack_Dark, shape = RoundedCornerShape(8.dp))
-                        .border(2.dp, primaryWhite, RoundedCornerShape(8.dp))
-
-                ){
-                    Icon(
-                        imageVector = Icons.Outlined.NotificationsActive,
-                        contentDescription = "Alarm Icon",
                         tint = primaryWhite,
                         modifier = Modifier
                             .padding(4.dp)

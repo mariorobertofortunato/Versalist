@@ -1,30 +1,28 @@
 [versions]
-agp = "8.10.1"
+agp = "8.13.1"
 datastorePreferences = "1.1.7"
-hilt = "2.51.1"
+hilt = "2.57.2"
 hiltNavigationCompose = "1.3.0"
-kotlin = "2.0.0"
+kotlin = "2.2.21"
 coreKtx = "1.17.0"
-kotlinxCoroutinesCore = "1.8.0"
+kotlinxCoroutinesCore = "1.10.2"
 legacySupportV4 = "1.0.0"
-lifecycleRuntimeKtx = "2.9.3"
+lifecycleRuntimeKtx = "2.9.4"
 activityCompose = "1.11.0"
-composeBom = "2025.09.00"
-lottieCompose = "6.0.1"
-navigationCompose = "2.9.4"
-ksp-version = "2.0.0-1.0.21"
-roomCompilerVersion = "2.8.0"
-roomKtx = "2.8.0"
-roomRuntime = "2.8.0"
-uiTooling = "1.9.1"
+composeBom = "2025.11.00"
+lottieCompose = "6.7.1"
+navigationCompose = "2.9.6"
+ksp-version = "2.3.2"
+room = "2.8.3"
+uiTooling = "1.9.4"
 
 [libraries]
 androidx-core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "coreKtx" }
 androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "datastorePreferences" }
 androidx-hilt-navigation-compose = { module = "androidx.hilt:hilt-navigation-compose", version.ref = "hiltNavigationCompose" }
 androidx-legacy-support-v4 = { module = "androidx.legacy:legacy-support-v4", version.ref = "legacySupportV4" }
-androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "roomKtx" }
-androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "roomRuntime" }
+androidx-room-ktx = { module = "androidx.room:room-ktx", version.ref = "room" }
+androidx-room-runtime = { module = "androidx.room:room-runtime", version.ref = "room" }
 hilt-android-compiler = { module = "com.google.dagger:hilt-android-compiler", version.ref = "hilt" }
 hilt-android = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
 androidx-lifecycle-runtime-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycleRuntimeKtx" }
@@ -38,7 +36,7 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 kotlinx-coroutines-core = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-core", version.ref = "kotlinxCoroutinesCore" }
 lottie-compose = { module = "com.airbnb.android:lottie-compose", version.ref = "lottieCompose" }
 material-icons-extended = { module = "androidx.compose.material:material-icons-extended" }
-room-compiler = { module = "androidx.room:room-compiler", version.ref = "roomCompilerVersion" }
+room-compiler = { module = "androidx.room:room-compiler", version.ref = "room" }
 androidx-ui-tooling = { group = "androidx.compose.ui", name = "ui-tooling", version.ref = "uiTooling" }
 
 [plugins]

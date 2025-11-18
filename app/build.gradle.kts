@@ -1,5 +1,3 @@
-import com.android.build.api.dsl.ApkSigningConfig
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
@@ -78,5 +76,7 @@ dependencies {
     implementation(libs.material.icons.extended)
     implementation (libs.androidx.legacy.support.v4)
     implementation (libs.kotlinx.coroutines.core)
+    implementation("com.google.code.gson:gson:2.10.1")
+
 
 }
