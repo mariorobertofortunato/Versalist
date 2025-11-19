@@ -1,6 +1,7 @@
 package com.evenclose.versalist.app.ui.composables.item
 
 import androidx.compose.foundation.ExperimentalFoundationApi
+import androidx.compose.foundation.Indication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
@@ -49,6 +50,7 @@ import androidx.navigation.NavController
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.navigation.Screens
 import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
+import com.evenclose.versalist.app.ui.screens.main.ItemDropDown
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
@@ -64,26 +66,18 @@ import com.evenclose.versalist.data.model.MainListItem
 @Composable
 fun MainListItem(
     mainListItem: MainListItem,
-    onNavigateToListId: (Int) -> Unit,
-    listViewModel: ListViewModel = hiltViewModel(),
+    onNavigateToListId: (Int) -> Unit
 ) {
 
-    val context = LocalContext.current
-
     var expanded by remember { mutableStateOf(false) }
-    var favouriteStatus by remember { mutableStateOf(mainListItem.isFav) }
-    var openDeleteDialog by remember { mutableStateOf(false) }
-
 
     Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.SpaceBetween,
         modifier = Modifier
             .fillMaxWidth()
-            .padding(16.dp)
+            .padding(vertical = 16.dp)
             .combinedClickable(
-                // Disable ripple effect because it sucks
-                indication = null,
                 interactionSource = remember { MutableInteractionSource() },
                 onClick = {
                     onNavigateToListId(mainListItem.id ?: 0)
@@ -94,27 +88,27 @@ fun MainListItem(
             )
     ) {
         val categoryIcon = when (mainListItem.category) {
-            ListCategory.PERSONAL -> {
+            ListCategory.PERSONAL.name -> {
                 Icons.Outlined.EmojiPeople
             }
 
-            ListCategory.WORK -> {
+            ListCategory.WORK.name -> {
                 Icons.Outlined.Badge
             }
 
-            ListCategory.HEALTH -> {
+            ListCategory.HEALTH.name  -> {
                 Icons.Outlined.Spa
             }
 
-            ListCategory.SHOPPING -> {
+            ListCategory.SHOPPING.name  -> {
                 Icons.Outlined.ShoppingCart
             }
 
-            ListCategory.SOCIAL -> {
+            ListCategory.SOCIAL.name  -> {
                 Icons.Outlined.Diversity1
             }
 
-            ListCategory.MISC -> {
+            ListCategory.MISC.name  -> {
                 Icons.AutoMirrored.Outlined.EventNote
             }
 
@@ -147,27 +141,27 @@ fun MainListItem(
             ) {
                 val categoryName: String
                 when (mainListItem.category) {
-                    ListCategory.PERSONAL -> {
+                    ListCategory.PERSONAL.name  -> {
                         categoryName = stringResource(id = R.string.personal)
                     }
 
-                    ListCategory.WORK -> {
+                    ListCategory.WORK.name  -> {
                         categoryName = stringResource(id = R.string.work)
                     }
 
-                    ListCategory.HEALTH -> {
+                    ListCategory.HEALTH.name  -> {
                         categoryName = stringResource(id = R.string.health)
                     }
 
-                    ListCategory.SHOPPING -> {
+                    ListCategory.SHOPPING.name  -> {
                         categoryName = stringResource(id = R.string.shopping)
                     }
 
-                    ListCategory.SOCIAL -> {
+                    ListCategory.SOCIAL.name  -> {
                         categoryName = stringResource(id = R.string.social)
                     }
 
-                    ListCategory.MISC -> {
+                    ListCategory.MISC.name  -> {
                         categoryName = stringResource(id = R.string.misc)
                     }
 
@@ -192,78 +186,19 @@ fun MainListItem(
             }
         }
 
-
-        DropdownMenu(
+        ItemDropDown(
+            mainListItem = mainListItem,
             expanded = expanded,
-            onDismissRequest = { expanded = false },
-            offset = DpOffset(x = 4.dp, y = 4.dp),
-            shape = RoundedCornerShape(16.dp),
-            shadowElevation = 10.dp,
-            modifier = Modifier
-                .fillMaxWidth(0.9f)
-                .background(primaryBlack_Light, RoundedCornerShape(16.dp))
-                .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
-        ) {
-            DropdownMenuItem(
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Outlined.PriorityHigh,
-                        contentDescription = "Important Icon",
-                        tint = primaryWhite
-                    )
-                },
-                text = {
-                    Text(
-                        text = if (favouriteStatus) context.getString(R.string.unmark_as_important) else context.getString(
-                            R.string.mark_as_important
-                        ),
-                        fontSize = 16.sp,
-                        color = primaryWhite
-                    )
-                },
-                onClick = {
-                    expanded = false
-                    favouriteStatus = !favouriteStatus
-                    listViewModel.updateMainListFavouriteStatus(
-                        mainListItemId = mainListItem.id!!,
-                        newFavouriteStatus = favouriteStatus
-                    )
-                }
-            )
-            HorizontalDivider(
-                color = secondaryBlue.copy(alpha = 0.25f),
-                thickness = 2.dp,
-                modifier = Modifier
-                    .fillMaxWidth()
-            )
-            DropdownMenuItem(
-                leadingIcon = {
-                    Icon(
-                        imageVector = Icons.Outlined.Delete,
-                        contentDescription = "Delete Icon",
-                        tint = primaryWhite
-                    )
-                },
-                text = {
-                    Text(
-                        text = stringResource(id = R.string.delete) + " " + mainListItem.name,
-                        fontSize = 16.sp,
-                        color = primaryWhite
-                    )
-                },
-                onClick = {
-                    expanded = false
-                    openDeleteDialog = true
-                }
-            )
-        }
-
+            onDismissRequest = {
+                expanded = false
+            }
+        )
 
         Row(
             verticalAlignment = Alignment.CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween,
         ) {
-            if (favouriteStatus) {
+            if (mainListItem.isFav) {
                 Box(
                     modifier = Modifier
                         .padding(end = 2.dp)
@@ -282,14 +217,6 @@ fun MainListItem(
             }
         }
 
-        if (openDeleteDialog) {
-            DeleteItemDialog(
-                mainListItem = mainListItem,
-                innerListItem = null,
-                onDismiss = {
-                    openDeleteDialog = false
-                }
-            )
-        }
+
     }
 }

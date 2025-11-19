@@ -9,7 +9,7 @@ import java.time.Instant
 @Entity(tableName = "main_list")
 data class MainListItem(
     @PrimaryKey(autoGenerate = true)
-    @ColumnInfo(name = "id")                                    var id: Int? = null,
+    @ColumnInfo(name = "id")                                    val id: Int? = null,
     @ColumnInfo(name = "name")                                  val name: String,
     @ColumnInfo(name = "type")                                  var type: String,
     @ColumnInfo(name = "category")                              var category: String,

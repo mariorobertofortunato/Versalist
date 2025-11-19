@@ -7,7 +7,6 @@ import androidx.room.PrimaryKey
 import java.io.Serializable
 
 @Entity(tableName = "inner_list")
-@Immutable
 data class InnerListItem(
     @PrimaryKey(autoGenerate = true)
     @ColumnInfo(name = "id")                var id: Int?  = null,

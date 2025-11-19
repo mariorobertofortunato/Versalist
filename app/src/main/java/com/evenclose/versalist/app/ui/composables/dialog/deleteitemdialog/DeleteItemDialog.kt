@@ -37,9 +37,9 @@ import com.evenclose.versalist.data.model.MainListItem
 
 @Composable
 fun DeleteItemDialog (
-    mainListItem: MainListItem?,
-    innerListItem: InnerListItem?,
-    listViewModel: ListViewModel = hiltViewModel(),
+    mainListItem: MainListItem? = null,
+    innerListItem: InnerListItem?= null,
+    onConfirm: () -> Unit,
     onDismiss: () -> Unit
 ){
 
@@ -127,12 +127,13 @@ fun DeleteItemDialog (
                                     .background(primaryBlack_Dark, CircleShape)
                                     .border(1.dp, primaryWhite, CircleShape),
                                 onClick = {
-                                    if (mainListItem != null ) {
+                                    onConfirm()
+/*                                    if (mainListItem != null ) {
                                         listViewModel.deleteMainListItem(mainListItem.id!!)
                                     } else if (innerListItem != null ) {
                                         listViewModel.deleteInnerListItem(innerListItem.id!!, innerListItem.mainListId)
-                                    }
-                                    onDismiss()
+                                    }*/
+                                    //onDismiss()
                                 }
                             ) {
                                 Text(

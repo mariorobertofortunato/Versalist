@@ -138,6 +138,9 @@ fun CheckListItem(
             DeleteItemDialog(
                 mainListItem = null,
                 innerListItem = innerListItem,
+                onConfirm = {
+                    // TODO
+                },
                 onDismiss = {
                     openDialog = false
                 }

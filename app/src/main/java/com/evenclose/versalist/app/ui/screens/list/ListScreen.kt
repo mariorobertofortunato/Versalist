@@ -18,6 +18,7 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -30,11 +31,12 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.ui.composables.FabContent
+import com.evenclose.versalist.app.ui.composables.VersalistFab
 import com.evenclose.versalist.app.ui.composables.forms.NewItemForm
 import com.evenclose.versalist.app.ui.composables.item.CheckListItem
 import com.evenclose.versalist.app.ui.composables.item.OpenListItem
@@ -105,25 +107,13 @@ fun ListScreen(
             AnimatedVisibility(
                 visible = !newItemTextFieldVisibility
             ) {
-                FloatingActionButton(
-                    containerColor = primaryBlack_Dark,
-                    contentColor = primaryWhite,
-                    shape = CircleShape,
+                VersalistFab(
+                    text = stringResource(id = R.string.add_item),
                     onClick = {
                         newItemTextFieldVisibility = true
-                        //errorTextVisibility = false
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .navigationBarsPadding()
-                        .imePadding()
-                        .padding(16.dp)
-                        .border(1.dp, primaryWhite, CircleShape)
-                ) {
-                    FabContent(
-                        text = stringResource(id = R.string.add_item)
-                    )
-                }
+                    }
+                )
+
             }
 
         },

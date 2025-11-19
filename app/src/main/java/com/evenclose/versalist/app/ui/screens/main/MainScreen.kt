@@ -1,6 +1,14 @@
 package com.evenclose.versalist.app.ui.screens.main
 
+import android.widget.Toast
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -8,9 +16,8 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBarsPadding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -18,7 +25,9 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
@@ -30,49 +39,52 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.blur
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Brush
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.common.ViewState
-import com.evenclose.versalist.app.ui.composables.FabContent
+import com.evenclose.versalist.app.composition.LocalMainScreenEventSink
+import com.evenclose.versalist.app.contracts.MainScreenEvent
 import com.evenclose.versalist.app.ui.composables.Loader
+import com.evenclose.versalist.app.ui.composables.VersalistFab
+import com.evenclose.versalist.app.ui.composables.dialog.aboutdialog.AboutDialog
+import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
+import com.evenclose.versalist.app.ui.composables.dialog.helpdialog.mainscreenhelpdialog.MainScreenHelpDialog
+import com.evenclose.versalist.app.ui.composables.dialog.languagedialog.LanguageDialog
+import com.evenclose.versalist.app.ui.composables.dialog.privacydialog.PrivacyDialog
 import com.evenclose.versalist.app.ui.composables.forms.NewListForm
 import com.evenclose.versalist.app.ui.composables.item.MainListItem
 import com.evenclose.versalist.app.ui.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalist.app.ui.theme.backgroundGradient
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.app.viewmodel.ListViewModel
-import com.evenclose.versalist.domain.model.ListsModel
+import com.evenclose.versalist.app.viewmodel.MainScreenViewModel
+import com.evenclose.versalist.data.model.PopupType
 import com.evenclose.versalist.utils.enums.PlaceholderType
 import kotlinx.coroutines.delay
 
 @Composable
 fun MainScreen(
     onNavigateToListId: (Int) -> Unit,
-    listViewModel: ListViewModel = hiltViewModel(),
+    mainScreenViewModel: MainScreenViewModel = hiltViewModel()
 ) {
-
-    val mainList = listViewModel.mainList.collectAsState()
-    val viewState by listViewModel.viewState.collectAsState()
-
-    /** New List Form */
+    val context = LocalContext.current
+    val state by mainScreenViewModel.state.collectAsState()
     var newListFormVisibility by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
-
-    /** lazyColumn State*/
     val listState = rememberLazyListState(0)
 
-    // We fetch the main list at the start of the screen.
-    LaunchedEffect(Unit) {
-        listViewModel.fetchAllLists()
+    LaunchedEffect(state.toastMessage) {
+        state.toastMessage?.let { msg ->
+            Toast.makeText(context, msg, Toast.LENGTH_SHORT).show()
+        }
     }
 
-    // When a new item is added we scroll to the bottom of the list
-    LaunchedEffect(mainList.value.size, newListFormVisibility) {
-        listState.animateScrollToItem(mainList.value.size)
+    LaunchedEffect(state.mainListItems.size, newListFormVisibility) {
+        listState.animateScrollToItem(state.mainListItems.size)
     }
 
     // The delay is needed as the focus must not be requested before or during the composition of the text field
@@ -83,85 +95,68 @@ fun MainScreen(
         }
     }
 
-
-    Scaffold(
-        modifier = Modifier
-            .background(
-                brush = Brush.linearGradient(backgroundGradient)
-            )
-            .then(
-                if (
-                    //popupType != null ||
-                    viewState is ViewState.Loading) {
-                    Modifier
-                        .blur(24.dp)
-                } else {
-                    Modifier
-                }
-            ),
-        topBar = {
-            Column(
-                modifier = Modifier
-                    .background(
-                        brush = Brush.linearGradient(backgroundGradient)
-                    )
-                    .statusBarsPadding()
-            ) {
-                MainScreenHeader()
-            }
-        },
-        bottomBar = {
-            AnimatedVisibility(
-                visible = !newListFormVisibility
-            ) {
-                FloatingActionButton(
-                    containerColor = primaryBlack_Dark,
-                    contentColor = primaryWhite,
-                    shape = CircleShape,
-                    onClick = {
-                        newListFormVisibility = true
-                    },
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .navigationBarsPadding()
-                        .imePadding()
-                        .padding(16.dp)
-                        .border(1.dp, primaryWhite, CircleShape)
-                ) {
-                    FabContent(
-                        text = stringResource(R.string.new_list)
-                    )
-                }
-            }
-        },
+    CompositionLocalProvider(
+        LocalMainScreenEventSink provides state.eventSink
     ) {
-        LazyColumn(
-            verticalArrangement = if (mainList.value.isNotEmpty() || newListFormVisibility) Arrangement.Top else Arrangement.Center,
-            state = listState,
+
+        Scaffold(
             modifier = Modifier
-                .fillMaxSize()
-                .padding(it)
-        ) {
+                .background(
+                    brush = Brush.linearGradient(backgroundGradient)
+                )
+                .safeContentPadding()
+                .then(
+                    if (state.popupType != null || state.isLoading) {
+                        Modifier
+                            .blur(24.dp)
+                    } else {
+                        Modifier
+                    }
+                ),
+            topBar = {
+                MainScreenHeader()
+            },
+            bottomBar = {
+                AnimatedVisibility(
+                    visible = !newListFormVisibility,
+                    enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
+                    exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
+                ) {
+                    VersalistFab(
+                        text = stringResource(R.string.new_list),
+                        onClick = {
+                            newListFormVisibility = true
+                        }
+                    )
+                }
+            },
+        ) { paddingValues ->
 
-            /** MAIN LIST */
-            if (mainList.value.isNotEmpty()) {
-                items(
-                    items = mainList.value,
-                    key = { item -> item }
-                ) { item ->
+            // List
+            AnimatedVisibility(
+                visible = !newListFormVisibility,
+                enter = slideInHorizontally(initialOffsetX = { it }) + fadeIn(),
+                exit = slideOutHorizontally(targetOffsetX = { it }) + fadeOut(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(horizontal = 16.dp)
+            ) {
+                LazyColumn(
+                    horizontalAlignment = CenterHorizontally,
+                    verticalArrangement = if (state.mainListItems.isNotEmpty() || newListFormVisibility) Arrangement.Top else Arrangement.Center,
+                    state = listState,
+                ) {
+                    if (state.mainListItems.isNotEmpty()) {
+                        items(
+                            items = state.mainListItems,
+                            key = { item -> item }
+                        ) { item ->
 
-                    AnimatedVisibility(
-                        visible = !newListFormVisibility,
-                    ) {
-                        Column(
-                            horizontalAlignment = CenterHorizontally,
-                            modifier = Modifier
-                                .fillMaxWidth()
-                        ) {
                             MainListItem(
                                 mainListItem = item,
-                                onNavigateToListId = { it ->
-                                    onNavigateToListId(it)
+                                onNavigateToListId = { listId ->
+                                    onNavigateToListId(listId)
                                 }
                             )
                             HorizontalDivider(
@@ -171,60 +166,92 @@ fun MainScreen(
                                     .fillMaxWidth(0.95f)
                             )
                         }
-                    }
 
-                }
-
-            } else {
-                /** PLACEHOLDER */
-                item {
-                    AnimatedVisibility(
-                        visible = !newListFormVisibility
-                    ) {
-                        EmptyListPlaceholder(
-                            type = PlaceholderType.PLACEHOLDER_MAIN_SCREEN
-                        )
-                    }
-                }
-            }
-            /** Add new List Form */
-            item {
-                AnimatedVisibility(
-                    visible = newListFormVisibility,
-                ) {
-                    NewListForm(
-                        focusRequester = focusRequester,
-                        onCancelClick = {
-                            newListFormVisibility = false
-                        },
-                        onConfirmClick = { newListValue,
-                                           selectedListTypeOption,
-                                           selectedListCategoryOption ->
-                            listViewModel.addNewList(
-                                newListValue,
-                                selectedListTypeOption,
-                                selectedListCategoryOption
+                    } else {
+                        item {
+                            EmptyListPlaceholder(
+                                type = PlaceholderType.PLACEHOLDER_MAIN_SCREEN
                             )
-                            newListFormVisibility = false
                         }
-                    )
+                    }
                 }
             }
-        }
-    }
 
-    when (viewState) {
-        is ViewState.Done -> {
-            listViewModel.resetViewState()
+            /// Form
+            AnimatedVisibility(
+                visible = newListFormVisibility,
+                enter = slideInHorizontally(initialOffsetX = { -it }) + fadeIn(),
+                exit = slideOutHorizontally(targetOffsetX = { -it }) + fadeOut(),
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(paddingValues)
+                    .padding(horizontal = 16.dp)
+            ) {
+                NewListForm(
+                    focusRequester = focusRequester,
+                    onCancelClick = {
+                        newListFormVisibility = false
+                    },
+                    onConfirmClick = { newListItem ->
+                        state.eventSink(MainScreenEvent.AddNewMainListItem(newListItem))
+                        newListFormVisibility = false
+                    }
+                )
+            }
         }
-        is ViewState.Error -> {
-            listViewModel.resetViewState()
-        }
-        ViewState.Loading -> {
+
+        if (state.isLoading) {
             Loader()
         }
-        ViewState.None -> {
-            // Do nothing
+
+        when (state.popupType) {
+            PopupType.HELP -> {
+                MainScreenHelpDialog(
+                    onDismiss = {
+                        state.eventSink(MainScreenEvent.HidePopup)
+                    }
+                )
+            }
+
+            PopupType.ABOUT -> {
+                AboutDialog(
+                    onDismiss = {
+                        state.eventSink(MainScreenEvent.HidePopup)
+                    }
+                )
+            }
+
+            PopupType.PRIVACY -> {
+                PrivacyDialog(
+                    onDismiss = {
+                        state.eventSink(MainScreenEvent.HidePopup)
+                    }
+                )
+            }
+
+            PopupType.LANGUAGE -> {
+                LanguageDialog(
+                    onDismiss = {
+                        state.eventSink(MainScreenEvent.HidePopup)
+                    }
+                )
+            }
+
+            PopupType.DELETE_MAIN_LIST_ITEM -> {
+                DeleteItemDialog(
+                    mainListItem = state.selectedItem,
+                    onConfirm = {
+                        state.eventSink(MainScreenEvent.DeleteMainListItem(state.selectedItem?.id ?: 0))
+                    },
+                    onDismiss = {
+                        state.eventSink(MainScreenEvent.HidePopup)
+                    }
+                )
+
+            }
+
+
         }
+
     }
 }

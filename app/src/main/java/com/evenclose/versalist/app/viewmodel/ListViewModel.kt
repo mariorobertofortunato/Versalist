@@ -49,13 +49,13 @@ class ListViewModel @Inject constructor(
         }
     }
 
-    fun addNewList(name: String, type: String, category: String) {
+/*    fun addNewList(name: String, type: String, category: String) {
         viewState.value = ViewState.Loading
         viewModelScope.launch {
             useCase.AddNewListUseCase(name, type, category)
             fetchAllLists()
         }
-    }
+    }*/
 
     fun deleteMainListItem(id: Int) {
         viewState.value = ViewState.Loading
