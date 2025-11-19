@@ -1,6 +1,5 @@
 package com.evenclose.versalist.app.ui.composables.item
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
@@ -33,7 +32,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
+import com.evenclose.versalist.app.ui.composables.dialog.DeleteItemDialog
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryGrey
 import com.evenclose.versalist.app.ui.theme.primaryWhite
@@ -136,14 +135,7 @@ fun CheckListItem(
 
         if (openDialog) {
             DeleteItemDialog(
-                mainListItem = null,
                 innerListItem = innerListItem,
-                onConfirm = {
-                    // TODO
-                },
-                onDismiss = {
-                    openDialog = false
-                }
             )
         }
 

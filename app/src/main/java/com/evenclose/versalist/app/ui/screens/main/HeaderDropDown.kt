@@ -20,19 +20,19 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.composition.LocalMainScreenEventSink
+import com.evenclose.versalist.app.compositions.LocalCompositionMainScreen
 import com.evenclose.versalist.app.contracts.MainScreenEvent
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.secondaryBlue
-import com.evenclose.versalist.data.model.PopupType
+import com.evenclose.versalist.data.model.PopupTypes
 
 @Composable
 fun HeaderDropDown(
     expanded: Boolean,
     onDismissRequest: () -> Unit
 ) {
-    val eventSink = LocalMainScreenEventSink.current
+    val eventTunnel = LocalCompositionMainScreen.current
 
     DropdownMenu(
         expanded = expanded,
@@ -64,7 +64,7 @@ fun HeaderDropDown(
             },
             onClick = {
                 onDismissRequest()
-                eventSink(MainScreenEvent.ShowPopup(PopupType.HELP))
+                eventTunnel(MainScreenEvent.ShowPopup(PopupTypes.help))
             }
         )
 
@@ -92,7 +92,7 @@ fun HeaderDropDown(
             },
             onClick = {
                 onDismissRequest()
-                eventSink(MainScreenEvent.ShowPopup(PopupType.ABOUT))
+                eventTunnel(MainScreenEvent.ShowPopup(PopupTypes.about))
             }
         )
 
@@ -120,7 +120,7 @@ fun HeaderDropDown(
             },
             onClick = {
                 onDismissRequest()
-                eventSink(MainScreenEvent.ShowPopup(PopupType.PRIVACY))
+                eventTunnel(MainScreenEvent.ShowPopup(PopupTypes.privacy))
             }
         )
 
@@ -148,7 +148,7 @@ fun HeaderDropDown(
             },
             onClick = {
                 onDismissRequest()
-                eventSink(MainScreenEvent.ShowPopup(PopupType.LANGUAGE))
+                eventTunnel(MainScreenEvent.ShowPopup(PopupTypes.language))
             }
         )
     }

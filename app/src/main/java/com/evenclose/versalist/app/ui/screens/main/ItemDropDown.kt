@@ -20,13 +20,13 @@ import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.composition.LocalMainScreenEventSink
+import com.evenclose.versalist.app.compositions.LocalCompositionMainScreen
 import com.evenclose.versalist.app.contracts.MainScreenEvent
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.secondaryBlue
 import com.evenclose.versalist.data.model.MainListItem
-import com.evenclose.versalist.data.model.PopupType
+import com.evenclose.versalist.data.model.PopupTypes
 import kotlin.Unit
 
 @Composable
@@ -37,7 +37,7 @@ fun ItemDropDown(
 ) {
 
     val context = LocalContext.current
-    val eventSink = LocalMainScreenEventSink.current
+    val eventTunnel = LocalCompositionMainScreen.current
 
     DropdownMenu(
         expanded = expanded,
@@ -69,7 +69,7 @@ fun ItemDropDown(
             },
             onClick = {
                 onDismissRequest()
-                eventSink(MainScreenEvent.ToggleMainListItemFav(mainListItem.id ?: 0))
+                eventTunnel(MainScreenEvent.ToggleMainListItemFav(mainListItem.id ?: 0, !mainListItem.isFav))
             }
         )
         HorizontalDivider(
@@ -95,7 +95,7 @@ fun ItemDropDown(
             },
             onClick = {
                 onDismissRequest()
-                eventSink(MainScreenEvent.ShowPopup(PopupType.DELETE_MAIN_LIST_ITEM, mainListItem))
+                eventTunnel(MainScreenEvent.ShowPopup(PopupTypes.deleteMainListItem, mainListItem))
             }
         )
     }

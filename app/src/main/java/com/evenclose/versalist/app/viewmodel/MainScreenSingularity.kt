@@ -1,12 +1,15 @@
 package com.evenclose.versalist.app.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.evenclose.versalist.app.common.ViewState
 import com.evenclose.versalist.app.contracts.MainScreenEvent
 import com.evenclose.versalist.app.contracts.MainScreenState
+import com.evenclose.versalist.data.DataStore
 import com.evenclose.versalist.data.model.MainListItem
 import com.evenclose.versalist.domain.use_case.UseCase
+import com.evenclose.versalist.utils.setLanguage
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,12 +20,12 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainScreenViewModel @Inject constructor(
+class MainScreenSingularity @Inject constructor(
     private val useCase: UseCase
 ) : ViewModel() {
 
     private val _state = MutableStateFlow(MainScreenState(
-        eventSink = { event -> processEvent(event) }
+        eventTunnel = { event -> processEvent(event) }
     ))
     val state: StateFlow<MainScreenState> = _state.asStateFlow()
 
@@ -33,29 +36,23 @@ class MainScreenViewModel @Inject constructor(
     private fun processEvent(event: MainScreenEvent) {
         when (event) {
             MainScreenEvent.FetchMainList -> fetchMainList()
-            is MainScreenEvent.ShowPopup -> _state.update { it.copy(popupType = event.popupType, selectedItem = event.data as MainListItem) }
+            is MainScreenEvent.ShowPopup -> _state.update { it.copy(popupType = event.popupType, selectedItem = event.data) }
             MainScreenEvent.HidePopup -> _state.update { it.copy(popupType = null, selectedItem = null)  }
             MainScreenEvent.HideToast -> _state.update { it.copy(toastMessage = null) }
             is MainScreenEvent.AddNewMainListItem -> addNewMainListItem(event.listItem)
             is MainScreenEvent.DeleteMainListItem -> deleteMainListItem(event.mainListItemId)
+            is MainScreenEvent.SaveLanguage -> saveLanguage(newLanguage = event.language, context = event.context)
+            is MainScreenEvent.ToggleMainListItemFav -> toggleMainListItemFav(mainListItemId = event.mainListItemId, newFavouriteStatus = event.newFavStatus)
             //is MainScreenIntent.UpdateMainListItem -> updateMainListItem(intent)
             else -> {}
         }
     }
 
     private fun fetchMainList() {
-
-        _state.update {
-            it.copy(
-                isLoading = true,
-                toastMessage = null,
-                popupType = null
-            )
-        }
-
+        setLoadingState()
         viewModelScope.launch {
             delay(500)
-            useCase.FetchAllListsUseCase().collect { mainListItems ->
+            useCase.fetchAllListsUseCase().collect { mainListItems ->
                 _state.update {
                     it.copy(
                         isLoading = false,
@@ -68,31 +65,46 @@ class MainScreenViewModel @Inject constructor(
     }
 
     private fun addNewMainListItem(listItem: MainListItem) {
-        _state.update {
-            it.copy(
-                isLoading = true,
-                toastMessage = null,
-                popupType = null
-            )
-        }
+        setLoadingState()
         viewModelScope.launch {
-            useCase.AddNewListUseCase(listItem)
+            useCase.addNewListUseCase(listItem)
             fetchMainList()
         }
     }
 
     private fun deleteMainListItem(id: Int) {
+        setLoadingState()
+        viewModelScope.launch {
+            useCase.deleteMainListItemUseCase(id)
+            useCase.deleteInnerListItemFromMainListUseCase(id)
+            fetchMainList()
+        }
+    }
+
+    private fun toggleMainListItemFav(mainListItemId: Int, newFavouriteStatus: Boolean) {
+        setLoadingState()
+        viewModelScope.launch {
+            useCase.updateMainListFavouriteStatusUseCase(mainListItemId, newFavouriteStatus)
+            fetchMainList()
+        }
+    }
+
+    private fun saveLanguage(newLanguage: String, context: Context) {
+        viewModelScope.launch {
+            val dataStore = DataStore(context)
+            dataStore.saveLanguage(newLanguage)
+            context.setLanguage(newLanguage, true)
+            processEvent(MainScreenEvent.HidePopup)
+        }
+    }
+
+    private fun setLoadingState() {
         _state.update {
             it.copy(
                 isLoading = true,
                 toastMessage = null,
                 popupType = null
             )
-        }
-        viewModelScope.launch {
-            useCase.DeleteMainListItemUseCase(id)
-            useCase.DeleteInnerListItemFromMainListUseCase(id)
-            fetchMainList()
         }
     }
 

@@ -1,7 +1,6 @@
 package com.evenclose.versalist.app.ui.composables.item
 
 import androidx.compose.foundation.ExperimentalFoundationApi
-import androidx.compose.foundation.Indication
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
@@ -18,16 +17,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.EventNote
 import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.outlined.Badge
-import androidx.compose.material.icons.outlined.Delete
 import androidx.compose.material.icons.outlined.Diversity1
 import androidx.compose.material.icons.outlined.EmojiPeople
-import androidx.compose.material.icons.outlined.NotificationsActive
 import androidx.compose.material.icons.outlined.PriorityHigh
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.Spa
-import androidx.compose.material3.DropdownMenu
-import androidx.compose.material3.DropdownMenuItem
-import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.Text
@@ -38,28 +32,18 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
-import androidx.compose.ui.unit.DpOffset
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
-import androidx.navigation.NavController
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.navigation.Screens
-import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
 import com.evenclose.versalist.app.ui.screens.main.ItemDropDown
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
-import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
-import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.primaryWhiteVariant
-import com.evenclose.versalist.app.ui.theme.secondaryBlue
-import com.evenclose.versalist.app.viewmodel.ListViewModel
-import com.evenclose.versalist.data.model.ListCategory
+import com.evenclose.versalist.utils.enums.ListCategory
 import com.evenclose.versalist.data.model.MainListItem
 
 @OptIn(ExperimentalFoundationApi::class)

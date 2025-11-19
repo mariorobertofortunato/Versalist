@@ -1,5 +1,7 @@
 package com.evenclose.versalist.domain.use_case
 
+import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.Stable
 import com.evenclose.versalist.domain.use_case.inner_list.AddNewInnerListItemUseCase
 import com.evenclose.versalist.domain.use_case.inner_list.DeleteInnerListItemFromMainListUseCase
 import com.evenclose.versalist.domain.use_case.main_list.AddNewListUseCase
@@ -10,16 +12,16 @@ import com.evenclose.versalist.domain.use_case.inner_list.GetCurrentInnerListUse
 import com.evenclose.versalist.domain.use_case.main_list.GetListDataUseCase
 import com.evenclose.versalist.domain.use_case.inner_list.UpdateItemCheckStatusUseCase
 import com.evenclose.versalist.domain.use_case.main_list.UpdateMainListFavouriteStatusUseCase
-
-class UseCase (
-    var FetchAllListsUseCase: FetchAllListsUseCase,
-    var GetListDataUseCase: GetListDataUseCase,
-    var AddNewListUseCase: AddNewListUseCase,
-    var AddNewInnerListItemUseCase: AddNewInnerListItemUseCase,
-    var GetCurrentInnerListUseCase: GetCurrentInnerListUseCase,
-    var UpdateItemCheckStatusUseCase: UpdateItemCheckStatusUseCase,
-    var DeleteMainListItemUseCase: DeleteMainListItemUseCase,
-    var DeleteInnerListItemUseCase: DeleteInnerListItemUseCase,
-    var UpdateMainListFavouriteStatusUseCase: UpdateMainListFavouriteStatusUseCase,
-    var DeleteInnerListItemFromMainListUseCase: DeleteInnerListItemFromMainListUseCase,
-        )
+@Immutable
+class UseCase(
+    var fetchAllListsUseCase: FetchAllListsUseCase,
+    var getListDataUseCase: GetListDataUseCase,
+    var addNewListUseCase: AddNewListUseCase,
+    var addNewInnerListItemUseCase: AddNewInnerListItemUseCase,
+    var getCurrentInnerListUseCase: GetCurrentInnerListUseCase,
+    var updateItemCheckStatusUseCase: UpdateItemCheckStatusUseCase,
+    var deleteMainListItemUseCase: DeleteMainListItemUseCase,
+    var deleteInnerListItemUseCase: DeleteInnerListItemUseCase,
+    var updateMainListFavouriteStatusUseCase: UpdateMainListFavouriteStatusUseCase,
+    var deleteInnerListItemFromMainListUseCase: DeleteInnerListItemFromMainListUseCase,
+)

@@ -42,3 +42,27 @@ fun VersalistFab(
         )
     }
 }
+
+@Composable
+fun VersalistFab(
+    modifier: Modifier = Modifier,
+    onClick: () -> Unit,
+    content: @Composable () -> Unit,
+) {
+
+    FloatingActionButton(
+        containerColor = primaryBlack_Dark,
+        contentColor = primaryWhite,
+        shape = CircleShape,
+        onClick = {
+            onClick()
+        },
+        modifier = modifier
+            .fillMaxWidth()
+            .imePadding()
+            .padding(16.dp)
+            .border(1.dp, primaryWhite, CircleShape)
+    ) {
+        content()
+    }
+}

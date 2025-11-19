@@ -31,11 +31,9 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavController
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.ui.composables.dialog.helpdialog.listscreenhelpdialog.ListScreenHelpDialog
+import com.evenclose.versalist.app.ui.composables.dialog.ListScreenHelpDialog
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
-import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 
 @Composable

@@ -8,24 +8,17 @@ import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.animation.slideOutVertically
-import androidx.compose.animation.togetherWith
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.LaunchedEffect
@@ -41,38 +34,31 @@ import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.composition.LocalMainScreenEventSink
-import com.evenclose.versalist.app.contracts.MainScreenEvent
+import com.evenclose.versalist.app.compositions.LocalCompositionMainScreen
+import com.evenclose.versalist.app.contracts.MainScreenEvent.AddNewMainListItem
+import com.evenclose.versalist.app.contracts.MainScreenEvent.HidePopup
 import com.evenclose.versalist.app.ui.composables.Loader
 import com.evenclose.versalist.app.ui.composables.VersalistFab
-import com.evenclose.versalist.app.ui.composables.dialog.aboutdialog.AboutDialog
-import com.evenclose.versalist.app.ui.composables.dialog.deleteitemdialog.DeleteItemDialog
-import com.evenclose.versalist.app.ui.composables.dialog.helpdialog.mainscreenhelpdialog.MainScreenHelpDialog
-import com.evenclose.versalist.app.ui.composables.dialog.languagedialog.LanguageDialog
-import com.evenclose.versalist.app.ui.composables.dialog.privacydialog.PrivacyDialog
+import com.evenclose.versalist.app.ui.composables.dialog.PopupWrapper
 import com.evenclose.versalist.app.ui.composables.forms.NewListForm
 import com.evenclose.versalist.app.ui.composables.item.MainListItem
 import com.evenclose.versalist.app.ui.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalist.app.ui.theme.backgroundGradient
-import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.app.viewmodel.MainScreenViewModel
-import com.evenclose.versalist.data.model.PopupType
+import com.evenclose.versalist.app.viewmodel.MainScreenSingularity
 import com.evenclose.versalist.utils.enums.PlaceholderType
 import kotlinx.coroutines.delay
 
 @Composable
 fun MainScreen(
     onNavigateToListId: (Int) -> Unit,
-    mainScreenViewModel: MainScreenViewModel = hiltViewModel()
+    mainScreenSingularity: MainScreenSingularity = hiltViewModel()
 ) {
     val context = LocalContext.current
-    val state by mainScreenViewModel.state.collectAsState()
+    val state by mainScreenSingularity.state.collectAsState()
     var newListFormVisibility by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
     val listState = rememberLazyListState(0)
@@ -96,9 +82,8 @@ fun MainScreen(
     }
 
     CompositionLocalProvider(
-        LocalMainScreenEventSink provides state.eventSink
+        LocalCompositionMainScreen provides state.eventTunnel
     ) {
-
         Scaffold(
             modifier = Modifier
                 .background(
@@ -193,7 +178,7 @@ fun MainScreen(
                         newListFormVisibility = false
                     },
                     onConfirmClick = { newListItem ->
-                        state.eventSink(MainScreenEvent.AddNewMainListItem(newListItem))
+                        state.eventTunnel(AddNewMainListItem(newListItem))
                         newListFormVisibility = false
                     }
                 )
@@ -204,53 +189,14 @@ fun MainScreen(
             Loader()
         }
 
-        when (state.popupType) {
-            PopupType.HELP -> {
-                MainScreenHelpDialog(
-                    onDismiss = {
-                        state.eventSink(MainScreenEvent.HidePopup)
-                    }
-                )
-            }
-
-            PopupType.ABOUT -> {
-                AboutDialog(
-                    onDismiss = {
-                        state.eventSink(MainScreenEvent.HidePopup)
-                    }
-                )
-            }
-
-            PopupType.PRIVACY -> {
-                PrivacyDialog(
-                    onDismiss = {
-                        state.eventSink(MainScreenEvent.HidePopup)
-                    }
-                )
-            }
-
-            PopupType.LANGUAGE -> {
-                LanguageDialog(
-                    onDismiss = {
-                        state.eventSink(MainScreenEvent.HidePopup)
-                    }
-                )
-            }
-
-            PopupType.DELETE_MAIN_LIST_ITEM -> {
-                DeleteItemDialog(
-                    mainListItem = state.selectedItem,
-                    onConfirm = {
-                        state.eventSink(MainScreenEvent.DeleteMainListItem(state.selectedItem?.id ?: 0))
-                    },
-                    onDismiss = {
-                        state.eventSink(MainScreenEvent.HidePopup)
-                    }
-                )
-
-            }
-
-
+        if (state.popupType != null) {
+            PopupWrapper(
+                onDismiss = {
+                    state.eventTunnel(HidePopup)
+                },
+                popupType = state.popupType,
+                selectedMainListItem = state.selectedItem
+            )
         }
 
     }

@@ -1,4 +1,4 @@
-package com.evenclose.versalist.app.ui.composables.dialog.helpdialog
+package com.evenclose.versalist.app.ui.composables.dialog
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -7,15 +7,20 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.evenclose.versalist.R
+import com.evenclose.versalist.data.model.Popup
 
 @Composable
-fun HelpDialogHeaderImage(modifier: Modifier) {
-    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(R.raw.animation_help))
+fun PopupHeader (
+    modifier: Modifier = Modifier,
+    popupType: Popup
+) {
+
+    val composition by rememberLottieComposition(spec = LottieCompositionSpec.RawRes(popupType.animationResId))
 
     LottieAnimation(
         composition = composition,
         iterations = LottieConstants.IterateForever,
         modifier = modifier
     )
+
 }

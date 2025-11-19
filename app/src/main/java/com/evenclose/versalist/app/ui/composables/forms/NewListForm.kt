@@ -15,7 +15,6 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -30,14 +29,11 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.outlined.EventNote
 import androidx.compose.material.icons.automirrored.outlined.List
 import androidx.compose.material.icons.outlined.Badge
-import androidx.compose.material.icons.outlined.Cancel
-import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Checklist
 import androidx.compose.material.icons.outlined.Diversity1
 import androidx.compose.material.icons.outlined.EmojiPeople
 import androidx.compose.material.icons.outlined.ShoppingCart
 import androidx.compose.material.icons.outlined.Spa
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.Icon
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -56,7 +52,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.TextStyle
-import androidx.compose.ui.text.capitalize
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.input.KeyboardCapitalization
 import androidx.compose.ui.text.style.TextAlign
@@ -64,23 +59,18 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.ui.composables.VersalistFab
 import com.evenclose.versalist.app.ui.theme.errorColor
-import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
-import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
-import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.data.model.ListCategory
-import com.evenclose.versalist.data.model.ListCategory.HEALTH
-import com.evenclose.versalist.data.model.ListCategory.MISC
-import com.evenclose.versalist.data.model.ListCategory.PERSONAL
-import com.evenclose.versalist.data.model.ListCategory.SHOPPING
-import com.evenclose.versalist.data.model.ListCategory.SOCIAL
-import com.evenclose.versalist.data.model.ListCategory.WORK
-import com.evenclose.versalist.data.model.ListType
 import com.evenclose.versalist.data.model.MainListItem
-import java.util.Locale
+import com.evenclose.versalist.utils.enums.ListCategory
+import com.evenclose.versalist.utils.enums.ListCategory.HEALTH
+import com.evenclose.versalist.utils.enums.ListCategory.MISC
+import com.evenclose.versalist.utils.enums.ListCategory.PERSONAL
+import com.evenclose.versalist.utils.enums.ListCategory.SHOPPING
+import com.evenclose.versalist.utils.enums.ListCategory.SOCIAL
+import com.evenclose.versalist.utils.enums.ListCategory.WORK
+import com.evenclose.versalist.utils.enums.ListType
 import java.util.Locale.getDefault
 
 @Composable
@@ -336,10 +326,6 @@ fun NewListForm(
                                     categoryName = stringResource(id = R.string.misc)
                                 }
 
-                                else -> {
-                                    categoryIcon = Icons.AutoMirrored.Outlined.List
-                                    categoryName = stringResource(id = R.string.misc)
-                                }
                             }
                             Icon(
                                 imageVector = categoryIcon,
