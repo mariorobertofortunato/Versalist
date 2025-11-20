@@ -50,12 +50,13 @@ import com.evenclose.versalist.app.ui.screens.main.header.MainScreenHeader
 import com.evenclose.versalist.app.ui.theme.backgroundGradient
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.viewmodel.MainScreenViewModel
+import com.evenclose.versalist.data.model.MainListItem
 import com.evenclose.versalist.utils.enums.PlaceholderType
 import kotlinx.coroutines.delay
 
 @Composable
 fun MainScreen(
-    onNavigateToListId: (Int) -> Unit,
+    onNavigateToList: (MainListItem) -> Unit,
     mainScreenViewModel: MainScreenViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
@@ -107,6 +108,8 @@ fun MainScreen(
                     visible = !newListFormVisibility,
                     enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
                     exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
+                    modifier = Modifier
+                        .padding(16.dp)
                 ) {
                     VersalistFab(
                         text = stringResource(R.string.new_list),
@@ -131,7 +134,7 @@ fun MainScreen(
                 LazyColumn(
                     horizontalAlignment = CenterHorizontally,
                     verticalArrangement = if (state.mainListItems.isNotEmpty() || newListFormVisibility) Arrangement.Top else Arrangement.Center,
-                    state = listState,
+                    state = listState
                 ) {
                     if (state.mainListItems.isNotEmpty()) {
                         items(
@@ -141,8 +144,8 @@ fun MainScreen(
 
                             MainListItem(
                                 mainListItem = item,
-                                onNavigateToListId = { listId ->
-                                    onNavigateToListId(listId)
+                                onClick = {
+                                    onNavigateToList(item)
                                 }
                             )
                             HorizontalDivider(

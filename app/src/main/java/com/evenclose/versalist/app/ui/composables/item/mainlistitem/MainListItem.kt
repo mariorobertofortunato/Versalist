@@ -1,6 +1,5 @@
 package com.evenclose.versalist.app.ui.composables.item.mainlistitem
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.combinedClickable
@@ -42,14 +41,13 @@ import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.primaryWhiteVariant
-import com.evenclose.versalist.utils.enums.ListCategory
 import com.evenclose.versalist.data.model.MainListItem
+import com.evenclose.versalist.domain.model.CategoryTypeKey
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 fun MainListItem(
     mainListItem: MainListItem,
-    onNavigateToListId: (Int) -> Unit
+    onClick: () -> Unit
 ) {
 
     var expanded by remember { mutableStateOf(false) }
@@ -63,7 +61,7 @@ fun MainListItem(
             .combinedClickable(
                 interactionSource = remember { MutableInteractionSource() },
                 onClick = {
-                    onNavigateToListId(mainListItem.id ?: 0)
+                    onClick()
                 },
                 onLongClick = {
                     expanded = true
@@ -71,27 +69,27 @@ fun MainListItem(
             )
     ) {
         val categoryIcon = when (mainListItem.category) {
-            ListCategory.PERSONAL.name -> {
+            CategoryTypeKey.PERSONAL -> {
                 Icons.Outlined.EmojiPeople
             }
 
-            ListCategory.WORK.name -> {
+            CategoryTypeKey.WORK -> {
                 Icons.Outlined.Badge
             }
 
-            ListCategory.HEALTH.name  -> {
+            CategoryTypeKey.HEALTH  -> {
                 Icons.Outlined.Spa
             }
 
-            ListCategory.SHOPPING.name  -> {
+            CategoryTypeKey.SHOPPING  -> {
                 Icons.Outlined.ShoppingCart
             }
 
-            ListCategory.SOCIAL.name  -> {
+            CategoryTypeKey.SOCIAL  -> {
                 Icons.Outlined.Diversity1
             }
 
-            ListCategory.MISC.name  -> {
+            CategoryTypeKey.MISC  -> {
                 Icons.AutoMirrored.Outlined.EventNote
             }
 
@@ -124,27 +122,27 @@ fun MainListItem(
             ) {
                 val categoryName: String
                 when (mainListItem.category) {
-                    ListCategory.PERSONAL.name  -> {
+                    CategoryTypeKey.PERSONAL  -> {
                         categoryName = stringResource(id = R.string.personal)
                     }
 
-                    ListCategory.WORK.name  -> {
+                    CategoryTypeKey.WORK  -> {
                         categoryName = stringResource(id = R.string.work)
                     }
 
-                    ListCategory.HEALTH.name  -> {
+                    CategoryTypeKey.HEALTH  -> {
                         categoryName = stringResource(id = R.string.health)
                     }
 
-                    ListCategory.SHOPPING.name  -> {
+                    CategoryTypeKey.SHOPPING  -> {
                         categoryName = stringResource(id = R.string.shopping)
                     }
 
-                    ListCategory.SOCIAL.name  -> {
+                    CategoryTypeKey.SOCIAL  -> {
                         categoryName = stringResource(id = R.string.social)
                     }
 
-                    ListCategory.MISC.name  -> {
+                    CategoryTypeKey.MISC  -> {
                         categoryName = stringResource(id = R.string.misc)
                     }
 

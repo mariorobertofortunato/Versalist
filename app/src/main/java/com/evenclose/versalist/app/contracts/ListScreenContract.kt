@@ -1,27 +1,26 @@
 package com.evenclose.versalist.app.contracts
 
 import com.evenclose.versalist.data.model.InnerListItem
+import com.evenclose.versalist.domain.model.Popup
 
-/** INTENTS */
-sealed class ListScreenIntent {
-    data class FetchInnerList(val mainListItemId: Int) : ListScreenIntent()
-    data class AddNewInnerListItem(val listItem: InnerListItem) : ListScreenIntent()
-    data class DeleteInnerListItem(val innerListItemId: Int) : ListScreenIntent()
-    data class UpdateInnerListItem(val innerListItemId: Int) : ListScreenIntent()
-}
 
-/** EVENTS */
 sealed class ListScreenEvent {
-    data class ShowPopup(val popupType: String) : ListScreenEvent()
-    data class ShowSuccessToast(val successMessage: String) : ListScreenEvent()
-    data class ShowErrorToast(val errorMessage: String) : ListScreenEvent()
-    object NavigateUp : ListScreenEvent()
+    data class FetchInnerList(val mainListItemId: Int) : ListScreenEvent()
+    data class AddNewInnerListItem(val listItem: InnerListItem) : ListScreenEvent()
+    data class DeleteInnerListItem(val innerListItem: InnerListItem) : ListScreenEvent()
+    data class ToggleInnerListCheckStatus(val innerListItem: InnerListItem) : ListScreenEvent()
+    data class ShowPopup(val popupType: Popup, val data: InnerListItem? = null) : ListScreenEvent()
+
+    object HidePopup : ListScreenEvent()
+    object HideToast : ListScreenEvent()
+
 }
 
-/** STATE */
 data class ListScreenState(
     val isLoading: Boolean = false,
-    val error: String? = null,
+    val toastMessage: String? = null,
+    val popupType: Popup? = null,
+    val selectedItem: InnerListItem? = null,
     val innerListItems: List<InnerListItem> = emptyList(),
-    val eventSink: (ListScreenEvent) -> Unit = {}
+    val eventTunnel: (ListScreenEvent) -> Unit = {}
 )

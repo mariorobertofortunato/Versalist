@@ -34,15 +34,15 @@ class MainScreenViewModel @Inject constructor(
 
     private fun processEvent(event: MainScreenEvent) {
         when (event) {
-            MainScreenEvent.FetchMainList -> fetchMainList()
-            MainScreenEvent.HidePopup -> _state.update { it.copy(popupType = null, selectedItem = null)  }
-            MainScreenEvent.HideToast -> _state.update { it.copy(toastMessage = null) }
+            is MainScreenEvent.FetchMainList -> fetchMainList()
+            is MainScreenEvent.HidePopup -> _state.update { it.copy(popupType = null, selectedItem = null)  }
+            is MainScreenEvent.HideToast -> _state.update { it.copy(toastMessage = null) }
             is MainScreenEvent.ShowPopup -> _state.update { it.copy(popupType = event.popupType, selectedItem = event.data) }
             is MainScreenEvent.AddNewMainListItem -> addNewMainListItem(event.listItem)
             is MainScreenEvent.DeleteMainListItem -> deleteMainListItem(event.mainListItemId)
             is MainScreenEvent.SaveLanguage -> saveLanguage(newLanguage = event.language, context = event.context)
             is MainScreenEvent.ToggleMainListItemFav -> toggleMainListItemFav(mainListItemId = event.mainListItemId, newFavouriteStatus = event.newFavStatus)
-            //is MainScreenIntent.UpdateMainListItem -> updateMainListItem(intent)
+            else -> {}
         }
     }
 

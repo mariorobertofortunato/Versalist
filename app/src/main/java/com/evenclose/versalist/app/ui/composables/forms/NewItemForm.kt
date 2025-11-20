@@ -45,22 +45,23 @@ import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Dark
 import com.evenclose.versalist.app.ui.theme.primaryGreen_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
+import com.evenclose.versalist.data.model.MainListItem
 
 @Composable
-fun NewItemForm (
+fun NewItemForm(
     onConfirmClick: (newItemValue: String) -> Unit,
     onCancelClick: () -> Unit,
     focusRequester: FocusRequester
-){
+) {
     var newItemValue by remember { mutableStateOf("") }
     var errorTextVisibility by remember { mutableStateOf(false) }
 
 
     Column(
         modifier = Modifier
-            .fillMaxWidth()
-            .padding(24.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+            .fillMaxWidth(),
+        horizontalAlignment = Alignment.CenterHorizontally,
+        verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
 
         /** Text field */
@@ -79,7 +80,7 @@ fun NewItemForm (
             placeholder = {
                 Text(
                     text = stringResource(id = R.string.new_item),
-                    color = primaryGreen_Light,
+                    color = primaryGreen_Light.copy(alpha = 0.75f),
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
                 )
@@ -94,7 +95,6 @@ fun NewItemForm (
                 unfocusedIndicatorColor = Color.Transparent,
                 disabledIndicatorColor = Color.Transparent
             ),
-
             textStyle = TextStyle(
                 fontWeight = FontWeight.Bold,
                 fontSize = 16.sp
@@ -115,82 +115,19 @@ fun NewItemForm (
             )
         }
 
-        /** Confirm/Cancel CTA Group */
-        Row(
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(top = 24.dp)
-        ) {
-            FloatingActionButton(
-                containerColor = primaryBlack_Dark,
-                contentColor = primaryWhite,
-                shape = CircleShape,
-                modifier = Modifier
-                    .weight(1f)
-                    .border(1.dp, primaryWhite, CircleShape),
-                onClick = {
-                    onCancelClick()
+        CtaRow(
+            onCancel = {
+                onCancelClick()
+                newItemValue = ""
+            },
+            onConfirm = {
+                if (newItemValue != "") {
+                    onConfirmClick(newItemValue)
                     newItemValue = ""
-                }
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.Cancel,
-                        contentDescription = "Cancel Icon",
-                        tint = primaryWhite,
-                        modifier = Modifier
-                            .padding(end = 8.dp)
-                    )
-                    Text(
-                        text = stringResource(id = R.string.cancel),
-                        color = primaryWhite,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
-                    )
+                } else {
+                    errorTextVisibility = true
                 }
             }
-            FloatingActionButton(
-                containerColor = primaryBlack_Dark,
-                contentColor = primaryWhite,
-                shape = CircleShape,
-                modifier = Modifier
-                    .weight(1f)
-                    .border(1.dp, primaryWhite, CircleShape),
-                onClick = {
-                    if (newItemValue != "") {
-                        onConfirmClick(newItemValue)
-                        newItemValue = ""
-                    } else {
-                        errorTextVisibility = true
-                    }
-                }
-            ) {
-                Row(
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(16.dp)
-                ) {
-                    Icon(
-                        imageVector = Icons.Outlined.CheckCircle,
-                        contentDescription = "Confirm Icon",
-                        tint = primaryWhite,
-                        modifier = Modifier
-                            .padding(end = 8.dp)
-                    )
-                    Text(
-                        text = stringResource(id = R.string.confirm),
-                        color = primaryWhite,
-                        fontWeight = FontWeight.Bold,
-                        fontSize = 20.sp
-                    )
-                }
-            }
-        }
+        )
     }
 }

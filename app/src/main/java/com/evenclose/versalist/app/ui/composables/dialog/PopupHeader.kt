@@ -7,7 +7,7 @@ import com.airbnb.lottie.compose.LottieAnimation
 import com.airbnb.lottie.compose.LottieCompositionSpec
 import com.airbnb.lottie.compose.LottieConstants
 import com.airbnb.lottie.compose.rememberLottieComposition
-import com.evenclose.versalist.data.model.Popup
+import com.evenclose.versalist.domain.model.Popup
 
 @Composable
 fun PopupHeader (

@@ -1,4 +1,4 @@
-package com.evenclose.versalist.app.ui.composables.dialog
+package com.evenclose.versalist.app.ui.composables.dialog.contents
 
 import android.content.Intent
 import androidx.core.net.toUri
@@ -20,17 +20,27 @@ import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 
 @Composable
-fun PrivacyDialog(
+fun AboutDialog(
 ) {
 
     val context = LocalContext.current
 
     Text(
-        text = stringResource(id = R.string.privacy),
+        text = stringResource(id = R.string.about_us),
         textAlign = TextAlign.Center,
         modifier = Modifier
             .fillMaxWidth(),
         style = MaterialTheme.typography.headlineSmall,
+        color = primaryWhite,
+        fontWeight = FontWeight.Bold,
+    )
+    Text(
+        text = stringResource(id = R.string.about_us_text),
+        textAlign = TextAlign.Center,
+        modifier = Modifier
+            .padding(top = 4.dp)
+            .fillMaxWidth(),
+        style = MaterialTheme.typography.bodyLarge,
         color = primaryWhite,
         fontWeight = FontWeight.Bold,
     )
@@ -42,7 +52,7 @@ fun PrivacyDialog(
             .padding(vertical = 16.dp)
     )
     Text(
-        text = "Privacy Policy",
+        text = "Link",
         textAlign = TextAlign.Center,
         modifier = Modifier
             .fillMaxWidth()
@@ -50,7 +60,7 @@ fun PrivacyDialog(
                 context.startActivity(
                     Intent(
                         Intent.ACTION_VIEW,
-                        "https://www.mariorobertofortunato.com/versalist_privacy_policy.html".toUri()
+                        "https://www.mariorobertofortunato.com".toUri()
                     )
                 )
             },

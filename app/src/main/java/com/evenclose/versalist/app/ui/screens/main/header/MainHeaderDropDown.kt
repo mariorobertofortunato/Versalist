@@ -25,10 +25,10 @@ import com.evenclose.versalist.app.contracts.MainScreenEvent
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.ui.theme.secondaryBlue
-import com.evenclose.versalist.data.model.PopupTypes
+import com.evenclose.versalist.domain.model.PopupTypes
 
 @Composable
-fun HeaderDropDown(
+fun MainHeaderDropDown(
     expanded: Boolean,
     onDismissRequest: () -> Unit
 ) {
@@ -36,15 +36,12 @@ fun HeaderDropDown(
 
     DropdownMenu(
         expanded = expanded,
-        onDismissRequest = {
-            onDismissRequest()
-        },
+        onDismissRequest = { onDismissRequest() },
         shape = RoundedCornerShape(16.dp),
         shadowElevation = 10.dp,
         modifier = Modifier
             .background(primaryBlack_Light, RoundedCornerShape(16.dp))
             .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
-
     ) {
 
         DropdownMenuItem(
@@ -64,7 +61,7 @@ fun HeaderDropDown(
             },
             onClick = {
                 onDismissRequest()
-                eventTunnel(MainScreenEvent.ShowPopup(PopupTypes.help))
+                eventTunnel(MainScreenEvent.ShowPopup(PopupTypes.helpMainScreen))
             }
         )
 

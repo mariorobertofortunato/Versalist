@@ -6,8 +6,6 @@ import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.evenclose.versalist.data.model.InnerListItem
 import com.evenclose.versalist.data.model.MainListItem
-import com.evenclose.versalist.domain.model.ListsModel
-import java.time.Instant
 
 @Dao
 interface ListDao {
@@ -42,6 +40,6 @@ interface ListDao {
     suspend fun deleteInnerListItemFromMainList(id: Int)
 
     @Query("UPDATE inner_list SET isChecked=:newCheckStatus WHERE id = :id")
-    suspend fun updateItemCheckStatus(id: Int, newCheckStatus: Boolean)
+    suspend fun toggleInnerListItemCheckStatus(id: Int, newCheckStatus: Boolean)
 
 }

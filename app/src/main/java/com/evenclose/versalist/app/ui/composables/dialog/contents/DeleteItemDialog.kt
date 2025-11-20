@@ -1,4 +1,4 @@
-package com.evenclose.versalist.app.ui.composables.dialog
+package com.evenclose.versalist.app.ui.composables.dialog.contents
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -20,9 +20,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evenclose.versalist.R
+import com.evenclose.versalist.app.compositions.LocalCompositionListScreen
 import com.evenclose.versalist.app.compositions.LocalCompositionMainScreen
-import com.evenclose.versalist.app.contracts.MainScreenEvent.DeleteMainListItem
-import com.evenclose.versalist.app.contracts.MainScreenEvent.HidePopup
+import com.evenclose.versalist.app.contracts.ListScreenEvent
+import com.evenclose.versalist.app.contracts.MainScreenEvent
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.data.model.InnerListItem
@@ -34,7 +35,8 @@ fun DeleteItemDialog(
     innerListItem: InnerListItem? = null
 ) {
 
-    val eventTunnel = LocalCompositionMainScreen.current
+    val mainEventTunnel = if (mainListItem != null) LocalCompositionMainScreen.current else null
+    val listEventTunnel = if (mainListItem == null) LocalCompositionListScreen.current else null
     val itemName = mainListItem?.name ?: innerListItem?.name
 
     Text(
@@ -74,7 +76,11 @@ fun DeleteItemDialog(
                 .background(primaryBlack_Dark, CircleShape)
                 .border(1.dp, primaryWhite, CircleShape),
             onClick = {
-                eventTunnel(HidePopup)
+                if (mainListItem != null) {
+                    mainEventTunnel?.invoke(MainScreenEvent.HidePopup)
+                } else {
+                    listEventTunnel?.invoke(ListScreenEvent.HidePopup)
+                }
             }
         ) {
             Text(
@@ -90,8 +96,12 @@ fun DeleteItemDialog(
                 .background(primaryBlack_Dark, CircleShape)
                 .border(1.dp, primaryWhite, CircleShape),
             onClick = {
-                val deleteItemId = mainListItem?.id ?: (innerListItem?.id ?: 0)
-                eventTunnel(DeleteMainListItem(deleteItemId))
+                if (mainListItem != null) {
+                    mainEventTunnel?.invoke(MainScreenEvent.DeleteMainListItem(mainListItem.id ?: 0))
+                } else {
+                    if (innerListItem != null)
+                        listEventTunnel?.invoke(ListScreenEvent.DeleteInnerListItem(innerListItem))
+                }
             }
         ) {
             Text(

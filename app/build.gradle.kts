@@ -4,6 +4,7 @@ plugins {
     alias(libs.plugins.kotlin.compose)
     alias(libs.plugins.hilt.android)
     alias(libs.plugins.ksp)
+    alias(libs.plugins.kotlin.serialization)
 }
 
 object BuildType {
@@ -77,6 +78,6 @@ dependencies {
     implementation (libs.androidx.legacy.support.v4)
     implementation (libs.kotlinx.coroutines.core)
     implementation("com.google.code.gson:gson:2.10.1")
-
+    implementation(libs.kotlinx.serialization.json)
 
 }

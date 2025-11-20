@@ -6,7 +6,6 @@ import com.evenclose.versalist.data.model.InnerListItem
 import com.evenclose.versalist.data.model.MainListItem
 import com.evenclose.versalist.domain.model.ListsModel
 import kotlinx.coroutines.flow.flow
-import java.time.Instant
 import javax.inject.Inject
 
 class ListRepository @Inject constructor(
@@ -56,23 +55,20 @@ class ListRepository @Inject constructor(
 
 
     /** INNER LIST */
-    suspend fun addNewInnerListItem(value: String, mainListId: Int) {
+    suspend fun addNewInnerListItem(innerListItem: InnerListItem) {
         try {
-            dao.addNewInnerListItem(
-                InnerListItem(
-                    name = value,
-                    isChecked = false,
-                    mainListId = mainListId
-                )
-            )
+            dao.addNewInnerListItem(innerListItem)
         } catch (e: Exception) {
             Log.e("TAG Error Add New Inner List Item", "$e")
         }
     }
 
-    suspend fun updateItemCheckStatus(id: Int, newCheckStatus: Boolean) {
+    suspend fun toggleInnerListItemCheckStatus(innerListItem: InnerListItem) {
         try {
-            dao.updateItemCheckStatus(id, newCheckStatus)
+            dao.toggleInnerListItemCheckStatus(
+                id = innerListItem.id ?: 0,
+                newCheckStatus = !innerListItem.isChecked
+            )
         } catch (e: Exception) {
             Log.e("TAG Error Update Item Check Status", "$e")
         }
@@ -94,7 +90,7 @@ class ListRepository @Inject constructor(
         }
     }
 
-    suspend fun getCurrentInnerList(id: Int) = flow {
+    suspend fun fetchCurrentInnerList(id: Int) = flow {
         try {
             emit(dao.fetchCurrentInnerList(id))
         } catch (e: Exception) {

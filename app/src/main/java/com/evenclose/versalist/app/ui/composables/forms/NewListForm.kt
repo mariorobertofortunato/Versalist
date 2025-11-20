@@ -63,14 +63,15 @@ import com.evenclose.versalist.app.ui.theme.errorColor
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.data.model.MainListItem
-import com.evenclose.versalist.utils.enums.ListCategory
-import com.evenclose.versalist.utils.enums.ListCategory.HEALTH
-import com.evenclose.versalist.utils.enums.ListCategory.MISC
-import com.evenclose.versalist.utils.enums.ListCategory.PERSONAL
-import com.evenclose.versalist.utils.enums.ListCategory.SHOPPING
-import com.evenclose.versalist.utils.enums.ListCategory.SOCIAL
-import com.evenclose.versalist.utils.enums.ListCategory.WORK
-import com.evenclose.versalist.utils.enums.ListType
+import com.evenclose.versalist.domain.model.CategoryTypeKey.PERSONAL
+import com.evenclose.versalist.domain.model.CategoryTypeKey.WORK
+import com.evenclose.versalist.domain.model.CategoryTypeKey.HEALTH
+import com.evenclose.versalist.domain.model.CategoryTypeKey.SHOPPING
+import com.evenclose.versalist.domain.model.CategoryTypeKey.SOCIAL
+import com.evenclose.versalist.domain.model.CategoryTypeKey.MISC
+import com.evenclose.versalist.domain.model.ListTypeKey
+import com.evenclose.versalist.domain.model.categoryTypes
+import com.evenclose.versalist.domain.model.listTypes
 import java.util.Locale.getDefault
 
 @Composable
@@ -85,13 +86,13 @@ fun NewListForm(
     var errorTextVisibility by remember { mutableStateOf(false) }
 
     // List type
-    val listTypeOptions = ListType.entries.toTypedArray()
+    val listTypeOptions = listTypes.toTypedArray()
     val (selectedListTypeOption, onListTypeOptionSelected) = remember {
         mutableStateOf(listTypeOptions[0])
     }
 
     // List category
-    val listCategoryOptions = ListCategory.entries.toTypedArray()
+    val listCategoryOptions = categoryTypes.toTypedArray()
     val (selectedListCategoryOption, onListCategoryOptionSelected) = remember {
         mutableStateOf(listCategoryOptions[0])
     }
@@ -144,7 +145,6 @@ fun NewListForm(
                     unfocusedIndicatorColor = Color.Transparent,
                     disabledIndicatorColor = Color.Transparent
                 ),
-
                 textStyle = TextStyle(
                     fontWeight = FontWeight.Bold,
                     fontSize = 16.sp
@@ -186,7 +186,7 @@ fun NewListForm(
                     .background(primaryWhite, CircleShape)
                     .border(1.dp, primaryBlack_Light, CircleShape),
             ) {
-                listTypeOptions.forEach { text ->
+                listTypeOptions.forEach { listType ->
                     Row(
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = CenterVertically,
@@ -199,33 +199,32 @@ fun NewListForm(
                             )
                             .weight(1f)
                             .selectable(
-                                selected = (text == selectedListTypeOption),
-                                onClick = { onListTypeOptionSelected(text) }
+                                selected = (listType == selectedListTypeOption),
+                                onClick = { onListTypeOptionSelected(listType) }
                             )
                             .clickable(
-                                // Disable ripple effect because it sucks
                                 indication = null,
                                 interactionSource = remember { MutableInteractionSource() },
-                                onClick = { onListTypeOptionSelected(text) }
+                                onClick = { onListTypeOptionSelected(listType) }
                             )
                             .background(
-                                color = if (text == selectedListTypeOption) primaryBlack_Light else primaryWhite,
+                                color = if (listType == selectedListTypeOption) primaryBlack_Light else primaryWhite,
                                 shape = CircleShape
                             )
                     ) {
                         Icon(
-                            imageVector = if (text == ListType.OPEN_LIST) Icons.AutoMirrored.Outlined.List else Icons.Outlined.Checklist,
+                            imageVector = if (listType.type == ListTypeKey.OPEN_LIST) Icons.AutoMirrored.Outlined.List else Icons.Outlined.Checklist,
                             contentDescription = "List Type Icon",
-                            tint = if (text == selectedListTypeOption) primaryWhite else primaryBlack_Light,
+                            tint = if (listType == selectedListTypeOption) primaryWhite else primaryBlack_Light,
                             modifier = Modifier
                                 .padding(end = 8.dp)
                                 .padding(vertical = 12.dp)
                         )
                         Text(
-                            text = text.name.lowercase().replaceFirstChar {
+                            text = listType.type.lowercase().replaceFirstChar {
                                 it.titlecase(getDefault())
                             },
-                            color = if (text == selectedListTypeOption) primaryWhite else primaryBlack_Light,
+                            color = if (listType == selectedListTypeOption) primaryWhite else primaryBlack_Light,
                             fontWeight = FontWeight.Bold
                         )
                     }
@@ -260,7 +259,7 @@ fun NewListForm(
             ) {
                 items(
                     items = listCategoryOptions,
-                    key = { item -> item }) { category ->
+                    key = { item -> item.type }) { category ->
                     Box(
                         modifier = Modifier
                             .padding(4.dp)
@@ -275,7 +274,6 @@ fun NewListForm(
                                 onClick = { onListCategoryOptionSelected(category) }
                             )
                             .clickable(
-                                // Disable ripple effect because it sucks
                                 indication = null,
                                 interactionSource = remember { MutableInteractionSource() },
                                 onClick = { onListCategoryOptionSelected(category) }
@@ -293,7 +291,7 @@ fun NewListForm(
                         ) {
                             val categoryIcon: ImageVector
                             val categoryName: String
-                            when (category) {
+                            when (category.type) {
                                 PERSONAL -> {
                                     categoryIcon = Icons.Outlined.EmojiPeople
                                     categoryName =
@@ -322,6 +320,10 @@ fun NewListForm(
                                 }
 
                                 MISC -> {
+                                    categoryIcon = Icons.AutoMirrored.Outlined.EventNote
+                                    categoryName = stringResource(id = R.string.misc)
+                                }
+                                else -> {
                                     categoryIcon = Icons.AutoMirrored.Outlined.EventNote
                                     categoryName = stringResource(id = R.string.misc)
                                 }
@@ -356,8 +358,8 @@ fun NewListForm(
                     onConfirmClick(
                         MainListItem(
                             name = newListValue,
-                            type = selectedListTypeOption.name,
-                            category = selectedListCategoryOption.name,
+                            type = selectedListTypeOption.type,
+                            category = selectedListCategoryOption.type,
                             isFav = false
                         )
                     )

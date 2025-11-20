@@ -31,7 +31,7 @@ fun VersalistFab(
         modifier = Modifier
             .fillMaxWidth()
             .imePadding()
-            .padding(16.dp)
+            //.padding(16.dp)
             .border(1.dp, primaryWhite, CircleShape)
     ) {
         Text(
@@ -60,7 +60,7 @@ fun VersalistFab(
         modifier = modifier
             .fillMaxWidth()
             .imePadding()
-            .padding(16.dp)
+            //.padding(16.dp)
             .border(1.dp, primaryWhite, CircleShape)
     ) {
         content()

@@ -1,4 +1,4 @@
-package com.evenclose.versalist.app.ui.composables.dialog
+package com.evenclose.versalist.app.ui.composables.dialog.contents
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column

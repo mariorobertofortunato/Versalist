@@ -1,4 +1,4 @@
-package com.evenclose.versalist.app.ui.composables.dialog
+package com.evenclose.versalist.app.ui.composables.dialog.contents
 
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
@@ -20,7 +20,6 @@ fun MainScreenHelpDialog() {
         text = stringResource(id = R.string.how_it_works),
         textAlign = TextAlign.Center,
         modifier = Modifier
-            //.padding(top = 8.dp)
             .fillMaxWidth(),
         style = MaterialTheme.typography.headlineSmall,
         color = primaryWhite,
