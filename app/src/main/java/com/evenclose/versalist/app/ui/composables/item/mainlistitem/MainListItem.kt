@@ -1,4 +1,4 @@
-package com.evenclose.versalist.app.ui.composables.item
+package com.evenclose.versalist.app.ui.composables.item.mainlistitem
 
 import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
@@ -38,7 +38,6 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.evenclose.versalist.R
-import com.evenclose.versalist.app.ui.screens.main.ItemDropDown
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryBlack_Light
 import com.evenclose.versalist.app.ui.theme.primaryWhite
@@ -170,7 +169,7 @@ fun MainListItem(
             }
         }
 
-        ItemDropDown(
+        MainListItemDropDown(
             mainListItem = mainListItem,
             expanded = expanded,
             onDismissRequest = {

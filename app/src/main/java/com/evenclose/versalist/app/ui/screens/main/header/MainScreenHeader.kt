@@ -1,4 +1,4 @@
-package com.evenclose.versalist.app.ui.screens.main
+package com.evenclose.versalist.app.ui.screens.main.header
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box

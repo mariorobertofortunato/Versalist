@@ -12,6 +12,7 @@ import androidx.compose.foundation.verticalScroll
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clipToBounds
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import com.evenclose.versalist.R
@@ -24,31 +25,26 @@ import com.evenclose.versalist.data.model.PopupTypes
 
 @Composable
 fun PopupContent(
+    modifier: Modifier = Modifier,
     popupType: Popup,
     selectedMainListItem: MainListItem?,
     onDismiss: () -> Unit
 ) {
 
-    Column(
-        modifier = Modifier.padding(top = 120.dp)
-    ) {
-        Box(
-            modifier = Modifier
+        Column(
+            modifier = modifier
                 .background(primaryBlack_Light, RoundedCornerShape(16.dp))
                 .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
                 .fillMaxWidth()
+                .padding(top = 40.dp)
         ) {
 
             Column(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .padding(horizontal = 24.dp, vertical = 16.dp)
-                    .verticalScroll(
-                        state = rememberScrollState(),
-                        enabled = true
-                    )
+                    .verticalScroll(rememberScrollState())
             ) {
-
                 when (popupType) {
                     PopupTypes.help -> {
                         MainScreenHelpDialog()
@@ -72,14 +68,13 @@ fun PopupContent(
                         )
                     }
                 }
-
-                VersalistFab(
-                    text = stringResource(id = R.string.got_it),
-                    onClick = {
-                        onDismiss()
-                    }
-                )
             }
+            VersalistFab(
+                text = stringResource(id = R.string.got_it),
+                onClick = {
+                    onDismiss()
+                }
+            )
         }
-    }
+
 }

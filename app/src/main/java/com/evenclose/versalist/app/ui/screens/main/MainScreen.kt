@@ -44,21 +44,22 @@ import com.evenclose.versalist.app.ui.composables.Loader
 import com.evenclose.versalist.app.ui.composables.VersalistFab
 import com.evenclose.versalist.app.ui.composables.dialog.PopupWrapper
 import com.evenclose.versalist.app.ui.composables.forms.NewListForm
-import com.evenclose.versalist.app.ui.composables.item.MainListItem
+import com.evenclose.versalist.app.ui.composables.item.mainlistitem.MainListItem
 import com.evenclose.versalist.app.ui.composables.placeholder.EmptyListPlaceholder
+import com.evenclose.versalist.app.ui.screens.main.header.MainScreenHeader
 import com.evenclose.versalist.app.ui.theme.backgroundGradient
 import com.evenclose.versalist.app.ui.theme.primaryWhite
-import com.evenclose.versalist.app.viewmodel.MainScreenSingularity
+import com.evenclose.versalist.app.viewmodel.MainScreenViewModel
 import com.evenclose.versalist.utils.enums.PlaceholderType
 import kotlinx.coroutines.delay
 
 @Composable
 fun MainScreen(
     onNavigateToListId: (Int) -> Unit,
-    mainScreenSingularity: MainScreenSingularity = hiltViewModel()
+    mainScreenViewModel: MainScreenViewModel = hiltViewModel()
 ) {
     val context = LocalContext.current
-    val state by mainScreenSingularity.state.collectAsState()
+    val state by mainScreenViewModel.state.collectAsState()
     var newListFormVisibility by remember { mutableStateOf(false) }
     val focusRequester = remember { FocusRequester() }
     val listState = rememberLazyListState(0)

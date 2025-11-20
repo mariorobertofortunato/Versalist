@@ -19,7 +19,7 @@ fun PopupHeader (
 
     LottieAnimation(
         composition = composition,
-        iterations = LottieConstants.IterateForever,
+        iterations = if (popupType.infiniteAnimation) LottieConstants.IterateForever else 1,
         modifier = modifier
     )
 

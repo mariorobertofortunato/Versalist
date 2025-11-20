@@ -3,7 +3,6 @@ package com.evenclose.versalist.app.viewmodel
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.evenclose.versalist.app.common.ViewState
 import com.evenclose.versalist.app.contracts.MainScreenEvent
 import com.evenclose.versalist.app.contracts.MainScreenState
 import com.evenclose.versalist.data.DataStore
@@ -20,7 +19,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MainScreenSingularity @Inject constructor(
+class MainScreenViewModel @Inject constructor(
     private val useCase: UseCase
 ) : ViewModel() {
 
@@ -36,22 +35,21 @@ class MainScreenSingularity @Inject constructor(
     private fun processEvent(event: MainScreenEvent) {
         when (event) {
             MainScreenEvent.FetchMainList -> fetchMainList()
-            is MainScreenEvent.ShowPopup -> _state.update { it.copy(popupType = event.popupType, selectedItem = event.data) }
             MainScreenEvent.HidePopup -> _state.update { it.copy(popupType = null, selectedItem = null)  }
             MainScreenEvent.HideToast -> _state.update { it.copy(toastMessage = null) }
+            is MainScreenEvent.ShowPopup -> _state.update { it.copy(popupType = event.popupType, selectedItem = event.data) }
             is MainScreenEvent.AddNewMainListItem -> addNewMainListItem(event.listItem)
             is MainScreenEvent.DeleteMainListItem -> deleteMainListItem(event.mainListItemId)
             is MainScreenEvent.SaveLanguage -> saveLanguage(newLanguage = event.language, context = event.context)
             is MainScreenEvent.ToggleMainListItemFav -> toggleMainListItemFav(mainListItemId = event.mainListItemId, newFavouriteStatus = event.newFavStatus)
             //is MainScreenIntent.UpdateMainListItem -> updateMainListItem(intent)
-            else -> {}
         }
     }
 
     private fun fetchMainList() {
         setLoadingState()
         viewModelScope.launch {
-            delay(500)
+            delay(250)
             useCase.fetchAllListsUseCase().collect { mainListItems ->
                 _state.update {
                     it.copy(

@@ -1,24 +1,25 @@
 package com.evenclose.versalist.app.ui.screens.list
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.slideInHorizontally
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutHorizontally
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.imePadding
-import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
-import androidx.compose.foundation.shape.CircleShape
-import androidx.compose.material3.FloatingActionButton
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.collectAsState
@@ -28,12 +29,11 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.blur
 import androidx.compose.ui.focus.FocusRequester
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import androidx.hilt.lifecycle.viewmodel.compose.hiltViewModel
 import com.evenclose.versalist.R
 import com.evenclose.versalist.app.ui.composables.VersalistFab
@@ -42,7 +42,6 @@ import com.evenclose.versalist.app.ui.composables.item.CheckListItem
 import com.evenclose.versalist.app.ui.composables.item.OpenListItem
 import com.evenclose.versalist.app.ui.composables.placeholder.EmptyListPlaceholder
 import com.evenclose.versalist.app.ui.theme.backgroundGradient
-import com.evenclose.versalist.app.ui.theme.primaryBlack_Dark
 import com.evenclose.versalist.app.ui.theme.primaryWhite
 import com.evenclose.versalist.app.viewmodel.ListViewModel
 import com.evenclose.versalist.utils.enums.PlaceholderType
@@ -55,7 +54,7 @@ fun ListScreen(
     listViewModel: ListViewModel = hiltViewModel(),
 ) {
 
-    /** Current List */
+    val state by listScreenViewModel.state.collectAsState()
     val currentListData = listViewModel.currentListData.collectAsState(null)
     val currentInnerList = listViewModel.currentInnerList.collectAsState(null)
 
@@ -86,26 +85,30 @@ fun ListScreen(
         modifier = Modifier
             .background(
                 brush = Brush.linearGradient(backgroundGradient)
+            )
+            .safeContentPadding()
+            .then(
+                if (state.popupType != null || state.isLoading) {
+                    Modifier
+                        .blur(24.dp)
+                } else {
+                    Modifier
+                }
             ),
         topBar = {
-            Column(
-                modifier = Modifier
-                    .background(
-                        brush = Brush.linearGradient(backgroundGradient)
-                    )
-                    .statusBarsPadding()
-            ) {
-                ListScreenHeader(
-                    onNavigateUp = {
-                        onNavigateUp()
-                    },
-                    listName = currentListData.value?.name ?: "Error"
-                )
-            }
+            ListScreenHeader(
+                onNavigateUp = {
+                    onNavigateUp()
+                },
+                listName = currentListData.value?.name ?: "Error"
+            )
         },
         bottomBar = {
             AnimatedVisibility(
-                visible = !newItemTextFieldVisibility
+                visible = !newItemTextFieldVisibility,
+
+                enter = slideInVertically(initialOffsetY = { it }) + fadeIn(),
+                exit = slideOutVertically(targetOffsetY = { it }) + fadeOut(),
             ) {
                 VersalistFab(
                     text = stringResource(id = R.string.add_item),
@@ -117,7 +120,10 @@ fun ListScreen(
             }
 
         },
-    ) {
+    ) { paddingValues ->
+
+
+
         LazyColumn(
             verticalArrangement = if (currentInnerList.value?.isNotEmpty() == true || newItemTextFieldVisibility) Arrangement.Top else Arrangement.Center,
             state = listState,
@@ -168,27 +174,31 @@ fun ListScreen(
 
                 }
             }
-            /** Add new Item */
-            item {
-                AnimatedVisibility(
-                    visible = newItemTextFieldVisibility,
-                ) {
-                    NewItemForm(
-                        focusRequester = focusRequester,
-                        onCancelClick = {
-                            newItemTextFieldVisibility = false
-                        },
-                        onConfirmClick = { newItemValue ->
-                            listViewModel.addNewInnerListItem(
-                                value = newItemValue,
-                                mainListId = listId
-                            )
-                            newItemTextFieldVisibility = false
-                        }
-                    )
-                }
+        }
 
-            }
+        /// Form
+        AnimatedVisibility(
+            visible = newItemTextFieldVisibility,
+            enter = slideInHorizontally(initialOffsetX = { -it }) + fadeIn(),
+            exit = slideOutHorizontally(targetOffsetX = { -it }) + fadeOut(),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(paddingValues)
+                .padding(horizontal = 16.dp)
+        ) {
+            NewItemForm(
+                focusRequester = focusRequester,
+                onCancelClick = {
+                    newItemTextFieldVisibility = false
+                },
+                onConfirmClick = { newItemValue ->
+                    listViewModel.addNewInnerListItem(
+                        value = newItemValue,
+                        mainListId = listId
+                    )
+                    newItemTextFieldVisibility = false
+                }
+            )
         }
     }
 }

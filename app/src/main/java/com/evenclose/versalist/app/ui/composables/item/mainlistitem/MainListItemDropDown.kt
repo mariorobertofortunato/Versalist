@@ -1,4 +1,4 @@
-package com.evenclose.versalist.app.ui.screens.main
+package com.evenclose.versalist.app.ui.composables.item.mainlistitem
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -30,7 +30,7 @@ import com.evenclose.versalist.data.model.PopupTypes
 import kotlin.Unit
 
 @Composable
-fun ItemDropDown(
+fun MainListItemDropDown(
     mainListItem: MainListItem,
     expanded: Boolean,
     onDismissRequest: () -> Unit

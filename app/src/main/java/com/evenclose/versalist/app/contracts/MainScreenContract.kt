@@ -4,7 +4,6 @@ import android.content.Context
 import com.evenclose.versalist.data.model.MainListItem
 import com.evenclose.versalist.data.model.Popup
 
-/** EVENTS */
 sealed class MainScreenEvent {
     object FetchMainList : MainScreenEvent()
     data class AddNewMainListItem(val listItem: MainListItem) : MainScreenEvent()
@@ -16,7 +15,6 @@ sealed class MainScreenEvent {
     data class SaveLanguage(val language: String, val context: Context): MainScreenEvent()
 }
 
-/** STATE */
 data class MainScreenState(
     val isLoading: Boolean = false,
     val toastMessage: String? = null,
@@ -25,4 +23,6 @@ data class MainScreenState(
     val mainListItems: List<MainListItem> = emptyList(),
     val eventTunnel: (MainScreenEvent) -> Unit = {}
 )
+
+
 

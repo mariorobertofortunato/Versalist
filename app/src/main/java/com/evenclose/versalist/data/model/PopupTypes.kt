@@ -12,6 +12,7 @@ object PopupTypes {
     val help = Popup(
         type = HELP,
         animationResId = R.raw.animation_help,
+        infiniteAnimation = true
     )
 
     val about = Popup(
@@ -45,6 +46,7 @@ object PopupTypeKey {
 
 data class Popup(
     val type: String,
-    val animationResId: Int
+    val animationResId: Int,
+    val infiniteAnimation: Boolean = false
 )
 
