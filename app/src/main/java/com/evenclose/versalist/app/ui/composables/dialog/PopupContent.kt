@@ -37,55 +37,51 @@ fun PopupContent(
     selectedInnerListItem: InnerListItem?
 ) {
 
-        Column(
-            modifier = modifier
-                .background(primaryBlack_Light, RoundedCornerShape(16.dp))
-                .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
-                .fillMaxWidth()
-                .padding(top = 40.dp)
-        ) {
+    Column(
+        horizontalAlignment = Alignment.CenterHorizontally,
+        modifier = modifier
+            .background(primaryBlack_Light, RoundedCornerShape(16.dp))
+            .border(2.dp, primaryWhite, RoundedCornerShape(16.dp))
+            .fillMaxWidth()
+            .padding(top = 40.dp)
+            .padding(horizontal = 24.dp, vertical = 16.dp)
+            .verticalScroll(rememberScrollState())
+    ) {
 
-            Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .padding(horizontal = 24.dp, vertical = 16.dp)
-                    .verticalScroll(rememberScrollState())
-            ) {
-                when (popupType) {
-                    PopupTypes.helpMainScreen -> {
-                        MainScreenHelpDialog()
-                    }
-
-                    PopupTypes.helpListScreen -> {
-                        ListScreenHelpDialog()
-                    }
-
-                    PopupTypes.about -> {
-                        AboutDialog()
-                    }
-
-                    PopupTypes.privacy -> {
-                        PrivacyDialog()
-                    }
-
-                    PopupTypes.language -> {
-                        LanguageDialog()
-                    }
-
-                    PopupTypes.deleteMainListItem -> {
-                        DeleteItemDialog(
-                            mainListItem = selectedMainListItem
-                        )
-                    }
-
-                    PopupTypes.deleteInnerListItem -> {
-                        DeleteItemDialog(
-                            innerListItem = selectedInnerListItem
-                        )
-                    }
-                }
+        when (popupType) {
+            PopupTypes.helpMainScreen -> {
+                MainScreenHelpDialog()
             }
 
+            PopupTypes.helpListScreen -> {
+                ListScreenHelpDialog()
+            }
+
+            PopupTypes.about -> {
+                AboutDialog()
+            }
+
+            PopupTypes.privacy -> {
+                PrivacyDialog()
+            }
+
+            PopupTypes.language -> {
+                LanguageDialog()
+            }
+
+            PopupTypes.deleteMainListItem -> {
+                DeleteItemDialog(
+                    mainListItem = selectedMainListItem
+                )
+            }
+
+            PopupTypes.deleteInnerListItem -> {
+                DeleteItemDialog(
+                    innerListItem = selectedInnerListItem
+                )
+            }
         }
+    }
+
 
 }

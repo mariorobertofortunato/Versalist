@@ -17,6 +17,7 @@ import com.evenclose.versalist.app.ui.theme.primaryWhite
 
 @Composable
 fun VersalistFab(
+    modifier: Modifier = Modifier,
     text: String,
     onClick: () -> Unit,
 ) {
@@ -28,7 +29,7 @@ fun VersalistFab(
         onClick = {
             onClick()
         },
-        modifier = Modifier
+        modifier = modifier
             .fillMaxWidth()
             .imePadding()
             //.padding(16.dp)

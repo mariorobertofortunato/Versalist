@@ -69,141 +69,137 @@ fun LanguageDialog() {
             .fillMaxWidth(0.95f)
     )
 
-    Column(
-        modifier = Modifier
-    ) {
-        languageList.forEach { language ->
-            Column(
-                horizontalAlignment = CenterHorizontally,
+    languageList.forEach { language ->
+        Column(
+            modifier = Modifier
+                .fillMaxWidth()
+                .clickable(
+                    onClick = {
+                        val newLanguage = when (language) {
+                            "Arabic" -> {
+                                "ar"
+                            }
+
+                            "Chinese (Simplified)" -> {
+                                "zh"
+                            }
+
+                            "Czech" -> {
+                                "cs"
+                            }
+
+                            "Danish" -> {
+                                "da"
+                            }
+
+                            "Dutch" -> {
+                                "nl"
+                            }
+
+                            "English" -> {
+                                "en"
+                            }
+
+                            "Finnish" -> {
+                                "fi"
+                            }
+
+                            "French" -> {
+                                "fr"
+                            }
+
+                            "German" -> {
+                                "de"
+                            }
+
+                            "Greek" -> {
+                                "el"
+                            }
+
+                            "Hebrew" -> {
+                                "iw"
+                            }
+
+                            "Hindi" -> {
+                                "hi"
+                            }
+
+                            "Indonesian" -> {
+                                "in"
+                            }
+
+                            "Italian" -> {
+                                "it"
+                            }
+
+                            "Japanese" -> {
+                                "ja"
+                            }
+
+                            "Korean" -> {
+                                "ko"
+                            }
+
+                            "Norwegian" -> {
+                                "no"
+                            }
+
+                            "Polish" -> {
+                                "pl"
+                            }
+
+                            "Portuguese" -> {
+                                "pt"
+                            }
+
+                            "Russian" -> {
+                                "ru"
+                            }
+
+                            "Spanish" -> {
+                                "es"
+                            }
+
+                            "Swedish" -> {
+                                "sv"
+                            }
+
+                            "Thai" -> {
+                                "th"
+                            }
+
+                            "Turkish" -> {
+                                "tr"
+                            }
+
+                            "Vietnamese" -> {
+                                "vi"
+                            }
+
+                            else -> {
+                                "en"
+                            }
+                        }
+                        eventTunnel(MainScreenEvent.SaveLanguage(newLanguage, context))
+                    }
+                )
+        ) {
+            Text(
+                text = language,
+                style = MaterialTheme.typography.headlineSmall,
+                color = primaryWhite,
+                fontWeight = FontWeight.Bold,
                 modifier = Modifier
                     .fillMaxWidth()
-                    .clickable(
-                        onClick = {
-                            val newLanguage = when (language) {
-                                "Arabic" -> {
-                                    "ar"
-                                }
-
-                                "Chinese (Simplified)" -> {
-                                    "zh"
-                                }
-
-                                "Czech" -> {
-                                    "cs"
-                                }
-
-                                "Danish" -> {
-                                    "da"
-                                }
-
-                                "Dutch" -> {
-                                    "nl"
-                                }
-
-                                "English" -> {
-                                    "en"
-                                }
-
-                                "Finnish" -> {
-                                    "fi"
-                                }
-
-                                "French" -> {
-                                    "fr"
-                                }
-
-                                "German" -> {
-                                    "de"
-                                }
-
-                                "Greek" -> {
-                                    "el"
-                                }
-
-                                "Hebrew" -> {
-                                    "iw"
-                                }
-
-                                "Hindi" -> {
-                                    "hi"
-                                }
-
-                                "Indonesian" -> {
-                                    "in"
-                                }
-
-                                "Italian" -> {
-                                    "it"
-                                }
-
-                                "Japanese" -> {
-                                    "ja"
-                                }
-
-                                "Korean" -> {
-                                    "ko"
-                                }
-
-                                "Norwegian" -> {
-                                    "no"
-                                }
-
-                                "Polish" -> {
-                                    "pl"
-                                }
-
-                                "Portuguese" -> {
-                                    "pt"
-                                }
-
-                                "Russian" -> {
-                                    "ru"
-                                }
-
-                                "Spanish" -> {
-                                    "es"
-                                }
-
-                                "Swedish" -> {
-                                    "sv"
-                                }
-
-                                "Thai" -> {
-                                    "th"
-                                }
-
-                                "Turkish" -> {
-                                    "tr"
-                                }
-
-                                "Vietnamese" -> {
-                                    "vi"
-                                }
-
-                                else -> {
-                                    "en"
-                                }
-                            }
-                            eventTunnel(MainScreenEvent.SaveLanguage(newLanguage, context))
-                        }
-                    )
-            ) {
-                Text(
-                    text = language,
-                    style = MaterialTheme.typography.headlineSmall,
-                    color = primaryWhite,
-                    fontWeight = FontWeight.Bold,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                        .padding(vertical = 4.dp)
-                )
-                HorizontalDivider(
-                    color = primaryWhite,
-                    thickness = 1.dp,
-                    modifier = Modifier
-                        .fillMaxWidth()
-                )
-            }
+                    .padding(vertical = 4.dp)
+            )
+            HorizontalDivider(
+                color = primaryWhite,
+                thickness = 1.dp,
+                modifier = Modifier
+                    .fillMaxWidth()
+            )
         }
     }
+
 }

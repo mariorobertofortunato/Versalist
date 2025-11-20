@@ -29,7 +29,7 @@ import com.evenclose.versalist.domain.model.PopupTypes
 fun PopupWrapper(
     popupType: Popup?,
     selectedMainListItem: MainListItem? = null,
-    selectedInnerListItem: InnerListItem?= null,
+    selectedInnerListItem: InnerListItem? = null,
     onDismiss: () -> Unit
 ) {
     val animResId = popupType?.animationResId ?: R.raw.animation_info
@@ -45,24 +45,25 @@ fun PopupWrapper(
 
             Column(
                 verticalArrangement = Arrangement.spacedBy(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
                 modifier = Modifier
                     .align(Alignment.TopCenter)
-                    .padding(top = 80.dp)
+                    .padding(vertical = 80.dp)
             ) {
                 PopupContent(
                     popupType = popupType ?: return@Dialog,
                     selectedMainListItem = selectedMainListItem,
-                    selectedInnerListItem = selectedInnerListItem
-                    //modifier = Modifier.align(Alignment.TopCenter).padding(top = 80.dp)
+                    selectedInnerListItem = selectedInnerListItem,
+                    modifier = Modifier.weight(1f, fill = false)
                 )
                 VersalistFab(
                     text = stringResource(id = R.string.got_it),
                     onClick = {
                         onDismiss()
-                    }
+                    },
+                    modifier = Modifier
                 )
             }
-
 
             LottieAnimation(
                 composition = composition,
